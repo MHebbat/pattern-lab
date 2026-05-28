@@ -5,7 +5,7 @@ import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Play, Square, Info, Settings2, Package, Plug, ExternalLink } from "lucide-react";
+import { ArrowLeft, Play, Square, Info, Settings2, Package, Plug, ExternalLink, ChevronRight } from "lucide-react";
 import { PatternGrid } from "@/components/PatternGrid";
 import { getGenreColorVar } from "@/components/PatternCard";
 import { useState, useEffect, useRef } from "react";
@@ -28,6 +28,36 @@ const PLATFORM_LABELS: Record<string, string> = {
   kontakt: "Kontakt",
   free: "Free",
 };
+
+function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; color: string }) {
+  return (
+    <div className="mt-2 pt-2 border-t border-border/50 space-y-1.5">
+      <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">Alternatives</span>
+      {alts.map((alt, i) => (
+        <div key={i} className="flex items-start gap-2">
+          <ChevronRight className="w-3 h-3 mt-0.5 shrink-0 text-muted-foreground/40" />
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {alt.free && (
+                <span className="text-[9px] font-mono font-bold px-1 py-0.5 rounded border border-emerald-500/40 text-emerald-400 bg-emerald-500/10 shrink-0">FREE</span>
+              )}
+              <span className="text-xs text-foreground/80 font-medium leading-tight">{alt.name}</span>
+            </div>
+            <span className="text-[11px] text-muted-foreground/60 leading-relaxed">{alt.source}</span>
+            {alt.url && (
+              <a href={alt.url} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1 text-[11px] hover:opacity-80 transition-opacity"
+                style={{ color }}>
+                <ExternalLink className="w-2.5 h-2.5" />
+                {alt.free ? "Download free" : "View"}
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function PackCard({ pack, color }: { pack: PackRec; color: string }) {
   return (
@@ -57,12 +87,15 @@ function PackCard({ pack, color }: { pack: PackRec; color: string }) {
           href={pack.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-xs font-mono mt-1 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1 text-xs font-mono hover:opacity-80 transition-opacity"
           style={{ color }}
         >
           <ExternalLink className="w-3 h-3" />
           {pack.free ? "Download free" : "View pack"}
         </a>
+      )}
+      {pack.alternatives && pack.alternatives.length > 0 && (
+        <AltList alts={pack.alternatives} color={color} />
       )}
     </div>
   );
@@ -84,6 +117,9 @@ function PluginCard({ plugin, color }: { plugin: PluginRec; color: string }) {
         {plugin.use}
       </span>
       <p className="text-xs text-muted-foreground leading-relaxed">{plugin.notes}</p>
+      {plugin.alternatives && plugin.alternatives.length > 0 && (
+        <AltList alts={plugin.alternatives} color={color} />
+      )}
     </div>
   );
 }

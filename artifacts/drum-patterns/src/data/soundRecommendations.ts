@@ -1,12 +1,20 @@
 import type { Genre } from "./patterns";
 
+export type Alternative = {
+  name: string;
+  source: string;
+  free: boolean;
+  url?: string;
+};
+
 export type PackRec = {
   name: string;
   maker: string;
   free: boolean;
   url?: string;
   notes: string;
-  source: "ni-expansion" | "ni-preinstalled" | "cymatics" | "kontakt" | "third-party" | "splice";
+  source: "ni-expansion" | "ni-preinstalled" | "cymatics" | "kontakt" | "komplete" | "third-party" | "splice";
+  alternatives?: Alternative[];
 };
 
 export type PluginRec = {
@@ -14,6 +22,7 @@ export type PluginRec = {
   platform: "maschine" | "komplete" | "kontakt" | "free";
   use: string;
   notes: string;
+  alternatives?: Alternative[];
 };
 
 export type SoundRecs = {
@@ -30,25 +39,24 @@ export const soundRecommendations: Record<Genre, SoundRecs> = {
         free: false,
         url: "https://www.native-instruments.com/en/products/maschine/expansions/queensbridge-stories/",
         notes:
-          "The definitive NY boom bap expansion for Maschine. Sampled drums that feel like they came off an MPC3000. Includes snares with built-in room tone, dusty kicks, and a set of pre-swung groove templates. Built in collaboration with Queensbridge producers. Best expansion to start with for this genre.",
+          "Comes as a voucher with select Maschine MK3 bundles — check your NI account for a pending activation code. If included, activate it free. Otherwise it's the single paid recommendation here. Sampled drums built specifically for MPC-style boom bap: SP-1200 kicks, snares with natural room tone, and pre-built groove templates at 54% swing. Worth the cost if you make boom bap regularly.",
         source: "ni-expansion",
+        alternatives: [
+          { name: "Factory Library: Hip Hop Kits", source: "Preinstalled with MK3 — Library > Drums > Hip Hop", free: true },
+          { name: "Draco Kit — Cymatics", source: "Free download, no signup", free: true, url: "https://cymatics.fm/products/draco-free-kit" },
+        ],
       },
       {
-        name: "Vintage Heat",
-        maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/vintage-heat/",
-        notes:
-          "NI's warm analog-era expansion. Kicks and snares sampled from vintage gear — very close to the SP-1200 character. The hi-hats have that compressed, slightly distorted feel that comes from sampling off tape. Particularly strong snares.",
-        source: "ni-expansion",
-      },
-      {
-        name: "Golden Era (Preinstalled)",
+        name: "Factory Library — Boom Bap Kits",
         maker: "Native Instruments",
         free: true,
         notes:
-          "Ships with Maschine MK3 — check your Maschine library under 'Factory Library > Drums > Acoustic'. The boom bap kits under 'Hip Hop' include drum machine-style samples (drum machine multisamples, not live kit). Start here before buying anything.",
+          "Preinstalled with every Maschine MK3 — no download needed. In Maschine: click the browser icon → Tags → search 'boom bap' or navigate to Library > Drums > Hip Hop. The 'MPC Kit' and 'Drum Machine Kit' presets are directly usable. These are the sounds to start with before buying anything.",
         source: "ni-preinstalled",
+        alternatives: [
+          { name: "Komplete Start (Free)", source: "Download free from Native Instruments — includes Kontakt sampler + basic kits", free: true, url: "https://www.native-instruments.com/en/products/komplete/bundles/komplete-start/" },
+          { name: "PastProducers Golden Age Kit", source: "Free download", free: true, url: "https://www.pastproducers.com" },
+        ],
       },
       {
         name: "Draco — Free Boom Bap Kit",
@@ -56,63 +64,82 @@ export const soundRecommendations: Record<Genre, SoundRecs> = {
         free: true,
         url: "https://cymatics.fm/products/draco-free-kit",
         notes:
-          "Free download. 40+ boom bap drum samples including kicks with natural low-end, snares with room ambience, and a set of SP-1200-processed hi-hats. Drag directly into Maschine as samples. No registration required.",
+          "Free, no registration required. 40+ one-shot samples: SP-1200-processed kicks, snares with room tone already baked in, and a set of lo-fi hi-hats. Drag the folder directly into Maschine's sample browser. Well-organized and labeled by instrument type. Best free alternative to Queensbridge Stories for raw boom bap drums.",
         source: "cymatics",
+        alternatives: [
+          { name: "Looperman — Free Boom Bap One-Shots", source: "Community samples, free", free: true, url: "https://www.looperman.com" },
+          { name: "MSXII Free Samples (email signup)", source: "Free tier at msxiisound.com", free: true, url: "https://msxiisound.com" },
+        ],
       },
       {
-        name: "PastProducers Golden Age Kit",
-        maker: "PastProducers",
+        name: "Battery 4 Factory Library",
+        maker: "Native Instruments",
         free: true,
-        url: "https://www.pastproducers.com/golden-age",
         notes:
-          "Free sample pack curated specifically for MPC/Maschine-style boom bap. Includes MPC3000 drum machine hits, SP-1200 kicks, and vintage snare hits. Each sample is labeled with its source hardware — useful for matching the right sample to your pattern.",
-        source: "third-party",
-      },
-      {
-        name: "MSXII Lo-Fi Melodics",
-        maker: "MSXII Sound Design",
-        free: false,
-        url: "https://msxiisound.com",
-        notes:
-          "Paid pack from a respected lo-fi/boom bap sample house. The drum section includes heavily processed kicks that sit deep in the low end without muddying, and snares with natural room tone. MSXII's samples are recorded through vintage gear, which is audible.",
-        source: "third-party",
+          "Battery 4 (included with Komplete 15 and as a voucher with MK3) ships with an extensive factory library including acoustic kits, drum machine hits (808, 909, MPC3000-style samples), and vintage electronic percussion. Load it as a plugin in Maschine on a pad, then browse the 'Vintage' and 'Hip Hop' kit categories. Every sample can be processed individually through Battery's internal FX chain.",
+        source: "komplete",
+        alternatives: [
+          { name: "Maschine Drumsynth (built-in)", source: "Right-click any pad → Add Plugin → Drumsynth — generates kicks/snares without samples", free: true },
+          { name: "Abbey Road 60s Drummer (Kontakt)", source: "Included in Komplete 15 — recorded at Abbey Road Studios", free: true },
+        ],
       },
     ],
     plugins: [
       {
+        name: "Vinyl Distortion + Lo-Fi (Maschine FX)",
+        platform: "maschine",
+        use: "SP-1200 lo-fi character on the drum bus",
+        notes:
+          "Both are built into every Maschine MK3 at zero cost. On your drum bus Group channel: add Saturator first (Tape mode, Drive 30%), then Lo-Fi (12-bit, Rate 0.70). This replicates the bitcrushing that happened when samples were recorded into the SP-1200's 12-bit memory. The 12-bit setting is critical — lower sounds degraded, higher loses the character.",
+        alternatives: [
+          { name: "Guitar Rig 7 — Tape Recorder module (Komplete 15)", source: "Komplete 15 or Select", free: false },
+          { name: "Maschine Saturator (built-in, free)", source: "Tape mode alone gets you most of the way there without the Lo-Fi plugin", free: true },
+        ],
+      },
+      {
+        name: "Raum",
+        platform: "komplete",
+        use: "Snare and room ambience reverb",
+        notes:
+          "Raum is included with Komplete 15 and Komplete Select. For boom bap snares: use Bloom mode, Size 0.4, Decay 0.5s, High Cut 6kHz, Wet 25%. This gives the snare a tight room sound without washing it out. Much more musical than the built-in Maschine reverb for boom bap — the Bloom algorithm has a natural onset that doesn't smear the snare attack.",
+        alternatives: [
+          { name: "Maschine built-in Reverb (free)", source: "Every MK3 — go to FX > Reverb > Room mode, Decay 0.4s, 20% wet", free: true },
+          { name: "Replika XT (Komplete 15) — tape echo mode creates ambience at very short times", source: "Komplete 15", free: false },
+        ],
+      },
+      {
+        name: "Transient Master",
+        platform: "komplete",
+        use: "Kick punch and snare snap control",
+        notes:
+          "Included in Komplete and also bundled as a standalone with some MK3 purchases. On kicks: Attack +15 for more punch, Sustain -10 to tighten the tail. On snares: Attack +10 for crack, Sustain -20 to shorten the ring. Much faster than a compressor for shaping transients. Put it on individual drum channels — not the bus — so each element is controlled separately.",
+        alternatives: [
+          { name: "Maschine Compressor (built-in, free)", source: "Use fast attack (2ms) to control transients — less precise than Transient Master but built-in", free: true },
+          { name: "Supercharger GT (Komplete 15)", source: "Adds colored compression with harmonic saturation — on kicks at 3:1 ratio", free: false },
+        ],
+      },
+      {
+        name: "Abbey Road 60s Drummer (Kontakt)",
+        platform: "kontakt",
+        use: "Room mic signal blended behind the main snare",
+        notes:
+          "Included in Komplete 15 Standard. Load it on a separate Maschine pad, mute all its individual mic channels except 'Room'. Set that room mic output to 15–20% volume. Trigger it alongside your main snare via Pad Link. This adds the acoustic space of a real room recording underneath your programmed snare — a pro trick that's much more realistic than any reverb plugin.",
+        alternatives: [
+          { name: "Session Drummer 3 (Kontakt, Komplete 15)", source: "Similar approach — use room mics from the acoustic kits", free: false },
+          { name: "Drumlab (Kontakt, Komplete 15)", source: "Designed specifically for layering acoustic and electronic hits", free: false },
+          { name: "Raum in Bloom mode (free alternative)", source: "Komplete 15 or Select — approximates room ambience with the Bloom algorithm", free: false },
+        ],
+      },
+      {
         name: "Battery 4",
         platform: "komplete",
-        use: "Main drum sampler",
+        use: "Multi-layer kit building with individual channel processing",
         notes:
-          "Battery 4 (included in Komplete 14+) is the classic way to build boom bap kits — drag samples into cells, assign velocities, add individual channel processing. Use it inside Maschine as a plugin instrument on a pad. Much more flexible than loading raw samples when you're layering multiple kicks or building a ghost snare chain.",
-      },
-      {
-        name: "Vinyl Distortion (Maschine FX)",
-        platform: "maschine",
-        use: "Lo-fi grit on kick/snare bus",
-        notes:
-          "Built into every Maschine MK3. Add it to your drum bus group channel. Set the 'Warp' knob to 30–40% and 'Scratch' to 0 — this adds the harmonic distortion of a stylus on vinyl without the noise. Stack it after the Saturator for maximum SP-1200 character.",
-      },
-      {
-        name: "Supercharger GT",
-        platform: "komplete",
-        use: "Bus compression with character",
-        notes:
-          "Supercharger GT (Komplete) is a colored compressor — pressing harder adds harmonic saturation alongside compression. For boom bap, set it on the drum bus at 2:1 ratio, medium attack (25ms), and turn the 'Character' knob up slightly. It does what a hardware VCA compressor does to an MPC.",
-      },
-      {
-        name: "Abbey Road 60s Drummer",
-        platform: "kontakt",
-        use: "Acoustic kit layer for realism",
-        notes:
-          "A Kontakt instrument sampled at Abbey Road Studios. Use its snare or room mics blended behind your main boom bap snare for instant room ambience without a reverb plugin. Set the room mic fader to 25–35% — you want texture, not a live kit sound.",
-      },
-      {
-        name: "Replika XT",
-        platform: "komplete",
-        use: "Delay on hi-hats and snare",
-        notes:
-          "Replika XT adds tape delay character to individual drum elements. On hi-hats: add a very short, subtle 1/16 delay at 15% feedback and 20% mix — creates a slight smear that glues quantized hats to a swung pattern. On snares: try the 'Modern' tape mode for a ghost tail that doesn't interfere with the next hit.",
+          "Included with Komplete 15 and available as a standalone purchase. Load it as a plugin on a Maschine pad. Drag samples into Battery's cells, assign velocity layers (ghost notes: velocity 0–50, normal: 51–90, accents: 91–127). Each cell has its own EQ, Compressor, and FX chain. Essential when you're layering 2–3 kicks or building a ghost snare chain — more flexible than Maschine's native sample loading.",
+        alternatives: [
+          { name: "Maschine native sample loading (free)", source: "Built-in — you can stack samples using Pad Link. Less flexible but zero cost", free: true },
+          { name: "Kontakt 7 sampler (Komplete 15)", source: "Build a custom multi-instrument script — more complex setup but maximum flexibility", free: false },
+        ],
       },
     ],
   },
@@ -120,94 +147,110 @@ export const soundRecommendations: Record<Genre, SoundRecs> = {
   "hip-hop": {
     packs: [
       {
-        name: "Renegade",
+        name: "Factory Library — Hip Hop & Drum Machine Kits",
         maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/renegade/",
+        free: true,
         notes:
-          "Dark and aggressive. Built for hard-hitting modern hip hop — 808 bass presets, hard snares, and trap-influenced hi-hat kits that also work in straight hip hop. Includes a full set of Maschine instruments so you're not just getting samples. Best for: cinematic hip hop, dark trap-influenced beats.",
-        source: "ni-expansion",
+          "Preinstalled with Maschine MK3. In the browser: Library > Drums > Hip Hop. Includes sampled drum machine hits (808-style kicks, TR-909 snares, hi-hat kits with built-in processing). Also check Library > Drums > Electronic for 808 sub kicks and percussion. These are production-ready samples — no processing needed before loading into a pattern.",
+        source: "ni-preinstalled",
+        alternatives: [
+          { name: "Battery 4 Factory Library — Hip Hop kits", source: "Komplete 15 — browse 'Hip Hop' category inside Battery 4", free: true },
+          { name: "Massive X presets — 808 bass patches", source: "Komplete 15 — filter by 'Bass > 808' in Massive X browser", free: true },
+        ],
       },
       {
-        name: "Harlem Renaissance",
-        maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/harlem-renaissance/",
-        notes:
-          "NY hip hop focused with gospel and soul influences. The drum kits include dry, punchy snares and kicks that cut through dense sample-based production. Also includes melodic instruments (piano, organ, synth) that fit the sample-flip workflow. Strong for 90–100 BPM traditional hip hop.",
-        source: "ni-expansion",
-      },
-      {
-        name: "Origin 2 — Free Hip Hop Pack",
+        name: "Origin 2 — Free Hip Hop Kit",
         maker: "Cymatics",
         free: true,
         url: "https://cymatics.fm/products/origin-2-sample-pack",
         notes:
-          "Free download. Focused on contemporary hip hop production — 808 hits, trap-influenced hi-hats that work at slower BPMs, snares with crack and room. Includes MIDI and loops alongside the drum samples. Import the drum samples folder directly into Maschine via drag and drop.",
+          "Free, no signup. Contemporary hip hop drum one-shots: 808 kick hits (tuned in multiple keys), snares with crack, processed hi-hat kits. The 808 samples in Origin 2 are particularly well-tuned — they cover the chromatic scale so you can match any key. Drag into Maschine as samples and assign to pads with the Tune parameter for key-matching.",
         source: "cymatics",
+        alternatives: [
+          { name: "Cymatics Draco — free", source: "Free, also works for hip hop patterns", free: true, url: "https://cymatics.fm/products/draco-free-kit" },
+          { name: "Factory Library 808 Kicks", source: "Preinstalled — Library > Drums > Electronic > 808", free: true },
+        ],
       },
       {
-        name: "Vice",
+        name: "Komplete Start — Free Tier",
         maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/vice/",
+        free: true,
+        url: "https://www.native-instruments.com/en/products/komplete/bundles/komplete-start/",
         notes:
-          "Night-time, metropolitan hip hop aesthetic. Punchy kicks with sub presence, snares that cut, and melodic synth content. The drum kits in Vice lean modern — closer to 2015–2020 hip hop than classic era. Use when your pattern has a lot of kick variation and you want sounds that stay clear in a full mix.",
-        source: "ni-expansion",
+          "Free download — no purchase required. Includes a selection of instruments usable inside Maschine via Komplete Kontrol or directly in Kontakt: Kontakt 7 Player (with free instrument library), Analog Dreams (vintage synths for pads and leads), and several drum kits. This is the recommended starting point if you don't yet have Komplete 15 — everything in it is free forever.",
+        source: "ni-preinstalled",
+        alternatives: [
+          { name: "Looperman — hip hop one-shots (community, free)", source: "Free, filter by Hip Hop tag", free: true, url: "https://www.looperman.com" },
+        ],
       },
       {
-        name: "Hip Hop Drum Essentials (Preinstalled)",
+        name: "Drumlab (Kontakt — Komplete 15)",
         maker: "Native Instruments",
         free: true,
         notes:
-          "Comes with Maschine MK3 under 'Factory Library > Drums > Hip Hop'. Contains 808-style kicks, crisp snares, and processed hi-hat kits. The '808 Classic' kit in particular is well-tuned and production-ready. Load as an instrument or pull individual samples.",
-        source: "ni-preinstalled",
-      },
-      {
-        name: "Splice — Hip Hop Collection",
-        maker: "Splice",
-        free: false,
-        url: "https://splice.com/sounds/genres/hip-hop",
-        notes:
-          "Splice's subscription (~$8–10/month) gives access to thousands of tagged hip hop samples. Filter by 'Drum One-Shots > Kick' + 'Hip Hop' tag. You can download individual samples — no need to buy full packs. Maschine can import .wav files directly. Use Splice for finding specific tones when pack kits don't fit.",
-        source: "splice",
+          "Included with Komplete 15. Drumlab is a hybrid drum instrument: blend an acoustic drum hit with an electronic synthesized layer on the same pad. For hip hop kicks: load an acoustic kick in layer A, a 909-style synth kick in layer B, blend 70/30. Gives you the acoustic punch of a real kick with the sub body of a synthesized one. Excellent for building layered hip hop kit sounds without multiple Pad Links.",
+        source: "kontakt",
+        alternatives: [
+          { name: "Maschine Drumsynth + sample layer via Pad Link (free)", source: "Built-in — no plugins needed", free: true },
+          { name: "Battery 4 velocity layering (Komplete 15)", source: "More complex but more control per velocity zone", free: false },
+        ],
       },
     ],
     plugins: [
       {
         name: "Massive X",
         platform: "komplete",
-        use: "808 bass and sub",
+        use: "808 bass and tuned sub hits",
         notes:
-          "Massive X (Komplete 13+) is the go-to for 808-style bass inside Maschine. Load it on a pad, choose the 'Sub Bass' category, then pitch the note to your key. Set portamento (glide) to 80–120ms for the slide between notes. Route through a separate Maschine channel so you can sidechain it from the kick.",
+          "Included with Komplete 15 and Komplete Select. Load as a plugin on a Maschine pad. In the browser, filter by 'Bass'. Choose a sub bass patch, then use the Tune parameter (+/- semitones) to match the key of your sample flip. Set Portamento (glide) to 80–120ms for the characteristic 808 slide between notes. Run the 808 channel through a separate bus so you can sidechain it from the kick.",
+        alternatives: [
+          { name: "Maschine Drumsynth — Kick Sub preset (free)", source: "Right-click pad → Add Plugin → Drumsynth → Kick Sub. Fully tunable synthesized sub, built-in", free: true },
+          { name: "FM8 (Komplete 15) — sine wave sub bass patches", source: "Komplete 15 — not included in Select", free: false },
+        ],
       },
       {
         name: "Guitar Rig 7",
         platform: "komplete",
-        use: "Lo-fi and tape simulation on the drum bus",
+        use: "Lo-fi tape and vinyl simulation on drum bus",
         notes:
-          "Guitar Rig's 'Tape Delay' and 'Tube Compressor' components work as creative drum bus processing. Run the drum bus through a Tape Echo at very short delay times (under 20ms) for width, or through the tube preamp for harmonic saturation. Use sparingly — easy to overdo.",
+          "Included with Komplete 15 and Select. Add to your drum bus Group channel. Load the 'Tape Machine' component — set Wow/Flutter to 0.3, Saturation to 40%. This adds subtle tape movement that makes quantized patterns feel less rigid. Also useful: the 'Tube Compressor' component for adding harmonic saturation to kicks before they hit the bus.",
+        alternatives: [
+          { name: "Maschine Saturator + Lo-Fi (both built-in, free)", source: "Saturator in Tape mode (30% Drive) + Lo-Fi (12-bit) — gets you 80% of the way", free: true },
+          { name: "Maschine Vinyl Distortion (built-in, free)", source: "Warp knob 25–35% — adds analog grit without obvious distortion", free: true },
+        ],
       },
       {
-        name: "Transient Master",
+        name: "Replika XT",
         platform: "komplete",
-        use: "Kick and snare punch control",
+        use: "Tape delay on hi-hats for groove smear",
         notes:
-          "Transient Master (free with Komplete Elements — bundled with MK3) lets you add or subtract the attack transient of a drum hit. On kicks: Attack +15 for more punch. On snares: Sustain -20 to shorten the ring. Much faster than using a compressor to shape transients. Add it on individual drum channels, not the bus.",
+          "Included with Komplete 15. On your hi-hat channel: add Replika XT in 'Modern' or 'Analogue' tape mode. Set Delay Time to 1/32 note, Feedback to 10%, Mix to 15%. This creates a very subtle echo behind each hat that blurs the strict grid without changing the pattern — it's one of the techniques used to make quantized patterns feel like they swing more than they do.",
+        alternatives: [
+          { name: "Maschine built-in Delay (free)", source: "FX > Delay — set to 1/32 note, Feedback 8%, Dry/Wet 12%. Less character than Replika but built-in", free: true },
+          { name: "Maschine Flanger at slow rate (built-in, free)", source: "Very slow Flanger rate can create subtle smear on hats", free: true },
+        ],
       },
       {
-        name: "Drumsynth (Maschine built-in)",
-        platform: "maschine",
-        use: "Synthesized kicks and snares",
+        name: "Supercharger GT",
+        platform: "komplete",
+        use: "Colored bus compression with harmonic saturation",
         notes:
-          "Every Maschine pad can load the built-in Drumsynth instead of a sample — right-click a pad and choose 'Add Plugin > Instrument > Drumsynth'. The 'Kick Classic' and 'Kick Sub' presets generate synthesized 808-style kicks. Great for tunable sub kicks when you can't find a sample that sits in key.",
+          "Included with Komplete 15. On the drum bus: Ratio 2.5:1, Attack 20ms, Release 100ms, Character knob at 30–40%. The Character knob is unique — it adds harmonics as you compress harder, so the drum bus gets fatter the more it's being pressed. For hip hop, this is more useful than a clean compressor because it adds presence alongside dynamics control.",
+        alternatives: [
+          { name: "Maschine built-in Compressor (free)", source: "Use on drum bus: ratio 2:1, attack 25ms, release 150ms — clean but no harmonic character", free: true },
+          { name: "Transient Master on individual channels instead of bus (Komplete 15 or bundled)", source: "Sculpt transients individually — often more effective than bus compression", free: false },
+        ],
       },
       {
-        name: "Analog Dreams",
+        name: "Analog Dreams (Kontakt)",
         platform: "kontakt",
-        use: "Vintage synth melodic layers",
+        use: "Vintage synth pads and melodic layers",
         notes:
-          "Analog Dreams (Kontakt, Komplete 13+) is a collection of vintage synthesizer patches. Use it for the melodic elements behind your hip hop patterns — specifically the 'Pad' and 'Lead' categories for chords over your beat. Pairs well with the Vice expansion's drums.",
+          "Included in Komplete 15 and Komplete Start (free tier). Load in Kontakt on a Maschine instrument pad. The 'Pad' and 'Synth' categories have warm, vintage-textured patches ideal for looping chords behind a hip hop pattern. Pair with a light Raum reverb (Shimmer or Grounded mode) at 20% wet. Stays out of the drum frequencies — designed for mid/upper melodic content.",
+        alternatives: [
+          { name: "Massive X — Pad patches (Komplete 15)", source: "More modern/electronic character — search 'Pad' in Massive X browser", free: false },
+          { name: "FM8 — Electric Piano patches (Komplete 15 Standard)", source: "More metallic character — search 'Keys' or 'Electric Piano'", free: false },
+        ],
       },
     ],
   },
@@ -215,22 +258,16 @@ export const soundRecommendations: Record<Genre, SoundRecs> = {
   "rnb": {
     packs: [
       {
-        name: "Velvet Lounge",
+        name: "Factory Library — Soul & R&B Kits",
         maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/velvet-lounge/",
+        free: true,
         notes:
-          "The best R&B expansion in the NI catalog. Warm kick drums with natural sub, rimshots that sit perfectly in the mids, shaker loops, and tambourines. Also includes keyboard, Rhodes, and bass patches — so you can build the entire track from one expansion. Built specifically for smooth R&B and neo soul production.",
-        source: "ni-expansion",
-      },
-      {
-        name: "Soul Sessions",
-        maker: "Native Instruments",
-        free: false,
-        url: "https://www.native-instruments.com/en/products/maschine/expansions/soul-sessions/",
-        notes:
-          "Classic soul-influenced R&B. Drum kits sampled from real acoustic kits — live drummer feel. Particularly strong for patterns with rimshots (instead of snares) and open hi-hats. The 'Soul Kit 2' preset is widely used for neo-soul production. Works at 70–95 BPM.",
-        source: "ni-expansion",
+          "Preinstalled with Maschine MK3. Navigate: Library > Drums > Soul or Library > Drums > RnB. Includes rimshots with natural wood tone, brush snares, warm kick drums, and shaker/tambourine one-shots. The rimshot and side-stick samples in the Soul kit folder are especially good — dry and transient-forward, exactly what R&B and Neo Soul patterns require.",
+        source: "ni-preinstalled",
+        alternatives: [
+          { name: "Kinetic Treats (preinstalled, check NI account)", source: "Ships with some MK3 bundles — organic percussion: shakers, congas, bells", free: true },
+          { name: "Venus Kit — Cymatics (free)", source: "Free download, no signup", free: true, url: "https://cymatics.fm/products/venus-free-sample-pack" },
+        ],
       },
       {
         name: "Venus — Free R&B Kit",
@@ -238,71 +275,95 @@ export const soundRecommendations: Record<Genre, SoundRecs> = {
         free: true,
         url: "https://cymatics.fm/products/venus-free-sample-pack",
         notes:
-          "Free download, no email required. Contains R&B/trap-soul drum one-shots: soft kicks, claps with reverb baked in, shakers, and a set of soft hi-hats. Good for contemporary R&B patterns (2018–present) with that floating, airy feel.",
+          "Free, no registration. Soft kicks with natural decay, layered clap hits with reverb pre-applied, shaker samples, and a set of hi-hats tuned for R&B tempos (70–95 BPM). The clap samples in Venus are particularly good for contemporary R&B — they already have a small room reverb baked in, which means you need less reverb processing in Maschine.",
         source: "cymatics",
+        alternatives: [
+          { name: "Factory Library: Soul Kits (preinstalled)", source: "Built-in — Library > Drums > Soul", free: true },
+          { name: "Looperman — R&B drum one-shots (community, free)", source: "Filter by R&B tag, sort by rating — many usable free samples", free: true, url: "https://www.looperman.com/loops/tags/rnb" },
+        ],
       },
       {
-        name: "Kinetic Treats (Preinstalled)",
+        name: "Session Drummer 3 (Kontakt — Komplete 15)",
         maker: "Native Instruments",
         free: true,
         notes:
-          "Comes with Maschine MK3 — find it under 'Factory Library > Expansions > Kinetic Treats'. While primarily electronic/dance, its organic percussion samples (shakers, tambourines, congas, bells) are extremely useful for R&B layering. Add these organic perc elements on top of your main drum kit for depth.",
-        source: "ni-preinstalled",
+          "Included with Komplete 15. Load in Kontakt on a Maschine instrument pad. Recorded acoustic drum kits with individual microphone positions (close, overhead, room). For R&B: mute all mics except Close and Room. Set Room fader to 20–25% — this adds real acoustic space behind your programmed pattern without sounding like a live recording. Pair with your main Factory Library samples for a hybrid acoustic/electronic kit.",
+        source: "kontakt",
+        alternatives: [
+          { name: "Abbey Road 60s Drummer (Kontakt, Komplete 15)", source: "Same room-mic technique, different acoustic character — warmer, more vintage", free: false },
+          { name: "Drumlab (Kontakt, Komplete 15)", source: "Layer acoustic hits with synthesized elements — more experimental", free: false },
+        ],
       },
       {
-        name: "Midnight Vibes",
-        maker: "Cymatics",
-        free: false,
-        url: "https://cymatics.fm/products/midnight-vibes",
-        notes:
-          "Paid pack focused on contemporary R&B, trap-soul, and smooth hip hop. Strong selection of 808s tuned for R&B keys (not just trap keys), plus layered clap hits and hat kits with built-in reverb. Price is reasonable (~$20) for the range of sounds.",
-        source: "cymatics",
-      },
-      {
-        name: "Looperman — R&B Drum Kits (Free)",
-        maker: "Community",
+        name: "Battery 4 — Acoustic & Electronic Kits",
+        maker: "Native Instruments",
         free: true,
-        url: "https://www.looperman.com/loops/tags/rnb",
         notes:
-          "Looperman has hundreds of free community-uploaded R&B drum samples and loops. Filter by 'Drum Loops > R&B'. Download individual one-shots or full loops, drag into Maschine. Quality varies — sort by rating and stick to 4-star+ uploads.",
-        source: "third-party",
+          "Included with Komplete 15. In Battery 4: browse 'Acoustic' kits for rimshots and brush snares, and 'Electronic' for soft kicks and hi-hats. Battery 4's velocity layering is particularly useful for R&B — program your shaker at all 16 steps in Maschine, then set Battery 4 to use a softer shaker sample at low velocities and a brighter one at accented steps. Creates natural-sounding shaker dynamics automatically.",
+        source: "komplete",
+        alternatives: [
+          { name: "Maschine sample loader with Pad Link (free)", source: "Stack two shaker samples (soft + bright) using Pad Link — manual velocity version", free: true },
+          { name: "Kontakt 7 sampler (Komplete 15)", source: "Build velocity-mapped scripts for total control", free: false },
+        ],
       },
     ],
     plugins: [
       {
-        name: "Session Horns Pro",
-        platform: "kontakt",
-        use: "Horn section stabs over R&B patterns",
-        notes:
-          "Session Horns Pro (Kontakt, Komplete 11+) provides recorded horn section patches. For R&B, use 'Sax Section' or 'Brass Hit' patches as stab accents — short chords on steps 2 or 6 add classic soul character. Run through light reverb and pull back the velocity to 60–70% for background-level stabs.",
-      },
-      {
-        name: "Scarbee Clavinet",
-        platform: "kontakt",
-        use: "Funky keyboard texture",
-        notes:
-          "Scarbee Clavinet (Kontakt, Komplete 9+) recreates the Hohner Clavinet — the keyboard in nearly every classic soul and R&B record. Load on a pad group, run through Guitar Rig's Wah preset. Even simple two-note patterns add an enormous amount of groove and genre authenticity.",
-      },
-      {
         name: "Raum",
         platform: "komplete",
-        use: "Snare and clap reverb",
+        use: "Snare, clap, and rimshot reverb",
         notes:
-          "Raum (free with Native Instruments' native tools, also in Komplete) is NI's best reverb for R&B. Use the 'Bloom' mode for snares — it has a soft onset that doesn't clash with the dry hit. Set Size to 0.6, Decay to 1.2s, High Cut to 6kHz. Much smoother than the built-in Maschine reverb for R&B applications.",
+          "Included with Komplete 15 and Select. For R&B snares: Bloom mode, Size 0.55, Decay 1.2s, High Cut 5.5kHz, Pre-Delay 18ms, Wet 38%. The Pre-Delay separates the dry hit from the reverb wash — crucial for R&B, where the snare transient must cut through before the reverb opens up. For rimshots: reduce Decay to 0.6s and Wet to 25% — rimshots need less reverb than full snares.",
+        alternatives: [
+          { name: "Maschine built-in Reverb (free)", source: "Room mode, Decay 0.8s, 25% wet — less smooth than Raum but built-in", free: true },
+          { name: "RC 48 (free standalone from NI)", source: "Free download from NI — more algorithmic character, good for large hall reverb on slow-jam snares", free: true, url: "https://www.native-instruments.com/en/products/komplete/effects/rc-48-rc-24/" },
+        ],
       },
       {
-        name: "Kontakt — Session Drummer 3",
+        name: "The Gentleman (Kontakt)",
         platform: "kontakt",
-        use: "Acoustic kit layers",
+        use: "Upright piano for chords and melodic layers",
         notes:
-          "Session Drummer 3 (Kontakt, Komplete 11+) has real acoustic kits with individual mic positions. Use it to add a room mic signal blended underneath your main programmed snare at 15–20% volume. This adds acoustic space without making it sound like a live recording — it's the trick behind a lot of R&B productions.",
+          "Included with Komplete 15 Standard. Load in Kontakt on a Maschine instrument group. The Gentleman is a sampled upright piano with a warm, slightly muted character — perfect for R&B chord stabs and sparse melodic lines. Use velocity 50–70 for background chords. Run through Raum in Grounded mode (0.8s, 20% wet) to place it in a room. Pairs immediately with any Soul kit.",
+        alternatives: [
+          { name: "Scarbee Mark I (Kontakt, Komplete 15)", source: "Rhodes electric piano character — brighter and more cutting than The Gentleman", free: false },
+          { name: "Noire (Kontakt, Komplete 15 Ultimate)", source: "Grand piano with felt muting — very intimate, R&B-appropriate", free: false },
+          { name: "Maschine Chord mode with any pad (free)", source: "Hold SHIFT + pad → Chord mode — program chords without a piano instrument using any existing sound", free: true },
+        ],
       },
       {
-        name: "Form",
-        platform: "komplete",
-        use: "Atmospheric pads and texture",
+        name: "Scarbee Clavinet (Kontakt)",
+        platform: "kontakt",
+        use: "Funky keyboard texture and rhythmic groove hits",
         notes:
-          "Form (Komplete 11+) is a sample-based synth that creates evolving ambient textures. Load a vocal sample or piano note into it and let it generate a slowly shifting pad. Use this as a background atmospheric layer behind your R&B pattern — gives tracks that 'late night' depth without any harmonic clashes.",
+          "Included with Komplete 15. Load in Kontakt. The Scarbee Clavinet is the Hohner Clavinet — the instrument in Stevie Wonder's Superstition and most classic soul records. Program short, muted two-note stabs on steps 2 and 6 at velocity 65. Run through Guitar Rig 7's 'Auto Wah' component (Envelope Follower mode) for the classic wah-clavinet sound that defines R&B groove playing.",
+        alternatives: [
+          { name: "Scarbee Mark I (Kontakt, Komplete 15)", source: "Rhodes piano — less funky than Clavinet but warmer, more modern R&B appropriate", free: false },
+          { name: "Maschine built-in Flanger + any pad sample (free)", source: "Flanger with fast rate on a short keyboard stab approximates some of the Clavinet attack character", free: true },
+        ],
+      },
+      {
+        name: "Session Horns (Kontakt)",
+        platform: "kontakt",
+        use: "Horn stabs and brass accents",
+        notes:
+          "Included with Komplete 15 (full Session Horns). Load in Kontakt. Use 'Brass Stab' or 'Sax Section Short' patches. Program one or two short chord hits on step 2 or step 10 at velocity 60 — horn stabs should be accent elements, not constant. Run through Raum (short plate, 0.4s, 15% wet) so they sit in the room. In Maschine, assign them to a separate Group for independent volume/FX control.",
+        alternatives: [
+          { name: "Action Strings (Kontakt, Komplete 15)", source: "String section hits for a different orchestral texture behind R&B patterns", free: false },
+          { name: "Scarbee Rickenbacker Bass (Kontakt, Komplete 15)", source: "If adding a bass line — warm vintage bass tone that complements R&B patterns", free: false },
+          { name: "Maschine built-in chord + any bright pad (free)", source: "Approximate a horn stab with a bright, short pad sample and a quick amplitude envelope", free: true },
+        ],
+      },
+      {
+        name: "Supercharger GT",
+        platform: "komplete",
+        use: "Gentle bus compression to glue the R&B kit",
+        notes:
+          "Included with Komplete 15. On the R&B drum bus: very gentle settings — Ratio 1.5:1, Attack 50ms (very slow — let the transients breathe), Release 300ms, Character knob at 20%. R&B drums should not pump or feel obviously compressed. This setting just slightly glues the kit together. Turn it off and on to hear the difference — if you can't hear it clearly, it's probably set correctly.",
+        alternatives: [
+          { name: "Maschine built-in Compressor on bus (free)", source: "Ratio 1.5:1, attack 50ms, release 300ms — same settings, less harmonic color", free: true },
+          { name: "Transient Master per-channel instead of bus (Komplete 15 or bundled)", source: "Shape each element individually — more surgical than bus compression", free: false },
+        ],
       },
     ],
   },
