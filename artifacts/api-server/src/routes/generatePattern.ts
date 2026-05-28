@@ -1,8 +1,39 @@
 import { Router, type IRouter } from "express";
-import { openai } from "@workspace/integrations-openai-ai-server";
+import OpenAI from "openai";
 import { z } from "zod";
 
 const router: IRouter = Router();
+
+function createAIClient(): OpenAI {
+  const openRouterKey = process.env["OPENROUTER_API_KEY"];
+  if (openRouterKey) {
+    return new OpenAI({
+      apiKey: openRouterKey,
+      baseURL: "https://openrouter.ai/api/v1",
+      defaultHeaders: {
+        "HTTP-Referer": "https://pattern-lab.local",
+        "X-Title": "Pattern Lab",
+      },
+    });
+  }
+
+  const replitBase = process.env["AI_INTEGRATIONS_OPENAI_BASE_URL"];
+  const replitKey = process.env["AI_INTEGRATIONS_OPENAI_API_KEY"];
+  if (replitBase && replitKey) {
+    return new OpenAI({ apiKey: replitKey, baseURL: replitBase });
+  }
+
+  throw new Error(
+    "No AI key configured. Set OPENROUTER_API_KEY in .env.local, " +
+    "or provision the OpenAI integration on Replit.",
+  );
+}
+
+function getModel(): string {
+  if (process.env["OPENROUTER_MODEL"]) return process.env["OPENROUTER_MODEL"]!;
+  if (process.env["OPENROUTER_API_KEY"]) return "openai/gpt-4o-mini";
+  return "gpt-5.1";
+}
 
 const GeneratePatternBody = z.object({
   genre: z.enum(["hip-hop", "boom-bap", "rnb"]),
@@ -51,17 +82,26 @@ router.post("/generate-pattern", async (req, res) => {
     return;
   }
 
-  const { genre, feel, bpm } = parseResult.data;
+  let client: OpenAI;
+  try {
+    client = createAIClient();
+  } catch (err) {
+    req.log.error({ err }, "AI client not configured");
+    res.status(503).json({
+      error: err instanceof Error ? err.message : "AI not configured",
+    });
+    return;
+  }
 
+  const { genre, feel, bpm } = parseResult.data;
   const genreLabel = genre === "hip-hop" ? "Hip Hop" : genre === "boom-bap" ? "Boom Bap" : "R&B";
   const feelHint = feel ? ` with a ${feel} feel` : "";
   const bpmHint = bpm ? ` at around ${bpm} BPM` : "";
-
   const userPrompt = `Create an original ${genreLabel} drum pattern${feelHint}${bpmHint}. Make it feel authentic and musical. Give it a creative name. Include specific Maschine MK3 tips.`;
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-5.1",
+    const completion = await client.chat.completions.create({
+      model: getModel(),
       max_completion_tokens: 2048,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
@@ -70,7 +110,6 @@ router.post("/generate-pattern", async (req, res) => {
     });
 
     const content = completion.choices[0]?.message?.content ?? "";
-
     let pattern: unknown;
     try {
       pattern = JSON.parse(content.trim());

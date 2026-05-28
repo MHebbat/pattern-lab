@@ -6,12 +6,12 @@ import { PatternCard } from "@/components/PatternCard";
 import { GenerateModal } from "@/components/GenerateModal";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, BookOpen, Scissors } from "lucide-react";
+import { Sparkles, BookOpen, Scissors, Trash2 } from "lucide-react";
 
 export default function Home() {
   const [filter, setFilter] = useState<Genre | "all">("all");
   const [showGenerate, setShowGenerate] = useState(false);
-  const { generatedPatterns, addGeneratedPattern } = useGeneratedPatterns();
+  const { generatedPatterns, addGeneratedPattern, deleteGeneratedPattern } = useGeneratedPatterns();
   const [, setLocation] = useLocation();
 
   const allPatterns = useMemo(() => [...generatedPatterns, ...patterns], [generatedPatterns]);
@@ -91,8 +91,18 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: i * 0.03, duration: 0.25 }}
+                className="relative group"
               >
                 <PatternCard pattern={pattern} />
+                {pattern.generated && (
+                  <button
+                    onClick={e => { e.preventDefault(); e.stopPropagation(); deleteGeneratedPattern(pattern.id); }}
+                    title="Delete saved pattern"
+                    className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md bg-background/80 border border-border text-muted-foreground hover:text-destructive hover:border-destructive/50"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                )}
               </motion.div>
             ))}
           </div>

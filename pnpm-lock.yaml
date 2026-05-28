@@ -172,9 +172,6 @@ importers:
       '@workspace/db':
         specifier: workspace:*
         version: link:../../lib/db
-      '@workspace/integrations-openai-ai-server':
-        specifier: workspace:*
-        version: link:../../lib/integrations-openai-ai-server
       cookie-parser:
         specifier: ^1.4.7
         version: 1.4.7
@@ -187,6 +184,9 @@ importers:
       express:
         specifier: ^5.2.1
         version: 5.2.1
+      openai:
+        specifier: ^6.39.0
+        version: 6.39.0(zod@3.25.76)
       pino:
         specifier: ^9.14.0
         version: 9.14.0
@@ -2853,6 +2853,7 @@ packages:
   recharts@2.15.4:
     resolution: {integrity: sha512-UT/q6fwS3c1dHbXv2uFgYJ9BMFHu3fwnd7AYZaEQhXuYQ4hgsxLvsUXzGdKeZrW5xopzDCvuA2N41WJ88I7zIw==}
     engines: {node: '>=14'}
+    deprecated: 1.x and 2.x branches are no longer active. Bump to Recharts v3 to receive latest features and bugfixes. See https://github.com/recharts/recharts/wiki/3.0-migration-guide
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
