@@ -538,5 +538,281 @@ export const patterns: DrumPattern[] = [
       { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
       { instrument: "Perc Bright", pattern: makePattern([7, 15]), velocity: makeVelocity(makePattern([7, 15]), [], [7, 15]) }
     ]
+  },
+
+  // ─── BOOM BAP (extended) ─────────────────────────────────────────────────────
+  {
+    id: "bb-9",
+    name: "Gang Starr Minimal",
+    genre: "boom-bap",
+    bpm: 94,
+    feel: ["sparse", "cold", "purposeful"],
+    description: "Every element earns its place. Silence is used deliberately — the kick and snare have more space than notes.",
+    maschineNotes: [
+      "Set up three separate Groups: kicks, snare, hats — each with its own swing amount.",
+      "Kick Group swing: 52%. Snare Group: 54%. Hat Group: 57%. The mismatch creates depth.",
+      "The rimshot on step 14 should be at velocity 45 — barely there, just a flicker.",
+      "Apply Lo-Fi to the entire kit at 12 bits — not less. Less than 12 bits sounds too degraded.",
+      "Leave at least 4 consecutive steps completely empty somewhere in the pattern."
+    ],
+    swing: 54,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 11]), velocity: makeVelocity(makePattern([0, 11]), [0], [11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Rimshot", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [0, 8], [4, 12]) }
+    ]
+  },
+  {
+    id: "bb-10",
+    name: "Buckwild Bounce",
+    genre: "boom-bap",
+    bpm: 88,
+    feel: ["bouncy", "soulful", "driving"],
+    description: "Syncopated kick combos create a relentless forward bounce. The snare anchor on 2 and 4 keeps it grounded.",
+    maschineNotes: [
+      "The kick on step 6 is the 'bounce' note — it must be ghost velocity (45) or the pattern loses its groove.",
+      "Push the hat swing to 60% while keeping kicks at 54% for layered feel.",
+      "Layer a conga hit on step 3 at velocity 55 for extra Latin soul flavor.",
+      "Open hat on step 9 is critical — put it in the same Choke Group as your closed hat.",
+      "Tune kick to the root of your sample. Tune the conga to the 3rd degree."
+    ],
+    swing: 56,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 3, 6, 8, 13]), velocity: makeVelocity(makePattern([0, 3, 6, 8, 13]), [0, 8], [3, 6, 13]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+      { instrument: "HH Open", pattern: makePattern([9]), velocity: makeVelocity(makePattern([9])) },
+      { instrument: "Conga", pattern: makePattern([3, 11]), velocity: makeVelocity(makePattern([3, 11]), [], [3, 11]) }
+    ]
+  },
+  {
+    id: "bb-11",
+    name: "Diamond D Pocket",
+    genre: "boom-bap",
+    bpm: 91,
+    feel: ["rolling", "deep", "groove"],
+    description: "A rolling 16th hat pattern with a swung kick that locks perfectly into the snare pocket. Built for looping.",
+    maschineNotes: [
+      "The hat density is high but velocities must vary: odd steps at 50, even steps at 75, beat steps at 95.",
+      "Enter Velocity mode (push encoder in Step Seq) and shape each hat step individually.",
+      "Kick step 5 is the syncopation glue — ghost it at velocity 40.",
+      "Apply the Humanize function to hats only: Timing 10ms, Velocity 20. Never humanize kicks.",
+      "The whole loop should sound like someone nodding — not a machine ticking."
+    ],
+    swing: 55,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8, 14]), velocity: makeVelocity(makePattern([0, 5, 8, 14]), [0, 8], [5, 14]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([6, 10, 15]), velocity: makeVelocity(makePattern([6, 10, 15]), [], [6, 10, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), velocity: makeVelocity(makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [0, 4, 8, 12], [1, 3, 5, 7, 9, 11, 13, 15]) }
+    ]
+  },
+  {
+    id: "bb-12",
+    name: "J-Zone Basement",
+    genre: "boom-bap",
+    bpm: 87,
+    feel: ["lo-fi", "dusty", "raw"],
+    description: "Basement-recorded energy. Extremely sparse — the negative space between hits is as important as the hits themselves.",
+    maschineNotes: [
+      "Add noise to the kick: load a vinyl crackle sample at velocity 25 on the same pad step.",
+      "Low-pass filter the entire kit group at 8kHz — nothing bright should make it through.",
+      "Snare: add a room reverb at 0.4s decay — short enough to keep it tight, long enough to feel a room.",
+      "Deliberately do NOT fix any timing — no quantize after recording live elements.",
+      "Consider adding a bass note (pad) that triggers with the kick via Pad Link, tuned to root note."
+    ],
+    swing: 57,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 10]), velocity: makeVelocity(makePattern([0, 10]), [0], []) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4], [12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([2, 9, 14]), velocity: makeVelocity(makePattern([2, 9, 14]), [], [2, 9, 14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 14]), [0, 8], [2, 6, 14]) }
+    ]
+  },
+
+  // ─── HIP HOP (extended) ──────────────────────────────────────────────────────
+  {
+    id: "hh-9",
+    name: "Alchemist Dark",
+    genre: "hip-hop",
+    bpm: 90,
+    feel: ["dark", "cinematic", "heavy"],
+    description: "Minimal and menacing. The kick carries more rhythmic interest than the hats. Built for dark sample flips.",
+    maschineNotes: [
+      "Route kick and sub kick through separate channels — compress them individually before the bus.",
+      "Hi-hats are a quarter-note pattern only — 4 hits per bar, no more. Silence does the work.",
+      "Add a tom hit on step 10 at velocity 60 — gives the pattern a tribal, one-hit accent.",
+      "The snare needs to be very wide: add Stereo Widener at 80% on the snare channel.",
+      "Keep reverb short on everything — this is a dry, close, claustrophobic sound."
+    ],
+    swing: 52,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 2, 8, 11]), velocity: makeVelocity(makePattern([0, 2, 8, 11]), [0, 8], [2, 11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [0, 8], [4, 12]) },
+      { instrument: "Tom", pattern: makePattern([10]), velocity: makeVelocity(makePattern([10]), [], [10]) }
+    ]
+  },
+  {
+    id: "hh-10",
+    name: "9th Wonder Soul",
+    genre: "hip-hop",
+    bpm: 93,
+    feel: ["soulful", "warm", "golden era"],
+    description: "Warm and soulful — built for flipping old soul records. Ghost snares create a constant undercurrent of feel.",
+    maschineNotes: [
+      "This pattern lives or dies on ghost snare velocity — keep them all between 35 and 50.",
+      "The tambourine at 16ths (all steps) needs to be at -20dB under the hats — just a shimmer.",
+      "Tune the kick to your sample root. Tune the snare to the 2nd or 5th degree.",
+      "Swing: 56% is the sweet spot. Below 54% it loses feel. Above 58% it loses drive.",
+      "Use the Humanize function on the tambourine only: Timing 12ms, Velocity 25."
+    ],
+    swing: 56,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8]), velocity: makeVelocity(makePattern([0, 5, 8]), [0, 8], [5]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([2, 6, 10, 14]), velocity: makeVelocity(makePattern([2, 6, 10, 14]), [], [2, 6, 10, 14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 8], [2, 4, 6, 10, 12, 14]) },
+      { instrument: "Tambourine", pattern: makePattern([1, 3, 5, 7, 9, 11, 13, 15]), velocity: makeVelocity(makePattern([1, 3, 5, 7, 9, 11, 13, 15]), [], [1, 3, 5, 7, 9, 11, 13, 15]) }
+    ]
+  },
+  {
+    id: "hh-11",
+    name: "Hit-Boy Half-Time",
+    genre: "hip-hop",
+    bpm: 140,
+    feel: ["modern", "half-time", "hard"],
+    description: "Programmed at 140 BPM but felt at 70 BPM. The half-time snare on beat 3 makes everything feel twice as slow and heavy.",
+    maschineNotes: [
+      "At 140 BPM in Maschine, step 8 = beat 3. Put your main snare ONLY on step 8.",
+      "The kick on steps 0, 3, 11 creates the half-time illusion — asymmetric placement.",
+      "Hi-hats at 140 BPM 16ths = very fast — set velocity alternating 90/40/90/40 for a rolling feel.",
+      "Use Note Repeat at 1/32T for triplet hat rolls on the last 4 steps of the bar.",
+      "Clap on step 8 alongside the snare: layer it with a wide reverb (hall, 0.8s decay)."
+    ],
+    swing: 0,
+    steps: [
+      { instrument: "Kick/808", pattern: makePattern([0, 3, 11]), velocity: makeVelocity(makePattern([0, 3, 11]), [0], [3, 11]) },
+      { instrument: "Snare", pattern: makePattern([8]), velocity: makeVelocity(makePattern([8]), [8]) },
+      { instrument: "Clap", pattern: makePattern([8]), velocity: makeVelocity(makePattern([8]), [], [8]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), velocity: makeVelocity(makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [0, 2, 4, 6, 8, 10, 12, 14], [1, 3, 5, 7, 9, 11, 13, 15]) }
+    ]
+  },
+  {
+    id: "hh-12",
+    name: "Dr. Dre Precision",
+    genre: "hip-hop",
+    bpm: 100,
+    feel: ["precise", "punchy", "professional"],
+    description: "Studio-perfect West Coast construction. Every element serves the mix. Nothing is accidental.",
+    maschineNotes: [
+      "Quantize kicks and snares to absolute zero swing. Then add swing only to the hat group at 51%.",
+      "Use three kick layers: main kick (mid-punchey), sub kick (tuned to root), click (short click sample at -15dB).",
+      "Bind all three kicks with Pad Link — they fire as one but are processed separately.",
+      "Snare: use a low-pass filter at 12kHz to cut harshness. EQ boost at 200Hz for body.",
+      "The rimshot accent on step 6 should sound like a whip crack — high transient, zero reverb."
+    ],
+    swing: 51,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 10]), velocity: makeVelocity(makePattern([0, 8, 10]), [0, 8], [10]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Rimshot", pattern: makePattern([6, 14]), velocity: makeVelocity(makePattern([6, 14]), [], [6, 14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), velocity: makeVelocity(makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [0, 4, 8, 12], [1, 3, 5, 7, 9, 11, 13, 15]) },
+      { instrument: "Shaker", pattern: makePattern([2, 6, 10, 14]), velocity: makeVelocity(makePattern([2, 6, 10, 14]), [], [2, 6, 10, 14]) }
+    ]
+  },
+
+  // ─── R&B (extended) ──────────────────────────────────────────────────────────
+  {
+    id: "rnb-9",
+    name: "D'Angelo Loose",
+    genre: "rnb",
+    bpm: 76,
+    feel: ["loose", "human", "soulful"],
+    description: "Intentionally imperfect. D'Angelo's drum programming sounded like a drummer who'd been playing for hours — deeply human and slightly drunk.",
+    maschineNotes: [
+      "After programming, use the Event Editor (SHIFT + EVENTS) to manually nudge every step by different amounts.",
+      "Kick on step 0: nudge +8 ticks late. Kick on step 5: nudge -4 ticks early.",
+      "Snare on step 4: nudge +6 ticks. Snare on step 12: nudge -3 ticks.",
+      "Apply Humanize to hats at 18ms timing — the most you'd ever use.",
+      "This pattern should feel slightly uncomfortable on first listen, then hypnotic after 4 bars."
+    ],
+    swing: 62,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 9, 14]), velocity: makeVelocity(makePattern([0, 5, 9, 14]), [0], [5, 9, 14]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4], [12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([2, 7, 10]), velocity: makeVelocity(makePattern([2, 7, 10]), [], [2, 7, 10]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+      { instrument: "Shaker", pattern: makePattern([1, 5, 9, 13]), velocity: makeVelocity(makePattern([1, 5, 9, 13]), [], [1, 5, 9, 13]) }
+    ]
+  },
+  {
+    id: "rnb-10",
+    name: "Raphael Saadiq Classic",
+    genre: "rnb",
+    bpm: 92,
+    feel: ["classic", "live", "soulful"],
+    description: "Live drummer energy translated to pads. Feels like a real kit recording — tight rim, warm kick, breathing hats.",
+    maschineNotes: [
+      "The rimshot on steps 4 and 12 should sound like a wood cracking — dry, no reverb.",
+      "Conga on step 7 and 15: tune it to the 5th of your key. Velocity 65.",
+      "Open hat on step 6: put it in the same Choke Group as the closed hat.",
+      "Kick velocity: step 0 at 110, step 3 at 50, step 8 at 95, step 11 at 45.",
+      "Swing 58% — classic soul swing, heavier than boom bap but not as loose as neo soul."
+    ],
+    swing: 58,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 3, 8, 11]), velocity: makeVelocity(makePattern([0, 3, 8, 11]), [0, 8], [3, 11]) },
+      { instrument: "Rimshot", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 10]) },
+      { instrument: "HH Open", pattern: makePattern([6]), velocity: makeVelocity(makePattern([6])) },
+      { instrument: "Conga", pattern: makePattern([7, 15]), velocity: makeVelocity(makePattern([7, 15]), [], [7, 15]) }
+    ]
+  },
+  {
+    id: "rnb-11",
+    name: "H.E.R. Contemporary",
+    genre: "rnb",
+    bpm: 86,
+    feel: ["contemporary", "emotional", "layered"],
+    description: "Modern R&B with a hint of blues — layered percussion, emotional snare reverb, kicks that sigh instead of punch.",
+    maschineNotes: [
+      "Kick should be tuned down 2 semitones from root — heavier, darker, more emotional.",
+      "Snare reverb: use a plate at 1.2s decay with a HIGH pre-delay of 25ms for air.",
+      "The shaker at all 16 steps is the groove skeleton — set it at velocity 35 flat, no variation.",
+      "Perc on steps 3, 7, 11, 15: use a finger snap or side stick for the 'in-between' feel.",
+      "Overall compression: gentle bus compression 1.5:1 ratio, slow attack 50ms, just to glue it."
+    ],
+    swing: 56,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 7, 8, 13]), velocity: makeVelocity(makePattern([0, 7, 8, 13]), [0, 8], [7, 13]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Shaker", pattern: makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), velocity: makeVelocity(makePattern([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) },
+      { instrument: "Snap/Side Stick", pattern: makePattern([3, 7, 11, 15]), velocity: makeVelocity(makePattern([3, 7, 11, 15]), [], [3, 7, 11, 15]) },
+      { instrument: "HH Open", pattern: makePattern([2, 10]), velocity: makeVelocity(makePattern([2, 10]), [], [2, 10]) }
+    ]
+  },
+  {
+    id: "rnb-12",
+    name: "Babyface Silk",
+    genre: "rnb",
+    bpm: 74,
+    feel: ["silky", "minimal", "classic"],
+    description: "Old school quiet storm. The kick barely whispers, the clap floats on a sea of reverb. For slow, late-night R&B.",
+    maschineNotes: [
+      "Kick velocity: all steps at 70 — never accent it. Quiet, steady, like a heartbeat.",
+      "Clap reverb: large hall at 2.5s decay, 50% wet. The reverb is bigger than the dry sound.",
+      "Hi-hats are quarter-note only (steps 0, 4, 8, 12) at velocity 55 — no 8ths, no 16ths.",
+      "Add a string hit or pad note on step 0 alongside the kick using Pad Link.",
+      "Use the Swing function but only set it to 53% — barely swung, just enough to not feel robotic."
+    ],
+    swing: 53,
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 12]), velocity: makeVelocity(makePattern([0, 8, 12]), [], [0, 8, 12]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4], [12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+      { instrument: "Triangle", pattern: makePattern([6, 14]), velocity: makeVelocity(makePattern([6, 14]), [], [6, 14]) }
+    ]
   }
 ];
