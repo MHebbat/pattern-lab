@@ -1,15 +1,92 @@
 import { useParams, Link } from "wouter";
 import { patterns } from "@/data/patterns";
+import { soundRecommendations } from "@/data/soundRecommendations";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Play, Square, Info, Settings2 } from "lucide-react";
+import { ArrowLeft, Play, Square, Info, Settings2, Package, Plug, ExternalLink } from "lucide-react";
 import { PatternGrid } from "@/components/PatternGrid";
 import { getGenreColorVar } from "@/components/PatternCard";
 import { useState, useEffect, useRef } from "react";
 import { PatternAudioPlayer } from "@/lib/audio";
 import { motion } from "framer-motion";
+import type { PackRec, PluginRec } from "@/data/soundRecommendations";
+
+const SOURCE_LABELS: Record<string, string> = {
+  "ni-expansion": "NI Expansion",
+  "ni-preinstalled": "Preinstalled",
+  "cymatics": "Cymatics",
+  "kontakt": "Kontakt",
+  "third-party": "Third Party",
+  "splice": "Splice",
+};
+
+const PLATFORM_LABELS: Record<string, string> = {
+  maschine: "Maschine",
+  komplete: "Komplete",
+  kontakt: "Kontakt",
+  free: "Free",
+};
+
+function PackCard({ pack, color }: { pack: PackRec; color: string }) {
+  return (
+    <div className="border border-border rounded-lg p-4 flex flex-col gap-2 bg-card hover:border-opacity-60 transition-colors">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-col gap-1 min-w-0">
+          <span className="font-semibold text-sm text-foreground leading-tight">{pack.name}</span>
+          <span className="text-xs text-muted-foreground">{pack.maker}</span>
+        </div>
+        <div className="flex items-center gap-1.5 shrink-0">
+          {pack.free && (
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
+              FREE
+            </span>
+          )}
+          <span
+            className="text-[10px] font-mono px-1.5 py-0.5 rounded border"
+            style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
+          >
+            {SOURCE_LABELS[pack.source] ?? pack.source}
+          </span>
+        </div>
+      </div>
+      <p className="text-xs text-muted-foreground leading-relaxed">{pack.notes}</p>
+      {pack.url && (
+        <a
+          href={pack.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1 text-xs font-mono mt-1 hover:opacity-80 transition-opacity"
+          style={{ color }}
+        >
+          <ExternalLink className="w-3 h-3" />
+          {pack.free ? "Download free" : "View pack"}
+        </a>
+      )}
+    </div>
+  );
+}
+
+function PluginCard({ plugin, color }: { plugin: PluginRec; color: string }) {
+  return (
+    <div className="border border-border rounded-lg p-4 flex flex-col gap-2 bg-card">
+      <div className="flex items-start justify-between gap-2">
+        <span className="font-semibold text-sm text-foreground leading-tight">{plugin.name}</span>
+        <span
+          className="text-[10px] font-mono px-1.5 py-0.5 rounded border shrink-0"
+          style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
+        >
+          {PLATFORM_LABELS[plugin.platform] ?? plugin.platform}
+        </span>
+      </div>
+      <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">
+        {plugin.use}
+      </span>
+      <p className="text-xs text-muted-foreground leading-relaxed">{plugin.notes}</p>
+    </div>
+  );
+}
 
 export default function PatternDetail() {
   const params = useParams();
@@ -17,6 +94,7 @@ export default function PatternDetail() {
   const pattern = patterns.find(p => p.id === params.id) ?? generatedPatterns.find(p => p.id === params.id);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(-1);
+  const [activeTab, setActiveTab] = useState<"packs" | "plugins">("packs");
   const playerRef = useRef<PatternAudioPlayer | null>(null);
 
   useEffect(() => {
@@ -34,8 +112,7 @@ export default function PatternDetail() {
       playerRef.current.onStepCallback = (step) => {
         setCurrentStep(step);
       };
-      
-      // Stop playing if pattern changes
+
       if (isPlaying) {
         playerRef.current.stop();
         setIsPlaying(false);
@@ -66,6 +143,7 @@ export default function PatternDetail() {
   }
 
   const color = getGenreColorVar(pattern.genre);
+  const recs = !pattern.generated ? soundRecommendations[pattern.genre] : null;
 
   return (
     <div className="min-h-[100dvh] bg-background text-foreground pb-20">
@@ -76,7 +154,7 @@ export default function PatternDetail() {
             Back
           </Link>
           <div className="flex-1" />
-          <Button 
+          <Button
             onClick={togglePlayback}
             className={`gap-2 ${isPlaying ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
             data-testid="button-play"
@@ -91,7 +169,7 @@ export default function PatternDetail() {
       </header>
 
       <main className="container mx-auto px-6 py-8 max-w-5xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-10"
@@ -123,7 +201,7 @@ export default function PatternDetail() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
@@ -159,6 +237,74 @@ export default function PatternDetail() {
             </Card>
           </div>
         </motion.div>
+
+        {recs && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-12"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
+                  <Package className="w-5 h-5 text-muted-foreground" />
+                  Recommended Sounds & Plugins
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Packs, expansions, and Maschine/Komplete instruments that suit this pattern's genre and feel
+                </p>
+              </div>
+              <div className="flex items-center border border-border rounded-md overflow-hidden">
+                <button
+                  onClick={() => setActiveTab("packs")}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    activeTab === "packs"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={activeTab === "packs" ? { backgroundColor: `${color}20`, color } : {}}
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Package className="w-3.5 h-3.5" />
+                    Packs
+                  </span>
+                </button>
+                <div className="w-px h-6 bg-border" />
+                <button
+                  onClick={() => setActiveTab("plugins")}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    activeTab === "plugins"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={activeTab === "plugins" ? { backgroundColor: `${color}20`, color } : {}}
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Plug className="w-3.5 h-3.5" />
+                    Plugins
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {activeTab === "packs" && (
+              <div className="grid md:grid-cols-2 gap-4">
+                {recs.packs.map((pack, i) => (
+                  <PackCard key={i} pack={pack} color={color} />
+                ))}
+              </div>
+            )}
+
+            {activeTab === "plugins" && (
+              <div className="grid md:grid-cols-2 gap-4">
+                {recs.plugins.map((plugin, i) => (
+                  <PluginCard key={i} plugin={plugin} color={color} />
+                ))}
+              </div>
+            )}
+          </motion.div>
+        )}
       </main>
     </div>
   );
