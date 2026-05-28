@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Drum Pattern Browser"
+version = "1.0.0"
+id = "artifacts/drum-patterns"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24717
+
+[services.development]
+run = "pnpm --filter @workspace/drum-patterns run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/drum-patterns", "run", "build" ]
+publicDir = "artifacts/drum-patterns/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24717"
+BASE_PATH = "/"
