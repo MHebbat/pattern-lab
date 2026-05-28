@@ -8,7 +8,6 @@ export function getGenreColorVar(genre: string) {
   switch (genre) {
     case "boom-bap": return "var(--color-genre-boom-bap)";
     case "hip-hop": return "var(--color-genre-hip-hop)";
-    case "trap": return "var(--color-genre-trap)";
     case "rnb": return "var(--color-genre-rnb)";
     default: return "var(--color-primary)";
   }

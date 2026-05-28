@@ -1,5 +1,6 @@
 import { useParams, Link } from "wouter";
 import { patterns } from "@/data/patterns";
+import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -12,7 +13,8 @@ import { motion } from "framer-motion";
 
 export default function PatternDetail() {
   const params = useParams();
-  const pattern = patterns.find(p => p.id === params.id);
+  const { generatedPatterns } = useGeneratedPatterns();
+  const pattern = patterns.find(p => p.id === params.id) ?? generatedPatterns.find(p => p.id === params.id);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(-1);
   const playerRef = useRef<PatternAudioPlayer | null>(null);

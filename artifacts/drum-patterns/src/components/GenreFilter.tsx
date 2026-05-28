@@ -1,4 +1,4 @@
-import { DrumPattern, Genre } from "@/data/patterns";
+import { Genre } from "@/data/patterns";
 
 interface GenreFilterProps {
   currentGenre: Genre | "all";
@@ -11,7 +11,6 @@ export function GenreFilter({ currentGenre, onSelect, counts }: GenreFilterProps
     { value: "all", label: "All" },
     { value: "boom-bap", label: "Boom Bap" },
     { value: "hip-hop", label: "Hip Hop" },
-    { value: "trap", label: "Trap" },
     { value: "rnb", label: "R&B" },
   ];
 

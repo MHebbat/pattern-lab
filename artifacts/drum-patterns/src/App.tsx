@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import PatternDetail from "@/pages/PatternDetail";
+import CheatSheet from "@/pages/CheatSheet";
+import { GeneratedPatternsProvider } from "@/lib/generatedPatternsStore";
 
 const queryClient = new QueryClient();
 
@@ -13,6 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/pattern/:id" component={PatternDetail} />
+      <Route path="/cheatsheet" component={CheatSheet} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -22,9 +25,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
+        <GeneratedPatternsProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+        </GeneratedPatternsProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
