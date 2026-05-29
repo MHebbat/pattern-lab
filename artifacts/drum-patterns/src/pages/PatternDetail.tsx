@@ -8,6 +8,7 @@ import type { GenreMelodyRecs, BassPattern, MelodyIdea, SampleIdea } from "@/dat
 import { melodyRecommendationsDe } from "@/data/melodyRecommendations-de";
 import type { DeMelodyRecs } from "@/data/melodyRecommendations-de";
 import { patternBassData } from "@/data/patternBassData";
+import { patternBassDataDe } from "@/data/patternBassData-de";
 import { generateBassPatternMidi, downloadMidi, midiFilename } from "@/lib/midi";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
@@ -821,8 +822,9 @@ export default function PatternDetail() {
   const effectiveMidiRecs: GenreMelodyRecs | null = (patternBass && midiRecs)
     ? { ...midiRecs, bassPatterns: patternBass }
     : midiRecs;
+  const dePatternBass = (lang === "de" && !pattern.generated) ? patternBassDataDe[pattern.id] : undefined;
   const effectiveDeMidiRecs: DeMelodyRecs | undefined = (patternBass && deMidiRecs)
-    ? { ...deMidiRecs, bassPatterns: undefined }
+    ? { ...deMidiRecs, bassPatterns: dePatternBass }
     : deMidiRecs;
 
   return (
