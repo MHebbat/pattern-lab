@@ -1,0 +1,86 @@
+Last login: Fri May 29 20:05:55 on ttys000
+(base) malik@MBP-von-Malik-2 ~ % cd pattern-lab
+(base) malik@MBP-von-Malik-2 pattern-lab % sed -i '' '/"rollup>@rollup\/rollup-darwin-arm64": "-"/d' pnpm-workspace.yaml
+sed -i '' '/"rollup>@rollup\/rollup-darwin-x64": "-"/d' pnpm-workspace.yaml
+pnpm install --no-frozen-lockfile
+API_PORT=5001 ./start-local.sh
+Scope: all 10 workspace projects
+artifacts/drum-patterns                  | [WARN] deprecated recharts@2.15.4
+artifacts/drum-patterns                  | [WARN] deprecated @types/jszip@3.4.1
+Packages: +1
++
+Progress: resolved 507, reused 500, downloaded 1, added 1, done
+. preinstall$ only-allow pnpm
+└─ Done in 3.1s
+Done in 4.6s using pnpm v11.4.0
+[pattern-lab] No .env.local found.
+  Copy .env.local.example → .env.local and add your OPENROUTER_API_KEY.
+  The app will start but AI generation will not work without the key.
+
+[pattern-lab] Installing dependencies...
+Scope: all 10 workspace projects
+Already up to date
+Done in 48ms using pnpm v11.4.0
+[pattern-lab] Building shared libraries...
+$ tsc --build
+[pattern-lab] Starting API server on port 5001...
+[pattern-lab] Waiting for API server...
+$ export NODE_ENV=development && pnpm run build && pnpm run start
+$ node ./build.mjs
+
+  dist/index.mjs                       1.7mb ⚠️
+  dist/pino-worker.mjs               153.4kb
+  dist/pino-file.mjs                 142.1kb
+  dist/pino-pretty.mjs               114.6kb
+  dist/thread-stream-worker.mjs        7.3kb
+  dist/index.mjs.map                   4.2mb
+  dist/pino-worker.mjs.map           256.9kb
+  dist/pino-file.mjs.map             229.0kb
+  dist/pino-pretty.mjs.map           204.0kb
+  dist/thread-stream-worker.mjs.map   12.0kb
+
+⚡ Done in 109ms
+$ node --enable-source-maps ./dist/index.mjs
+[20:44:58.841] INFO (75003): Server listening
+    port: 5001
+[pattern-lab] API server is ready.
+[pattern-lab] Starting frontend on port 3001...
+
+┌─────────────────────────────────────────────────────┐
+│  Pattern Lab is running                             │
+│                                                     │
+│  App:  http://localhost:3001                    │
+│  API:  http://localhost:5001/api/healthz              │
+│                                                     │
+│  Press Ctrl+C to stop                              │
+└─────────────────────────────────────────────────────┘
+[20:44:59.851] INFO (75003): request completed
+    req: {
+      "id": 1,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 2
+$ vite --config vite.config.ts --host 0.0.0.0
+failed to load config from /Users/malik/pattern-lab/artifacts/drum-patterns/vite.config.ts
+error when starting dev server:
+Error: Cannot find module '../lightningcss.darwin-arm64.node'
+Require stack:
+- /Users/malik/pattern-lab/node_modules/.pnpm/lightningcss@1.32.0/node_modules/lightningcss/node/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/malik/pattern-lab/node_modules/.pnpm/lightningcss@1.32.0/node_modules/lightningcss/node/index.js:20:12)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+/Users/malik/pattern-lab/artifacts/drum-patterns:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @workspace/drum-patterns@0.0.0 dev: `vite --config vite.config.ts --host 0.0.0.0`
+Exit status 1
+
