@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useParams } from "wouter";
-import { ArrowLeft, Dna, Drum, Cpu, Lightbulb, Package, ChevronDown, ChevronRight, Play, Square } from "lucide-react";
+import { ArrowLeft, Dna, Drum, Cpu, Lightbulb, Package, ChevronDown, ChevronRight, Play, Square, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { producers, type KitPad } from "@/data/masterclasses";
 import { PatternAudioPlayer } from "@/lib/audio";
@@ -265,6 +265,20 @@ function TechniqueCard({ technique, color, index }: { technique: { title: string
   );
 }
 
+// ─── Cheat Sheet routing helpers ─────────────────────────────────────────────
+
+function cheatSheetTab(tags: string[]): string {
+  if (tags.some(t => t.includes("R&B") || t.includes("NEO SOUL") || t.includes("SOUL"))) return "rnb";
+  if (tags.some(t => t.includes("BOOM BAP"))) return "boom-bap";
+  return "hip-hop";
+}
+
+function cheatSheetTabLabel(tags: string[]): string {
+  if (tags.some(t => t.includes("R&B") || t.includes("NEO SOUL") || t.includes("SOUL"))) return "R&B";
+  if (tags.some(t => t.includes("BOOM BAP"))) return "Boom Bap";
+  return "Hip Hop";
+}
+
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 const TABS = [
@@ -503,6 +517,24 @@ export default function MasterClassDetail() {
                 ))}
               </div>
             </div>
+
+            {/* Cheat Sheet reference */}
+            <div className="flex items-start gap-3 border rounded-xl p-4 bg-card" style={{ borderColor: `${color}20` }}>
+              <BookOpen className="w-4 h-4 shrink-0 mt-0.5" style={{ color }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-foreground mb-0.5">New to Maschine MK3?</p>
+                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                  The Cheat Sheet has step-by-step hardware instructions for loading sounds, setting choke groups, and every control shown in this kit layout.
+                </p>
+                <Link
+                  href="/cheatsheet?tab=core-controls"
+                  className="text-[11px] font-medium mt-2 inline-flex items-center gap-1 hover:underline transition-opacity hover:opacity-80"
+                  style={{ color }}
+                >
+                  Open Core Controls Cheat Sheet →
+                </Link>
+              </div>
+            </div>
           </motion.div>
         )}
 
@@ -519,6 +551,24 @@ export default function MasterClassDetail() {
               {producer.techniques.map((tech, i) => (
                 <TechniqueCard key={i} technique={tech} color={color} index={i} />
               ))}
+            </div>
+
+            {/* Cheat Sheet reference */}
+            <div className="flex items-start gap-3 border rounded-xl p-4 bg-card" style={{ borderColor: `${color}20` }}>
+              <BookOpen className="w-4 h-4 shrink-0 mt-0.5" style={{ color }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-foreground mb-0.5">Apply these in Maschine</p>
+                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                  The {cheatSheetTabLabel(producer.tags)} Cheat Sheet has exact button presses and parameter values for the techniques {producer.name.split(" ")[0]} is known for.
+                </p>
+                <Link
+                  href={`/cheatsheet?tab=${cheatSheetTab(producer.tags)}`}
+                  className="text-[11px] font-medium mt-2 inline-flex items-center gap-1 hover:underline transition-opacity hover:opacity-80"
+                  style={{ color }}
+                >
+                  Open {cheatSheetTabLabel(producer.tags)} Cheat Sheet →
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
