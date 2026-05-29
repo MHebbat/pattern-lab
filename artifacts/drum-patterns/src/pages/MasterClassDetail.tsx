@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Dna, Drum, Cpu, Lightbulb, Package, ChevronDown, ChevronRight, Play, Square } from "lucide-react";
 import { motion } from "framer-motion";
 import { producers, type KitPad } from "@/data/masterclasses";
+import { PatternAudioPlayer } from "@/lib/audio";
 
 // ─── Step grid ────────────────────────────────────────────────────────────────
 
@@ -151,27 +152,64 @@ function MaschinePadGrid({ kitPads, color }: { kitPads: KitPad[]; color: string 
   );
 }
 
-// ─── Pattern audio preview ────────────────────────────────────────────────────
+// ─── Row label → audio instrument name ───────────────────────────────────────
+
+function labelToInstrument(label: string): string {
+  const l = label.toUpperCase();
+  if (l === "KICK")   return "Kick";
+  if (l === "SNARE")  return "Snare";
+  if (l === "GHOST" || l === "ACCENT") return "Ghost Snare";
+  if (l === "CLAP")   return "Clap";
+  if (l === "C.HAT" || l === "CHLAT") return "HH Closed";
+  if (l === "O.HAT" || l === "OPEN")  return "HH Open";
+  if (l === "ROLL")   return "HH Open";
+  if (l === "SHAKER") return "Shaker";
+  if (l === "RIM")    return "Rimshot";
+  return "Perc";
+}
+
+// ─── Pattern card ─────────────────────────────────────────────────────────────
 
 function PatternCard({
   pattern,
   color,
+  isPlaying,
+  onToggle,
 }: {
   pattern: { name: string; bpm: number; swing: number; description: string; rows: { label: string; steps: boolean[]; isGhost?: boolean }[]; maschineNote: string };
   color: string;
+  isPlaying: boolean;
+  onToggle: () => void;
 }) {
   const [showNote, setShowNote] = useState(false);
 
   return (
     <div className="border border-border rounded-xl bg-card p-5 space-y-4">
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-foreground">{pattern.name}</h3>
           <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{pattern.description}</p>
         </div>
-        <div className="text-right shrink-0">
-          <p className="font-mono text-sm font-bold" style={{ color }}>{pattern.bpm} BPM</p>
-          <p className="text-[10px] font-mono text-muted-foreground/50">Swing {pattern.swing}%</p>
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="text-right">
+            <p className="font-mono text-sm font-bold" style={{ color }}>{pattern.bpm} BPM</p>
+            <p className="text-[10px] font-mono text-muted-foreground/50">Swing {pattern.swing}%</p>
+          </div>
+          <button
+            onClick={onToggle}
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-all border shrink-0"
+            style={{
+              backgroundColor: isPlaying ? `${color}20` : "rgba(255,255,255,0.05)",
+              borderColor: isPlaying ? color : "rgba(255,255,255,0.1)",
+              color: isPlaying ? color : "rgba(255,255,255,0.4)",
+            }}
+            title={isPlaying ? "Stop" : "Hear pattern"}
+          >
+            {isPlaying
+              ? <Square className="w-3.5 h-3.5 fill-current" />
+              : <Play  className="w-3.5 h-3.5 fill-current ml-0.5" />
+            }
+          </button>
         </div>
       </div>
 
@@ -243,6 +281,35 @@ export default function MasterClassDetail() {
   const { id } = useParams<{ id: string }>();
   const producer = producers.find(p => p.id === id);
   const [activeTab, setActiveTab] = useState<TabId>("dna");
+  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+  const audioPlayer = useRef(new PatternAudioPlayer());
+
+  useEffect(() => {
+    const player = audioPlayer.current;
+    return () => { player.stop(); };
+  }, []);
+
+  useEffect(() => {
+    audioPlayer.current.stop();
+    setPlayingIndex(null);
+  }, [id]);
+
+  const handleToggle = useCallback((index: number, pattern: { bpm: number; rows: { label: string; steps: boolean[] }[] }) => {
+    const player = audioPlayer.current;
+    if (playingIndex === index) {
+      player.stop();
+      setPlayingIndex(null);
+    } else {
+      player.stop();
+      const steps = pattern.rows.map(row => ({
+        instrument: labelToInstrument(row.label),
+        pattern: row.steps,
+      }));
+      player.loadPattern(pattern.bpm, steps);
+      player.play();
+      setPlayingIndex(index);
+    }
+  }, [playingIndex]);
 
   if (!producer) {
     return (
@@ -382,7 +449,13 @@ export default function MasterClassDetail() {
               </p>
             </div>
             {producer.patterns.map((pattern, i) => (
-              <PatternCard key={i} pattern={pattern} color={color} />
+              <PatternCard
+                key={i}
+                pattern={pattern}
+                color={color}
+                isPlaying={playingIndex === i}
+                onToggle={() => handleToggle(i, pattern)}
+              />
             ))}
           </motion.div>
         )}

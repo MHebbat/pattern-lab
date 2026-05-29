@@ -950,5 +950,748 @@ export const patterns: DrumPattern[] = [
       { instrument: "HH Open", pattern: makePattern([6]), velocity: makeVelocity(makePattern([6])) },
       { instrument: "Conga", pattern: makePattern([5, 11]), velocity: makeVelocity(makePattern([5, 11]), [], [5, 11]) }
     ]
+  },
+
+  // ─── MASTERCLASS PATTERNS ────────────────────────────────────────────────────
+
+  // ─── DR. DRE ────────────────────────────────────────────────────────────────
+  {
+    id: "mc-dre-1",
+    name: "The Chronic Blueprint",
+    genre: "hip-hop",
+    bpm: 94,
+    swing: 52,
+    feel: ["clinical", "west-coast", "g-funk"],
+    description: "Dre's classic core pattern. All 16 hi-hat steps — machine-like, never robotic. Kick on 1 and the 'and' of beat 2 (step 5) for that forward-leaning G-Funk push.",
+    maschineNotes: [
+      "Set all 16 hat steps to velocity 75 flat. Raise steps 0, 4, 8, 12 to velocity 90. No Humanize.",
+      "Snare: Reverb, Large Hall, 2.1s decay, 45% wet. The reverb is as loud as the dry hit.",
+      "Kick tuned to the key center of your track. Boost 80Hz, cut 400Hz.",
+      "Drums mono, everything else wide. Set drum Group output width to 0%."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8]), velocity: makeVelocity(makePattern([0, 5, 8]), [0, 8], [5]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], []) },
+      { instrument: "HH Open", pattern: makePattern([10]), velocity: makeVelocity(makePattern([10])) },
+    ]
+  },
+  {
+    id: "mc-dre-2",
+    name: "2001 Overdrive",
+    genre: "hip-hop",
+    bpm: 97,
+    swing: 50,
+    feel: ["clinical", "hard", "cinematic"],
+    description: "The harder, faster Dre. Kick displacement on step 6 and step 11 creates urgent forward momentum. Clap doubles the snare for extra mass.",
+    maschineNotes: [
+      "Clap and snare in Pad Link — trigger together on steps 4 and 12.",
+      "Pitch the clap up +2 semitones from the snare.",
+      "Ghost kick at step 6: velocity 65. Main kicks at velocity 110.",
+      "Mono drums, wide strings. Drum Group output width 0%."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 6, 8, 11]), velocity: makeVelocity(makePattern([0, 6, 8, 11]), [0, 8], [6, 11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], []) },
+    ]
+  },
+
+  // ─── HAVOC ──────────────────────────────────────────────────────────────────
+  {
+    id: "mc-havoc-1",
+    name: "Queensbridge Cold",
+    genre: "boom-bap",
+    bpm: 92,
+    swing: 56,
+    feel: ["dark", "minimal", "menacing"],
+    description: "The Mobb Deep signature. Kick on 1 and 3. Quiet 8th-note hats. The space between kick and snare is intentional. Ghost snare on step 14.",
+    maschineNotes: [
+      "Hi-hats at velocity 40 flat — barely audible. Kick and snare both at 95.",
+      "Ghost snare on step 14 at velocity 30 only.",
+      "Swing 56-58%. Resist the urge to add more.",
+      "Vinyl crackle loop underneath at velocity 20."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+    ]
+  },
+  {
+    id: "mc-havoc-2",
+    name: "Survival Bounce",
+    genre: "boom-bap",
+    bpm: 90,
+    swing: 58,
+    feel: ["dark", "spacious", "cold"],
+    description: "Quarter-note hats only — maximum breathing room. Kick on step 10 instead of 8 is the Havoc displacement signature. The sample carries everything.",
+    maschineNotes: [
+      "Quarter-note hats at velocity 55. Kick at step 10 (NOT 8) — velocity 85.",
+      "The sample should be running at all times. This pattern is just a frame.",
+      "Kick displacement at step 10 is the Havoc signature — never move it to step 8.",
+      "Dark vinyl sample: low-pass at 8kHz, stereo width 20%."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 10]), velocity: makeVelocity(makePattern([0, 10]), [0], [10]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+    ]
+  },
+
+  // ─── DJ PREMIER ─────────────────────────────────────────────────────────────
+  {
+    id: "mc-premier-1",
+    name: "The Premier Lock",
+    genre: "boom-bap",
+    bpm: 92,
+    swing: 60,
+    feel: ["raw", "swung", "boom-bap"],
+    description: "Classic Premier groove. Kick on 1 and 3, standard 2+4 snare, but the accent hit on step 11 (the 'and' of beat 3) is the signature Premier stab.",
+    maschineNotes: [
+      "Accent snare on step 11 is a SEPARATE pad — same sound, velocity 85.",
+      "Main snares at velocity 100. Swing: 60% — sacred.",
+      "8th-note hats with downbeats at 90, upbeats at 50.",
+      "Sample loop runs at 30-50% stereo width."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Accent Snare", pattern: makePattern([11]), velocity: makeVelocity(makePattern([11]), [11]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+  {
+    id: "mc-premier-2",
+    name: "Gangstarr Stomp",
+    genre: "boom-bap",
+    bpm: 94,
+    swing: 62,
+    feel: ["raw", "swung", "hard"],
+    description: "Heavier Premier with kick displacement on step 6 and ghost snare roll into the loop. Ghost notes on steps 14-15 build momentum into beat 1.",
+    maschineNotes: [
+      "Ghost snares 14 and 15 at velocity 30 and 40 — building into beat 1.",
+      "Kick on step 6 at velocity 80 (the Premier ghost kick).",
+      "Swing 62% — creates the near-triplet pocket.",
+      "The loop is 70% of this beat. Drums just frame it."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 6, 8]), velocity: makeVelocity(makePattern([0, 6, 8]), [0, 8], [6]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14, 15]), velocity: makeVelocity(makePattern([14, 15]), [], [14, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+
+  // ─── J DILLA ────────────────────────────────────────────────────────────────
+  {
+    id: "mc-dilla-1",
+    name: "Donuts Drunk",
+    genre: "hip-hop",
+    bpm: 84,
+    swing: 66,
+    feel: ["drunk", "off-grid", "soulful"],
+    description: "Signature Dilla feel. Kick on step 7 lands mid-beat 2. Snare on step 13 is late after beat 4. Ghost notes blur the downbeats. 66% swing pushes toward triplet feel.",
+    maschineNotes: [
+      "Swing 66%. Then in piano roll: nudge snare on step 13 an extra +3 ticks late.",
+      "Ghost notes at velocity 25-35 with Humanize ±15% velocity.",
+      "Hi-hats: use Humanize ±15% timing too. They should sound like a human rushing.",
+      "Do not quantize. The 'wrong' placement is the point."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 7, 9]), velocity: makeVelocity(makePattern([0, 7, 9]), [0], [7, 9]) },
+      { instrument: "Snare", pattern: makePattern([4, 13]), velocity: makeVelocity(makePattern([4, 13]), [4], [13]) },
+      { instrument: "Ghost Snare", pattern: makePattern([2, 6, 10, 14]), velocity: makeVelocity(makePattern([2, 6, 10, 14]), [], [2, 6, 10, 14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 8], [2, 4, 6, 10, 12, 14]) },
+    ]
+  },
+  {
+    id: "mc-dilla-2",
+    name: "Ruff Draft Heat",
+    genre: "hip-hop",
+    bpm: 88,
+    swing: 64,
+    feel: ["drunk", "off-grid", "hard"],
+    description: "Tighter Dilla. Kick on steps 2 and 11 — both syncopated. Snare on 12 slightly early creates push-pull tension with the late kick on step 11.",
+    maschineNotes: [
+      "In piano roll: drag kick step 11 slightly BEFORE its grid position (-2 ticks).",
+      "Drag snare step 12 slightly AFTER (+3 ticks). Push-pull tension.",
+      "Ghost snares at velocity 28-38. Swing 64%.",
+      "Pitch sample down -2 semitones, reduce speed to 98%."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 2, 8, 11]), velocity: makeVelocity(makePattern([0, 2, 8, 11]), [0, 8], [2, 11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([1, 7, 13]), velocity: makeVelocity(makePattern([1, 7, 13]), [], [1, 7, 13]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 8], [2, 4, 6, 10, 12, 14]) },
+    ]
+  },
+
+  // ─── TIMBALAND ──────────────────────────────────────────────────────────────
+  {
+    id: "mc-timbaland-1",
+    name: "Virginia Syncopation",
+    genre: "rnb",
+    bpm: 100,
+    swing: 52,
+    feel: ["syncopated", "electronic", "tribal"],
+    description: "Timbaland signature — kicks in 4 positions create a conversation rather than a groove. Pitched perc on the offbeats is the talking drum layer.",
+    maschineNotes: [
+      "Perc on 2, 6, 10, 14 should be PITCHED to the track key — not just rhythm.",
+      "Velocity variation on perc: 80, 65, 80, 70 (talking feel).",
+      "All 16th hats at flat velocity 70 — the perc does the dynamism.",
+      "Clap (not snare) at velocity 105 — front of mix."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 3, 8, 11]), velocity: makeVelocity(makePattern([0, 3, 8, 11]), [0, 8], [3, 11]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Perc", pattern: makePattern([2, 6, 10, 14]), velocity: makeVelocity(makePattern([2, 6, 10, 14]), [2, 10], [6, 14]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [], []) },
+    ]
+  },
+  {
+    id: "mc-timbaland-2",
+    name: "Dirt Roll Pattern",
+    genre: "rnb",
+    bpm: 98,
+    swing: 54,
+    feel: ["syncopated", "tumbling", "electronic"],
+    description: "Double-kick tumbling effect. Steps 4+5 and 12+13 cascade. Combined with a snare only on beat 3 this creates Timbaland's half-time/full-time hybrid.",
+    maschineNotes: [
+      "Tumble kicks: step 4 at vel 90, step 5 at vel 70. Same for 12 (90) and 13 (70).",
+      "Perc on 3, 7, 11, 15 is a DIFFERENT sound from main perc — shaker or metallic.",
+      "The snare is a CLAP — tight, no reverb. Velocity 95.",
+      "Bass follows kick rhythm — same rhythmic positions, not just root notes."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 4, 5, 8, 12, 13]), velocity: makeVelocity(makePattern([0, 4, 5, 8, 12, 13]), [0, 8], [4, 5, 12, 13]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Shaker", pattern: makePattern([3, 7, 11, 15]), velocity: makeVelocity(makePattern([3, 7, 11, 15]), [], [3, 7, 11, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [], []) },
+    ]
+  },
+
+  // ─── PETE ROCK ──────────────────────────────────────────────────────────────
+  {
+    id: "mc-pete-rock-1",
+    name: "They Reminisce Bounce",
+    genre: "boom-bap",
+    bpm: 89,
+    swing: 62,
+    feel: ["bouncy", "soulful", "jazz"],
+    description: "Pete Rock's most legendary pattern. Kick on step 5 (the 'and' of beat 2) is the bounce push. Ghost snares 14-15 set up the loop restart with elegance.",
+    maschineNotes: [
+      "This pattern needs 62% swing. Kick step 5 at velocity 75.",
+      "Main kicks (0 and 8) at velocity 105. Ghost snares 14-15: velocity 30 and 45.",
+      "16th note hats with heavy swing feel like triplets at 62%.",
+      "Jazz sample provides everything — the drums just hold the time."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8]), velocity: makeVelocity(makePattern([0, 5, 8]), [0, 8], [5]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14, 15]), velocity: makeVelocity(makePattern([14, 15]), [], [14, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], [1,3,5,7,9,11,13,15]) },
+    ]
+  },
+  {
+    id: "mc-pete-rock-2",
+    name: "Mount Vernon Soul",
+    genre: "boom-bap",
+    bpm: 92,
+    swing: 60,
+    feel: ["bouncy", "funky", "soulful"],
+    description: "The harder Pete Rock. Kick on step 7 (late beat 2) creates a funky, slightly late feel. Open hat on step 9 appears once per 2 bars as punctuation.",
+    maschineNotes: [
+      "Open hat step 9: use only in BAR 2 of a 2-bar pattern.",
+      "This creates the Pete Rock 'every other bar' punctuation.",
+      "Choke Group: open hat with closed hat.",
+      "Ghost snares 14-15 at velocity 28 and 42."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 7, 8]), velocity: makeVelocity(makePattern([0, 7, 8]), [0, 8], [7]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14, 15]), velocity: makeVelocity(makePattern([14, 15]), [], [14, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+      { instrument: "HH Open", pattern: makePattern([9]), velocity: makeVelocity(makePattern([9])) },
+    ]
+  },
+
+  // ─── KANYE WEST ─────────────────────────────────────────────────────────────
+  {
+    id: "mc-kanye-1",
+    name: "Late Registration Soul",
+    genre: "hip-hop",
+    bpm: 87,
+    swing: 56,
+    feel: ["soulful", "emotional", "melodic"],
+    description: "College Dropout / Late Registration era. Busy 16th-note hats, kick on the 'and' of beat 1 (step 3 — the Kanye early-kick) creates urgency.",
+    maschineNotes: [
+      "Kick step 3 (the Kanye early-kick) at velocity 75.",
+      "Downbeat kick at velocity 105. 16th hats: 80 on-beat, 55 off-beat.",
+      "Soul sample pitched up +4 semitones. Swing 56%.",
+      "Warm, emotional feel — the drums support the sample, not compete."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 3, 8]), velocity: makeVelocity(makePattern([0, 3, 8]), [0, 8], [3]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], [1,3,5,7,9,11,13,15]) },
+    ]
+  },
+  {
+    id: "mc-kanye-2",
+    name: "Graduation Stadium",
+    genre: "hip-hop",
+    bpm: 92,
+    swing: 54,
+    feel: ["stadium", "emotional", "hard"],
+    description: "Bigger, stadium-filling Kanye. Kick on step 11 adds syncopated momentum. Clap doubles snare for mass. Built for hook sections.",
+    maschineNotes: [
+      "Clap pad linked with snare for hook sections only.",
+      "Step-11 kick at velocity 80 adds urgency toward the hook.",
+      "Use this for hooks; simpler version (no step-11 kick) for verses.",
+      "Wide stereo clap at 100% width — the wall-of-sound hook drop."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8, 11]), velocity: makeVelocity(makePattern([0, 5, 8, 11]), [0, 8], [5, 11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], [1,3,5,7,9,11,13,15]) },
+    ]
+  },
+
+  // ─── THE ALCHEMIST ──────────────────────────────────────────────────────────
+  {
+    id: "mc-alchemist-1",
+    name: "Dark Vintage Minimal",
+    genre: "boom-bap",
+    bpm: 91,
+    swing: 58,
+    feel: ["dark", "cinematic", "minimal"],
+    description: "The Alchemist baseline. Kick on 1 and 3. Rimshot instead of snare — more abstract. Quarter-note hats barely audible. Sample does all emotional work.",
+    maschineNotes: [
+      "Rimshot instead of snare — completely dry, zero reverb.",
+      "Quarter-note hats at velocity 45 flat — barely present.",
+      "Ghost hits on 6 and 14 at velocity 30: the only movement.",
+      "Sample: low-pass 7kHz, high-pass 100Hz, stereo width 20%."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Rimshot", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([6, 14]), velocity: makeVelocity(makePattern([6, 14]), [], [6, 14]) },
+    ]
+  },
+  {
+    id: "mc-alchemist-2",
+    name: "Gibbs Meets Queensbridge",
+    genre: "boom-bap",
+    bpm: 89,
+    swing: 60,
+    feel: ["dark", "cinematic", "abstract"],
+    description: "Havoc's influence made more cinematic. Kick displacement on step 10. Rimshot accent on step 9 adds rhythmic tension the rapper has to navigate around.",
+    maschineNotes: [
+      "Rimshot step 9 at velocity 65 — mid-range tension hit.",
+      "Kick at step 10 (the Havoc displacement): velocity 70 ghost kick.",
+      "3 rimshots total (4, 9, 12) — unusual accent pattern.",
+      "Long kick reverb: 1.2s decay, 15% wet — fills the space."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 10]), velocity: makeVelocity(makePattern([0, 10]), [0], [10]) },
+      { instrument: "Rimshot", pattern: makePattern([4, 9, 12]), velocity: makeVelocity(makePattern([4, 9, 12]), [4, 12], [9]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+    ]
+  },
+
+  // ─── METRO BOOMIN ───────────────────────────────────────────────────────────
+  {
+    id: "mc-metro-1",
+    name: "Without Warning",
+    genre: "hip-hop",
+    bpm: 140,
+    swing: 51,
+    feel: ["trap", "dark", "hard"],
+    description: "Classic Metro trap at 140 BPM. Half-time feel: snare on step 8 sounds like beat 2 at 70 BPM. Double-kick rolls on 4+5 and 12+13.",
+    maschineNotes: [
+      "Main kick (0, 8) at velocity 110. Roll kicks (4, 12) at 85, (5, 13) at 65.",
+      "Cascading velocity creates the trap roll feel.",
+      "Open hats 12-13-14 at end of bar: Metro triplet ornament.",
+      "Flat 16th hats at velocity 65 — mechanical, no variation."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 4, 5, 8, 12, 13]), velocity: makeVelocity(makePattern([0, 4, 5, 8, 12, 13]), [0, 8], [4, 5, 12, 13]) },
+      { instrument: "Snare", pattern: makePattern([8]), velocity: makeVelocity(makePattern([8]), [8]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [], []) },
+      { instrument: "HH Open", pattern: makePattern([12, 13, 14]), velocity: makeVelocity(makePattern([12, 13, 14]), [14], [12, 13]) },
+    ]
+  },
+  {
+    id: "mc-metro-2",
+    name: "Slow Metro",
+    genre: "hip-hop",
+    bpm: 76,
+    swing: 52,
+    feel: ["trap", "dark", "modern"],
+    description: "Metro's slower hip hop mode. 808 bass line carries the melody. Hat rolls on steps 12-14 are the signature phrase-end ornament.",
+    maschineNotes: [
+      "808 melody is programmed in the piano roll — slide between notes.",
+      "Kick step 9 is the Metro stutter kick: velocity 75.",
+      "Snare on step 8 only — half-time. No step 4 snare.",
+      "Dark atmospheric loop: low-pass 12kHz, reverb 1.5s."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 9]), velocity: makeVelocity(makePattern([0, 9]), [0], [9]) },
+      { instrument: "Snare", pattern: makePattern([8]), velocity: makeVelocity(makePattern([8]), [8]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [], []) },
+      { instrument: "HH Open", pattern: makePattern([12, 13, 14]), velocity: makeVelocity(makePattern([12, 13, 14]), [14], [12, 13]) },
+    ]
+  },
+
+  // ─── 9TH WONDER ─────────────────────────────────────────────────────────────
+  {
+    id: "mc-9th-wonder-1",
+    name: "Soul Bubble",
+    genre: "boom-bap",
+    bpm: 88,
+    swing: 62,
+    feel: ["soulful", "warm", "lo-fi"],
+    description: "Pure 9th Wonder. Kick on 1 and 3 only. Standard 2+4 snare. 8th-note hats at heavy swing. The soul sample provides everything else.",
+    maschineNotes: [
+      "Swing 62% — the only variation from the most basic pattern.",
+      "Kick velocity 100, snare 95. Hats: downbeats 85, upbeats 50.",
+      "Sample: high-pass at 80Hz ONLY. No other processing.",
+      "If the beat doesn't bounce at 62%, check your swing setting."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+  {
+    id: "mc-9th-wonder-2",
+    name: "Carolina Bounce",
+    genre: "boom-bap",
+    bpm: 91,
+    swing: 60,
+    feel: ["bouncy", "soulful", "warm"],
+    description: "The slightly harder 9th Wonder. Kick on step 5 adds Pete Rock-influenced push. Ghost snares 14-15 set up the loop. At 60% swing this pattern dances.",
+    maschineNotes: [
+      "Ghost snares 14-15 at velocity 28 and 42.",
+      "Kick step 5 at velocity 70 — the bounce kick.",
+      "Swing 60%. Soul sample is everything — drums are just time.",
+      "No reverb on snare (or minimal 0.3s). The sample provides atmosphere."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 5, 8]), velocity: makeVelocity(makePattern([0, 5, 8]), [0, 8], [5]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14, 15]), velocity: makeVelocity(makePattern([14, 15]), [], [14, 15]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+
+  // ─── PHARRELL ───────────────────────────────────────────────────────────────
+  {
+    id: "mc-pharrell-1",
+    name: "Neptunes Click",
+    genre: "hip-hop",
+    bpm: 98,
+    swing: 54,
+    feel: ["melodic", "minimal", "funky"],
+    description: "The classic sparse Neptunes groove. The 'click' kick on step 3 is the signature — metallic, synth-adjacent. Quarter-note hats leave maximum breathing room.",
+    maschineNotes: [
+      "Click kick on step 3 is a DIFFERENT kick — pitched up +5 semitones, shorter decay.",
+      "Quarter-note hats at velocity 60. Clap (not snare) at velocity 105.",
+      "3 elements total: kick, clap, hat. Neptunes constraint.",
+      "Kick tuned to the root note of the track — it IS a musical note."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 3, 8]), velocity: makeVelocity(makePattern([0, 3, 8]), [0, 8], [3]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+    ]
+  },
+  {
+    id: "mc-pharrell-2",
+    name: "Happy Bounce",
+    genre: "hip-hop",
+    bpm: 102,
+    swing: 56,
+    feel: ["melodic", "bright", "bouncy"],
+    description: "The sunnier Pharrell. Kick on step 14 (the 'and' of beat 4) creates the bounce that makes this pattern feel physically irresistible.",
+    maschineNotes: [
+      "Kick step 14 at velocity 80 — sets up bar 2 with massive anticipation.",
+      "Open hat step 10: Choke Group with closed hat.",
+      "Clap at the front of the mix — louder than everything else.",
+      "8th-note closed hats with velocity variation: 85 down, 55 up."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 14]), velocity: makeVelocity(makePattern([0, 8, 14]), [0, 8], [14]) },
+      { instrument: "Clap", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+      { instrument: "HH Open", pattern: makePattern([10]), velocity: makeVelocity(makePattern([10])) },
+    ]
+  },
+
+  // ─── AKHENATON ──────────────────────────────────────────────────────────────
+  {
+    id: "mc-akhenaton-1",
+    name: "Marseille Boom",
+    genre: "boom-bap",
+    bpm: 92,
+    swing: 56,
+    feel: ["dark", "mediterranean", "deliberate"],
+    description: "The IAM core pattern. Slower and more deliberate than NYC boom bap. Open hat on step 10 gives a Mediterranean lilt.",
+    maschineNotes: [
+      "Open hat step 10: Choke Group with closed hat. Velocity 65.",
+      "Kick 95, snare 90. Hi-hats at 42 — low in the mix, atmospheric.",
+      "Swing 56%. The open hat is not an accent — it is a mood.",
+      "Sample: low-pass 9kHz, stereo width 25%. North African vinyl feel."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+      { instrument: "HH Open", pattern: makePattern([10]), velocity: makeVelocity(makePattern([10])) },
+    ]
+  },
+  {
+    id: "mc-akhenaton-2",
+    name: "L'Empire du Côté",
+    genre: "boom-bap",
+    bpm: 90,
+    swing: 58,
+    feel: ["dark", "french", "boom-bap"],
+    description: "IAM's classic album feel. Extra kick on step 11 displaces the groove forward. Ghost snare on 14 creates pre-downbeat tension.",
+    maschineNotes: [
+      "Kick step 11 at velocity 75 (softer than main kicks at 95).",
+      "Ghost snare step 14 at velocity 28.",
+      "Hi-hats velocity 40 with humanize ±3.",
+      "Dark sample filtered below 9kHz with subtle reverb tail."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 11]), velocity: makeVelocity(makePattern([0, 8, 11]), [0, 8], [11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+    ]
+  },
+
+  // ─── DJ MEHDI ───────────────────────────────────────────────────────────────
+  {
+    id: "mc-mehdi-1",
+    name: "Lucky Boy Swing",
+    genre: "boom-bap",
+    bpm: 90,
+    swing: 60,
+    feel: ["soulful", "jazz", "warm"],
+    description: "Quintessential Mehdi groove. Kick displacement on step 6 (Pete Rock inheritance). Accent snare on step 11 — direct heir to Premier's signature hit.",
+    maschineNotes: [
+      "Swing 60%. Kick step 6 at velocity 80 (softer than main kicks at 100).",
+      "Hi-hat velocity: downbeats 75, upbeats 38 — the 2:1 ratio.",
+      "Accent snare step 11 at velocity 78 — same snare sample.",
+      "Vinyl crackle loop at velocity 18 underneath everything."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 6, 8]), velocity: makeVelocity(makePattern([0, 6, 8]), [0, 8], [6]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Accent Snare", pattern: makePattern([11]), velocity: makeVelocity(makePattern([11]), [11]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+  {
+    id: "mc-mehdi-2",
+    name: "Oxmo Blue",
+    genre: "boom-bap",
+    bpm: 87,
+    swing: 62,
+    feel: ["melancholic", "jazz", "spacious"],
+    description: "The slower, more melancholic Mehdi — for Oxmo Puccino's storytelling. Ultra-swung 8th hats at near-subliminal velocity. The jazz sample carries everything.",
+    maschineNotes: [
+      "Swing 62% — upbeat hats drag almost to the next downbeat. Intentional.",
+      "Ghost snare step 14 at velocity 22.",
+      "All hats at velocity 35 — nearly subliminal.",
+      "Jazz sample with chord changes: 2-bar loop, let it breathe."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+    ]
+  },
+
+  // ─── MYTH SYZER ─────────────────────────────────────────────────────────────
+  {
+    id: "mc-myth-syzer-1",
+    name: "Nekfeu Float",
+    genre: "boom-bap",
+    bpm: 94,
+    swing: 58,
+    feel: ["modern", "french", "floating"],
+    description: "Modern French boom bap standard. All 16th hats with a velocity slope — downbeats loud, upbeats tapering to ghost level — create a floating groove.",
+    maschineNotes: [
+      "Hi-hat slope: 0/4/8/12=90, 1/5/9/13=70, 2/6/10/14=50, 3/7/11/15=30.",
+      "Snare at velocity 85 — not the loudest element. Kick at 100.",
+      "Sample sits at same level or louder than the snare.",
+      "Modern Parisian warmth: vinyl crackle at velocity 22 under everything."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], [1,3,5,7,9,11,13,15]) },
+    ]
+  },
+  {
+    id: "mc-myth-syzer-2",
+    name: "Groove Parisienne",
+    genre: "boom-bap",
+    bpm: 91,
+    swing: 60,
+    feel: ["soulful", "modern", "groove"],
+    description: "The looser Myth Syzer feel. Kick displacement on step 10 gives a hip-hop wobble. Ghost on step 13 adds human micro-timing to the pattern.",
+    maschineNotes: [
+      "Kick step 10 at velocity 70 — the groove displacement.",
+      "Ghost snare step 13 at velocity 25.",
+      "Apply velocity slope to 16th hats (see Nekfeu Float technique).",
+      "Swing 60% on hats only. 2-bar loop with chord changes."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 10]), velocity: makeVelocity(makePattern([0, 8, 10]), [0, 8], [10]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([13]), velocity: makeVelocity(makePattern([13]), [], [13]) },
+      { instrument: "HH Closed", pattern: makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), velocity: makeVelocity(makePattern([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), [0,4,8,12], [1,3,5,7,9,11,13,15]) },
+    ]
+  },
+
+  // ─── MORLOCKKO PLUS ─────────────────────────────────────────────────────────
+  {
+    id: "mc-morlockko-1",
+    name: "Kölner Nacht",
+    genre: "boom-bap",
+    bpm: 88,
+    swing: 58,
+    feel: ["dark", "cinematic", "minimal"],
+    description: "The patient Morlockko groove. Kick on 1 and 3 only. Quarter-note hats for maximum breathing room. Ghost snare on step 14. Space is the sound.",
+    maschineNotes: [
+      "Quarter-note hats at velocity 50. Kick 95, snare 88.",
+      "Ghost snare step 14 at velocity 25.",
+      "Snare reverb: Hall, 1.2s, 30% wet — the reverb IS the character.",
+      "Sample pitched -10 cents (unease), low-pass at 7kHz (library record feel)."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+    ]
+  },
+  {
+    id: "mc-morlockko-2",
+    name: "Untergrund Stomp",
+    genre: "boom-bap",
+    bpm: 91,
+    swing: 60,
+    feel: ["dark", "underground", "forward"],
+    description: "Slightly aggressive Morlockko for rap performances. Kick on step 11 creates a stumble-forward momentum. 8th hats barely audible.",
+    maschineNotes: [
+      "Kick step 11 at velocity 80 — softer than main kicks at 100.",
+      "Hi-hats at velocity 38 — barely audible texture. Swing 60%.",
+      "Find a loop where something happens on step 11 — the stumble pairs with it.",
+      "Snare reverb tails should overlap into the next bar."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 11]), velocity: makeVelocity(makePattern([0, 8, 11]), [0, 8], [11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [], [0, 2, 4, 6, 8, 10, 12, 14]) },
+    ]
+  },
+
+  // ─── JOHNNY ILLSTRUMENT ──────────────────────────────────────────────────────
+  {
+    id: "mc-johnny-ill-1",
+    name: "Berlin Hard",
+    genre: "boom-bap",
+    bpm: 93,
+    swing: 60,
+    feel: ["hard", "raw", "east-coast"],
+    description: "The Berlin bap signature. Kick displacement on step 6 (Premier inheritance), loud snare, accent snare on step 11. This pattern rolls with authority.",
+    maschineNotes: [
+      "Swing 60% — non-negotiable. Kick step 6 at velocity 78.",
+      "Accent snare step 11 at velocity 82 — separate pad, same sound.",
+      "Main snares at velocity 100. Berlin snares hit LOUD.",
+      "8th-note hats at velocity 55 with humanize ±5."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 6, 8]), velocity: makeVelocity(makePattern([0, 6, 8]), [0, 8], [6]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Accent Snare", pattern: makePattern([11]), velocity: makeVelocity(makePattern([11]), [11]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+    ]
+  },
+  {
+    id: "mc-johnny-ill-2",
+    name: "Kreuzberg Late Night",
+    genre: "boom-bap",
+    bpm: 89,
+    swing: 62,
+    feel: ["contemplative", "late-night", "berlin"],
+    description: "Slower, contemplative Berlin sound for storytelling tracks. Open hat on step 10 gives breathing room. A nod to late-night crate digging sessions.",
+    maschineNotes: [
+      "Open hat step 10: Choke Group with closed hat, velocity 70.",
+      "8th-note hats at velocity 48. Snare at velocity 95.",
+      "Swing 62% — slightly hungover feel suits late-night rap.",
+      "German jazz-funk sample preferred. Lock drums to the sample's groove."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 2, 4, 6, 8, 10, 12, 14]), velocity: makeVelocity(makePattern([0, 2, 4, 6, 8, 10, 12, 14]), [0, 4, 8, 12], [2, 6, 10, 14]) },
+      { instrument: "HH Open", pattern: makePattern([10]), velocity: makeVelocity(makePattern([10])) },
+    ]
+  },
+
+  // ─── FIGUB BRAZLEVIC ────────────────────────────────────────────────────────
+  {
+    id: "mc-figub-1",
+    name: "Kopfkino Swing",
+    genre: "boom-bap",
+    bpm: 87,
+    swing: 62,
+    feel: ["cinematic", "jazzy", "patient"],
+    description: "The Figub signature — high swing pushes upbeats deep into the pocket. Kick tuned to the sample key for harmonic resonance. Quarter-note hats for maximum space.",
+    maschineNotes: [
+      "Swing 62%. Tune kick to the sample's root note.",
+      "Quarter-note hats at velocity 52. Ghost snare step 14 at velocity 20.",
+      "Layer jazz brushed snare under main snare at velocity 35 (Pad Link).",
+      "Vinyl crackle at velocity 18 — places the sample in its original medium."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8]), velocity: makeVelocity(makePattern([0, 8]), [0, 8]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "Ghost Snare", pattern: makePattern([14]), velocity: makeVelocity(makePattern([14]), [], [14]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+    ]
+  },
+  {
+    id: "mc-figub-2",
+    name: "Ruhr Cinematic",
+    genre: "boom-bap",
+    bpm: 84,
+    swing: 64,
+    feel: ["cinematic", "suspended", "patient"],
+    description: "At 84 BPM and 64% swing, upbeats feel held in suspension. For film-score-sourced samples where the emotional content requires absolute patience.",
+    maschineNotes: [
+      "64% swing — upbeats are so delayed they feel suspended.",
+      "Kick step 11 at velocity 72 — adds a push before beat 3.",
+      "Quarter-note hats at velocity 45. 4-bar loop with narrative motion.",
+      "High swing tolerance: give yourself 3-5 minutes to adjust."
+    ],
+    steps: [
+      { instrument: "Kick", pattern: makePattern([0, 8, 11]), velocity: makeVelocity(makePattern([0, 8, 11]), [0, 8], [11]) },
+      { instrument: "Snare", pattern: makePattern([4, 12]), velocity: makeVelocity(makePattern([4, 12]), [4, 12]) },
+      { instrument: "HH Closed", pattern: makePattern([0, 4, 8, 12]), velocity: makeVelocity(makePattern([0, 4, 8, 12]), [], [0, 4, 8, 12]) },
+    ]
   }
 ];

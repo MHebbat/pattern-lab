@@ -1173,7 +1173,7 @@ export const producers: Producer[] = [
     id: "morlockko-plus",
     name: "Morlockko Plus",
     era: "2005 – present",
-    origin: "Cologne, Germany",
+    origin: "Leipzig, now Berlin",
     color: "#64748b",
     tags: ["German Hip-Hop", "Underground", "Boom Bap", "Cinematic"],
     signatureArtists: ["Morlock Dilemma (himself)", "Dabbla", "Tua", "various German underground artists"],
