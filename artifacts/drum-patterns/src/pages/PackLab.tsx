@@ -21,41 +21,69 @@ const ACCENT_COLORS = [
 ];
 
 const CATEGORY_ORDER: SampleCategory[] = [
+  // Drums
   "Drums/Kick","Drums/Snare","Drums/Hi-Hat","Drums/Clap","Drums/Rimshot",
   "Drums/Percussion","Drums/Tom","Drums/Cymbal","Drums/Full Kit",
+  // Bass
   "Bass",
-  "Loops/Drum Loop","Loops/Bass Loop","Loops/Melody Loop","Loops/Full Loop",
-  "One Shots/Keys","One Shots/Synth","One Shots/Instrument",
+  // Melodic one-shots
+  "Melody/Lead","Melody/Pluck","Melody/Arp",
+  // Chords
+  "Chords/Stab",
+  // Vocals
+  "Vocals/Chop","Vocals/Phrase",
+  // Instrument one-shots
+  "One Shots/Keys","One Shots/Guitar","One Shots/Strings","One Shots/Horns",
+  "One Shots/Synth","One Shots/Instrument",
+  // Loops
+  "Loops/Drum Loop","Loops/Bass Loop","Loops/Melody Loop","Loops/Chord Loop",
+  "Loops/Guitar Loop","Loops/Vocal Loop","Loops/Full Loop",
+  // FX
   "FX/Riser","FX/Downlifter","FX/Hit","FX/Sweep",
-  "Textures/Pad","Textures/Vinyl",
+  // Textures
+  "Textures/Pad","Textures/Drone","Textures/Vinyl",
+  // Fallback
   "Uncategorized",
 ];
 
 const CATEGORY_LABEL: Record<SampleCategory, string> = {
-  "Drums/Kick": "Kick Drum",
-  "Drums/Snare": "Snare",
-  "Drums/Hi-Hat": "Hi-Hat",
-  "Drums/Clap": "Clap",
-  "Drums/Rimshot": "Rimshot",
-  "Drums/Percussion": "Percussion",
-  "Drums/Tom": "Tom",
-  "Drums/Cymbal": "Cymbal",
-  "Drums/Full Kit": "Full Kit",
-  "Bass": "Bass",
-  "Loops/Drum Loop": "Drum Loop",
-  "Loops/Bass Loop": "Bass Loop",
-  "Loops/Melody Loop": "Melody Loop",
-  "Loops/Full Loop": "Full Loop",
-  "One Shots/Keys": "Keys / Piano",
-  "One Shots/Synth": "Synth / Lead",
+  "Drums/Kick":           "Kick Drum",
+  "Drums/Snare":          "Snare",
+  "Drums/Hi-Hat":         "Hi-Hat",
+  "Drums/Clap":           "Clap",
+  "Drums/Rimshot":        "Rimshot",
+  "Drums/Percussion":     "Percussion",
+  "Drums/Tom":            "Tom",
+  "Drums/Cymbal":         "Cymbal",
+  "Drums/Full Kit":       "Full Kit",
+  "Bass":                 "Bass",
+  "Melody/Lead":          "Melodic Lead",
+  "Melody/Pluck":         "Pluck",
+  "Melody/Arp":           "Arpeggio",
+  "Chords/Stab":          "Chord Stab",
+  "Vocals/Chop":          "Vocal Chop",
+  "Vocals/Phrase":        "Vocal Phrase",
+  "One Shots/Keys":       "Keys / Piano",
+  "One Shots/Guitar":     "Guitar",
+  "One Shots/Strings":    "Strings",
+  "One Shots/Horns":      "Horns / Brass",
+  "One Shots/Synth":      "Synth / Bell",
   "One Shots/Instrument": "Live Instrument",
-  "FX/Riser": "Riser",
-  "FX/Downlifter": "Downlifter",
-  "FX/Hit": "Hit / Impact",
-  "FX/Sweep": "Sweep / FX",
-  "Textures/Pad": "Pad / Atmosphere",
-  "Textures/Vinyl": "Vinyl / Noise",
-  "Uncategorized": "Uncategorized",
+  "Loops/Drum Loop":      "Drum Loop",
+  "Loops/Bass Loop":      "Bass Loop",
+  "Loops/Melody Loop":    "Melody Loop",
+  "Loops/Chord Loop":     "Chord Loop",
+  "Loops/Guitar Loop":    "Guitar Loop",
+  "Loops/Vocal Loop":     "Vocal Loop",
+  "Loops/Full Loop":      "Full Loop",
+  "FX/Riser":             "Riser",
+  "FX/Downlifter":        "Downlifter",
+  "FX/Hit":               "Hit / Impact",
+  "FX/Sweep":             "Sweep / FX",
+  "Textures/Pad":         "Pad / Atmosphere",
+  "Textures/Drone":       "Drone",
+  "Textures/Vinyl":       "Vinyl / Noise",
+  "Uncategorized":        "Uncategorized",
 };
 
 const AUDIO_ACCEPT = ".wav,.aiff,.aif,.mp3,.flac,.ogg,.zip";
@@ -122,33 +150,57 @@ STEP 2 — ADD TO MASCHINE LIBRARY
 STEP 3 — USING SAMPLES IN MASCHINE MK3
 -----------------------------------------
 DRUM ONE-SHOTS (Drums/):
-  Drag sample from browser onto any empty pad in a drum Group.
-  Pad mode is set to One-Shot automatically.
+  Drag from browser onto any empty pad in a drum Group.
+  Pad mode = One-Shot automatically.
 
 LOOPS (Loops/):
   Create a new Group. Load loop onto pad A1.
-  In Pad settings: Mode = Loop. Enable Tempo Sync to match project BPM.
-  BPM is tagged in the filename — look for the number before or after "BPM".
+  Pad settings: Mode = Loop. Enable Tempo Sync for BPM matching.
+  BPM is tagged in the filename where available.
 
-MELODIC ONE-SHOTS (One Shots/):
-  Drag onto a pad in a melodic Group.
-  Set pad to Poly mode. Play via Korg microKEY (USB MIDI).
-  Use the Tune knob in Pad settings to transpose.
+MELODIC ONE-SHOTS (Melody/, One Shots/, Chords/):
+  Drag onto a pad. Set pad to Poly mode.
+  Play chromatically via Korg microKEY (USB MIDI input in Maschine).
+  Use the Tune knob in Pad settings to transpose to your project key.
 
-FULL KITS (Drums/Full Kit/):
-  Map each drum manually to pads in a single Group.
-  Suggested: A1=Kick A2=Snare A3=CHH A4=OHH B1=Clap B2=Perc B3-B4=Toms
+VOCAL CHOPS (Vocals/Chop/):
+  Map chops to consecutive pads (A1-A4, B1-B4).
+  Set each pad to One-Shot mode, Poly off.
+  Play rhythmically from pads or microKEY in Poly mode for melodic chops.
+
+GUITAR / STRINGS / HORNS (One Shots/Guitar, Strings, Horns/):
+  Drag onto a melodic Group pad.
+  Poly mode on. Play phrases on microKEY.
+  Layer with chord stabs from Chords/ for full arrangements.
+
+BASS (Bass/):
+  Load onto pad A1 in a dedicated bass Group.
+  Poly mode. Enable Glide/Portamento in Pad settings for slides.
+  Play bass lines on microKEY left hand while drums run.
+
+FX & TRANSITIONS (FX/):
+  Load risers/downlifters on pads with long release.
+  Trigger 1 bar before a section change.
+  Riser: trigger at bar 7 for an 8-bar drop. Downlifter: trigger at bar 15 for bar 16 break.
+
+PADS & DRONES (Textures/):
+  Load onto a Group. Set to loop/sustain mode.
+  Use long attack envelope (0.5-2s) for slow bloom.
+  Play sustained chords on microKEY for full-arrangement atmosphere.
 
 FOLDER STRUCTURE
 ------------------
 ${packInfo.name}/
-  Drums/          One-shot drums (Kick, Snare, Hat, Clap, Perc, Tom, Cymbal)
-  Bass/           Bass hits and phrases
-  Loops/          Time-synced loops (BPM tagged in filename)
-  One Shots/      Melodic and harmonic one-shots (Keys, Synth, Instrument)
-  FX/             Transitions, risers, downlifters, impacts
-  Textures/       Pads, atmospheres, vinyl noise
-  Uncategorized/  Samples that need manual review
+  Drums/           One-shot drums (Kick, Snare, Hat, Clap, Rimshot, Perc, Tom, Cymbal)
+  Bass/            Bass hits, 808s, sub bass
+  Melody/          Melodic one-shots (Lead, Pluck, Arp)
+  Chords/          Chord stabs and harmonic shots
+  Vocals/          Vocal chops and phrases
+  One Shots/       Instrument one-shots (Keys, Guitar, Strings, Horns, Synth)
+  Loops/           Time-synced loops (Drum, Bass, Melody, Chord, Guitar, Vocal, Full)
+  FX/              Transitions: Risers, Downlifters, Hits, Sweeps
+  Textures/        Pads, Drones, Vinyl/Noise
+  Uncategorized/   Samples that need manual review
 `;
   root.file("_MASCHINE_IMPORT.txt", importTxt);
 
@@ -509,7 +561,7 @@ export default function PackLab() {
             <h1 className="text-3xl font-bold tracking-tight">Pack Lab</h1>
           </div>
           <p className="text-muted-foreground">
-            Drop a sample pack — ZIP or individual files. Detects kicks, snares, loops, one-shots, and kits automatically, then exports a Maschine-ready folder structure with artwork and import instructions.
+            Drop a sample pack — ZIP or individual files. Detects and classifies everything: drums, bass, melody, chords, vocals, guitars, strings, horns, arps, pads, FX, and more. Exports a Maschine-ready folder structure with artwork and import instructions.
           </p>
         </motion.div>
 
@@ -545,8 +597,8 @@ export default function PackLab() {
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               {[
-                { icon: FileAudio, title: "Detects everything", body: "Kicks, snares, hats, claps, percussion, loops, one-shots, pads, FX, vinyl noise — categorized from the filename and ZIP folder structure." },
-                { icon: FolderOpen, title: "Maschine folder structure", body: "Exports a ZIP with Drums/Kick, Drums/Snare, Loops, One Shots, FX, Textures — exactly how Maschine's User Library expects it." },
+                { icon: FileAudio, title: "Detects everything", body: "Drums, bass, melody, chords, vocals, guitar, strings, horns, arps, plucks, pads, drones, FX — 38 categories detected from filename and ZIP folder structure." },
+                { icon: FolderOpen, title: "Maschine folder structure", body: "Exports a ZIP with Drums, Bass, Melody, Chords, Vocals, One Shots, Loops, FX, Textures — exactly how Maschine's User Library expects it." },
                 { icon: ImageIcon, title: "Pack artwork", body: "Upload your own artwork or generate a dark, producer-style 500×500 PNG with your pack name. Drops inside the folder so Maschine can display it." },
               ].map(({ icon: Icon, title, body }, i) => (
                 <div key={i} className="border border-border rounded-xl p-5 bg-card">
