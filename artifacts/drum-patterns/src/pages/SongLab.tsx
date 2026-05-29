@@ -809,7 +809,7 @@ export default function SongLab() {
     return { ...l, instrument: deL.instrument, whenToIntroduce: deL.whenToIntroduce, processing: deL.processing, breathingTip: deL.breathingTip };
   });
 
-  const deBlueprint = lang === "de" ? SONGLAB_BLUEPRINTS_DE[activeGenre] : undefined;
+  const deBlueprint = lang === "de" ? SONGLAB_DE_BLUEPRINTS[activeGenre] : undefined;
   const displaySections = blueprint.sections.map((s, i) => ({
     ...s,
     name: deBlueprint?.sections[i]?.name ?? s.name,
@@ -908,7 +908,7 @@ export default function SongLab() {
             </div>
             <div className="space-y-3">
               {variations.map((v, i) => {
-                const deV = lang === "de" ? SONGLAB_VARIATIONS_DE[activeGenre]?.[i] : undefined;
+                const deV = lang === "de" ? SONGLAB_DE_VARIATIONS[activeGenre]?.[i] : undefined;
                 const merged = deV ? { ...v, ...deV } : v;
                 return <VariationCard key={i} variation={merged} color={color} />;
               })}

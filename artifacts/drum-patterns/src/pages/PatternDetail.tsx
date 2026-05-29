@@ -190,34 +190,85 @@ function SampleCard({ sample, color }: { sample: SampleIdea; color: string }) {
   );
 }
 
-function BassStepGrid({ steps, color }: { steps: BassPattern["steps"]; color: string }) {
+const BEAT_LABELS = ["1","e","+","a","2","e","+","a","3","e","+","a","4","e","+","a"] as const;
+
+type StepType = "on-beat" | "off-beat" | "syncopated";
+
+function getStepType(step: number): StepType {
+  if (step % 4 === 0) return "on-beat";
+  if (step % 2 === 0) return "off-beat";
+  return "syncopated";
+}
+
+function BassStepGrid({ steps, color, showTimingRow = false }: { steps: BassPattern["steps"]; color: string; showTimingRow?: boolean }) {
   const stepMap = new Map(steps.map(s => [s.step, s]));
   return (
-    <div className="grid grid-cols-16 gap-0.5" style={{ gridTemplateColumns: "repeat(16, 1fr)" }}>
-      {Array.from({ length: 16 }, (_, i) => {
-        const hit = stepMap.get(i);
-        return (
-          <div key={i} className="flex flex-col items-center gap-0.5">
-            <div
-              className="w-full aspect-square rounded-sm flex items-center justify-center transition-colors"
-              style={
-                hit
-                  ? { backgroundColor: color, opacity: hit.velocity > 80 ? 1 : 0.55 }
-                  : { backgroundColor: "rgba(255,255,255,0.06)" }
-              }
-            >
-              {hit && (
-                <span className="text-[6px] font-mono font-bold text-black leading-none select-none">
-                  {hit.note}
-                </span>
-              )}
+    <div>
+      {showTimingRow && (
+        <div className="grid mb-0.5" style={{ gridTemplateColumns: "repeat(16, 1fr)", gap: "2px" }}>
+          {BEAT_LABELS.map((label, i) => {
+            const type = getStepType(i);
+            return (
+              <div key={i} className="flex flex-col items-center">
+                <span className={`text-[7px] font-mono leading-none ${
+                  type === "on-beat" ? "text-foreground/70 font-bold" :
+                  type === "off-beat" ? "text-muted-foreground/50" :
+                  "text-muted-foreground/25"
+                }`}>{label}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      <div className="grid" style={{ gridTemplateColumns: "repeat(16, 1fr)", gap: "2px" }}>
+        {Array.from({ length: 16 }, (_, i) => {
+          const hit = stepMap.get(i);
+          const type = getStepType(i);
+          const borderColor = type === "on-beat"
+            ? "rgba(255,255,255,0.2)"
+            : type === "off-beat"
+            ? "rgba(255,255,255,0.1)"
+            : "rgba(255,255,255,0.04)";
+          return (
+            <div key={i} className="flex flex-col items-center gap-0.5">
+              <div
+                className="w-full aspect-square rounded-sm flex items-center justify-center transition-colors"
+                style={
+                  hit
+                    ? {
+                        backgroundColor: color,
+                        opacity: hit.velocity > 80 ? 1 : 0.55,
+                        outline: type === "syncopated" ? `1px solid ${color}80` : "none",
+                      }
+                    : {
+                        backgroundColor: type === "on-beat"
+                          ? "rgba(255,255,255,0.09)"
+                          : type === "off-beat"
+                          ? "rgba(255,255,255,0.06)"
+                          : "rgba(255,255,255,0.03)",
+                        border: `1px solid ${borderColor}`,
+                      }
+                }
+              >
+                {hit && (
+                  <span className="text-[6px] font-mono font-bold text-black leading-none select-none">
+                    {hit.note}
+                  </span>
+                )}
+              </div>
             </div>
-            {i % 4 === 0 && (
-              <span className="text-[8px] font-mono text-muted-foreground/40">{Math.floor(i / 4) + 1}</span>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      {showTimingRow && (
+        <div className="grid mt-1" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "2px" }}>
+          {[1,2,3,4].map(beat => (
+            <div key={beat} className="flex justify-start pl-0.5">
+              <span className="text-[8px] font-mono text-muted-foreground/35">{beat}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -346,16 +397,25 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
           </div>
 
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Step grid (16 steps)", "Step-Raster (16 Steps)")}</span>
-            <BassStepGrid steps={bp.steps} color={color} />
-            <div className="flex gap-4 mt-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Step grid (16 steps) — 1 e + a = beat subdivisions", "Step-Raster (16 Steps) — 1 e + a = Beat-Unterteilungen")}</span>
+            <BassStepGrid steps={bp.steps} color={color} showTimingRow />
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
               <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
                 <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }} />
                 {t("Vel > 80", "Vel > 80")}
               </span>
               <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
                 <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color, opacity: 0.55 }} />
-                {lang === "de" ? "Ghost" : "Ghost"}              </span>
+                {lang === "de" ? "Ghost" : "Ghost"}
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
+                <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.09)", border: "1px solid rgba(255,255,255,0.2)" }} />
+                {t("On-beat", "On-Beat")}
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
+                <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.04)" }} />
+                {t("Syncopated", "Synkopiert")}
+              </span>
             </div>
           </div>
 
@@ -377,6 +437,128 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
         </div>
       )}
     </div>
+  );
+}
+
+function calc16thMs(bpm: number): number {
+  return Math.round((60000 / bpm) / 4);
+}
+
+function swingOffsetMs(bpm: number, swingPct: number): number {
+  const base16th = 60000 / bpm / 4;
+  return Math.round(base16th * ((swingPct - 50) / 50));
+}
+
+function BassTimingReference({
+  midiRecs,
+  color,
+  bpm,
+  swing,
+}: {
+  midiRecs: GenreMelodyRecs;
+  color: string;
+  bpm: number;
+  swing?: number;
+}) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const t = useT();
+  const { lang } = useLang();
+  const bp = midiRecs.bassPatterns[selectedIdx];
+  const ms16 = calc16thMs(bpm);
+  const swingMs = swing ? swingOffsetMs(bpm, swing) : 0;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.18 }}
+      className="mt-8 rounded-lg border border-border bg-card/40 p-4"
+    >
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div>
+          <h3 className="text-sm font-semibold flex items-center gap-1.5">
+            <Music2 className="w-3.5 h-3.5 text-muted-foreground" />
+            {t("Bass Line + MIDI Timing", "Basslinie + MIDI-Timing")}
+          </h3>
+          <p className="text-[11px] text-muted-foreground/60 mt-0.5">
+            {t("Step grid aligned to drum pattern — select bass line below", "Step-Raster am Drum-Pattern ausgerichtet — Basslinie unten wählen")}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-1.5 shrink-0">
+          <span
+            className="text-[9px] font-mono px-1.5 py-0.5 rounded border"
+            style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
+            title={t("Duration of one 16th-note step", "Dauer eines 16tel-Schritts")}
+          >
+            ♩/4 = {ms16}ms
+          </span>
+          {swing != null && (
+            <span
+              className="text-[9px] font-mono px-1.5 py-0.5 rounded border"
+              style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
+              title={t("Swing pushes off-beat 16ths by this offset", "Swing verschiebt Off-Beat-16tel um diesen Wert")}
+            >
+              SWING {swing}% (+{swingMs}ms)
+            </span>
+          )}
+        </div>
+      </div>
+
+      {bp && (
+        <div className="mb-3">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs font-medium text-foreground/80">{bp.name}</span>
+            <span
+              className="text-[9px] font-mono px-1.5 py-0.5 rounded border"
+              style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
+            >
+              {bp.key}
+            </span>
+          </div>
+          <BassStepGrid steps={bp.steps} color={color} showTimingRow />
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2.5">
+            <span className="flex items-center gap-1.5 text-[9px] text-muted-foreground/50 font-mono">
+              <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.09)", border: "1px solid rgba(255,255,255,0.2)" }} />
+              {t("On-beat (1 2 3 4)", "On-Beat (1 2 3 4)")}
+            </span>
+            <span className="flex items-center gap-1.5 text-[9px] text-muted-foreground/50 font-mono">
+              <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }} />
+              {t("Off-beat (+)", "Off-Beat (+)")}
+            </span>
+            <span className="flex items-center gap-1.5 text-[9px] text-muted-foreground/50 font-mono">
+              <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.04)" }} />
+              {t("Syncopated (e a)", "Synkopiert (e a)")}
+            </span>
+            <span className="flex items-center gap-1.5 text-[9px] text-muted-foreground/50 font-mono">
+              <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: color, opacity: 0.55 }} />
+              {lang === "de" ? "Ghost (Vel ≤ 80)" : "Ghost (vel ≤ 80)"}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {midiRecs.bassPatterns.length > 1 && (
+        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/40">
+          <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 self-center">
+            {t("Bass:", "Bass:")}
+          </span>
+          {midiRecs.bassPatterns.map((b, i) => (
+            <button
+              key={i}
+              onClick={() => setSelectedIdx(i)}
+              className="text-[10px] font-mono px-2 py-0.5 rounded border transition-colors"
+              style={
+                i === selectedIdx
+                  ? { backgroundColor: `${color}20`, color, borderColor: `${color}50` }
+                  : { color: "var(--muted-foreground)", borderColor: "var(--border)" }
+              }
+            >
+              {b.name}
+            </button>
+          ))}
+        </div>
+      )}
+    </motion.div>
   );
 }
 
@@ -686,6 +868,14 @@ export default function PatternDetail() {
               </div>
             </div>
             <PatternGrid pattern={pattern} currentStep={currentStep} />
+            {midiRecs && (
+              <BassTimingReference
+                midiRecs={midiRecs}
+                color={color}
+                bpm={pattern.bpm}
+                swing={pattern.swing}
+              />
+            )}
           </div>
 
           <div className="space-y-6">

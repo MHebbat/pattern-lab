@@ -535,7 +535,8 @@ export default function ChopLab() {
             {currentTab.techniques.map((tech, ti) => {
               const key = `${activeTab}-${ti}`;
               const isExpanded = expandedTip === key;
-              const de = lang === "de" ? CHOPLAB_TABS_DE[activeTab]?.techniques?.[ti] : undefined;
+              const activeTabIdx = TABS_EN.findIndex(t => t.id === activeTab);
+              const de = lang === "de" && activeTabIdx >= 0 ? CHOPLAB_DE_TABS[activeTabIdx]?.techniques?.[ti] : undefined;
               const title = de?.title ?? tech.title;
               const body = de?.body ?? tech.body;
               const steps = de?.steps ?? tech.steps;
@@ -569,7 +570,7 @@ export default function ChopLab() {
                     <div className="px-5 pb-5 flex flex-col gap-4 border-t border-border/50 pt-4">
                       {steps && (
                         <ol className="space-y-2">
-                          {steps.map((step, si) => (
+                          {steps.map((step: string, si: number) => (
                             <li key={si} className="flex gap-3 text-xs text-muted-foreground leading-relaxed">
                               <span className="font-mono shrink-0 mt-0.5 text-primary">{si + 1}.</span>
                               <span>{step}</span>
@@ -617,7 +618,9 @@ export default function ChopLab() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {packProfiles.map((pack, i) => (              <motion.div
+            {packProfiles.map((pack, i) => {
+              return (
+              <motion.div
                 key={pack.name}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -672,6 +675,7 @@ export default function ChopLab() {
           </div>
         </motion.div>
       </main>
+
     </div>
   );
 }
