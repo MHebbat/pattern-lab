@@ -13,6 +13,7 @@ import MasterClass from "@/pages/MasterClass";
 import MasterClassDetail from "@/pages/MasterClassDetail";
 import HardwareGuide from "@/pages/HardwareGuide";
 import { GeneratedPatternsProvider } from "@/lib/generatedPatternsStore";
+import { LangProvider } from "@/lib/i18n";
 
 const queryClient = new QueryClient();
 
@@ -37,12 +38,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <GeneratedPatternsProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-            <Router />
-          </WouterRouter>
-        </GeneratedPatternsProvider>
-        <Toaster />
+        <LangProvider>
+          <GeneratedPatternsProvider>
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <Router />
+            </WouterRouter>
+          </GeneratedPatternsProvider>
+          <Toaster />
+        </LangProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

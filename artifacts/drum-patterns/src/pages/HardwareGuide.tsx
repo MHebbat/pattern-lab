@@ -2,6 +2,8 @@ import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, Search, X, ChevronRight, Cpu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang, useT } from "@/lib/i18n";
+import { HARDWARE_DE, type DeControl } from "@/locales/hardware-de";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -784,8 +786,14 @@ function MK3Diagram({
 
 // ─── Detail panel ─────────────────────────────────────────────────────────────
 
-function ControlDetail({ ctrl }: { ctrl: Control }) {
+function ControlDetail({ ctrl, de }: { ctrl: Control; de?: DeControl }) {
   const color = ZONE_COLOR[ctrl.zone];
+  const t = useT();
+
+  const description = de?.description ?? ctrl.description;
+  const steps = de?.steps ?? ctrl.steps;
+  const proTip = de?.proTip ?? ctrl.proTip;
+
   return (
     <motion.div
       key={ctrl.id}
@@ -814,21 +822,23 @@ function ControlDetail({ ctrl }: { ctrl: Control }) {
             </span>
             {ctrl.priority === "primary" && (
               <span className="text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full bg-white/5 text-muted-foreground">
-                Primary
+                {t("Primary", "Primär")}
               </span>
             )}
           </div>
           <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-3xl">
-            {ctrl.description}
+            {description}
           </p>
         </div>
       </div>
 
       <div className="mt-5 grid md:grid-cols-2 gap-4">
         <div>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 mb-2">How to use</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 mb-2">
+            {t("How to use", "Verwendung")}
+          </p>
           <ol className="space-y-1.5">
-            {ctrl.steps.map((step, i) => (
+            {steps.map((step, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
                 <span
                   className="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold mt-0.5"
@@ -842,15 +852,15 @@ function ControlDetail({ ctrl }: { ctrl: Control }) {
           </ol>
         </div>
 
-        {ctrl.proTip && (
+        {proTip && (
           <div
             className="rounded-lg p-4 border"
             style={{ borderColor: color + "30", background: color + "0a" }}
           >
             <p className="text-[10px] font-mono uppercase tracking-widest mb-2" style={{ color }}>
-              Pro tip
+              {t("Pro tip", "Pro-Tipp")}
             </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{ctrl.proTip}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{proTip}</p>
           </div>
         )}
       </div>
@@ -862,14 +872,17 @@ function ControlDetail({ ctrl }: { ctrl: Control }) {
 
 function ControlCard({
   ctrl,
+  de,
   active,
   onClick,
 }: {
   ctrl: Control;
+  de?: DeControl;
   active: boolean;
   onClick: () => void;
 }) {
   const color = ZONE_COLOR[ctrl.zone];
+  const description = de?.description ?? ctrl.description;
   return (
     <button
       onClick={onClick}
@@ -894,7 +907,7 @@ function ControlCard({
         )}
       </div>
       <p className="mt-1 text-[11px] text-muted-foreground/70 leading-snug line-clamp-2 pl-8">
-        {ctrl.description.split(".")[0]}.
+        {description.split(".")[0]}.
       </p>
     </button>
   );
@@ -902,22 +915,44 @@ function ControlCard({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+const ZONE_LABEL_DE: Record<Zone, string> = {
+  "view-mode": "Ansicht",
+  groups: "Groups",
+  "scene-pattern": "Scene & Pattern",
+  display: "Display",
+  encoders: "Encoder & Knöpfe",
+  macro: "Macro-Knöpfe",
+  transport: "Transport",
+  pads: "Pads",
+};
+
 export default function HardwareGuide() {
   const [activeId, setActiveId] = useState("4d-encoder");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const { lang } = useLang();
+  const t = useT();
 
   const activeCtrl = CONTROL_MAP[activeId];
+  const activeCtrlDe = lang === "de" ? (HARDWARE_DE[activeId] ?? undefined) : undefined;
+
+  const zoneLabel = (z: Zone) => lang === "de" ? ZONE_LABEL_DE[z] : ZONE_LABEL[z];
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
     if (!q) return CONTROLS;
-    return CONTROLS.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.description.toLowerCase().includes(q) ||
-      c.steps.some(s => s.toLowerCase().includes(q)) ||
-      ZONE_LABEL[c.zone].toLowerCase().includes(q),
-    );
+    return CONTROLS.filter(c => {
+      const de = HARDWARE_DE[c.id];
+      return (
+        c.name.toLowerCase().includes(q) ||
+        c.description.toLowerCase().includes(q) ||
+        (de?.description ?? "").toLowerCase().includes(q) ||
+        c.steps.some(s => s.toLowerCase().includes(q)) ||
+        (de?.steps ?? []).some(s => s.toLowerCase().includes(q)) ||
+        ZONE_LABEL[c.zone].toLowerCase().includes(q) ||
+        ZONE_LABEL_DE[c.zone].toLowerCase().includes(q)
+      );
+    });
   }, [query]);
 
   const zones = useMemo(() => {
@@ -942,7 +977,9 @@ export default function HardwareGuide() {
           <span className="text-border/60">·</span>
           <div className="flex items-center gap-2">
             <Cpu className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm font-semibold text-foreground">Hardware Reference</span>
+            <span className="text-sm font-semibold text-foreground">
+              {t("Hardware Reference", "Hardware-Referenz")}
+            </span>
           </div>
           <div className="ml-auto text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40">
             Maschine MK3 — {CONTROLS.length} Controls
@@ -954,10 +991,14 @@ export default function HardwareGuide() {
 
         {/* Intro */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">MK3 Control Map</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">
+            {t("MK3 Control Map", "MK3 Steuerübersicht")}
+          </h1>
           <p className="text-muted-foreground max-w-2xl">
-            Every control on the Maschine MK3 — where it is, what it does, and how to use it.
-            Click any numbered callout on the diagram or any card below to see detailed instructions.
+            {t(
+              "Every control on the Maschine MK3 — where it is, what it does, and how to use it. Click any numbered callout on the diagram or any card below to see detailed instructions.",
+              "Jede Steuerung auf dem Maschine MK3 — wo sie ist, was sie tut und wie man sie verwendet. Auf einen nummerierten Callout im Diagramm oder auf eine Karte unten klicken, um detaillierte Anleitungen zu sehen.",
+            )}
           </p>
         </div>
 
@@ -966,7 +1007,7 @@ export default function HardwareGuide() {
           {zones.map(z => (
             <div key={z} className="flex items-center gap-1.5 text-[11px] text-muted-foreground px-2 py-1 rounded-full bg-white/5 border border-white/10">
               <span className="w-2 h-2 rounded-full" style={{ background: ZONE_COLOR[z] }} />
-              {ZONE_LABEL[z]}
+              {zoneLabel(z)}
             </div>
           ))}
         </div>
@@ -983,19 +1024,28 @@ export default function HardwareGuide() {
 
         {/* Click hint */}
         <p className="mt-3 text-[11px] text-muted-foreground/50 text-center">
-          Click any control on the diagram above — or browse all {CONTROLS.length} controls below
+          {t(
+            `Click any control on the diagram above — or browse all ${CONTROLS.length} controls below`,
+            `Controls auf dem Diagramm anklicken — oder alle ${CONTROLS.length} Controls unten durchsuchen`,
+          )}
         </p>
 
         {/* Active control detail panel */}
         <AnimatePresence mode="wait">
-          {activeCtrl && <ControlDetail key={activeId} ctrl={activeCtrl} />}
+          {activeCtrl && (
+            <ControlDetail
+              key={activeId}
+              ctrl={activeCtrl}
+              de={activeCtrlDe}
+            />
+          )}
         </AnimatePresence>
 
         {/* Divider */}
         <div className="mt-12 mb-6 flex items-center gap-4">
           <div className="h-px flex-1 bg-border/40" />
           <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40">
-            All Controls
+            {t("All Controls", "Alle Controls")}
           </span>
           <div className="h-px flex-1 bg-border/40" />
         </div>
@@ -1007,7 +1057,7 @@ export default function HardwareGuide() {
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search controls, zones, or actions..."
+            placeholder={t("Search controls, zones, or actions...", "Regler, Zonen oder Aktionen suchen…")}
             className="w-full bg-white/5 border border-border rounded-lg py-2.5 pl-9 pr-9 text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-white/30 transition-colors"
           />
           {query && (
@@ -1019,13 +1069,16 @@ export default function HardwareGuide() {
 
         {/* Controls grid */}
         {filtered.length === 0 ? (
-          <p className="text-center text-sm text-muted-foreground py-12">No controls match that search.</p>
+          <p className="text-center text-sm text-muted-foreground py-12">
+            {t("No controls match that search.", "Keine Controls für diese Suche gefunden.")}
+          </p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {filtered.map(ctrl => (
               <ControlCard
                 key={ctrl.id}
                 ctrl={ctrl}
+                de={lang === "de" ? (HARDWARE_DE[ctrl.id] ?? undefined) : undefined}
                 active={ctrl.id === activeId}
                 onClick={() => setActiveId(ctrl.id)}
               />
@@ -1037,25 +1090,29 @@ export default function HardwareGuide() {
         <div className="mt-8 flex items-center gap-4 text-[11px] text-muted-foreground/40">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-            Colored dot = primary control
+            {t("Colored dot = primary control", "Farbiger Punkt = primäre Steuerung")}
           </span>
           <span>·</span>
-          <span>{CONTROLS.filter(c => c.priority === "primary").length} primary controls</span>
+          <span>
+            {CONTROLS.filter(c => c.priority === "primary").length} {t("primary controls", "primäre Controls")}
+          </span>
           <span>·</span>
-          <span>{CONTROLS.filter(c => c.priority === "secondary").length} secondary controls</span>
+          <span>
+            {CONTROLS.filter(c => c.priority === "secondary").length} {t("secondary controls", "sekundäre Controls")}
+          </span>
         </div>
 
         {/* Back to cheat sheet link */}
         <div className="mt-12 flex gap-4 flex-wrap">
           <Link href="/cheatsheet">
             <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground border border-border hover:border-white/30 px-4 py-2.5 rounded-lg transition-all">
-              Cheat Sheet — button sequences by genre
+              {t("Cheat Sheet — button sequences by genre", "Kurzübersicht — Tastenfolgen nach Genre")}
               <ChevronRight className="w-4 h-4" />
             </button>
           </Link>
           <Link href="/masterclass">
             <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground border border-border hover:border-white/30 px-4 py-2.5 rounded-lg transition-all">
-              Producer Masterclasses
+              {t("Producer Masterclasses", "Producer Masterclasses")}
               <ChevronRight className="w-4 h-4" />
             </button>
           </Link>

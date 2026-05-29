@@ -7,11 +7,14 @@ import { GenerateModal } from "@/components/GenerateModal";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, BookOpen, Scissors, Trash2, FlaskConical, Package, GraduationCap, Cpu } from "lucide-react";
+import { useLang, useT } from "@/lib/i18n";
 
 export default function Home() {
   const [filter, setFilter] = useState<Genre | "all">("all");
   const [showGenerate, setShowGenerate] = useState(false);
   const { generatedPatterns, addGeneratedPattern, deleteGeneratedPattern } = useGeneratedPatterns();
+  const { lang, setLang } = useLang();
+  const t = useT();
   const [, setLocation] = useLocation();
 
   const allPatterns = useMemo(() => [...generatedPatterns, ...patterns], [generatedPatterns]);
@@ -41,37 +44,61 @@ export default function Home() {
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex flex-col">
             <h1 className="font-bold text-xl tracking-tight text-foreground">Pattern Lab</h1>
-            <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">Drum pattern reference for Maschine MK3</p>
+            <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">
+              {t("Drum pattern reference for Maschine MK3", "Drum-Pattern-Referenz für Maschine MK3")}
+            </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-0.5 border border-border rounded-md overflow-hidden shrink-0">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2.5 py-1.5 text-xs font-mono font-bold transition-colors ${
+                  lang === "en"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("de")}
+                className={`px-2.5 py-1.5 text-xs font-mono font-bold transition-colors ${
+                  lang === "de"
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                DE
+              </button>
+            </div>
             <Link href="/packlab">
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <Package className="w-4 h-4" />
-                <span className="hidden sm:inline">Pack Lab</span>
+                <span className="hidden sm:inline">{t("Pack Lab", "Pack Lab")}</span>
               </button>
             </Link>
             <Link href="/songlab">
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <FlaskConical className="w-4 h-4" />
-                <span className="hidden sm:inline">Song Lab</span>
+                <span className="hidden sm:inline">{t("Song Lab", "Song Lab")}</span>
               </button>
             </Link>
             <Link href="/masterclass">
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <GraduationCap className="w-4 h-4" />
-                <span className="hidden sm:inline">Masterclass</span>
+                <span className="hidden sm:inline">{t("Masterclass", "Masterclass")}</span>
               </button>
             </Link>
             <Link href="/choplab">
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <Scissors className="w-4 h-4" />
-                <span className="hidden sm:inline">Chop Lab</span>
+                <span className="hidden sm:inline">{t("Chop Lab", "Chop Lab")}</span>
               </button>
             </Link>
             <Link href="/hardware">
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <Cpu className="w-4 h-4" />
-                <span className="hidden sm:inline">Hardware</span>
+                <span className="hidden sm:inline">{t("Hardware", "Hardware")}</span>
               </button>
             </Link>
             <Link href="/cheatsheet">
@@ -80,7 +107,7 @@ export default function Home() {
                 data-testid="link-cheatsheet"
               >
                 <BookOpen className="w-4 h-4" />
-                <span className="hidden sm:inline">Cheat Sheet</span>
+                <span className="hidden sm:inline">{t("Cheat Sheet", "Kurzübersicht")}</span>
               </button>
             </Link>
             <button
@@ -89,7 +116,7 @@ export default function Home() {
               data-testid="button-open-generate"
             >
               <Sparkles className="w-4 h-4" />
-              Generate
+              {t("Generate", "Generieren")}
             </button>
           </div>
         </div>

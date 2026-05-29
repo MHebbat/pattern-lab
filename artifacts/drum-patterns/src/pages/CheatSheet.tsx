@@ -5,6 +5,8 @@ import {
   Play, ChevronDown, Terminal, BookOpen, ExternalLink,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang } from "@/lib/i18n";
+import { CHEATSHEET_DE, type DeTip, type DeTab } from "@/locales/cheatsheet-de";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -748,8 +750,13 @@ const TABS: TabDef[] = [
 
 // ─── Tip Card ────────────────────────────────────────────────────────────────
 
-function TipCard({ tip, color, index }: { tip: Tip; color: string; index: number }) {
+function TipCard({ tip, de, color, index }: { tip: Tip; de?: DeTip; color: string; index: number }) {
   const [open, setOpen] = useState(false);
+
+  const title = de?.title ?? tip.title;
+  const body = de?.body ?? tip.body;
+  const badge = de?.badge ?? tip.badge;
+  const steps = de?.steps ?? tip.steps;
 
   return (
     <div className="border border-border rounded-xl overflow-hidden bg-card">
@@ -765,17 +772,17 @@ function TipCard({ tip, color, index }: { tip: Tip; color: string; index: number
         </span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-0.5">
-            {tip.badge && (
+            {badge && (
               <span
                 className="text-[9px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-widest"
                 style={{ backgroundColor: `${color}20`, color }}
               >
-                {tip.badge}
+                {badge}
               </span>
             )}
-            <span className="text-sm font-semibold text-foreground">{tip.title}</span>
+            <span className="text-sm font-semibold text-foreground">{title}</span>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{tip.body}</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
         </div>
         <ChevronDown
           className="w-4 h-4 text-muted-foreground/40 shrink-0 mt-1 transition-transform"
@@ -793,9 +800,9 @@ function TipCard({ tip, color, index }: { tip: Tip; color: string; index: number
             className="overflow-hidden"
           >
             <div className="border-t border-border/50 mx-4 mb-4" />
-            {tip.steps && (
+            {steps && (
               <div className="px-5 pb-4 space-y-1.5">
-                {tip.steps.map((step, si) => (
+                {steps.map((step, si) => (
                   <div key={si} className="flex gap-3 text-xs">
                     <span
                       className="shrink-0 font-mono text-[10px] mt-0.5 w-4 text-right"
@@ -832,7 +839,10 @@ export default function CheatSheet() {
     return "first-session";
   });
 
+  const { lang } = useLang();
+
   const tab = TABS.find(t => t.id === activeTab)!;
+  const tabDe: DeTab | null = lang === "de" ? (CHEATSHEET_DE[activeTab] ?? null) : null;
   const allTips = tab.sections.flatMap(s => s.tips);
 
   return (
@@ -850,7 +860,7 @@ export default function CheatSheet() {
           <div className="flex-1 flex flex-col items-center">
             <span className="font-bold text-sm tracking-tight">Maschine MK3 — Cheat Sheet</span>
             <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest hidden sm:block">
-              Step-by-step production reference
+              {lang === "de" ? "Schritt-für-Schritt Produktionsreferenz" : "Step-by-step production reference"}
             </span>
           </div>
           <div className="w-16 sm:w-24 shrink-0" />
@@ -859,26 +869,27 @@ export default function CheatSheet() {
         {/* Tab bar */}
         <div className="border-t border-border/50 overflow-x-auto scrollbar-none">
           <div className="container mx-auto px-6 flex gap-0 min-w-max">
-            {TABS.map(t => {
-              const Icon = t.icon;
-              const active = t.id === activeTab;
+            {TABS.map(tabItem => {
+              const Icon = tabItem.icon;
+              const active = tabItem.id === activeTab;
+              const itemDe = lang === "de" ? CHEATSHEET_DE[tabItem.id] : null;
               return (
                 <button
-                  key={t.id}
-                  onClick={() => setActiveTab(t.id)}
+                  key={tabItem.id}
+                  onClick={() => setActiveTab(tabItem.id)}
                   className="relative flex items-center gap-1.5 px-4 py-3 text-xs font-medium transition-colors whitespace-nowrap"
                   style={{
-                    color: active ? t.color : "var(--muted-foreground)",
+                    color: active ? tabItem.color : "var(--muted-foreground)",
                   }}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span className="hidden sm:inline">{t.label}</span>
-                  <span className="sm:hidden">{t.short}</span>
+                  <span className="hidden sm:inline">{itemDe?.label ?? tabItem.label}</span>
+                  <span className="sm:hidden">{itemDe?.short ?? tabItem.short}</span>
                   {active && (
                     <motion.div
                       layoutId="tab-underline"
                       className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full"
-                      style={{ backgroundColor: t.color }}
+                      style={{ backgroundColor: tabItem.color }}
                     />
                   )}
                 </button>
@@ -906,15 +917,19 @@ export default function CheatSheet() {
                   return <Icon className="w-4 h-4" style={{ color: tab.color }} />;
                 })()}
                 <h1 className="font-bold text-lg tracking-tight" style={{ color: tab.color }}>
-                  {tab.label}
+                  {tabDe?.label ?? tab.label}
                 </h1>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">{tab.intro}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                {tabDe?.intro ?? tab.intro}
+              </p>
             </div>
 
             {/* Sections */}
             <div className="space-y-10">
-              {tab.sections.map((section, si) => (
+              {tab.sections.map((section, si) => {
+                const sectionDe = tabDe?.sections[si] ?? null;
+                return (
                 <div key={si}>
                   {section.heading && (
                     <div className="flex items-center gap-3 mb-4">
@@ -922,7 +937,7 @@ export default function CheatSheet() {
                         className="text-[10px] font-mono font-bold uppercase tracking-widest"
                         style={{ color: tab.color }}
                       >
-                        {section.heading}
+                        {sectionDe?.heading ?? section.heading}
                       </span>
                       <div className="flex-1 h-px bg-border/50" />
                     </div>
@@ -932,10 +947,12 @@ export default function CheatSheet() {
                       const globalIndex = tab.sections
                         .slice(0, si)
                         .reduce((sum, s) => sum + s.tips.length, 0) + ti;
+                      const tipDe = sectionDe?.tips[ti] ?? undefined;
                       return (
                         <TipCard
                           key={ti}
                           tip={tip}
+                          de={tipDe}
                           color={tab.color}
                           index={tab.id === "first-session" ? ti : globalIndex}
                         />
@@ -943,7 +960,8 @@ export default function CheatSheet() {
                     })}
                   </div>
                 </div>
-              ))}
+              );
+            })}
             </div>
 
             {/* First Session: cross-links to genre tabs */}
