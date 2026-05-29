@@ -8,6 +8,7 @@ import PatternDetail from "@/pages/PatternDetail";
 import CheatSheet from "@/pages/CheatSheet";
 import ChopLab from "@/pages/ChopLab";
 import SongLab from "@/pages/SongLab";
+import PackLab from "@/pages/PackLab";
 import { GeneratedPatternsProvider } from "@/lib/generatedPatternsStore";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/cheatsheet" component={CheatSheet} />
       <Route path="/choplab" component={ChopLab} />
       <Route path="/songlab" component={SongLab} />
+      <Route path="/packlab" component={PackLab} />
       <Route component={NotFound} />
     </Switch>
   );

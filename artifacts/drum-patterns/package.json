@@ -73,5 +73,9 @@
     "vite": "catalog:",
     "wouter": "^3.3.5",
     "zod": "catalog:"
+  },
+  "dependencies": {
+    "@types/jszip": "^3.4.1",
+    "jszip": "^3.10.1"
   }
 }
