@@ -157,6 +157,63 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
         variation:
           "Replace Eb2 on Step 7 with F2 (the minor 7th) for a jazzy, less tense movement. Or remove the Step 13 tail entirely — makes the bass feel more sparse and powerful.",
       },
+      {
+        name: "Chromatic Lament",
+        key: "D minor",
+        description:
+          "A falling chromatic bass line — each note descends one half-step. This is the sound of grief: nowhere to go but down, nothing to hold onto. No rhythmic surprise, no syncopation. It just falls. The most devastating bass pattern when played beneath a sparse hi-hat pattern.",
+        steps: [
+          { step: 0, note: "D2", velocity: 105 },
+          { step: 4, note: "C#2", velocity: 90 },
+          { step: 8, note: "C2", velocity: 95 },
+          { step: 12, note: "B1", velocity: 80 },
+          { step: 15, note: "Bb1", velocity: 65 },
+        ],
+        pluginSuggestion:
+          "Massive X — Sub Bass patch with decay set to 1.5 bars so each note blooms into the next. The ringing transition between C#2 and C2 is where the grief lives — let them overlap slightly. Scarbee Rickenbacker (Kontakt, Fingered mode) also devastates on this pattern.",
+        microKeyTip:
+          "On microKEY: D (white), C# (black — immediately left of D), C (white), B (white, one left), Bb (black, below B). Place your ring finger on D. The chromatic descent fits naturally under four fingers sliding left. Ring on D, middle on C#, index on C, then reach down for B and Bb. Record slowly at 40 BPM. Feel each half-step as a small surrender.",
+        variation:
+          "Stop at C2 on Step 8 — refuse to resolve down to B1. Leave the bar hanging on C2. The unresolved half-step above D is one of the most heartbreaking sounds in music — the note that wants to go somewhere but doesn't.",
+      },
+      {
+        name: "Suspended Ache",
+        key: "A minor",
+        description:
+          "Built on the suspended 4th interval (D over A). The sus4 chord has no third — a sound of pure waiting, something that needs to resolve but never fully does. This bass creates yearning by refusing satisfaction. The most patient heartbreak in boom bap.",
+        steps: [
+          { step: 0, note: "A2", velocity: 100 },
+          { step: 5, note: "D2", velocity: 80 },
+          { step: 8, note: "A2", velocity: 95 },
+          { step: 11, note: "E2", velocity: 70 },
+          { step: 14, note: "D2", velocity: 85 },
+        ],
+        pluginSuggestion:
+          "The Gentleman (Kontakt) played in low register — the D note (suspended 4th) held for a full beat has enormous aching warmth on a recorded piano. A cello patch (Spitfire LABS) also works powerfully: the sustained sus4 on bowed strings is the definitive orchestral expression of yearning.",
+        microKeyTip:
+          "Only three notes on microKEY: A (white), D (white — 4 white keys below A in the lower octave), E (white — one above D). Position your thumb on D and your pinky reaching up to A. The D is the emotional center — when you land on it at Step 5, hold it slightly longer than the grid says. That suspension is the feeling.",
+        variation:
+          "Never fully resolve: end the bar on D2 at Step 14. The pattern loops back to A2 at Step 0 but the ear still hears the D ringing. Over 2 bars this creates a perpetually unresolved cycle — the bass equivalent of a question that keeps being asked.",
+      },
+      {
+        name: "Phrygian Soul",
+        key: "E Phrygian",
+        description:
+          "Uses the flat 2nd interval (F natural above E) — the defining color of the Phrygian mode. This half-step above the root is the most emotionally compressed interval in Western music: ancient, ceremonial, grieving. Found in flamenco, Qawwali, and the darkest corners of boom bap.",
+        steps: [
+          { step: 0, note: "E2", velocity: 105 },
+          { step: 4, note: "F2", velocity: 90 },
+          { step: 8, note: "E2", velocity: 100 },
+          { step: 12, note: "D2", velocity: 75 },
+          { step: 14, note: "F2", velocity: 65 },
+        ],
+        pluginSuggestion:
+          "Massive X on E with long decay (2 bars). The F2 (just a half-step above root E) should feel like pressure — boost 55–70Hz slightly on the F2 velocity channel. The Phrygian flat 2 is most powerful on a sustained, sub-rich instrument: not plucked, but held and resonant.",
+        microKeyTip:
+          "E and F on microKEY are immediately adjacent white keys — no black key between them, pure proximity. Put your index on E and your middle on F. Feel how close they are. That physical closeness mirrors the emotional claustrophobia of the half-step. Play E firmly, then lean slightly right to touch F. Record these two notes first at 30 BPM. D is two white keys to the left of E.",
+        variation:
+          "Add C2 on Step 6 (the minor 6th of E) between the two E2 hits — creating E / F / C / E. This is the Andalusian cadence, the foundation of flamenco harmony. Or reduce to just two notes: E2 (Step 0) and F2 (Step 4). Two notes, maximum space, maximum grief.",
+      },
     ],
     melodies: [
       {
@@ -194,6 +251,42 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Cm9 on microKEY: hold C (white), Eb (black, one above D), G (white, 4 above Eb), Bb (black, 2 above A) simultaneously. This is a 4-finger stretch — use thumb on C, index on Eb, ring on G, pinky on Bb. Strike the chord firmly and let it ring 1 beat.",
         variation:
           "Remove the Bb from the chord for a simpler Cm (minor triad: C Eb G) — less complex, works well under busy samples. Or add the D an octave up (D4) to a second pad triggered simultaneously for the full Cm9 voicing spread across octaves.",
+      },
+      {
+        name: "Phrygian Descent",
+        key: "E Phrygian",
+        scaleNotes: "E  F  G  A  B  C  D",
+        sequence: "E4  F4  E4  D4  C4  B3  A3",
+        sequenceDescription:
+          "Start on E, touch the F immediately (the Phrygian flat 2 — a single half-step upward), then fall through the entire mode down to A. The F at the second note is the entire emotional content. Everything else is just the consequence of that one unbearable step. Play in quarter notes — no rush. Let each descent land with weight.",
+        microKeyTip:
+          "E Phrygian uses all white keys on the microKEY. Place your thumb on E. F is immediately to the right — no black key between them, pure adjacency. Play E then F: feel how small that interval is, how close those keys sit. Then the mode descends in white keys: E F G A B C D, all white, all natural, all falling. Record at 50 BPM in quarter notes. Load The Gentleman or Scarbee Mark I and hold sustain pedal throughout so notes ring into each other.",
+        variation:
+          "Start the descent on G after the E–F–E movement: E4 F4 G4 F4 E4 D4 C4. This adds a slight lift before the fall — the G–F–E movement creates a small rise that makes the eventual drop to C feel even more inevitable.",
+      },
+      {
+        name: "Minor 6th Sigh",
+        key: "A minor",
+        scaleNotes: "A  C  D  E  F  G",
+        sequence: "A4  F4  E4  D4  F4  E4  C4  A3",
+        sequenceDescription:
+          "Reaches up to F (the minor 6th of A minor — the most emotionally charged interval in this key) twice in the phrase, then falls to C and drops to the low A. The shape is a sigh: reaching up twice toward something, then releasing down. Played in 8th notes over one bar.",
+        microKeyTip:
+          "A minor scale on microKEY (no B): A, C, D, E, F, G — all white keys. Put your thumb on A. The F note is 5 white keys above A — find it before you record. On the microKEY, reaching pinky to F creates a natural stretch. That stretch IS the emotion. Practice A (thumb) to F (pinky) repeatedly until the reach feels natural and automatic. Then record from memory without looking at the keyboard.",
+        variation:
+          "Replace the second F4 with Ab4 (the black key between G and A). This single note change transforms A natural minor into A harmonic minor, adding the sharpened 6th. The Ab sounds almost operatically grief-stricken against the A minor context — a single black key can change an entire emotional register.",
+      },
+      {
+        name: "Diminished Fall",
+        key: "B diminished",
+        scaleNotes: "B  D  F  Ab",
+        sequence: "B4  Ab4  F4  D4  B3  Ab3",
+        sequenceDescription:
+          "Arpeggiate a diminished 7th chord downward through 2 octaves. Each note is exactly 3 half-steps below the last — this perfect symmetry is what makes diminished chords feel so unhinged. No tonal gravity, no clear home, no resolution. Pure harmonic suspension, played as descent.",
+        microKeyTip:
+          "Diminished 7th on microKEY: B (white), D (white), F (white), Ab (black — between G and A). Three white keys and one black key. For the descent: start with pinky on B (upper register), then Ab (reach for the black key — slightly above the white plane), F, D, B (lower register), Ab. The black key Ab interrupts the white-key flow like a bruise. Play it firmly, not hesitantly — a quiet bruise is just a smudge.",
+        variation:
+          "Start on D instead of B: D4 B3 Ab3 F3 D3. This is the D half-diminished chord (Dm7b5) — the chord in the opening of Beethoven's Moonlight Sonata. Or sustain each note for 2 full beats instead of 8th notes. The slower the descent, the more inevitable it feels.",
       },
     ],
   },
@@ -309,6 +402,63 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
         variation:
           "Add Bb1 on Step 14 (just before the pattern loops back to Step 0) — a single anticipatory note that makes the loop feel like it's 'about to launch'. Or add a quiet C3 (octave up) on Step 4 for a mid-register ping.",
       },
+      {
+        name: "Tritone Grief",
+        key: "C minor",
+        description:
+          "Uses the tritone (Gb/F#) — the interval historically called 'diabolus in musica', the devil in music. Over a C minor root, the tritone creates maximum harmonic tension with zero resolution. This is dissonance weaponized as emotion. Found in the darkest trap and drill productions.",
+        steps: [
+          { step: 0, note: "C2", velocity: 110 },
+          { step: 3, note: "Gb1", velocity: 70 },
+          { step: 8, note: "C2", velocity: 105 },
+          { step: 10, note: "Bb1", velocity: 75 },
+          { step: 13, note: "Gb1", velocity: 65 },
+        ],
+        pluginSuggestion:
+          "Massive X — 808 Sub patch, Portamento 40ms. The Gb1 (tritone) should be the quietest note dynamically but the most dissonant harmonically — use it as a ghost note (velocity 65–70) rather than a main hit. If using real 808s, tune the Gb exactly: 6 semitones down from C.",
+        microKeyTip:
+          "C minor with tritone on microKEY: C (white), Gb (black — exactly 6 semitones above C, between F and G). From C, count up 6 keys — both white and black — to find Gb. It should feel like you've gone too far, like you've overstepped. That wrongness is correct. The Bb is one black key below B (above A). Practice C–Gb as a two-note interval until it stops feeling dissonant and starts feeling inevitable.",
+        variation:
+          "Replace Gb1 with G1 (natural 5th — one half-step above Gb). The pattern becomes standard C minor root/5th: completely different emotional character. Play both versions back to back and listen to how much Gb changes everything. Then return to Gb — its wrongness will feel perfect.",
+      },
+      {
+        name: "Minor 9th Reach",
+        key: "G minor",
+        description:
+          "The minor 9th (A above G minor) creates yearning and distance — reaching for something just out of grasp. The 9th sits a full octave plus a whole step above the root, giving the bass a feeling of stretching beyond its natural range. A sad reaching motion, repeated.",
+        steps: [
+          { step: 0, note: "G1", velocity: 110 },
+          { step: 4, note: "A2", velocity: 75 },
+          { step: 6, note: "F2", velocity: 65 },
+          { step: 8, note: "G2", velocity: 105 },
+          { step: 12, note: "Eb2", velocity: 80 },
+          { step: 14, note: "D2", velocity: 70 },
+        ],
+        pluginSuggestion:
+          "Massive X with slow attack (20ms) so the A2 (the 9th) blooms slowly rather than hitting hard. Set Portamento to 60ms between G1 and A2 for a slide effect. The emotional weight is in the contrast: G1 deep and heavy, then A2 rises into the upper register — a voice reaching for something tender.",
+        microKeyTip:
+          "G minor on microKEY: G (white), A (white — one white key above G), F (white — one below G), Eb (black — between D and E), D (white). The A note is your 9th — just one white key higher than the root G. Play G then A and feel the upward step. That whole-tone reach (which feels much further than it looks) is the yearning. Record A2 lightly — barely touched, like something almost remembered.",
+        variation:
+          "Use Ab2 instead of A2 on Step 4 (the flat 9th — one half-step higher than the 7th). The flat 9 over G minor is even more anguished than the natural 9 — it's the most dissonant tension interval in jazz harmony, used to create maximum harmonic pressure before resolution.",
+      },
+      {
+        name: "808 Chromatic Fall",
+        key: "E minor",
+        description:
+          "An 808 pattern descending chromatically through 4 half-steps in one bar. The portamento (glide) between each half-step creates the weeping quality of a steel string bending into the next note. Modern hip hop's equivalent of a blues guitar cry — every note a slide downward.",
+        steps: [
+          { step: 0, note: "E2", velocity: 110 },
+          { step: 4, note: "Eb2", velocity: 95 },
+          { step: 8, note: "D2", velocity: 100 },
+          { step: 12, note: "C#2", velocity: 85 },
+        ],
+        pluginSuggestion:
+          "Massive X — 808 Sub with Portamento at 100ms so every half-step slides. Without portamento, these are just 4 separate notes. With portamento at 100ms, it becomes one continuous weeping descent. The glide between Eb2 and D2 is the emotional center — let it breathe. Output through a sub bus below 150Hz — no top end.",
+        microKeyTip:
+          "E chromatic fall on microKEY: E (white), Eb (black — immediately to the left of E), D (white, left of Eb), C# (black, left of D). Four notes, all adjacent, all falling left. Place your index on E and walk left: ring to Eb (black), middle to D, index to C#. The hand moves as a unit to the left — a literal descent on the keyboard that mirrors the sonic descent in the 808.",
+        variation:
+          "Extend two more steps: C2 and B1. This takes the chromatic fall from 4 half-steps to 6 — from E down to B, descending through E Phrygian. The longer the fall, the more inevitable the arrival. Use this extended version for 2-bar patterns.",
+      },
     ],
     melodies: [
       {
@@ -346,6 +496,42 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "C minor on microKEY: C (white), Eb (black, above D), F (white), F# (black, above F), G (white), D (white). The F# is the key note — it's a black key. Make sure you hit it clearly. This note is the 'secret ingredient' — without it the melody is ordinary.",
         variation:
           "Remove the F#4 to get a smoother, more R&B-appropriate version: C4 Eb4 F4 G4 Eb4 D4 C4. Or play the F#4 as a very short grace note leading into G4 — barely audible but still there.",
+      },
+      {
+        name: "Dorian Longing",
+        key: "D Dorian",
+        scaleNotes: "D  E  F  G  A  B  C",
+        sequence: "D4  B3  A3  G3  F3  G3  A3  B3",
+        sequenceDescription:
+          "Opens with D then immediately drops to B — the major 6th, the Dorian mode's defining note. The pattern descends through the mode then ascends back to B. The B natural (major 6th in a minor context) makes Dorian sound simultaneously sad and hopeful. Not grief — longing. Something almost resolved but suspended just short of arrival.",
+        microKeyTip:
+          "D Dorian uses all white keys (same notes as C major, starting from D). On microKEY, find D then B — B is 5 white keys up from D. Play D and B together as an interval first: hear the major 6th. It's bittersweet. The whole melody: D (thumb), jump to B (pinky, higher register), then descend A G F, then ascend G A B. The B is your emotional anchor — your hand should always know where it is. Record at 65 BPM, 8th notes, with The Gentleman (Kontakt).",
+        variation:
+          "Change the final note from B3 to Bb3 (one black key lower, between A and B). The Bb makes the scale pure natural minor — the longing quality of the major 6th disappears and pure sadness remains. Play both versions: B natural = bittersweet, Bb = simply bitter. Choose based on the vibe of your sample.",
+      },
+      {
+        name: "Tritone Stab",
+        key: "C minor",
+        scaleNotes: "C  Eb  F#  G  Bb",
+        sequence: "C4  G3  F#3  G3  Eb4  C4",
+        sequenceDescription:
+          "Visits F# (the tritone of C) briefly between G and G — the most dissonant chromatic movement possible in one measure. The F# is a passing tone: a flash of extreme tension before resolving to G. Two beats in and out of the devil in music. This is the harmonic equivalent of a held breath before impact.",
+        microKeyTip:
+          "C minor with tritone on microKEY: C (white), Eb (black), F# (black — between F and G), G (white), Bb (black). The F# is directly left of G — same black key cluster. Practice the G–F#–G movement: put your index on G, reach your ring finger to F# (one key left, black), back to G. The F# must be played with conviction — a passing tone played hesitantly sounds like a mistake; played firmly it sounds inevitable.",
+        variation:
+          "Replace F#3 with F3 (natural 4th). The line becomes C4 G3 F3 G3 Eb4 C4 — all diatonic C minor, no tritone. Compare: the diatonic version is smooth and predictable; the tritone version has a momentary wrongness that makes it memorable. Use the tritone in the hook where impact matters most.",
+      },
+      {
+        name: "Phrygian Hook",
+        key: "A Phrygian",
+        scaleNotes: "A  Bb  C  D  E  F  G",
+        sequence: "A4  Bb3  A4  G4  F4  E4",
+        sequenceDescription:
+          "Opens with A then drops to Bb (the Phrygian flat 2 — one half-step below the octave A) then back up to A before descending. This A→Bb→A is the heart of the phrase — a note that leans down then rights itself. The Phrygian half-step creates instant weight and ancient gravity. Each note after is just the consequence of that first lean.",
+        microKeyTip:
+          "A Phrygian on microKEY: A (white), Bb (black — immediately above A, one black key to the right). The Bb is the smallest possible interval from A: one half-step. Play A with your thumb, then reach over to Bb with your index finger. This is the Phrygian sound — the lean. The whole melody uses only white keys after Bb: G, F, E — all white, all falling. Record at 70 BPM. Every time you hear this pattern, the emotional weight comes from that first reach to Bb and back.",
+        variation:
+          "Slow down to half-notes (2 beats each): 6 notes × 2 beats = 12 beats = 3 bars. A 3-bar structure feels incomplete and uneven — perfect for creating unresolved suspense before a 4th bar. Or add a low sustained A as a drone beneath the entire phrase — the flat 2nd Bb moving above a static A root intensifies the Phrygian tension.",
       },
     ],
   },
@@ -464,6 +650,63 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
         variation:
           "Remove the F2 on Step 2 and move C3 from Step 4 to Step 3 — this creates a more syncopated, less straight feel. Or lower Eb3 on Step 10 to Db3 (the minor 6th of F minor) for a darker, more soul-influenced movement.",
       },
+      {
+        name: "Soul Cry",
+        key: "Bb minor",
+        description:
+          "Falls through all the dark intervals of Bb minor — root, minor 7th (Ab), flat 6th (Gb), 5th (F). The Gb (flat 6th) is the emotional crux: in Bb minor it sounds like crying. Each note is a step deeper into grief. This bass line is the harmonic equivalent of exhaling sorrow.",
+        steps: [
+          { step: 0, note: "Bb1", velocity: 105 },
+          { step: 4, note: "Ab2", velocity: 80 },
+          { step: 6, note: "Gb2", velocity: 75 },
+          { step: 8, note: "Bb1", velocity: 100 },
+          { step: 12, note: "F2", velocity: 85 },
+          { step: 14, note: "Gb2", velocity: 70 },
+        ],
+        pluginSuggestion:
+          "Scarbee Rickenbacker (Kontakt, Fingered mode) — the Gb (flat 6th) on a fretted bass has a slightly caught-in-the-throat quality that perfectly expresses its emotional weight. Alternatively: Massive X with 80ms portamento. The slide from Ab2 to Gb2 (Step 4→Step 6) creates a gentle downward glide that sounds like a sigh.",
+        microKeyTip:
+          "Bb minor on microKEY: Bb (black — above A), Ab (black — above G), Gb (black — above F), F (white). Three black keys and one white — this pattern lives almost entirely above the white key plane. Place your hand so Bb is under your ring, Ab under your middle, Gb under your index. The hand sits elevated, above the keyboard surface. That physical elevation mirrors the emotional register of Bb minor — something lifted but heavy.",
+        variation:
+          "Add Db2 on Step 3 (minor 3rd of Bb) between Bb1 and Ab2. The descent becomes Bb → Db → Ab → Gb → Bb → F → Gb — seven notes, more elaborate, more like a grieving voice that can't stop finding new words for the same feeling.",
+      },
+      {
+        name: "Half-Step Yearning",
+        key: "Eb minor",
+        description:
+          "Uses E natural (the Phrygian flat 2 of Eb minor — one half-step above the root) for the ancient, leaning quality of the Phrygian mode placed inside an R&B slow jam. The half-step creates a sound of the body leaning toward something it cannot reach.",
+        steps: [
+          { step: 0, note: "Eb2", velocity: 100 },
+          { step: 5, note: "E2", velocity: 80 },
+          { step: 8, note: "Eb2", velocity: 95 },
+          { step: 12, note: "Bb1", velocity: 85 },
+          { step: 15, note: "B1", velocity: 65 },
+        ],
+        pluginSuggestion:
+          "Note: E natural is enharmonically Fb (the Phrygian flat 2 of Eb) and B natural is Cb (the flat 6 of Eb). Load Massive X tuned to Eb, using 'E2' and 'B1' in your MIDI sequence. With portamento at 50ms, the Eb→E movement sounds like a lean — the physical sensation of reaching for something just above you. Scarbee Mark I electric piano in the bass register also works with this lean quality.",
+        microKeyTip:
+          "Eb and E on microKEY are adjacent keys — Eb (black) then E (white), touching. Play Eb with your middle finger, E with your index: feel the lean from black to white, from the elevated black key surface down to the white key. That descent from black to white is the Phrygian lean — audible and physical at once. Bb is across the keyboard (above A); B is one white key above Bb.",
+        variation:
+          "Replace B1 on Step 15 with Bb1 (the natural 5th of Eb, one half-step below B). The Phrygian flat 2 (E natural) becomes the only chromatic tension; the ending resolves more smoothly. This is the R&B ballad version — same yearning in the middle, gentler landing at the end.",
+      },
+      {
+        name: "Ballad Descent",
+        key: "F minor",
+        description:
+          "Four notes, maximum space. F → Eb → Db → C — descending through the minor 7th, minor 6th, and 5th of F minor. This is the bass line for a slow R&B ballad: 72 BPM, one note every 4 steps, each one dropping slightly lower. The kind of pattern that only works when everything else is quiet.",
+        steps: [
+          { step: 0, note: "F2", velocity: 100 },
+          { step: 6, note: "Eb2", velocity: 85 },
+          { step: 10, note: "Db2", velocity: 90 },
+          { step: 14, note: "C2", velocity: 80 },
+        ],
+        pluginSuggestion:
+          "The Gentleman (Kontakt) — a recorded piano in the bass register has the warmth, weight, and natural decay that this pattern requires. Set each note to full gate length (100%) for maximum sustain. Scarbee Mark I works equally well — the slightly electric, buzzing decay adds melancholy to each sustained note. Do not use a synth sub for this pattern — it needs the organic character of recorded keys.",
+        microKeyTip:
+          "F minor ballad on microKEY: F (white), Eb (black — above D), Db (black — above C), C (white). The pattern falls through two black keys and arrives on a white key — the C is the one 'plain' moment after complex chromatic tones. Play each note with a slow, deliberate touch and no pedal: each note stands alone, isolated. Record at 36 BPM to get the ballad spacing right, then adjust to your target BPM afterward. Slow recording reveals whether you really mean each note.",
+        variation:
+          "Add F2 on Step 15 (just before the loop): F → Eb → Db → C → F. Returning to the root on the last step creates circular grief — the bass comes back where it started, having traveled through all those dark intervals only to arrive at the beginning again. This is the harmonic structure of acceptance.",
+      },
     ],
     melodies: [
       {
@@ -501,6 +744,42 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "F minor on microKEY: F (white), Ab (black), C (white), Eb (black), Bb (black). The smooth 'liquid' feel comes from overlapping notes slightly — on the microKEY, press the next note just before fully releasing the previous one. Load Scarbee Mark I (Kontakt) with the 'Tremolo' articulation for the classic R&B electric piano feel.",
         variation:
           "Replace Eb4 with D4 (the major 7th, from F major) for a warmer, less minor quality — this is the Frankie Beverly / Maze approach. Or slow down: play the entire 8-note sequence over 2 bars instead of 1 bar — everything breathes twice as long.",
+      },
+      {
+        name: "Lover's Lament",
+        key: "Bb minor",
+        scaleNotes: "Bb  Db  Eb  F  Gb  Ab",
+        sequence: "Bb3  Gb3  F3  Eb3  Gb3  F3  Db3  Bb2",
+        sequenceDescription:
+          "The Gb (flat 6th of Bb minor) appears on the second note and returns on the fifth — it is the emotional center of this phrase. In Bb minor, the Gb sounds like the moment before tears arrive. The sequence descends through chord tones twice and lands on the low Bb — a complete fall from above. Played in 8th notes: one bar of descent, returning to silence.",
+        microKeyTip:
+          "Bb minor on microKEY: Bb (black — above A), Db (black — above C), Eb (black — above D), F (white), Gb (black — above F), Ab (black — above G). Five black keys and one white key. The melody lives almost entirely on black keys. Place your thumb on Bb. The Gb is 4 black keys to the left — count carefully before recording: Bb, Ab, Gb. Your index finger lands on Gb. Practice the Bb–Gb opening two-note interval until it feels natural. Load Scarbee Mark I (Kontakt, tremolo articulation) at 60 BPM.",
+        variation:
+          "End on Db3 instead of Bb2 — stay in the middle register and refuse the final descent to the root. The Db (minor 3rd) leaves the phrase unresolved, hanging. Perfect for a verse that needs to leave the listener slightly unsatisfied before the chorus arrives. Or open with a high Bb4: Bb4 Gb3 — a dramatic octave drop as the first interval, before the rest of the descent.",
+      },
+      {
+        name: "Neo Soul Grief",
+        key: "C minor",
+        scaleNotes: "C  Eb  F  G  Ab  Bb",
+        sequence: "C4  Bb3  Ab3  G3  F3  Eb3  G3  C3",
+        sequenceDescription:
+          "A long falling line through C minor from root to root across an octave. The Ab (flat 6th) between G and F is the heartbreaking note — the minor 6th interval is the sound most universally associated with sadness in Western harmony. The brief G3 before the final C3 is a small, futile reaching upward before the arrival. Eight notes, one bar, complete emotional arc.",
+        microKeyTip:
+          "C minor scale on microKEY: C (white), Eb (black), F (white), G (white), Ab (black — between G and A), Bb (black — between A and B). The descent from C4 to C3 spans exactly one octave. Place your hand in C minor position: thumb on C, fingers covering Eb, F, G. For Ab and Bb (the black keys near the top of the octave), let your hand shift slightly to the right — ring on Ab, middle on Bb. Load The Gentleman (Kontakt) with sustain pedal held throughout. Let every note ring into the next.",
+        variation:
+          "Add D4 at the very beginning: D4 C4 Bb3 Ab3 G3 F3 Eb3 G3 C3. The D is the major 2nd — a bright note that immediately gives way to the darker Bb. This makes the descent feel longer and more resigned, as if the melody tried to start somewhere hopeful and couldn't stay there.",
+      },
+      {
+        name: "D'Angelo Spiral",
+        key: "C minor",
+        scaleNotes: "C  D  Eb  F  G  Ab  Bb",
+        sequence: "Eb4  D4  C4  Bb3  Ab3  G3  F3",
+        sequenceDescription:
+          "Begins on Eb (the minor 3rd) rather than the root — a choice that creates a sense of mid-sentence, as if the melody is already in progress when you hear it. The entire phrase descends through C natural minor, each note leading the ear downward. Inspired by the D'Angelo approach of entering melodic phrases late and leaving early — never giving the listener the downbeat they expect.",
+        microKeyTip:
+          "C natural minor on microKEY: C (white), D (white), Eb (black), F (white), G (white), Ab (black), Bb (black). Start on Eb (black key) — this is the critical choice. Most melodies start on white keys; starting on a black key (Eb) gives this phrase an off-center, already-in-motion quality from the first note. On microKEY, Eb is the black key between D and E. Find it before you record. Know exactly where it is. Then play the 7-note descent with even timing. The magic is in the starting point.",
+        variation:
+          "Play the sequence in reverse: F3 G3 Ab3 Bb3 C4 D4 Eb4. Ascending through the same notes sounds completely different — hopeful, reaching. Play both: descending in verse, ascending in hook. This creates a harmonic conversation across sections that feels intentional without being obvious.",
       },
     ],
   },

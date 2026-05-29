@@ -223,6 +223,97 @@ function BassStepGrid({ steps, color }: { steps: BassPattern["steps"]; color: st
   );
 }
 
+// ─── Mini keyboard (claviature) ──────────────────────────────────────────────
+
+type BlackKeyDef = { canonical: string; aliases: string[]; afterIdx: number };
+
+const KB_WW = 26;
+const KB_WH = 60;
+const KB_BW = 15;
+const KB_BH = 38;
+const KB_TOTAL_W = KB_WW * 7 + 1;
+const KB_WHITE = ["C", "D", "E", "F", "G", "A", "B"] as const;
+const KB_BLACK: BlackKeyDef[] = [
+  { canonical: "Db", aliases: ["C#", "Db"], afterIdx: 0 },
+  { canonical: "Eb", aliases: ["D#", "Eb"], afterIdx: 1 },
+  { canonical: "Gb", aliases: ["F#", "Gb"], afterIdx: 3 },
+  { canonical: "Ab", aliases: ["G#", "Ab"], afterIdx: 4 },
+  { canonical: "Bb", aliases: ["A#", "Bb"], afterIdx: 5 },
+];
+
+function stripOct(n: string): string {
+  return n.replace(/[0-9]/g, "").trim();
+}
+
+function MiniKeyboard({ rawNotes, color }: { rawNotes: string[]; color: string }) {
+  const active = new Set(rawNotes.map(stripOct));
+  return (
+    <div className="py-1 overflow-x-auto">
+      <svg
+        viewBox={`0 0 ${KB_TOTAL_W} ${KB_WH}`}
+        width={KB_TOTAL_W}
+        height={KB_WH}
+        style={{ display: "block" }}
+        aria-hidden="true"
+      >
+        {KB_WHITE.map((note, i) => {
+          const on = active.has(note);
+          return (
+            <g key={note}>
+              <rect
+                x={i * KB_WW + 0.5}
+                y={0.5}
+                width={KB_WW - 1.5}
+                height={KB_WH - 1}
+                rx={2}
+                fill={on ? color : "#d4d4d4"}
+                stroke={on ? "none" : "#888"}
+                strokeWidth={0.5}
+              />
+              {on && (
+                <text
+                  x={i * KB_WW + (KB_WW - 1.5) / 2}
+                  y={KB_WH - 8}
+                  textAnchor="middle"
+                  fontSize={8}
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                  fill="rgba(0,0,0,0.75)"
+                >
+                  {note}
+                </text>
+              )}
+            </g>
+          );
+        })}
+        {KB_BLACK.map(({ canonical, aliases, afterIdx }) => {
+          const activeAlias = aliases.find(a => active.has(a));
+          const on = !!activeAlias;
+          const x = afterIdx * KB_WW + KB_WW - KB_BW / 2 - 2;
+          return (
+            <g key={canonical}>
+              <rect x={x} y={0} width={KB_BW} height={KB_BH} rx={2} fill={on ? color : "#1a1a1a"} stroke="none" />
+              {on && activeAlias && (
+                <text
+                  x={x + KB_BW / 2}
+                  y={KB_BH - 5}
+                  textAnchor="middle"
+                  fontSize={6.5}
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                  fill="rgba(0,0,0,0.7)"
+                >
+                  {activeAlias}
+                </text>
+              )}
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
 function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -248,6 +339,11 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
 
       {open && (
         <div className="border-t border-border/60 p-4 flex flex-col gap-4">
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Notes on microKEY — highlighted keys</span>
+            <MiniKeyboard rawNotes={bp.steps.map(s => s.note)} color={color} />
+          </div>
+
           <div>
             <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Step grid (16 steps)</span>
             <BassStepGrid steps={bp.steps} color={color} />
@@ -332,6 +428,11 @@ function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
 
       {open && (
         <div className="border-t border-border/60 p-4 flex flex-col gap-4">
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">microKEY claviature — highlighted keys to use</span>
+            <MiniKeyboard rawNotes={melody.scaleNotes.split(/\s+/).filter(Boolean)} color={color} />
+          </div>
+
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Scale notes</span>

@@ -1,0 +1,2 @@
+- [Bass/Melody data location](bass-melody-data.md) — melodyRecommendations.ts is the source for all bass patterns + melody ideas; rendered only in PatternDetail.tsx
+- [MiniKeyboard SVG component](mini-keyboard.md) — KB_* constants + MiniKeyboard component live in PatternDetail.tsx after BassStepGrid; derives keys from scaleNotes (split) or bp.steps (map note)

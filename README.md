@@ -11,6 +11,11 @@ Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip 
 - **76 drum patterns** — Boom Bap, Hip Hop, R&B, with step-grid visualisations and web audio playback
 - **17 Producer Masterclasses** — Dr. Dre, J Dilla, DJ Premier, Havoc, Pete Rock, Kanye West, Timbaland, The Alchemist, Metro Boomin, 9th Wonder, Pharrell, Akhenaton, DJ Mehdi, Myth Syzer, Morlockko Plus, Johnny Illstrument, Figub Brazlevic
 - **Maschine MK3 Cheat Sheet** — tabbed reference (First Session, Core Controls, Boom Bap, Hip Hop, R&B, FX Chains, Song Building)
+- **Bass & MIDI Ideas** — per-genre bass patterns and melody ideas playable on Korg microKEY, with:
+  - **SVG claviature diagrams** showing exactly which keys to press (highlighted in genre color)
+  - **Heartbreaking emotional patterns** — chromatic descents, Phrygian flat 2, tritone grief, suspended 4ths, diminished 7ths, minor 6th sighs
+  - **6 bass patterns per genre** (18 total) with step grids, plugin suggestions, and hand-position guidance
+  - **6 melody ideas per genre** (18 total) with scale diagrams, sequence notation, and finger placement tips
 - **AI Pattern Generator** — generates new patterns from a text prompt *(optional — requires API key)*
 - **Chop Lab** — sample chopping reference
 - **Song Lab** — arrangement and structure guide
@@ -143,8 +148,12 @@ pattern-lab/
 ├── artifacts/
 │   ├── drum-patterns/        # React + Vite frontend (the main app)
 │   │   └── src/
-│   │       ├── data/         # patterns.ts (76 patterns), masterclasses.ts (17 producers)
-│   │       ├── pages/        # Home, CheatSheet, MasterClass, ChopLab, SongLab, PackLab
+│   │       ├── data/
+│   │       │   ├── patterns.ts              # 76 drum patterns (source of truth)
+│   │       │   ├── masterclasses.ts         # 17 producer masterclasses
+│   │       │   ├── melodyRecommendations.ts # Bass patterns + melody ideas per genre
+│   │       │   └── soundRecommendations.ts  # Pack and plugin recs per genre
+│   │       ├── pages/        # Home, PatternDetail, CheatSheet, MasterClass, ChopLab, SongLab, PackLab
 │   │       └── lib/          # audio.ts (Web Audio playback), utils
 │   └── api-server/           # Express 5 API server
 │       └── src/
