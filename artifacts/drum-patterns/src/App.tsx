@@ -11,6 +11,7 @@ import SongLab from "@/pages/SongLab";
 import PackLab from "@/pages/PackLab";
 import MasterClass from "@/pages/MasterClass";
 import MasterClassDetail from "@/pages/MasterClassDetail";
+import HardwareGuide from "@/pages/HardwareGuide";
 import { GeneratedPatternsProvider } from "@/lib/generatedPatternsStore";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/packlab" component={PackLab} />
       <Route path="/masterclass" component={MasterClass} />
       <Route path="/masterclass/:id" component={MasterClassDetail} />
+      <Route path="/hardware" component={HardwareGuide} />
       <Route component={NotFound} />
     </Switch>
   );

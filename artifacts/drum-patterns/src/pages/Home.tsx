@@ -6,7 +6,7 @@ import { PatternCard } from "@/components/PatternCard";
 import { GenerateModal } from "@/components/GenerateModal";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, BookOpen, Scissors, Trash2, FlaskConical, Package, GraduationCap } from "lucide-react";
+import { Sparkles, BookOpen, Scissors, Trash2, FlaskConical, Package, GraduationCap, Cpu } from "lucide-react";
 
 export default function Home() {
   const [filter, setFilter] = useState<Genre | "all">("all");
@@ -66,6 +66,12 @@ export default function Home() {
               <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
                 <Scissors className="w-4 h-4" />
                 <span className="hidden sm:inline">Chop Lab</span>
+              </button>
+            </Link>
+            <Link href="/hardware">
+              <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground border border-transparent hover:border-border rounded-md transition-all">
+                <Cpu className="w-4 h-4" />
+                <span className="hidden sm:inline">Hardware</span>
               </button>
             </Link>
             <Link href="/cheatsheet">

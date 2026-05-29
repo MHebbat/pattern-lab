@@ -10,6 +10,7 @@ Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip 
 
 - **76 drum patterns** — Boom Bap, Hip Hop, R&B, with step-grid visualisations and web audio playback
 - **17 Producer Masterclasses** — Dr. Dre, J Dilla, DJ Premier, Havoc, Pete Rock, Kanye West, Timbaland, The Alchemist, Metro Boomin, 9th Wonder, Pharrell, Akhenaton, DJ Mehdi, Myth Syzer, Morlockko Plus, Johnny Illstrument, Figub Brazlevic
+- **MK3 Hardware Reference** — interactive top-view control map of the Maschine MK3 with 31 numbered callouts, click-to-expand descriptions, step-by-step usage for every control (4D encoder, pads, Group A–H, transport, macro knobs, displays, and more), and a searchable quick-reference grid
 - **Maschine MK3 Cheat Sheet** — tabbed reference (First Session, Core Controls, Boom Bap, Hip Hop, R&B, FX Chains, Song Building)
 - **Bass & MIDI Ideas** — per-genre bass patterns and melody ideas playable on Korg microKEY, with:
   - **SVG claviature diagrams** showing exactly which keys to press (highlighted in genre color)
