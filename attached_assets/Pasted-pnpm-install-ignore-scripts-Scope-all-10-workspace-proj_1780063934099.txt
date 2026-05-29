@@ -1,0 +1,86 @@
+pnpm install --ignore-scripts
+Scope: all 10 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+Done in 455ms using pnpm v11.4.0
+(base) malik@MBP-von-Malik-2 pattern-lab % ./start-local.sh
+[pattern-lab] No .env.local found.
+  Copy .env.local.example → .env.local and add your OPENROUTER_API_KEY.
+  The app will start but AI generation will not work without the key.
+
+[pattern-lab] Installing dependencies...
+Scope: all 10 workspace projects
+Already up to date
+Done in 27ms using pnpm v11.4.0
+[pattern-lab] Building shared libraries...
+$ tsc --build
+[pattern-lab] Starting API server on port 5000...
+$ export NODE_ENV=development && pnpm run build && pnpm run start
+$ node ./build.mjs
+Error: The package "@esbuild/darwin-arm64" could not be found, and is needed by esbuild.
+
+If you are installing esbuild with npm, make sure that you don't specify the
+"--no-optional" or "--omit=optional" flags. The "optionalDependencies" feature
+of "package.json" is used by esbuild to install the correct binary executable
+for your current platform.
+    at generateBinPath (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1750:15)
+    at esbuildCommandAndArgs (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1820:33)
+    at ensureServiceIsRunning (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1977:25)
+    at build (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1876:26)
+    at buildAll (file:///Users/malik/pattern-lab/artifacts/api-server/build.mjs:17:9)
+[ELIFECYCLE] Command failed with exit code 1.
+/Users/malik/pattern-lab/artifacts/api-server:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @workspace/api-server@0.0.0 dev: `export NODE_ENV=development && pnpm run build && pnpm run start`
+Exit status 1
+[pattern-lab] Starting frontend on port 3001...
+
+┌─────────────────────────────────────────────────────┐
+│  Pattern Lab is running                             │
+│                                                     │
+│  App:  http://localhost:3001                    │
+│  API:  http://localhost:5000/api/healthz              │
+│                                                     │
+│  Press Ctrl+C to stop                              │
+└─────────────────────────────────────────────────────┘
+$ vite --config vite.config.ts --host 0.0.0.0
+/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js:115
+		throw new Error(
+		      ^
+
+Error: Cannot find module @rollup/rollup-darwin-arm64. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+    at requireWithFriendlyError (/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js:115:9)
+    at Object.<anonymous> (/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js:124:76)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:327:3)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:232:7)
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25) {
+  [cause]: Error: Cannot find module '@rollup/rollup-darwin-arm64'
+  Require stack:
+  - /Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+      at Module._load (node:internal/modules/cjs/loader:1261:25)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+      at Module.require (node:internal/modules/cjs/loader:1575:12)
+      at require (node:internal/modules/helpers:191:16)
+      at requireWithFriendlyError (/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js:97:10)
+      at Object.<anonymous> (/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js:124:76) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      '/Users/malik/pattern-lab/node_modules/.pnpm/rollup@4.60.3/node_modules/rollup/dist/native.js'
+    ]
+  }
+}
+
+Node.js v25.9.0
+/Users/malik/pattern-lab/artifacts/drum-patterns:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @workspace/drum-patterns@0.0.0 dev: `vite --config vite.config.ts --host 0.0.0.0`
+Exit status 1
+
+[pattern-lab] Shutting down...
