@@ -19,7 +19,7 @@ export type DeSampleIdea = {
 export type DeMelodyRecs = {
   microKeySetup: string;
   samples: DeSampleIdea[];
-  bassPatterns: DeBassPattern[];
+  bassPatterns?: DeBassPattern[];
   melodies: DeMelodyIdea[];
 };
 

@@ -7,6 +7,7 @@ import { melodyRecommendations } from "@/data/melodyRecommendations";
 import type { GenreMelodyRecs, BassPattern, MelodyIdea, SampleIdea } from "@/data/melodyRecommendations";
 import { melodyRecommendationsDe } from "@/data/melodyRecommendations-de";
 import type { DeMelodyRecs } from "@/data/melodyRecommendations-de";
+import { patternBassData } from "@/data/patternBassData";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -711,7 +712,7 @@ function BassAndMidiSection({ midiRecs, color, deMidiRecs }: { midiRecs: GenreMe
       {activeView === "bass" && (
         <div className="flex flex-col gap-3">
           {midiRecs.bassPatterns.map((bp, i) => {
-            const deBp = deMidiRecs?.bassPatterns[i];
+            const deBp = deMidiRecs?.bassPatterns?.[i];
             const merged: BassPattern = deBp ? { ...bp, ...deBp } : bp;
             return <BassPatternCard key={i} bp={merged} color={color} />;
           })}
@@ -791,6 +792,13 @@ export default function PatternDetail() {
   const recs = !pattern.generated ? soundRecommendations[pattern.genre] : null;
   const midiRecs = !pattern.generated ? melodyRecommendations[pattern.genre] : null;
   const deMidiRecs: DeMelodyRecs | undefined = (lang === "de" && !pattern.generated) ? melodyRecommendationsDe[pattern.genre] : undefined;
+  const patternBass = !pattern.generated ? patternBassData[pattern.id] : undefined;
+  const effectiveMidiRecs: GenreMelodyRecs | null = (patternBass && midiRecs)
+    ? { ...midiRecs, bassPatterns: patternBass }
+    : midiRecs;
+  const effectiveDeMidiRecs: DeMelodyRecs | undefined = (patternBass && deMidiRecs)
+    ? { ...deMidiRecs, bassPatterns: undefined }
+    : deMidiRecs;
 
   return (
     <div className="min-h-[100dvh] bg-background text-foreground pb-20">
@@ -875,9 +883,9 @@ export default function PatternDetail() {
               </div>
             </div>
             <PatternGrid pattern={pattern} currentStep={currentStep} />
-            {midiRecs && (
+            {effectiveMidiRecs && (
               <BassTimingReference
-                midiRecs={midiRecs}
+                midiRecs={effectiveMidiRecs}
                 color={color}
                 bpm={pattern.bpm}
                 swing={pattern.swing}
@@ -983,8 +991,8 @@ export default function PatternDetail() {
           </motion.div>
         )}
 
-        {midiRecs && (
-          <BassAndMidiSection midiRecs={midiRecs} color={color} deMidiRecs={deMidiRecs} />
+        {effectiveMidiRecs && (
+          <BassAndMidiSection midiRecs={effectiveMidiRecs} color={color} deMidiRecs={effectiveDeMidiRecs} />
         )}
       </main>
     </div>
