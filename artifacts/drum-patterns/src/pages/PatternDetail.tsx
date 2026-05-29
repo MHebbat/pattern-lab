@@ -5,6 +5,8 @@ import { patternsDe } from "@/data/patterns-de";
 import { soundRecommendations } from "@/data/soundRecommendations";
 import { melodyRecommendations } from "@/data/melodyRecommendations";
 import type { GenreMelodyRecs, BassPattern, MelodyIdea, SampleIdea } from "@/data/melodyRecommendations";
+import { melodyRecommendationsDe } from "@/data/melodyRecommendations-de";
+import type { DeMelodyRecs } from "@/data/melodyRecommendations-de";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -643,7 +645,7 @@ function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
   );
 }
 
-function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; color: string }) {
+function BassAndMidiSection({ midiRecs, color, deMidiRecs }: { midiRecs: GenreMelodyRecs; color: string; deMidiRecs?: DeMelodyRecs }) {
   const [activeView, setActiveView] = useState<"bass" | "melody">("bass");
   const t = useT();
 
@@ -703,22 +705,26 @@ function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; co
 
       <div className="mb-4 p-4 rounded-lg border border-border/50 bg-card/40">
         <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("microKEY setup in Maschine", "microKEY-Einrichtung in Maschine")}</span>
-        <p className="text-xs text-muted-foreground leading-relaxed">{midiRecs.microKeySetup}</p>
+        <p className="text-xs text-muted-foreground leading-relaxed">{deMidiRecs?.microKeySetup ?? midiRecs.microKeySetup}</p>
       </div>
 
       {activeView === "bass" && (
         <div className="flex flex-col gap-3">
-          {midiRecs.bassPatterns.map((bp, i) => (
-            <BassPatternCard key={i} bp={bp} color={color} />
-          ))}
+          {midiRecs.bassPatterns.map((bp, i) => {
+            const deBp = deMidiRecs?.bassPatterns[i];
+            const merged: BassPattern = deBp ? { ...bp, ...deBp } : bp;
+            return <BassPatternCard key={i} bp={merged} color={color} />;
+          })}
         </div>
       )}
 
       {activeView === "melody" && (
         <div className="flex flex-col gap-3">
-          {midiRecs.melodies.map((m, i) => (
-            <MelodyCard key={i} melody={m} color={color} />
-          ))}
+          {midiRecs.melodies.map((m, i) => {
+            const deM = deMidiRecs?.melodies[i];
+            const merged: MelodyIdea = deM ? { ...m, ...deM } : m;
+            return <MelodyCard key={i} melody={merged} color={color} />;
+          })}
         </div>
       )}
     </motion.div>
@@ -784,6 +790,7 @@ export default function PatternDetail() {
   const color = getGenreColorVar(pattern.genre);
   const recs = !pattern.generated ? soundRecommendations[pattern.genre] : null;
   const midiRecs = !pattern.generated ? melodyRecommendations[pattern.genre] : null;
+  const deMidiRecs: DeMelodyRecs | undefined = (lang === "de" && !pattern.generated) ? melodyRecommendationsDe[pattern.genre] : undefined;
 
   return (
     <div className="min-h-[100dvh] bg-background text-foreground pb-20">
@@ -950,9 +957,11 @@ export default function PatternDetail() {
 
             {activeTab === "samples" && midiRecs && (
               <div className="grid md:grid-cols-2 gap-4">
-                {midiRecs.samples.map((sample, i) => (
-                  <SampleCard key={i} sample={sample} color={color} />
-                ))}
+                {midiRecs.samples.map((sample, i) => {
+                  const deSample = deMidiRecs?.samples[i];
+                  const merged: SampleIdea = deSample ? { ...sample, ...deSample } : sample;
+                  return <SampleCard key={i} sample={merged} color={color} />;
+                })}
               </div>
             )}
 
@@ -975,7 +984,7 @@ export default function PatternDetail() {
         )}
 
         {midiRecs && (
-          <BassAndMidiSection midiRecs={midiRecs} color={color} />
+          <BassAndMidiSection midiRecs={midiRecs} color={color} deMidiRecs={deMidiRecs} />
         )}
       </main>
     </div>
