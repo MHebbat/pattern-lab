@@ -418,114 +418,115 @@ const CONTROLS: Control[] = [
 ];
 
 // ─── SVG Layout definitions ──────────────────────────────────────────────────
+// ViewBox: 920×750 — matches MK3 Standard physical ratio (311×253mm = 1.23:1)
+// Pads: 108×108px each (square, matching real ~35×35mm pads)
+// Displays: 195×111px each (16:9 widescreen, matching real 480×272px screens)
 
 const LAYOUTS: Layout[] = [
-  // Left column: view-mode buttons
-  { id: "channel",  callout: { cx: 68, cy: 141 }, shapes: [{ kind: "rect", x: 8, y: 130, w: 52, h: 22, label: "CH" }] },
-  { id: "plugin",   callout: { cx: 68, cy: 165 }, shapes: [{ kind: "rect", x: 8, y: 154, w: 52, h: 22, label: "PLUG" }] },
-  { id: "arrange",  callout: { cx: 68, cy: 189 }, shapes: [{ kind: "rect", x: 8, y: 178, w: 52, h: 22, label: "ARR" }] },
-  { id: "mix",      callout: { cx: 68, cy: 213 }, shapes: [{ kind: "rect", x: 8, y: 202, w: 52, h: 22, label: "MIX" }] },
-  { id: "perform",  callout: { cx: 68, cy: 237 }, shapes: [{ kind: "rect", x: 8, y: 226, w: 52, h: 22, label: "PERF" }] },
-  { id: "notes",    callout: { cx: 68, cy: 261 }, shapes: [{ kind: "rect", x: 8, y: 250, w: 52, h: 22, label: "NOTES" }] },
-  { id: "shift",    callout: { cx: 68, cy: 285 }, shapes: [{ kind: "rect", x: 8, y: 274, w: 52, h: 22, label: "SHIFT" }] },
+  // Left column: view-mode buttons (back-left of device)
+  { id: "channel",  callout: { cx: 70, cy: 150 }, shapes: [{ kind: "rect", x: 8, y: 138, w: 50, h: 29, label: "CH" }] },
+  { id: "plugin",   callout: { cx: 70, cy: 184 }, shapes: [{ kind: "rect", x: 8, y: 172, w: 50, h: 29, label: "PLUG" }] },
+  { id: "arrange",  callout: { cx: 70, cy: 218 }, shapes: [{ kind: "rect", x: 8, y: 206, w: 50, h: 29, label: "ARR" }] },
+  { id: "mix",      callout: { cx: 70, cy: 252 }, shapes: [{ kind: "rect", x: 8, y: 240, w: 50, h: 29, label: "MIX" }] },
+  { id: "perform",  callout: { cx: 70, cy: 286 }, shapes: [{ kind: "rect", x: 8, y: 274, w: 50, h: 29, label: "PERF" }] },
+  { id: "notes",    callout: { cx: 70, cy: 320 }, shapes: [{ kind: "rect", x: 8, y: 308, w: 50, h: 29, label: "NOTES" }] },
+  { id: "shift",    callout: { cx: 70, cy: 394 }, shapes: [{ kind: "rect", x: 8, y: 382, w: 50, h: 29, label: "SHIFT" }] },
 
-  // Top knobs
-  { id: "volume-knob", callout: { cx: 90, cy: 20 },  shapes: [{ kind: "circle", cx: 90, cy: 46, r: 24, label: "VOL" }] },
-  { id: "swing-knob",  callout: { cx: 143, cy: 20 }, shapes: [{ kind: "circle", cx: 143, cy: 44, r: 18, label: "SWG" }] },
-  { id: "tempo-knob",  callout: { cx: 191, cy: 20 }, shapes: [{ kind: "circle", cx: 191, cy: 44, r: 18, label: "BPM" }] },
+  // Top-left knobs: VOLUME (large), SWING, TEMPO
+  { id: "volume-knob", callout: { cx: 90,  cy: 22 }, shapes: [{ kind: "circle", cx: 90,  cy: 62, r: 30, label: "VOL" }] },
+  { id: "swing-knob",  callout: { cx: 152, cy: 22 }, shapes: [{ kind: "circle", cx: 152, cy: 60, r: 22, label: "SWG" }] },
+  { id: "tempo-knob",  callout: { cx: 208, cy: 22 }, shapes: [{ kind: "circle", cx: 208, cy: 60, r: 22, label: "BPM" }] },
 
-  // Group buttons A-H (8 buttons = 1 control)
+  // Group buttons A–H (2 rows of 4)
   {
     id: "groups",
-    callout: { cx: 175, cy: 64 },
+    callout: { cx: 172, cy: 112 },
     shapes: [
-      { kind: "rect", x: 68, y: 74, w: 42, h: 28, label: "A" },
-      { kind: "rect", x: 116, y: 74, w: 42, h: 28, label: "B" },
-      { kind: "rect", x: 164, y: 74, w: 42, h: 28, label: "C" },
-      { kind: "rect", x: 212, y: 74, w: 42, h: 28, label: "D" },
-      { kind: "rect", x: 68, y: 108, w: 42, h: 28, label: "E" },
-      { kind: "rect", x: 116, y: 108, w: 42, h: 28, label: "F" },
-      { kind: "rect", x: 164, y: 108, w: 42, h: 28, label: "G" },
-      { kind: "rect", x: 212, y: 108, w: 42, h: 28, label: "H" },
+      { kind: "rect", x: 66,  y: 118, w: 42, h: 27, label: "A" },
+      { kind: "rect", x: 112, y: 118, w: 42, h: 27, label: "B" },
+      { kind: "rect", x: 158, y: 118, w: 42, h: 27, label: "C" },
+      { kind: "rect", x: 204, y: 118, w: 42, h: 27, label: "D" },
+      { kind: "rect", x: 66,  y: 150, w: 42, h: 27, label: "E" },
+      { kind: "rect", x: 112, y: 150, w: 42, h: 27, label: "F" },
+      { kind: "rect", x: 158, y: 150, w: 42, h: 27, label: "G" },
+      { kind: "rect", x: 204, y: 150, w: 42, h: 27, label: "H" },
     ],
   },
 
-  // Scene / Pattern area
-  { id: "scene",     callout: { cx: 299, cy: 68 },  shapes: [{ kind: "rect", x: 263, y: 74, w: 46, h: 28, label: "SCN" }] },
-  { id: "pattern",   callout: { cx: 351, cy: 68 },  shapes: [{ kind: "rect", x: 315, y: 74, w: 46, h: 28, label: "PAT" }] },
-  { id: "events",    callout: { cx: 403, cy: 68 },  shapes: [{ kind: "rect", x: 367, y: 74, w: 46, h: 28, label: "EVT" }] },
-  { id: "variation", callout: { cx: 455, cy: 68 },  shapes: [{ kind: "rect", x: 419, y: 74, w: 46, h: 28, label: "VAR" }] },
-  { id: "duplicate", callout: { cx: 299, cy: 142 }, shapes: [{ kind: "rect", x: 263, y: 108, w: 46, h: 28, label: "DUP" }] },
-  { id: "select",    callout: { cx: 351, cy: 142 }, shapes: [{ kind: "rect", x: 315, y: 108, w: 46, h: 28, label: "SEL" }] },
-  { id: "solo",      callout: { cx: 403, cy: 142 }, shapes: [{ kind: "rect", x: 367, y: 108, w: 46, h: 28, label: "SOLO" }] },
-  { id: "mute",      callout: { cx: 455, cy: 142 }, shapes: [{ kind: "rect", x: 419, y: 108, w: 46, h: 28, label: "MUTE" }] },
+  // Scene / Pattern area (2 rows of 4)
+  { id: "scene",     callout: { cx: 278, cy: 112 }, shapes: [{ kind: "rect", x: 254, y: 118, w: 44, h: 27, label: "SCN" }] },
+  { id: "pattern",   callout: { cx: 326, cy: 112 }, shapes: [{ kind: "rect", x: 302, y: 118, w: 44, h: 27, label: "PAT" }] },
+  { id: "events",    callout: { cx: 374, cy: 112 }, shapes: [{ kind: "rect", x: 350, y: 118, w: 44, h: 27, label: "EVT" }] },
+  { id: "variation", callout: { cx: 422, cy: 112 }, shapes: [{ kind: "rect", x: 398, y: 118, w: 44, h: 27, label: "VAR" }] },
+  { id: "duplicate", callout: { cx: 278, cy: 144 }, shapes: [{ kind: "rect", x: 254, y: 150, w: 44, h: 27, label: "DUP" }] },
+  { id: "select",    callout: { cx: 326, cy: 144 }, shapes: [{ kind: "rect", x: 302, y: 150, w: 44, h: 27, label: "SEL" }] },
+  { id: "solo",      callout: { cx: 374, cy: 144 }, shapes: [{ kind: "rect", x: 350, y: 150, w: 44, h: 27, label: "SOLO" }] },
+  { id: "mute",      callout: { cx: 422, cy: 144 }, shapes: [{ kind: "rect", x: 398, y: 150, w: 44, h: 27, label: "MUTE" }] },
 
-  // Dual screens
+  // Dual 16:9 displays (480×272 real → 195×111px SVG)
   {
     id: "displays",
-    callout: { cx: 588, cy: 12 },
+    callout: { cx: 606, cy: 4 },
     shapes: [
-      { kind: "rect", x: 474, y: 15, w: 170, h: 140, rx: 3, label: "" },
-      { kind: "rect", x: 654, y: 15, w: 170, h: 140, rx: 3, label: "" },
+      { kind: "rect", x: 456, y: 8,  w: 195, h: 111, rx: 3, label: "" },
+      { kind: "rect", x: 655, y: 8,  w: 195, h: 111, rx: 3, label: "" },
     ],
   },
 
-  // 4D Encoder
-  { id: "4d-encoder", callout: { cx: 848, cy: 44 }, shapes: [{ kind: "circle", cx: 848, cy: 90, r: 38, label: "4D" }] },
+  // 4D encoder (large multi-directional push encoder, right of displays)
+  { id: "4d-encoder", callout: { cx: 876, cy: 20 }, shapes: [{ kind: "circle", cx: 876, cy: 80, r: 46, label: "4D" }] },
 
-  // Browse + Headphones
-  { id: "browse",     callout: { cx: 847, cy: 152 }, shapes: [{ kind: "rect", x: 797, y: 140, w: 50, h: 24, label: "BROW" }] },
-  { id: "headphones", callout: { cx: 873, cy: 130 }, shapes: [{ kind: "circle", cx: 873, cy: 148, r: 14, label: "HP" }] },
+  // Browse button + Headphone knob (right edge, below encoder)
+  { id: "browse",     callout: { cx: 840, cy: 148 }, shapes: [{ kind: "rect",   x: 812, y: 140, w: 48, h: 26, label: "BRW" }] },
+  { id: "headphones", callout: { cx: 892, cy: 148 }, shapes: [{ kind: "circle", cx: 884, cy: 162, r: 18, label: "HP" }] },
 
-  // Macro knobs row (8 knobs = 1 control)
+  // 8 macro knobs spanning full width
   {
     id: "macro-knobs",
-    callout: { cx: 430, cy: 188 },
+    callout: { cx: 460, cy: 200 },
     shapes: [
-      { kind: "circle", cx: 75, cy: 218, r: 21, label: "1" },
-      { kind: "circle", cx: 189, cy: 218, r: 21, label: "2" },
-      { kind: "circle", cx: 303, cy: 218, r: 21, label: "3" },
-      { kind: "circle", cx: 417, cy: 218, r: 21, label: "4" },
-      { kind: "circle", cx: 531, cy: 218, r: 21, label: "5" },
-      { kind: "circle", cx: 645, cy: 218, r: 21, label: "6" },
-      { kind: "circle", cx: 759, cy: 218, r: 21, label: "7" },
-      { kind: "circle", cx: 873, cy: 218, r: 21, label: "8" },
+      { kind: "circle", cx: 63,  cy: 238, r: 23, label: "1" },
+      { kind: "circle", cx: 178, cy: 238, r: 23, label: "2" },
+      { kind: "circle", cx: 293, cy: 238, r: 23, label: "3" },
+      { kind: "circle", cx: 408, cy: 238, r: 23, label: "4" },
+      { kind: "circle", cx: 523, cy: 238, r: 23, label: "5" },
+      { kind: "circle", cx: 638, cy: 238, r: 23, label: "6" },
+      { kind: "circle", cx: 753, cy: 238, r: 23, label: "7" },
+      { kind: "circle", cx: 868, cy: 238, r: 23, label: "8" },
     ],
   },
 
-  // Transport buttons
-  { id: "play",    callout: { cx: 91, cy: 363 },  shapes: [{ kind: "rect", x: 8, y: 370, w: 79, h: 30, label: "PLAY" }] },
-  { id: "rec",     callout: { cx: 176, cy: 363 }, shapes: [{ kind: "rect", x: 93, y: 370, w: 79, h: 30, label: "REC" }] },
-  { id: "stop",    callout: { cx: 261, cy: 363 }, shapes: [{ kind: "rect", x: 178, y: 370, w: 79, h: 30, label: "STOP" }] },
-  { id: "restart", callout: { cx: 91, cy: 407 },  shapes: [{ kind: "rect", x: 8, y: 407, w: 79, h: 30, label: "REST" }] },
-  { id: "erase",   callout: { cx: 176, cy: 407 }, shapes: [{ kind: "rect", x: 93, y: 407, w: 79, h: 30, label: "ERASE" }] },
-  { id: "tap",     callout: { cx: 261, cy: 407 }, shapes: [{ kind: "rect", x: 178, y: 407, w: 79, h: 30, label: "TAP" }] },
+  // Transport buttons (front-left, 2 rows of 3)
+  { id: "play",    callout: { cx: 49,  cy: 456 }, shapes: [{ kind: "rect", x: 8,   y: 464, w: 82, h: 38, label: "PLAY" }] },
+  { id: "rec",     callout: { cx: 135, cy: 456 }, shapes: [{ kind: "rect", x: 94,  y: 464, w: 82, h: 38, label: "REC" }] },
+  { id: "stop",    callout: { cx: 221, cy: 456 }, shapes: [{ kind: "rect", x: 180, y: 464, w: 82, h: 38, label: "STOP" }] },
+  { id: "restart", callout: { cx: 49,  cy: 500 }, shapes: [{ kind: "rect", x: 8,   y: 508, w: 82, h: 38, label: "REST" }] },
+  { id: "erase",   callout: { cx: 135, cy: 500 }, shapes: [{ kind: "rect", x: 94,  y: 508, w: 82, h: 38, label: "ERASE" }] },
+  { id: "tap",     callout: { cx: 221, cy: 500 }, shapes: [{ kind: "rect", x: 180, y: 508, w: 82, h: 38, label: "TAP" }] },
 
-  // Pads 4×4 — pad 1 = bottom-left, pad 16 = top-right
+  // 4×4 pad grid — square pads (108×108px, 7px gap)
+  // x cols: 455, 570, 685, 800  |  y rows: 285, 400, 515, 630
+  // pad 1 = front-left (row4,col1), pad 16 = back-right (row1,col4)
   {
     id: "pads",
-    callout: { cx: 730, cy: 263 },
+    callout: { cx: 680, cy: 278 },
     shapes: [
-      // Row 1 (pads 13-16, top)
-      { kind: "rect", x: 293, y: 270, w: 140, h: 60, rx: 4, label: "13" },
-      { kind: "rect", x: 439, y: 270, w: 140, h: 60, rx: 4, label: "14" },
-      { kind: "rect", x: 585, y: 270, w: 140, h: 60, rx: 4, label: "15" },
-      { kind: "rect", x: 731, y: 270, w: 140, h: 60, rx: 4, label: "16" },
-      // Row 2 (pads 9-12)
-      { kind: "rect", x: 293, y: 336, w: 140, h: 60, rx: 4, label: "9" },
-      { kind: "rect", x: 439, y: 336, w: 140, h: 60, rx: 4, label: "10" },
-      { kind: "rect", x: 585, y: 336, w: 140, h: 60, rx: 4, label: "11" },
-      { kind: "rect", x: 731, y: 336, w: 140, h: 60, rx: 4, label: "12" },
-      // Row 3 (pads 5-8)
-      { kind: "rect", x: 293, y: 402, w: 140, h: 60, rx: 4, label: "5" },
-      { kind: "rect", x: 439, y: 402, w: 140, h: 60, rx: 4, label: "6" },
-      { kind: "rect", x: 585, y: 402, w: 140, h: 60, rx: 4, label: "7" },
-      { kind: "rect", x: 731, y: 402, w: 140, h: 60, rx: 4, label: "8" },
-      // Row 4 (pads 1-4, bottom)
-      { kind: "rect", x: 293, y: 468, w: 140, h: 60, rx: 4, label: "1" },
-      { kind: "rect", x: 439, y: 468, w: 140, h: 60, rx: 4, label: "2" },
-      { kind: "rect", x: 585, y: 468, w: 140, h: 60, rx: 4, label: "3" },
-      { kind: "rect", x: 731, y: 468, w: 140, h: 60, rx: 4, label: "4" },
+      { kind: "rect", x: 455, y: 285, w: 108, h: 108, rx: 5, label: "13" },
+      { kind: "rect", x: 570, y: 285, w: 108, h: 108, rx: 5, label: "14" },
+      { kind: "rect", x: 685, y: 285, w: 108, h: 108, rx: 5, label: "15" },
+      { kind: "rect", x: 800, y: 285, w: 108, h: 108, rx: 5, label: "16" },
+      { kind: "rect", x: 455, y: 400, w: 108, h: 108, rx: 5, label: "9"  },
+      { kind: "rect", x: 570, y: 400, w: 108, h: 108, rx: 5, label: "10" },
+      { kind: "rect", x: 685, y: 400, w: 108, h: 108, rx: 5, label: "11" },
+      { kind: "rect", x: 800, y: 400, w: 108, h: 108, rx: 5, label: "12" },
+      { kind: "rect", x: 455, y: 515, w: 108, h: 108, rx: 5, label: "5"  },
+      { kind: "rect", x: 570, y: 515, w: 108, h: 108, rx: 5, label: "6"  },
+      { kind: "rect", x: 685, y: 515, w: 108, h: 108, rx: 5, label: "7"  },
+      { kind: "rect", x: 800, y: 515, w: 108, h: 108, rx: 5, label: "8"  },
+      { kind: "rect", x: 455, y: 630, w: 108, h: 108, rx: 5, label: "1"  },
+      { kind: "rect", x: 570, y: 630, w: 108, h: 108, rx: 5, label: "2"  },
+      { kind: "rect", x: 685, y: 630, w: 108, h: 108, rx: 5, label: "3"  },
+      { kind: "rect", x: 800, y: 630, w: 108, h: 108, rx: 5, label: "4"  },
     ],
   },
 ];
@@ -582,7 +583,7 @@ function MK3Diagram({
 
   return (
     <svg
-      viewBox="0 0 900 545"
+      viewBox="0 0 920 750"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full select-none"
       style={{ fontFamily: "ui-monospace, monospace" }}
@@ -596,13 +597,18 @@ function MK3Diagram({
           <stop offset="0%" stopColor="#4a4a56" />
           <stop offset="100%" stopColor="#1a1a22" />
         </radialGradient>
+        <radialGradient id="pad-grad" cx="40%" cy="35%">
+          <stop offset="0%" stopColor="#323240" />
+          <stop offset="60%" stopColor="#242430" />
+          <stop offset="100%" stopColor="#1a1a24" />
+        </radialGradient>
         <linearGradient id="screen-grad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#0d2540" />
           <stop offset="100%" stopColor="#071828" />
         </linearGradient>
-        <linearGradient id="pad-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#2e2e3a" />
-          <stop offset="100%" stopColor="#1e1e28" />
+        <linearGradient id="device-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#1e1e26" />
+          <stop offset="100%" stopColor="#141418" />
         </linearGradient>
         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="3" result="blur" />
@@ -613,31 +619,42 @@ function MK3Diagram({
         </filter>
       </defs>
 
-      {/* Device shell */}
-      <rect x="2" y="2" width="896" height="541" rx="16" fill="#141418" stroke="#444" strokeWidth="1.5" />
-      <rect x="4" y="4" width="892" height="537" rx="14" fill="#1a1a20" />
+      {/* Device shell — MK3 Standard body (311×253mm → 920×750 SVG) */}
+      <rect x="2" y="2" width="916" height="746" rx="22" fill="#111116" stroke="#3a3a44" strokeWidth="1.5" />
+      <rect x="4" y="4" width="912" height="742" rx="20" fill="url(#device-grad)" />
+      {/* Subtle top bevel */}
+      <rect x="4" y="4" width="912" height="12" rx="20" fill="#ffffff08" />
 
-      {/* Zone labels (subtle background areas) */}
-      {/* Left column zone */}
-      <rect x="6" y="124" width="58" height="178" rx="6" fill="#ffffff05" />
-      {/* Group buttons zone */}
-      <rect x="62" y="66" width="204" height="78" rx="6" fill="#ffffff04" />
-      {/* Scene/pattern zone */}
-      <rect x="257" y="66" width="214" height="78" rx="6" fill="#ffffff04" />
-      {/* Transport zone */}
-      <rect x="4" y="362" width="261" height="82" rx="6" fill="#ffffff04" />
-      {/* Pads zone */}
-      <rect x="287" y="262" width="608" height="274" rx="6" fill="#ffffff04" />
-      {/* Macro knobs zone */}
-      <rect x="48" y="190" width="852" height="58" rx="6" fill="#ffffff03" />
+      {/* ── Zone background areas ── */}
+      {/* View-mode column */}
+      <rect x="6" y="130" width="56" height="292" rx="6" fill="#ffffff05" />
+      {/* Group buttons */}
+      <rect x="62" y="110" width="190" height="74" rx="6" fill="#ffffff04" />
+      {/* Scene/pattern */}
+      <rect x="250" y="110" width="200" height="74" rx="6" fill="#ffffff04" />
+      {/* Macro knobs */}
+      <rect x="36" y="208" width="848" height="64" rx="6" fill="#ffffff03" />
+      {/* Transport */}
+      <rect x="4" y="454" width="272" height="102" rx="6" fill="#ffffff04" />
+      {/* Pads — the large square grid zone */}
+      <rect x="447" y="277" width="469" height="469" rx="8" fill="#ffffff04" />
 
-      {/* Zone label text */}
-      <text x="37" y="120" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">VIEW</text>
-      <text x="160" y="62" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">GROUPS</text>
-      <text x="364" y="62" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">SCENE / PATTERN</text>
-      <text x="474" y="258" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">TRANSPORT</text>
-      <text x="591" y="258" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">PADS</text>
-      <text x="474" y="185" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">MACRO KNOBS</text>
+      {/* ── Zone label text ── */}
+      <text x="33" y="125" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.1em">VIEW</text>
+      <text x="157" y="105" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">GROUPS</text>
+      <text x="350" y="105" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">SCENE / PATTERN</text>
+      <text x="460" y="203" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">MACRO KNOBS</text>
+      <text x="140" y="449" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">TRANSPORT</text>
+      <text x="681" y="271" textAnchor="middle" fill="#444" fontSize="7" letterSpacing="0.08em">PADS (16)</text>
+
+      {/* Display bezel — raised area between groups and displays */}
+      <rect x="452" y="4" width="402" height="128" rx="8" fill="#0d0d12" stroke="#2a2a34" strokeWidth="1" />
+
+      {/* MASCHINE wordmark on device surface */}
+      <text x="230" y="745" textAnchor="middle" fill="#2a2a34" fontSize="11" fontWeight="700" letterSpacing="0.25em">MASCHINE MK3</text>
+
+      {/* Pad area raised surface */}
+      <rect x="449" y="279" width="465" height="465" rx="6" fill="#131318" stroke="#252530" strokeWidth="1" />
 
       {/* Render each control group */}
       {LAYOUTS.map(layout => {
@@ -673,20 +690,21 @@ function MK3Diagram({
                       stroke={strokeColor(layout.id)}
                       strokeWidth={stateFor(layout.id) !== "idle" ? 1.5 : 1}
                     />
-                    {isScreen && si === 0 && (
+                    {isScreen && (
                       <>
-                        <rect x={shape.x + 6} y={shape.y + 8} width={shape.w - 12} height={10} rx={2} fill="#1a5a9a" opacity="0.6" />
-                        <rect x={shape.x + 6} y={shape.y + 24} width={(shape.w - 12) * 0.6} height={6} rx={1} fill="#1a5a9a" opacity="0.4" />
-                        <rect x={shape.x + 6} y={shape.y + 34} width={(shape.w - 12) * 0.8} height={6} rx={1} fill="#1a5a9a" opacity="0.3" />
-                        <rect x={shape.x + 6} y={shape.y + 44} width={(shape.w - 12) * 0.5} height={6} rx={1} fill="#f59e0b" opacity="0.25" />
-                        <rect x={shape.x + 6} y={shape.y + 54} width={(shape.w - 12) * 0.7} height={6} rx={1} fill="#1a5a9a" opacity="0.3" />
-                        <rect x={shape.x + 6} y={shape.y + 64} width={(shape.w - 12) * 0.4} height={6} rx={1} fill="#1a5a9a" opacity="0.2" />
-                        <rect x={shape.x + 6} y={shape.y + 74} width={(shape.w - 12) * 0.9} height={6} rx={1} fill="#1a5a9a" opacity="0.3" />
-                        <rect x={shape.x + 6} y={shape.y + 84} width={(shape.w - 12) * 0.6} height={6} rx={1} fill="#f59e0b" opacity="0.2" />
-                        <rect x={shape.x + 6} y={shape.y + 94} width={(shape.w - 12) * 0.7} height={6} rx={1} fill="#1a5a9a" opacity="0.25" />
-                        <rect x={shape.x + 6} y={shape.y + 104} width={(shape.w - 12) * 0.5} height={6} rx={1} fill="#1a5a9a" opacity="0.2" />
-                        <rect x={shape.x + 6} y={shape.y + 114} width={(shape.w - 12) * 0.8} height={6} rx={1} fill="#1a5a9a" opacity="0.15" />
-                        <rect x={shape.x + 6} y={shape.y + 124} width={(shape.w - 12) * 0.4} height={6} rx={1} fill="#1a5a9a" opacity="0.1" />
+                        {/* Title bar */}
+                        <rect x={shape.x + 5} y={shape.y + 6} width={shape.w - 10} height={9} rx={2} fill="#1a5a9a" opacity="0.65" />
+                        {/* Content rows — spaced to fit 111px screen height */}
+                        <rect x={shape.x + 5} y={shape.y + 21} width={(shape.w - 10) * 0.55} height={6} rx={1} fill="#1a5a9a" opacity="0.40" />
+                        <rect x={shape.x + 5} y={shape.y + 31} width={(shape.w - 10) * 0.80} height={6} rx={1} fill="#1a5a9a" opacity="0.28" />
+                        <rect x={shape.x + 5} y={shape.y + 41} width={(shape.w - 10) * 0.45} height={6} rx={1} fill="#f59e0b" opacity="0.22" />
+                        <rect x={shape.x + 5} y={shape.y + 51} width={(shape.w - 10) * 0.70} height={6} rx={1} fill="#1a5a9a" opacity="0.25" />
+                        <rect x={shape.x + 5} y={shape.y + 61} width={(shape.w - 10) * 0.90} height={6} rx={1} fill="#1a5a9a" opacity="0.20" />
+                        <rect x={shape.x + 5} y={shape.y + 71} width={(shape.w - 10) * 0.60} height={6} rx={1} fill="#f59e0b" opacity="0.16" />
+                        <rect x={shape.x + 5} y={shape.y + 81} width={(shape.w - 10) * 0.75} height={6} rx={1} fill="#1a5a9a" opacity="0.18" />
+                        <rect x={shape.x + 5} y={shape.y + 91} width={(shape.w - 10) * 0.40} height={6} rx={1} fill="#1a5a9a" opacity="0.12" />
+                        {/* Bottom waveform bar */}
+                        <rect x={shape.x + 5} y={shape.y + 101} width={shape.w - 10} height={4} rx={1} fill="#1a3a6a" opacity="0.30" />
                       </>
                     )}
                     {!isScreen && shape.label && (
@@ -773,13 +791,11 @@ function MK3Diagram({
         );
       })}
 
-      {/* Connector line between displays */}
-      <line x1="644" y1="85" x2="654" y2="85" stroke="#222" strokeWidth="2" />
+      {/* Thin divider between the two 480×272 displays */}
+      <line x1="651" y1="12" x2="651" y2="115" stroke="#0d0d12" strokeWidth="4" />
 
-      {/* Hardware label */}
-      <text x="900" y="540" textAnchor="end" fill="#333" fontSize="8" letterSpacing="0.12em">
-        MASCHINE MK3
-      </text>
+      {/* NI logo mark — bottom right corner of device */}
+      <text x="912" y="744" textAnchor="end" fill="#2a2a34" fontSize="7" fontWeight="700" letterSpacing="0.15em">NI</text>
     </svg>
   );
 }
