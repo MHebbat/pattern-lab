@@ -2,7 +2,7 @@
 
 **Dark, producer-focused drum pattern reference browser for Maschine MK3.**
 
-Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip Hop, and R&B, producer masterclasses for 17 legendary producers, a Maschine MK3 cheat sheet, and tools for pattern generation, chopping, and arrangement. Everything works offline — AI generation is optional.
+Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip Hop, and R&B, producer masterclasses for 17 legendary producers, a Maschine MK3 cheat sheet, and tools for pattern generation, chopping, and arrangement. Available in **English and German**. Everything works offline — AI generation is optional.
 
 ---
 
@@ -12,6 +12,7 @@ Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip 
 - **17 Producer Masterclasses** — Dr. Dre, J Dilla, DJ Premier, Havoc, Pete Rock, Kanye West, Timbaland, The Alchemist, Metro Boomin, 9th Wonder, Pharrell, Akhenaton, DJ Mehdi, Myth Syzer, Morlockko Plus, Johnny Illstrument, Figub Brazlevic
 - **MK3 Hardware Reference** — interactive top-view control map of the Maschine MK3 with 31 numbered callouts, click-to-expand descriptions, step-by-step usage for every control (4D encoder, pads, Group A–H, transport, macro knobs, displays, and more), and a searchable quick-reference grid
 - **Maschine MK3 Cheat Sheet** — tabbed reference (First Session, Core Controls, Boom Bap, Hip Hop, R&B, FX Chains, Song Building)
+- **German language support** — full DE translation: all 76 pattern descriptions, 17 producer masterclasses, cheat sheet tabs, bass/melody recommendations, and UI labels
 - **Bass & MIDI Ideas** — per-genre bass patterns and melody ideas playable on Korg microKEY, with:
   - **SVG claviature diagrams** showing exactly which keys to press (highlighted in genre color)
   - **Heartbreaking emotional patterns** — chromatic descents, Phrygian flat 2, tritone grief, suspended 4ths, diminished 7ths, minor 6th sighs
@@ -28,13 +29,13 @@ Pattern Lab is a local-first web app with 76 drum patterns across Boom Bap, Hip 
 
 | Tool | Version | Install |
 |------|---------|---------|
-| Node.js | 20 or higher | [nodejs.org](https://nodejs.org) |
+| Node.js | 24 or higher | [nodejs.org](https://nodejs.org) |
 | pnpm | 9 or higher | `npm install -g pnpm` |
 
 To verify:
 
 ```bash
-node --version   # v20.x.x or higher
+node --version   # v24.x.x or higher
 pnpm --version   # 9.x.x or higher
 ```
 
@@ -44,7 +45,7 @@ pnpm --version   # 9.x.x or higher
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/pattern-lab.git
+git clone https://github.com/MHebbat/pattern-lab.git
 cd pattern-lab
 
 # 2. Install all workspace dependencies
