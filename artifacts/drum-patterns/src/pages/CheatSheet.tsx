@@ -870,7 +870,7 @@ export default function CheatSheet() {
     return "first-session";
   });
 
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
 
   const tab = buildTab(activeTab, lang);
   const allTips = tab.sections.flatMap(s => s.tips);
@@ -893,7 +893,28 @@ export default function CheatSheet() {
               {lang === "de" ? "Schritt-für-Schritt Produktionsreferenz" : "Step-by-step production reference"}
             </span>
           </div>
-          <div className="w-16 sm:w-24 shrink-0" />
+          <div className="flex items-center gap-0.5 border border-border rounded-md overflow-hidden shrink-0">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2.5 py-1.5 text-xs font-mono font-bold transition-colors ${
+                lang === "en"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2.5 py-1.5 text-xs font-mono font-bold transition-colors ${
+                lang === "de"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              DE
+            </button>
+          </div>
         </div>
 
         {/* Tab bar */}
