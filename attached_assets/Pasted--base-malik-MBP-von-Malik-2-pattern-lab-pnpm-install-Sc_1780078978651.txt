@@ -1,0 +1,74 @@
+(base) malik@MBP-von-Malik-2 pattern-lab %           
+pnpm install
+Scope: all 10 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. preinstall$ only-allow pnpm
+└─ Done in 205ms
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+(base) malik@MBP-von-Malik-2 pattern-lab % ./start-local.sh
+[pattern-lab] No .env.local found.
+  Copy .env.local.example → .env.local and add your OPENROUTER_API_KEY.
+  The app will start but AI generation will not work without the key.
+
+[pattern-lab] Installing dependencies...
+Scope: all 10 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. preinstall$ only-allow pnpm
+└─ Done in 180ms
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+Scope: all 10 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. preinstall$ only-allow pnpm
+└─ Done in 186ms
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+(base) malik@MBP-von-Malik-2 pattern-lab % pnpm approve-builds
+✔ Choose which packages to build (Press <space> to select, <a> to toggle all, <i> to invert selection) · No items were selected
+
+All packages were added to allowBuilds with value false.
+(base) malik@MBP-von-Malik-2 pattern-lab %                    
+pnpm install
+Scope: all 10 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+. preinstall$ only-allow pnpm
+└─ Done in 194ms
+Done in 477ms using pnpm v11.4.0
+(base) malik@MBP-von-Malik-2 pattern-lab % ./start-local.sh   
+[pattern-lab] No .env.local found.
+  Copy .env.local.example → .env.local and add your OPENROUTER_API_KEY.
+  The app will start but AI generation will not work without the key.
+
+[pattern-lab] Installing dependencies...
+Scope: all 10 workspace projects
+Already up to date
+Done in 48ms using pnpm v11.4.0
+[pattern-lab] Building shared libraries...
+$ tsc --build
+[pattern-lab] Starting API server on port 5000...
+[pattern-lab] Waiting for API server...
+$ export NODE_ENV=development && pnpm run build && pnpm run start
+$ node ./build.mjs
+Error: The package "@esbuild/darwin-arm64" could not be found, and is needed by esbuild.
+
+If you are installing esbuild with npm, make sure that you don't specify the
+"--no-optional" or "--omit=optional" flags. The "optionalDependencies" feature
+of "package.json" is used by esbuild to install the correct binary executable
+for your current platform.
+    at generateBinPath (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1750:15)
+    at esbuildCommandAndArgs (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1820:33)
+    at ensureServiceIsRunning (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1977:25)
+    at build (/Users/malik/pattern-lab/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1876:26)
+    at buildAll (file:///Users/malik/pattern-lab/artifacts/api-server/build.mjs:17:9)
+[ELIFECYCLE] Command failed with exit code 1.
+/Users/malik/pattern-lab/artifacts/api-server:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @workspace/api-server@0.0.0 dev: `export NODE_ENV=development && pnpm run build && pnpm run start`
+Exit status 1
