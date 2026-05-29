@@ -24,7 +24,7 @@ FRONTEND_PORT="${FRONTEND_PORT:-3001}"
 
 # ── Install dependencies ───────────────────────────────────────────────────────
 echo "[pattern-lab] Installing dependencies..."
-pnpm install --frozen-lockfile 2>/dev/null || pnpm install
+pnpm install --frozen-lockfile 2>/dev/null || pnpm install --no-frozen-lockfile || true
 
 # ── Build shared libs ──────────────────────────────────────────────────────────
 echo "[pattern-lab] Building shared libraries..."
