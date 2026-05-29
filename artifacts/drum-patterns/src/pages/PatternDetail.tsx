@@ -8,13 +8,14 @@ import type { GenreMelodyRecs, BassPattern, MelodyIdea, SampleIdea } from "@/dat
 import { melodyRecommendationsDe } from "@/data/melodyRecommendations-de";
 import type { DeMelodyRecs } from "@/data/melodyRecommendations-de";
 import { patternBassData } from "@/data/patternBassData";
+import { generateBassPatternMidi, downloadMidi, midiFilename } from "@/lib/midi";
 import { useGeneratedPatterns } from "@/lib/generatedPatternsStore";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   ArrowLeft, Play, Square, Info, Settings2, Package, Plug,
-  ExternalLink, ChevronRight, Disc3, Piano, Music2, Scissors, Layers,
+  ExternalLink, ChevronRight, Disc3, Piano, Music2, Scissors, Layers, Download,
 } from "lucide-react";
 import { PatternGrid } from "@/components/PatternGrid";
 import { getGenreColorVar } from "@/components/PatternCard";
@@ -367,7 +368,7 @@ function MiniKeyboard({ rawNotes, color }: { rawNotes: string[]; color: string }
   );
 }
 
-function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
+function BassPatternCard({ bp, color, bpm }: { bp: BassPattern; color: string; bpm: number }) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
   const t = useT();
@@ -436,6 +437,21 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
           <div className="pt-3 border-t border-border/50">
             <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Variation ideas", "Variationsideen")}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{bp.variation}</p>
+          </div>
+
+          <div className="pt-3 border-t border-border/50 flex items-center justify-between">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
+              {t("Export to Maschine", "Für Maschine exportieren")}
+            </span>
+            <button
+              onClick={() => downloadMidi(generateBassPatternMidi(bp, bpm), midiFilename(bp.name, bpm))}
+              className="flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1.5 rounded border transition-colors hover:bg-white/10"
+              style={{ color, borderColor: `${color}50`, backgroundColor: `${color}10` }}
+              title={t("Download MIDI file — drag into a Maschine Group", "MIDI-Datei herunterladen — in eine Maschine-Group ziehen")}
+            >
+              <Download className="w-3 h-3" />
+              {t("Download MIDI", "MIDI herunterladen")}
+            </button>
           </div>
         </div>
       )}
@@ -517,6 +533,15 @@ function BassTimingReference({
             >
               {bp.key}
             </span>
+            <button
+              onClick={() => downloadMidi(generateBassPatternMidi(bp, bpm), midiFilename(bp.name, bpm))}
+              className="ml-auto flex items-center gap-1 text-[9px] font-mono px-1.5 py-0.5 rounded border transition-colors hover:bg-white/10"
+              style={{ color, borderColor: `${color}40`, backgroundColor: `${color}08` }}
+              title={t("Download MIDI — drag into a Maschine Group", "MIDI herunterladen — in eine Maschine-Group ziehen")}
+            >
+              <Download className="w-2.5 h-2.5" />
+              MIDI
+            </button>
           </div>
           <BassStepGrid steps={bp.steps} color={color} showTimingRow />
           <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2.5">
@@ -646,7 +671,7 @@ function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
   );
 }
 
-function BassAndMidiSection({ midiRecs, color, deMidiRecs }: { midiRecs: GenreMelodyRecs; color: string; deMidiRecs?: DeMelodyRecs }) {
+function BassAndMidiSection({ midiRecs, color, deMidiRecs, bpm }: { midiRecs: GenreMelodyRecs; color: string; deMidiRecs?: DeMelodyRecs; bpm: number }) {
   const [activeView, setActiveView] = useState<"bass" | "melody">("bass");
   const t = useT();
 
@@ -714,7 +739,7 @@ function BassAndMidiSection({ midiRecs, color, deMidiRecs }: { midiRecs: GenreMe
           {midiRecs.bassPatterns.map((bp, i) => {
             const deBp = deMidiRecs?.bassPatterns?.[i];
             const merged: BassPattern = deBp ? { ...bp, ...deBp } : bp;
-            return <BassPatternCard key={i} bp={merged} color={color} />;
+            return <BassPatternCard key={i} bp={merged} color={color} bpm={bpm} />;
           })}
         </div>
       )}
@@ -992,7 +1017,7 @@ export default function PatternDetail() {
         )}
 
         {effectiveMidiRecs && (
-          <BassAndMidiSection midiRecs={effectiveMidiRecs} color={color} deMidiRecs={effectiveDeMidiRecs} />
+          <BassAndMidiSection midiRecs={effectiveMidiRecs} color={color} deMidiRecs={effectiveDeMidiRecs} bpm={pattern.bpm} />
         )}
       </main>
     </div>
