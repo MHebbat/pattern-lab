@@ -5,8 +5,8 @@ import {
   Play, ChevronDown, Terminal, BookOpen, ExternalLink,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLang } from "@/lib/i18n";
-import { CHEATSHEET_DE, type DeTip, type DeTab } from "@/locales/cheatsheet-de";
+import { useLang, type Lang } from "@/lib/i18n";
+import { CHEATSHEET_DE } from "@/locales/cheatsheet-de";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -748,15 +748,46 @@ const TABS: TabDef[] = [
   }
 ];
 
+// ─── Translation merge ────────────────────────────────────────────────────────
+
+function buildTab(id: TabId, lang: Lang): typeof TABS[0] {
+  const en = TABS.find(t => t.id === id)!;
+  if (lang !== "de") return en;
+  const de = CHEATSHEET_DE[id];
+  if (!de) return en;
+  return {
+    ...en,
+    label: de.label ?? en.label,
+    short: de.short ?? en.short,
+    intro: de.intro ?? en.intro,
+    sections: en.sections.map((sec, si) => {
+      const deSec = de.sections[si];
+      if (!deSec) return sec;
+      return {
+        ...sec,
+        heading: deSec.heading ?? sec.heading,
+        tips: sec.tips.map((tip, ti) => {
+          const deTip = deSec.tips[ti];
+          if (!deTip) return tip;
+          return {
+            ...tip,
+            title: deTip.title ?? tip.title,
+            body: deTip.body ?? tip.body,
+            badge: deTip.badge ?? tip.badge,
+            steps: deTip.steps ?? tip.steps,
+          };
+        }),
+      };
+    }),
+  };
+}
+
 // ─── Tip Card ────────────────────────────────────────────────────────────────
 
-function TipCard({ tip, de, color, index }: { tip: Tip; de?: DeTip; color: string; index: number }) {
+function TipCard({ tip, color, index }: { tip: Tip; color: string; index: number }) {
   const [open, setOpen] = useState(false);
 
-  const title = de?.title ?? tip.title;
-  const body = de?.body ?? tip.body;
-  const badge = de?.badge ?? tip.badge;
-  const steps = de?.steps ?? tip.steps;
+  const { title, body, badge, steps } = tip;
 
   return (
     <div className="border border-border rounded-xl overflow-hidden bg-card">
@@ -841,8 +872,7 @@ export default function CheatSheet() {
 
   const { lang } = useLang();
 
-  const tab = TABS.find(t => t.id === activeTab)!;
-  const tabDe: DeTab | null = lang === "de" ? (CHEATSHEET_DE[activeTab] ?? null) : null;
+  const tab = buildTab(activeTab, lang);
   const allTips = tab.sections.flatMap(s => s.tips);
 
   return (
@@ -872,7 +902,7 @@ export default function CheatSheet() {
             {TABS.map(tabItem => {
               const Icon = tabItem.icon;
               const active = tabItem.id === activeTab;
-              const itemDe = lang === "de" ? CHEATSHEET_DE[tabItem.id] : null;
+              const builtItem = buildTab(tabItem.id, lang);
               return (
                 <button
                   key={tabItem.id}
@@ -883,8 +913,8 @@ export default function CheatSheet() {
                   }}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span className="hidden sm:inline">{itemDe?.label ?? tabItem.label}</span>
-                  <span className="sm:hidden">{itemDe?.short ?? tabItem.short}</span>
+                  <span className="hidden sm:inline">{builtItem.label}</span>
+                  <span className="sm:hidden">{builtItem.short}</span>
                   {active && (
                     <motion.div
                       layoutId="tab-underline"
@@ -917,19 +947,17 @@ export default function CheatSheet() {
                   return <Icon className="w-4 h-4" style={{ color: tab.color }} />;
                 })()}
                 <h1 className="font-bold text-lg tracking-tight" style={{ color: tab.color }}>
-                  {tabDe?.label ?? tab.label}
+                  {tab.label}
                 </h1>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                {tabDe?.intro ?? tab.intro}
+                {tab.intro}
               </p>
             </div>
 
             {/* Sections */}
             <div className="space-y-10">
-              {tab.sections.map((section, si) => {
-                const sectionDe = tabDe?.sections[si] ?? null;
-                return (
+              {tab.sections.map((section, si) => (
                 <div key={si}>
                   {section.heading && (
                     <div className="flex items-center gap-3 mb-4">
@@ -937,7 +965,7 @@ export default function CheatSheet() {
                         className="text-[10px] font-mono font-bold uppercase tracking-widest"
                         style={{ color: tab.color }}
                       >
-                        {sectionDe?.heading ?? section.heading}
+                        {section.heading}
                       </span>
                       <div className="flex-1 h-px bg-border/50" />
                     </div>
@@ -947,12 +975,10 @@ export default function CheatSheet() {
                       const globalIndex = tab.sections
                         .slice(0, si)
                         .reduce((sum, s) => sum + s.tips.length, 0) + ti;
-                      const tipDe = sectionDe?.tips[ti] ?? undefined;
                       return (
                         <TipCard
                           key={ti}
                           tip={tip}
-                          de={tipDe}
                           color={tab.color}
                           index={tab.id === "first-session" ? ti : globalIndex}
                         />
@@ -960,8 +986,7 @@ export default function CheatSheet() {
                     })}
                   </div>
                 </div>
-              );
-            })}
+              ))}
             </div>
 
             {/* First Session: cross-links to genre tabs */}
