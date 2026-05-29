@@ -1,1 +1,2 @@
 - [i18n locale pattern](i18n-locale-pattern.md) — CheatSheet/HardwareGuide have complete DE files; ChopLab/SongLab use per-field merge (de?.field ?? en.field) at render time.
+- [Mac local dev gotchas](mac-local-dev-gotchas.md) — port 5000 blocked by AirPlay, darwin overrides break install, pnpm approve-builds pitfall, stale lockfile fix.
