@@ -3,6 +3,7 @@ import { ArrowLeft, Scissors, Search, Layers, Music2, Package, ChevronRight } fr
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLang, useT } from "@/lib/i18n";
+import { CHOPLAB_TABS_DE, CHOPLAB_PACKS_DE } from "@/locales/choplab-de";
 
 type Step = string;
 type Technique = {
@@ -529,6 +530,12 @@ export default function ChopLab() {
             {currentTab.techniques.map((tech, ti) => {
               const key = `${activeTab}-${ti}`;
               const isExpanded = expandedTip === key;
+              const de = lang === "de" ? CHOPLAB_TABS_DE[activeTab]?.techniques?.[ti] : undefined;
+              const title = de?.title ?? tech.title;
+              const body = de?.body ?? tech.body;
+              const steps = de?.steps ?? tech.steps;
+              const tip = de?.tip ?? tech.tip;
+              const code = de?.code ?? tech.code;
               return (
                 <motion.div
                   key={key}
@@ -544,9 +551,9 @@ export default function ChopLab() {
                     <div className="flex flex-col gap-1.5 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[10px] text-muted-foreground/50 shrink-0">{String(ti + 1).padStart(2, "0")}</span>
-                        <span className="font-semibold text-sm text-foreground leading-tight">{tech.title}</span>
+                        <span className="font-semibold text-sm text-foreground leading-tight">{title}</span>
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed pl-6 line-clamp-2">{tech.body}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed pl-6 line-clamp-2">{body}</p>
                     </div>
                     <ChevronRight
                       className={`w-4 h-4 text-muted-foreground shrink-0 mt-0.5 transition-transform ${isExpanded ? "rotate-90" : ""}`}
@@ -555,9 +562,9 @@ export default function ChopLab() {
 
                   {isExpanded && (
                     <div className="px-5 pb-5 flex flex-col gap-4 border-t border-border/50 pt-4">
-                      {tech.steps && (
+                      {steps && (
                         <ol className="space-y-2">
-                          {tech.steps.map((step, si) => (
+                          {steps.map((step, si) => (
                             <li key={si} className="flex gap-3 text-xs text-muted-foreground leading-relaxed">
                               <span className="font-mono shrink-0 mt-0.5 text-primary">{si + 1}.</span>
                               <span>{step}</span>
@@ -565,15 +572,15 @@ export default function ChopLab() {
                           ))}
                         </ol>
                       )}
-                      {tech.code && (
+                      {code && (
                         <code className="text-xs font-mono bg-background border border-border px-3 py-2 rounded block text-muted-foreground leading-relaxed">
-                          {tech.code}
+                          {code}
                         </code>
                       )}
-                      {tech.tip && (
+                      {tip && (
                         <div className="flex items-start gap-2 bg-primary/5 border border-primary/20 rounded-md px-3 py-2">
-                          <span className="text-[10px] font-mono text-primary uppercase tracking-widest shrink-0 mt-0.5">USE WITH</span>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{tech.tip}</p>
+                          <span className="text-[10px] font-mono text-primary uppercase tracking-widest shrink-0 mt-0.5">{lang === "de" ? "PASSEND ZU" : "USE WITH"}</span>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{tip}</p>
                         </div>
                       )}
                     </div>
@@ -594,15 +601,26 @@ export default function ChopLab() {
           <div className="mb-6">
             <h2 className="text-xl font-bold tracking-tight flex items-center gap-2 mb-1">
               <Package className="w-5 h-5 text-muted-foreground" />
-              Your Pack Profiles
+              {lang === "de" ? "Deine Pack-Profile" : "Your Pack Profiles"}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Specific chopping strategy for each pack in your library — what to look for and how to approach it
+              {lang === "de"
+                ? "Spezifische Chopping-Strategie für jeden Pack in deiner Bibliothek — wonach du suchst und wie du vorgehst"
+                : "Specific chopping strategy for each pack in your library — what to look for and how to approach it"}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {PACK_PROFILES.map((pack, i) => (
+            {PACK_PROFILES.map((pack, i) => {
+              const dePack = lang === "de" ? CHOPLAB_PACKS_DE[pack.name] : undefined;
+              const packType = dePack?.type ?? pack.type;
+              const packMethod = dePack?.primaryTechnique ?? pack.primaryTechnique;
+              const packBestChops = dePack?.bestChops ?? pack.bestChops;
+              const packTips = dePack?.tips ?? pack.tips;
+              const choppabilityLabel = lang === "de"
+                ? ({ easy: "EINFACH", medium: "MITTEL", advanced: "FORTG." } as Record<string, string>)[pack.choppability] ?? pack.choppability.toUpperCase()
+                : pack.choppability.toUpperCase();
+              return (
               <motion.div
                 key={pack.name}
                 initial={{ opacity: 0, y: 8 }}
@@ -613,7 +631,7 @@ export default function ChopLab() {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <h3 className="font-bold text-sm text-foreground">{pack.name}</h3>
-                    <p className="text-xs text-muted-foreground">{pack.type}</p>
+                    <p className="text-xs text-muted-foreground">{packType}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className="text-[10px] font-mono px-1.5 py-0.5 rounded border" style={{
@@ -621,7 +639,7 @@ export default function ChopLab() {
                       borderColor: `${CHOPPABILITY_COLOR[pack.choppability]}40`,
                       backgroundColor: `${CHOPPABILITY_COLOR[pack.choppability]}10`
                     }}>
-                      {pack.choppability.toUpperCase()}
+                      {choppabilityLabel}
                     </span>
                   </div>
                 </div>
@@ -632,18 +650,18 @@ export default function ChopLab() {
                     <span className="text-xs text-muted-foreground">{pack.bpmRange}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-0.5">Method</span>
-                    <span className="text-xs text-muted-foreground">{pack.primaryTechnique}</span>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-0.5">{lang === "de" ? "Methode" : "Method"}</span>
+                    <span className="text-xs text-muted-foreground">{packMethod}</span>
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">Best Chops</span>
-                  <span className="text-xs text-muted-foreground">{pack.bestChops}</span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{lang === "de" ? "Beste Chops" : "Best Chops"}</span>
+                  <span className="text-xs text-muted-foreground">{packBestChops}</span>
                 </div>
 
                 <div className="border-t border-border/50 pt-3 space-y-2">
-                  {pack.tips.map((tip, ti) => (
+                  {packTips.map((tip, ti) => (
                     <div key={ti} className="flex gap-2 text-xs text-muted-foreground leading-relaxed">
                       <ChevronRight className="w-3 h-3 shrink-0 mt-0.5 text-muted-foreground/40" />
                       <span>{tip}</span>
@@ -651,7 +669,8 @@ export default function ChopLab() {
                   ))}
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       </main>

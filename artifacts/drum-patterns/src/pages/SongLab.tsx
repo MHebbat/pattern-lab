@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useLang, useT } from "@/lib/i18n";
+import {
+  SONGLAB_BLUEPRINTS_DE, SONGLAB_VARIATIONS_DE, SONGLAB_LAYERS_DE,
+  SONGLAB_ARRANGER_DE, SONGLAB_ARRANGER_INTRO_DE,
+} from "@/locales/songlab-de";
 import { Link } from "wouter";
 import { ArrowLeft, FlaskConical, Map, GitBranch, Layers, MonitorSpeaker, ChevronRight } from "lucide-react";
 import { getGenreColorVar } from "@/components/PatternCard";
@@ -707,7 +711,8 @@ function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string 
 }
 
 function ArrangerWorkflow({ color }: { color: string }) {
-  const steps = [
+  const { lang } = useLang();
+  const stepsEN = [
     { step: "1", title: "Set up Groups correctly", detail: "Group A = Drums (kick, snare, hats, perc — all on separate pads within the group). Group B = Bass (one Massive X or Kontakt instrument). Group C = Sample. Group D = Keys/Chords. Group E = Pads. Each group handles its own internal mixing." },
     { step: "2", title: "Create Pattern A and Pattern B per Group", detail: "In each Group, create 2 Patterns: Pattern 1 is the Main version, Pattern 2 is the Variation. For drums: Pattern 1 = full groove, Pattern 2 = stripped or open hats. For bass: Pattern 1 = full bass line, Pattern 2 = root notes only. For sample: Pattern 1 = full loop, Pattern 2 = quiet/filtered version." },
     { step: "3", title: "Create Scenes for each song section", detail: "Scene 1: Intro. Scene 2: Verse A. Scene 3: Verse B. Scene 4: Pre-Hook. Scene 5: Hook. Scene 6: Bridge. Scene 7: Outro. Name each scene using SHIFT + the scene pad, then select 'Rename'. Short, clear names (V1-A, HOOK, BRDG)." },
@@ -721,12 +726,17 @@ function ArrangerWorkflow({ color }: { color: string }) {
     { step: "11", title: "The 'listen back' rule", detail: "After building the full arrangement, close Maschine and open the exported audio in any player. Listen without touching anything for the full duration. Note the moments that feel too long, too empty, or too busy. Go back and fix only those moments. One session of listening = more improvement than 2 hours of tweaking in real time." },
     { step: "12", title: "Breathing room checklist", detail: "Before calling it done, verify: (1) At least one 4-bar section with no drums. (2) At least two points where hats are completely removed. (3) The bass does NOT play in the intro. (4) The sample filters open on at least one pre-hook. (5) The last section ENDS — no long fadeout unless it's R&B. These five rules will make any arrangement feel professional." },
   ];
+  const steps = lang === "de"
+    ? SONGLAB_ARRANGER_DE.map((s, i) => ({ step: String(i + 1), title: s.title, detail: s.detail }))
+    : stepsEN;
 
   return (
     <div className="space-y-3">
       <div className="p-4 rounded-lg border border-border/50 bg-card/40 mb-6">
         <p className="text-xs text-muted-foreground leading-relaxed">
-          The Maschine MK3 workflow below assumes you have your drum Group, bass Group, sample Group, and keys Group already set up from the Chop Lab and Pattern pages. This is the arrangement layer that sits on top of all of that — turning a single-bar loop into a full song structure.
+          {lang === "de"
+            ? SONGLAB_ARRANGER_INTRO_DE
+            : "The Maschine MK3 workflow below assumes you have your drum Group, bass Group, sample Group, and keys Group already set up from the Chop Lab and Pattern pages. This is the arrangement layer that sits on top of all of that — turning a single-bar loop into a full song structure."}
         </p>
       </div>
       {steps.map((s, i) => (
@@ -774,6 +784,14 @@ export default function SongLab() {
   const blueprint = songBlueprints[activeGenre];
   const variations = beatVariations[activeGenre];
 
+  const deBlueprint = lang === "de" ? SONGLAB_BLUEPRINTS_DE[activeGenre] : undefined;
+  const displaySections = blueprint.sections.map((s, i) => ({
+    ...s,
+    name: deBlueprint?.sections[i]?.name ?? s.name,
+    note: deBlueprint?.sections[i]?.note ?? s.note,
+  }));
+  const displayTitle = deBlueprint?.title ?? blueprint.title;
+
   return (
     <div className="min-h-[100dvh] bg-background text-foreground pb-20">
       <header className="border-b border-border bg-background/95 sticky top-0 z-40">
@@ -816,7 +834,7 @@ export default function SongLab() {
             <h1 className="text-3xl font-bold tracking-tight">Song Lab</h1>
           </div>
           <p className="text-muted-foreground max-w-2xl">
-            {blueprint.title} · {blueprint.tempo}
+            {displayTitle} · {blueprint.tempo}
           </p>
           <p className="text-sm text-muted-foreground/60 mt-1">
             {t(
@@ -852,10 +870,10 @@ export default function SongLab() {
               <p className="text-sm text-muted-foreground">{t("Visual map of each section — how many bars and which layers are active. Click a section to read the arrangement notes.", "Visuelle Übersicht jedes Abschnitts — wie viele Takte und welche Ebenen aktiv sind. Klicke einen Abschnitt für die Arrangement-Hinweise.")}</p>
             </div>
             <div className="border border-border rounded-lg p-6 bg-card mb-8">
-              <SongTimeline sections={blueprint.sections} color={color} />
+              <SongTimeline sections={displaySections} color={color} />
             </div>
             <div className="grid md:grid-cols-2 gap-3">
-              {blueprint.sections.map((s, i) => (
+              {displaySections.map((s, i) => (
                 <div key={i} className="border border-border/50 rounded-lg p-4 bg-card/40">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="font-semibold text-sm" style={{ color }}>{s.name}</span>
@@ -878,9 +896,11 @@ export default function SongLab() {
               </p>
             </div>
             <div className="space-y-3">
-              {variations.map((v, i) => (
-                <VariationCard key={i} variation={v} color={color} />
-              ))}
+              {variations.map((v, i) => {
+                const deV = lang === "de" ? SONGLAB_VARIATIONS_DE[activeGenre]?.[i] : undefined;
+                const merged = deV ? { ...v, ...deV } : v;
+                return <VariationCard key={i} variation={merged} color={color} />;
+              })}
             </div>
           </motion.div>
         )}
@@ -895,9 +915,11 @@ export default function SongLab() {
               </p>
             </div>
             <div className="space-y-3">
-              {layerGuide.map((layer, i) => (
-                <LayerCardComponent key={i} layer={layer} color={color} />
-              ))}
+              {layerGuide.map((layer, i) => {
+                const deL = lang === "de" ? SONGLAB_LAYERS_DE[i] : undefined;
+                const merged = deL ? { ...layer, ...deL } : layer;
+                return <LayerCardComponent key={i} layer={merged} color={color} />;
+              })}
             </div>
           </motion.div>
         )}
