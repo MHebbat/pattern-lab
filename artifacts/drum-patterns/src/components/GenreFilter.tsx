@@ -1,4 +1,5 @@
 import { Genre } from "@/data/patterns";
+import { useLang } from "@/lib/i18n";
 
 interface GenreFilterProps {
   currentGenre: Genre | "all";
@@ -7,8 +8,10 @@ interface GenreFilterProps {
 }
 
 export function GenreFilter({ currentGenre, onSelect, counts }: GenreFilterProps) {
+  const { lang } = useLang();
+
   const tabs: { value: Genre | "all"; label: string }[] = [
-    { value: "all", label: "All" },
+    { value: "all", label: lang === "de" ? "Alle" : "All" },
     { value: "boom-bap", label: "Boom Bap" },
     { value: "hip-hop", label: "Hip Hop" },
     { value: "rnb", label: "R&B" },

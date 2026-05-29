@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useLang, useT } from "@/lib/i18n";
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Dna, Drum, Cpu, Lightbulb, Package, ChevronDown, ChevronRight, Play, Square, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
@@ -289,9 +290,19 @@ const TABS = [
   { id: "packs",      label: "Pack & Tools",   icon: Package },
 ] as const;
 
+const TAB_LABELS_DE: Record<string, string> = {
+  dna: "Stil-DNA",
+  patterns: "Drum-Patterns",
+  kit: "Kit-Setup",
+  techniques: "Techniken",
+  packs: "Pack & Tools",
+};
+
 type TabId = typeof TABS[number]["id"];
 
 export default function MasterClassDetail() {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const { id } = useParams<{ id: string }>();
   const producer = producers.find(p => p.id === id);
   const [activeTab, setActiveTab] = useState<TabId>("dna");
@@ -329,8 +340,8 @@ export default function MasterClassDetail() {
     return (
       <div className="min-h-[100dvh] bg-background text-foreground flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-muted-foreground">Producer not found</p>
-          <Link href="/masterclass" className="text-sm text-foreground hover:underline">Back to Masterclasses</Link>
+          <p className="text-muted-foreground">{t("Producer not found", "Produzent nicht gefunden")}</p>
+          <Link href="/masterclass" className="text-sm text-foreground hover:underline">{t("Back to Masterclasses", "Zurück zu Masterclasses")}</Link>
         </div>
       </div>
     );
@@ -345,6 +356,18 @@ export default function MasterClassDetail() {
           <Link href="/masterclass" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium">
             <ArrowLeft className="w-4 h-4" /> Masterclasses
           </Link>
+          <div className="flex-1" />
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >EN</button>
+            <div className="w-px h-4 bg-border" />
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >DE</button>
+          </div>
         </div>
       </header>
 
@@ -395,7 +418,7 @@ export default function MasterClassDetail() {
                 style={activeTab === tab.id ? { backgroundColor: `${color}20`, color } : { color: "var(--muted-foreground)" }}
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
-                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="hidden sm:inline">{lang === "de" ? TAB_LABELS_DE[tab.id] : tab.label}</span>
               </button>
             );
           })}
@@ -405,20 +428,20 @@ export default function MasterClassDetail() {
         {activeTab === "dna" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div className="border border-border rounded-xl p-6 bg-card">
-              <h2 className="font-semibold text-sm text-muted-foreground/60 uppercase tracking-widest mb-3 font-mono">Biography</h2>
+              <h2 className="font-semibold text-sm text-muted-foreground/60 uppercase tracking-widest mb-3 font-mono">{t("Biography", "Biografie")}</h2>
               <p className="text-sm text-foreground leading-relaxed">{producer.bio}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="border border-border rounded-xl p-5 bg-card">
                 <h2 className="font-semibold text-sm uppercase tracking-widest mb-3 font-mono" style={{ color }}>
-                  Drum Philosophy
+                  {t("Drum Philosophy", "Drum-Philosophie")}
                 </h2>
                 <p className="text-xs text-muted-foreground leading-relaxed italic">"{producer.drumPhilosophy}"</p>
               </div>
               <div className="border border-border rounded-xl p-5 bg-card">
                 <h2 className="font-semibold text-sm uppercase tracking-widest mb-3 font-mono" style={{ color }}>
-                  Sample Philosophy
+                  {t("Sample Philosophy", "Sample-Philosophie")}
                 </h2>
                 <p className="text-xs text-muted-foreground leading-relaxed italic">"{producer.samplePhilosophy}"</p>
               </div>
@@ -426,7 +449,7 @@ export default function MasterClassDetail() {
 
             <div className="border border-border rounded-xl p-5 bg-card">
               <h2 className="font-semibold text-sm uppercase tracking-widest mb-4 font-mono" style={{ color }}>
-                Style Markers
+                {t("Style Markers", "Stil-Merkmale")}
               </h2>
               <div className="space-y-2">
                 {producer.styleMarkers.map((marker, i) => (
@@ -505,11 +528,11 @@ export default function MasterClassDetail() {
                         <p className="text-[10px] text-muted-foreground mt-0.5">{pad.sound}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">Pack</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">{t("Pack", "Pack")}</p>
                         <p className="text-xs" style={{ color }}>{pad.pack}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">Processing</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">{t("Processing", "Bearbeitung")}</p>
                         <p className="text-[10px] text-muted-foreground leading-relaxed">{pad.processing}</p>
                       </div>
                     </div>
@@ -522,9 +545,9 @@ export default function MasterClassDetail() {
             <div className="flex items-start gap-3 border rounded-xl p-4 bg-card" style={{ borderColor: `${color}20` }}>
               <BookOpen className="w-4 h-4 shrink-0 mt-0.5" style={{ color }} />
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-foreground mb-0.5">New to Maschine MK3?</p>
+                <p className="text-xs font-semibold text-foreground mb-0.5">{t("New to Maschine MK3?", "Neu bei Maschine MK3?")}</p>
                 <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  The Cheat Sheet has step-by-step hardware instructions for loading sounds, setting choke groups, and every control shown in this kit layout.
+                  {t("The Cheat Sheet has step-by-step hardware instructions for loading sounds, setting choke groups, and every control shown in this kit layout.", "Das Cheat Sheet enthält Schritt-für-Schritt-Hardware-Anweisungen zum Laden von Sounds, Einrichten von Choke-Gruppen und allen in diesem Kit-Layout gezeigten Bedienelementen.")}
                 </p>
                 <Link
                   href="/cheatsheet?tab=core-controls"
@@ -542,9 +565,12 @@ export default function MasterClassDetail() {
         {activeTab === "techniques" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-5">
             <div>
-              <h2 className="font-semibold text-foreground mb-1">Key Techniques</h2>
+              <h2 className="font-semibold text-foreground mb-1">{t("Key Techniques", "Schlüssel-Techniken")}</h2>
               <p className="text-xs text-muted-foreground">
-                {producer.name.split(" ")[0]}'s specific methods translated into Maschine MK3 workflow steps. Click each technique to expand the full instructions.
+                {t(
+                  `${producer.name.split(" ")[0]}'s specific methods translated into Maschine MK3 workflow steps. Click each technique to expand the full instructions.`,
+                  `${producer.name.split(" ")[0]}s spezifische Methoden als Maschine-MK3-Workflow-Schritte. Klicke eine Technik zum Erweitern.`
+                )}
               </p>
             </div>
             <div className="space-y-2">
@@ -557,7 +583,7 @@ export default function MasterClassDetail() {
             <div className="flex items-start gap-3 border rounded-xl p-4 bg-card" style={{ borderColor: `${color}20` }}>
               <BookOpen className="w-4 h-4 shrink-0 mt-0.5" style={{ color }} />
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-foreground mb-0.5">Apply these in Maschine</p>
+                <p className="text-xs font-semibold text-foreground mb-0.5">{t("Apply these in Maschine", "In Maschine anwenden")}</p>
                 <p className="text-[10px] text-muted-foreground leading-relaxed">
                   The {cheatSheetTabLabel(producer.tags)} Cheat Sheet has exact button presses and parameter values for the techniques {producer.name.split(" ")[0]} is known for.
                 </p>
@@ -577,8 +603,8 @@ export default function MasterClassDetail() {
         {activeTab === "packs" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div>
-              <h2 className="font-semibold text-foreground mb-1">Pack Recommendations</h2>
-              <p className="text-xs text-muted-foreground">From your existing pack collection — which to reach for and exactly why.</p>
+              <h2 className="font-semibold text-foreground mb-1">{t("Pack Recommendations", "Pack-Empfehlungen")}</h2>
+              <p className="text-xs text-muted-foreground">{t("From your existing pack collection — which to reach for and exactly why.", "Aus deiner bestehenden Pack-Sammlung — welche du nimmst und genau warum.")}</p>
             </div>
 
             <div className="space-y-3">
@@ -597,9 +623,12 @@ export default function MasterClassDetail() {
 
             <div className="border rounded-xl overflow-hidden" style={{ borderColor: `${color}30` }}>
               <div className="p-5 border-b" style={{ borderColor: `${color}20`, backgroundColor: `${color}08` }}>
-                <h2 className="font-semibold text-sm text-foreground">Korg microKEY Tips</h2>
+                <h2 className="font-semibold text-sm text-foreground">{t("Korg microKEY Tips", "Korg microKEY Tipps")}</h2>
                 <p className="text-xs text-muted-foreground/60 mt-1">
-                  How {producer.name.split(" ")[0]} would use your MIDI keyboard in the Maschine workflow.
+                  {t(
+                    `How ${producer.name.split(" ")[0]} would use your MIDI keyboard in the Maschine workflow.`,
+                    `Wie ${producer.name.split(" ")[0]} deine MIDI-Tastatur im Maschine-Workflow nutzen würde.`
+                  )}
                 </p>
               </div>
               <div className="divide-y" style={{ borderColor: `${color}15` }}>
@@ -628,7 +657,7 @@ export default function MasterClassDetail() {
                     {prev ? (
                       <Link href={`/masterclass/${prev.id}`} className="flex-1">
                         <div className="border border-border rounded-lg p-3 hover:bg-white/5 transition-colors text-left">
-                          <p className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest mb-0.5">Previous</p>
+                          <p className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest mb-0.5">{t("Previous", "Vorheriger")}</p>
                           <p className="text-sm font-semibold text-foreground">{prev.name}</p>
                         </div>
                       </Link>
@@ -636,7 +665,7 @@ export default function MasterClassDetail() {
                     {next ? (
                       <Link href={`/masterclass/${next.id}`} className="flex-1">
                         <div className="border border-border rounded-lg p-3 hover:bg-white/5 transition-colors text-right">
-                          <p className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest mb-0.5">Next</p>
+                          <p className="text-[9px] font-mono text-muted-foreground/40 uppercase tracking-widest mb-0.5">{t("Next", "Nächster")}</p>
                           <p className="text-sm font-semibold text-foreground">{next.name}</p>
                         </div>
                       </Link>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLang, useT } from "@/lib/i18n";
 import { Link } from "wouter";
 import { ArrowLeft, FlaskConical, Map, GitBranch, Layers, MonitorSpeaker, ChevronRight } from "lucide-react";
 import { getGenreColorVar } from "@/components/PatternCard";
@@ -480,6 +481,7 @@ function presenceStyle(presence: Presence, color: string): React.CSSProperties {
 }
 
 function SongTimeline({ sections, color }: { sections: SongSection[]; color: string }) {
+  const { lang } = useLang();
   const [activeSection, setActiveSection] = useState<number | null>(null);
 
   return (
@@ -511,7 +513,7 @@ function SongTimeline({ sections, color }: { sections: SongSection[]; color: str
           {LAYER_KEYS.map(layer => (
             <div key={layer} className="flex gap-1 mb-0.5">
               <div className="w-28 shrink-0 flex items-center">
-                <span className="text-[10px] font-mono text-muted-foreground/60 truncate">{LAYER_LABELS[layer]}</span>
+                <span className="text-[10px] font-mono text-muted-foreground/60 truncate">{lang === "de" ? ({ drums: "Kick / Snare", hats: "Hi-Hats", sample: "Sample", bass: "Bass", keys: "Keys / Melodie", pads: "Pad / Atmos", fx: "FX / Trans" } as Record<string, string>)[layer] ?? LAYER_LABELS[layer] : LAYER_LABELS[layer]}</span>
               </div>
               {sections.map((s, i) => (
                 <div
@@ -550,13 +552,13 @@ function SongTimeline({ sections, color }: { sections: SongSection[]; color: str
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="font-semibold text-sm" style={{ color }}>{sections[activeSection].name}</span>
-            <span className="text-[10px] font-mono text-muted-foreground/50">{sections[activeSection].bars} bars</span>
+            <span className="text-[10px] font-mono text-muted-foreground/50">{sections[activeSection].bars} {lang === "de" ? "Takte" : "bars"}</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">{sections[activeSection].note}</p>
         </motion.div>
       )}
       {activeSection === null && (
-        <p className="text-[11px] text-muted-foreground/40 font-mono text-center">Click any section to see arrangement notes</p>
+        <p className="text-[11px] text-muted-foreground/40 font-mono text-center">{lang === "de" ? "Klicke einen Abschnitt für Arrangement-Hinweise" : "Click any section to see arrangement notes"}</p>
       )}
     </div>
   );
@@ -601,6 +603,7 @@ function MiniStepGrid({ rows, color }: { rows: VariationRow[]; color: string }) 
 }
 
 function VariationCard({ variation, color }: { variation: BeatVariation; color: string }) {
+  const { lang } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
@@ -628,11 +631,11 @@ function VariationCard({ variation, color }: { variation: BeatVariation; color: 
       {open && (
         <div className="border-t border-border/60 p-4 space-y-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Step grid</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{lang === "de" ? "Step-Grid" : "Step grid"}</span>
             <MiniStepGrid rows={variation.rows} color={color} />
           </div>
           <div className="pt-3 border-t border-border/40">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Maschine MK3 — how to create it</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{lang === "de" ? "Maschine MK3 — wie man es erstellt" : "Maschine MK3 — how to create it"}</span>
             <ol className="space-y-2">
               {variation.maschineSteps.map((step, i) => (
                 <li key={i} className="flex gap-2.5 text-xs text-muted-foreground leading-relaxed">
@@ -649,6 +652,7 @@ function VariationCard({ variation, color }: { variation: BeatVariation; color: 
 }
 
 function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string }) {
+  const { lang } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
@@ -685,15 +689,15 @@ function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string 
       {open && (
         <div className="border-t border-border/60 p-4 grid sm:grid-cols-3 gap-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">When to introduce</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Wann einführen" : "When to introduce"}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.whenToIntroduce}</p>
           </div>
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Processing</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Bearbeitung" : "Processing"}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.processing}</p>
           </div>
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Breathing room tip</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Atemraum-Tipp" : "Breathing room tip"}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.breathingTip}</p>
           </div>
         </div>
@@ -752,15 +756,17 @@ function ArrangerWorkflow({ color }: { color: string }) {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 const TABS = [
-  { id: "blueprint", label: "Song Blueprint", icon: Map },
-  { id: "variations", label: "Beat Variations", icon: GitBranch },
-  { id: "layers", label: "Instrument Layers", icon: Layers },
-  { id: "arranger", label: "Maschine Arranger", icon: MonitorSpeaker },
+  { id: "blueprint", label: "Song Blueprint", labelDe: "Song-Blaupause", icon: Map },
+  { id: "variations", label: "Beat Variations", labelDe: "Beat-Variationen", icon: GitBranch },
+  { id: "layers", label: "Instrument Layers", labelDe: "Instrument-Ebenen", icon: Layers },
+  { id: "arranger", label: "Maschine Arranger", labelDe: "Maschine-Arranger", icon: MonitorSpeaker },
 ] as const;
 
 type TabId = typeof TABS[number]["id"];
 
 export default function SongLab() {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const [activeGenre, setActiveGenre] = useState<Genre>("boom-bap");
   const [activeTab, setActiveTab] = useState<TabId>("blueprint");
   const color = getGenreColorVar(activeGenre);
@@ -774,9 +780,20 @@ export default function SongLab() {
         <div className="container mx-auto px-6 h-16 flex items-center gap-4">
           <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium">
             <ArrowLeft className="w-4 h-4" />
-            Back
+            {t("Back", "Zurück")}
           </Link>
           <div className="flex-1" />
+          <div className="flex items-center border border-border rounded-md overflow-hidden mr-2">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >EN</button>
+            <div className="w-px h-4 bg-border" />
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >DE</button>
+          </div>
           <div className="flex items-center border border-border rounded-md overflow-hidden">
             {(["boom-bap", "hip-hop", "rnb"] as Genre[]).map(g => (
               <button
@@ -802,7 +819,10 @@ export default function SongLab() {
             {blueprint.title} · {blueprint.tempo}
           </p>
           <p className="text-sm text-muted-foreground/60 mt-1">
-            Beat variations, instrument layering order, breathing room techniques, and a step-by-step Maschine MK3 arrangement workflow.
+            {t(
+              "Beat variations, instrument layering order, breathing room techniques, and a step-by-step Maschine MK3 arrangement workflow.",
+              "Beat-Variationen, Instrument-Reihenfolge, Atemraum-Techniken und ein Schritt-für-Schritt-Maschine-MK3-Arrangement-Workflow."
+            )}
           </p>
         </motion.div>
 
@@ -818,7 +838,7 @@ export default function SongLab() {
                 style={activeTab === tab.id ? { backgroundColor: `${color}20`, color } : { color: "var(--muted-foreground)" }}
               >
                 <Icon className="w-4 h-4 shrink-0" />
-                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="hidden sm:inline">{lang === "de" ? tab.labelDe : tab.label}</span>
               </button>
             );
           })}
@@ -828,8 +848,8 @@ export default function SongLab() {
         {activeTab === "blueprint" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-4">
-              <h2 className="text-lg font-semibold mb-1">Song Structure Overview</h2>
-              <p className="text-sm text-muted-foreground">Visual map of each section — how many bars and which layers are active. Click a section to read the arrangement notes.</p>
+              <h2 className="text-lg font-semibold mb-1">{t("Song Structure Overview", "Song-Strukturübersicht")}</h2>
+              <p className="text-sm text-muted-foreground">{t("Visual map of each section — how many bars and which layers are active. Click a section to read the arrangement notes.", "Visuelle Übersicht jedes Abschnitts — wie viele Takte und welche Ebenen aktiv sind. Klicke einen Abschnitt für die Arrangement-Hinweise.")}</p>
             </div>
             <div className="border border-border rounded-lg p-6 bg-card mb-8">
               <SongTimeline sections={blueprint.sections} color={color} />
@@ -852,9 +872,9 @@ export default function SongLab() {
         {activeTab === "variations" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-1">Beat Variations</h2>
+              <h2 className="text-lg font-semibold mb-1">{t("Beat Variations", "Beat-Variationen")}</h2>
               <p className="text-sm text-muted-foreground">
-                Five scene-based variations from your single base pattern. Each is a different Scene in Maschine — same Group, different Pattern and pad mutes. Click any variation to see the step grid and Maschine instructions.
+                {t("Five scene-based variations from your single base pattern. Each is a different Scene in Maschine — same Group, different Pattern and pad mutes. Click any variation to see the step grid and Maschine instructions.", "Fünf szenenbasierte Variationen aus deinem einzelnen Basis-Pattern. Jede ist eine andere Scene in Maschine — gleiche Group, anderes Pattern und Pad-Mutes. Klicke eine Variation, um das Step-Grid und die Maschine-Anweisungen zu sehen.")}
               </p>
             </div>
             <div className="space-y-3">
@@ -869,9 +889,9 @@ export default function SongLab() {
         {activeTab === "layers" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-1">Instrument Layers</h2>
+              <h2 className="text-lg font-semibold mb-1">{t("Instrument Layers", "Instrument-Ebenen")}</h2>
               <p className="text-sm text-muted-foreground">
-                The order to add instruments to your beat — from foundation to texture. Each layer includes pack references, processing settings, and a breathing room tip for when to pull it back.
+                {t("The order to add instruments to your beat — from foundation to texture. Each layer includes pack references, processing settings, and a breathing room tip for when to pull it back.", "Die Reihenfolge, in der Instrumente zum Beat hinzugefügt werden — vom Fundament bis zur Textur. Jede Ebene enthält Pack-Referenzen, Bearbeitungseinstellungen und einen Tipp zum Zurückziehen.")}
               </p>
             </div>
             <div className="space-y-3">
@@ -886,9 +906,9 @@ export default function SongLab() {
         {activeTab === "arranger" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-1">Maschine MK3 Arranger — Full Workflow</h2>
+              <h2 className="text-lg font-semibold mb-1">{t("Maschine MK3 Arranger — Full Workflow", "Maschine MK3 Arranger — Vollständiger Workflow")}</h2>
               <p className="text-sm text-muted-foreground">
-                12 steps from single loop to complete exported song. Specific to Maschine MK3 hardware and software with Korg microKEY as live MIDI input.
+                {t("12 steps from single loop to complete exported song. Specific to Maschine MK3 hardware and software with Korg microKEY as live MIDI input.", "12 Schritte vom einzelnen Loop bis zum komplett exportierten Song. Speziell für Maschine-MK3-Hardware und -Software mit Korg microKEY als Live-MIDI-Eingabe.")}
               </p>
             </div>
             <ArrangerWorkflow color={color} />

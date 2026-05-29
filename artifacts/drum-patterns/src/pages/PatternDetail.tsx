@@ -1,4 +1,5 @@
 import { useParams, Link } from "wouter";
+import { useLang, useT } from "@/lib/i18n";
 import { patterns } from "@/data/patterns";
 import { soundRecommendations } from "@/data/soundRecommendations";
 import { melodyRecommendations } from "@/data/melodyRecommendations";
@@ -42,6 +43,7 @@ const SAMPLE_TYPE_LABELS: Record<SampleIdea["sampleType"], string> = {
 };
 
 function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; color: string }) {
+  const { lang } = useLang();
   return (
     <div className="mt-2 pt-2 border-t border-border/50 space-y-1.5">
       <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">Alternatives</span>
@@ -61,7 +63,7 @@ function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; 
                 className="flex items-center gap-1 text-[11px] hover:opacity-80 transition-opacity"
                 style={{ color }}>
                 <ExternalLink className="w-2.5 h-2.5" />
-                {alt.free ? "Download free" : "View"}
+                {alt.free ? (lang === "de" ? "Kostenlos laden" : "Download free") : (lang === "de" ? "Ansehen" : "View")}
               </a>
             )}
           </div>
@@ -72,6 +74,7 @@ function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; 
 }
 
 function PackCard({ pack, color }: { pack: PackRec; color: string }) {
+  const { lang } = useLang();
   return (
     <div className="border border-border rounded-lg p-4 flex flex-col gap-2 bg-card hover:border-opacity-60 transition-colors">
       <div className="flex items-start justify-between gap-2">
@@ -103,7 +106,7 @@ function PackCard({ pack, color }: { pack: PackRec; color: string }) {
           style={{ color }}
         >
           <ExternalLink className="w-3 h-3" />
-          {pack.free ? "Download free" : "View pack"}
+          {pack.free ? (lang === "de" ? "Kostenlos laden" : "Download free") : (lang === "de" ? "Pack ansehen" : "View pack")}
         </a>
       )}
       {pack.alternatives && pack.alternatives.length > 0 && (
@@ -137,6 +140,7 @@ function PluginCard({ plugin, color }: { plugin: PluginRec; color: string }) {
 }
 
 function SampleCard({ sample, color }: { sample: SampleIdea; color: string }) {
+  const { lang } = useLang();
   const typeIcon = sample.sampleType === "texture" ? (
     <Layers className="w-3 h-3" />
   ) : sample.sampleType === "chop" || sample.sampleType === "chop-or-clean" ? (
@@ -179,11 +183,11 @@ function SampleCard({ sample, color }: { sample: SampleIdea; color: string }) {
 
       <div className="space-y-2">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">What to look for</span>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{lang === "de" ? "Worauf achten" : "What to look for"}</span>
           <p className="text-xs text-muted-foreground leading-relaxed">{sample.lookFor}</p>
         </div>
         <div className="pt-2 border-t border-border/50">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">Treatment</span>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{lang === "de" ? "Behandlung" : "Treatment"}</span>
           <p className="text-xs text-muted-foreground leading-relaxed">{sample.treatment}</p>
         </div>
       </div>
@@ -315,6 +319,7 @@ function MiniKeyboard({ rawNotes, color }: { rawNotes: string[]; color: string }
 }
 
 function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
+  const { lang } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
@@ -354,7 +359,7 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
               </span>
               <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
                 <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color, opacity: 0.55 }} />
-                Ghost
+                {lang === "de" ? "Ghost" : "Ghost"}
               </span>
             </div>
           </div>
@@ -542,6 +547,8 @@ function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; co
 }
 
 export default function PatternDetail() {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const params = useParams();
   const { generatedPatterns } = useGeneratedPatterns();
   const pattern = patterns.find(p => p.id === params.id) ?? generatedPatterns.find(p => p.id === params.id);
@@ -589,8 +596,8 @@ export default function PatternDetail() {
   if (!pattern) {
     return (
       <div className="min-h-[100dvh] flex items-center justify-center text-muted-foreground flex-col gap-4">
-        <p>Pattern not found</p>
-        <Link href="/" className="text-primary hover:underline">Return to Browser</Link>
+        <p>{t("Pattern not found", "Muster nicht gefunden")}</p>
+        <Link href="/" className="text-primary hover:underline">{t("Return to Browser", "Zurück zum Browser")}</Link>
       </div>
     );
   }
@@ -605,18 +612,29 @@ export default function PatternDetail() {
         <div className="container mx-auto px-6 h-16 flex items-center">
           <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium mr-8">
             <ArrowLeft className="w-4 h-4" />
-            Back
+            {t("Back", "Zurück")}
           </Link>
           <div className="flex-1" />
+          <div className="flex items-center border border-border rounded-md overflow-hidden mr-3">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >EN</button>
+            <div className="w-px h-4 bg-border" />
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >DE</button>
+          </div>
           <Button
             onClick={togglePlayback}
             className={`gap-2 ${isPlaying ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
             data-testid="button-play"
           >
             {isPlaying ? (
-              <><Square className="w-4 h-4" fill="currentColor" /> Stop Pattern</>
+              <><Square className="w-4 h-4" fill="currentColor" /> {t("Stop Pattern", "Muster stoppen")}</>
             ) : (
-              <><Play className="w-4 h-4" fill="currentColor" /> Play Pattern</>
+              <><Play className="w-4 h-4" fill="currentColor" /> {t("Play Pattern", "Muster abspielen")}</>
             )}
           </Button>
         </div>
@@ -664,11 +682,11 @@ export default function PatternDetail() {
           <div className="lg:col-span-2">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-lg font-semibold flex items-center gap-2">
-                Step Sequencer
+                {t("Step Sequencer", "Step-Sequencer")}
               </h2>
               <div className="text-xs text-muted-foreground flex gap-4 font-mono">
-                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }}></div> Hit</span>
-                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color, opacity: 0.4 }}></div> Ghost</span>
+                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }}></div> {t("Hit", "Hit")}</span>
+                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color, opacity: 0.4 }}></div> {t("Ghost", "Ghost")}</span>
               </div>
             </div>
             <PatternGrid pattern={pattern} currentStep={currentStep} />
@@ -678,7 +696,7 @@ export default function PatternDetail() {
             <Card className="p-6 bg-card border-border">
               <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
                 <Info className="w-5 h-5 text-muted-foreground" />
-                Maschine Notes
+                {t("Maschine Notes", "Maschine-Hinweise")}
               </h2>
               <ul className="space-y-4">
                 {pattern.maschineNotes.map((note, i) => (
@@ -703,10 +721,10 @@ export default function PatternDetail() {
               <div>
                 <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
                   <Package className="w-5 h-5 text-muted-foreground" />
-                  Sounds & Sample Ideas
+                  {t("Sounds & Sample Ideas", "Sounds & Sample-Ideen")}
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Specific samples from your packs, plus recommended plugins and expansions
+                  {t("Specific samples from your packs, plus recommended plugins and expansions", "Spezifische Samples aus deinen Packs sowie empfohlene Plugins und Erweiterungen")}
                 </p>
               </div>
               <div className="flex items-center border border-border rounded-md overflow-hidden shrink-0">
@@ -717,7 +735,7 @@ export default function PatternDetail() {
                 >
                   <span className="flex items-center gap-1.5">
                     <Disc3 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Samples</span>
+                    <span className="hidden sm:inline">{t("Samples", "Samples")}</span>
                   </span>
                 </button>
                 <div className="w-px h-6 bg-border" />
@@ -728,7 +746,7 @@ export default function PatternDetail() {
                 >
                   <span className="flex items-center gap-1.5">
                     <Package className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Packs</span>
+                    <span className="hidden sm:inline">{t("Packs", "Packs")}</span>
                   </span>
                 </button>
                 <div className="w-px h-6 bg-border" />
@@ -739,7 +757,7 @@ export default function PatternDetail() {
                 >
                   <span className="flex items-center gap-1.5">
                     <Plug className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Plugins</span>
+                    <span className="hidden sm:inline">{t("Plugins", "Plugins")}</span>
                   </span>
                 </button>
               </div>

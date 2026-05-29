@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { ArrowLeft, Scissors, Search, Layers, Music2, Package, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useLang, useT } from "@/lib/i18n";
 
 type Step = string;
 type Technique = {
@@ -434,10 +435,31 @@ const CHOPPABILITY_COLOR: Record<PackProfile["choppability"], string> = {
   advanced: "#ef4444",
 };
 
+const TAB_LABELS_DE: Record<string, { label: string; subtitle: string }> = {
+  find: {
+    label: "Chop finden",
+    subtitle: "Wie du die richtigen Momente aus einem Soul-Record identifizierst und extrahierst — bevor du die Hardware anfasst",
+  },
+  chop: {
+    label: "Chop in MK3",
+    subtitle: "Genaue MK3-Tastensequenzen für jeden Chopping-Workflow — Auto Slice, manuelle Schnitte, Slice to Pads",
+  },
+  arrange: {
+    label: "Arrangieren & Platzieren",
+    subtitle: "Wie du deine Chops rhythmisch arrangierst — welche Steps, wie viele Takte, wie du Variation aufbaust",
+  },
+  process: {
+    label: "Bearbeitung & Mix",
+    subtitle: "Damit deine Chops im Mix sitzen — EQ, Kompression, Sättigung und genre-spezifische Behandlung",
+  },
+};
+
 export default function ChopLab() {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const [activeTab, setActiveTab] = useState(TABS[0].id);
   const [expandedTip, setExpandedTip] = useState<string | null>(null);
-  const currentTab = TABS.find(t => t.id === activeTab)!;
+  const currentTab = TABS.find(tab => tab.id === activeTab)!;
 
   return (
     <div className="min-h-[100dvh] bg-background text-foreground pb-20">
@@ -445,20 +467,33 @@ export default function ChopLab() {
         <div className="container mx-auto px-6 h-16 flex items-center">
           <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium">
             <ArrowLeft className="w-4 h-4" />
-            Back to Patterns
+            {t("Back to Patterns", "Zurück zu Mustern")}
           </Link>
           <div className="flex-1 flex flex-col items-center">
             <span className="font-bold text-base tracking-tight">Chop Lab</span>
-            <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">Soul Sample Chopping — Find · Slice · Arrange · Mix</span>
+            <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">{t("Soul Sample Chopping — Find · Slice · Arrange · Mix", "Soul-Sample-Chopping — Finden · Schneiden · Arrangieren · Mixen")}</span>
           </div>
-          <div className="w-32" />
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >EN</button>
+            <div className="w-px h-4 bg-border" />
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >DE</button>
+          </div>
         </div>
       </header>
 
       <main className="container mx-auto px-6 py-10 max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
-            A complete chopping workflow for Maschine MK3 — from identifying the right moments in your soul packs to processing the final loop professionally.
+            {t(
+              "A complete chopping workflow for Maschine MK3 — from identifying the right moments in your soul packs to processing the final loop professionally.",
+              "Ein vollständiger Chopping-Workflow für Maschine MK3 — vom Identifizieren der richtigen Momente in deinen Soul-Packs bis zur professionellen Bearbeitung des finalen Loops."
+            )}
           </p>
         </motion.div>
 
@@ -475,7 +510,7 @@ export default function ChopLab() {
               }`}
             >
               {tab.icon}
-              <span className="hidden sm:inline">{tab.label}</span>
+              <span className="hidden sm:inline">{lang === "de" ? TAB_LABELS_DE[tab.id]?.label : tab.label}</span>
             </button>
           ))}
         </div>
@@ -487,7 +522,7 @@ export default function ChopLab() {
           transition={{ duration: 0.2 }}
         >
           <div className="mb-6">
-            <p className="text-sm text-muted-foreground">{currentTab.subtitle}</p>
+            <p className="text-sm text-muted-foreground">{lang === "de" ? (TAB_LABELS_DE[currentTab.id]?.subtitle ?? currentTab.subtitle) : currentTab.subtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">

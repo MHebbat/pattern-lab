@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useMemo } from "react";
+import { useLang, useT } from "@/lib/i18n";
 import { Link } from "wouter";
 import { ArrowLeft, Upload, Package, Sparkles, Download, Play, Square, ChevronDown, ChevronRight, AlertTriangle, Image as ImageIcon, RefreshCw, FolderOpen, FileAudio } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -355,6 +356,8 @@ function CategoryGroup({
 type Step = "upload" | "analyzing" | "review";
 
 export default function PackLab() {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const [step, setStep] = useState<Step>("upload");
   const [samples, setSamples] = useState<AnalyzedSample[]>([]);
   const [progress, setProgress] = useState(0);
@@ -540,15 +543,26 @@ export default function PackLab() {
       <header className="border-b border-border bg-background/95 sticky top-0 z-40">
         <div className="container mx-auto px-6 h-16 flex items-center gap-4">
           <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium">
-            <ArrowLeft className="w-4 h-4" /> Back
+            <ArrowLeft className="w-4 h-4" /> {t("Back", "Zurück")}
           </Link>
           <div className="flex-1" />
+          <div className="flex items-center border border-border rounded-md overflow-hidden mr-3">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >EN</button>
+            <div className="w-px h-4 bg-border" />
+            <button
+              onClick={() => setLang("de")}
+              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+            >DE</button>
+          </div>
           {step === "review" && (
             <button
               onClick={resetAll}
               className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1.5 transition-colors"
             >
-              <RefreshCw className="w-3 h-3" /> Start over
+              <RefreshCw className="w-3 h-3" /> {t("Start over", "Neu starten")}
             </button>
           )}
         </div>
@@ -588,18 +602,30 @@ export default function PackLab() {
                 onChange={onFileInput}
               />
               <Upload className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-              <p className="text-lg font-semibold text-foreground mb-2">Drop your sample pack here</p>
+              <p className="text-lg font-semibold text-foreground mb-2">{t("Drop your sample pack here", "Sample-Pack hier ablegen")}</p>
               <p className="text-sm text-muted-foreground mb-1">
-                Accepts <span className="font-mono">.zip</span> packs or individual audio files
+                {t("Accepts", "Akzeptiert")} <span className="font-mono">.zip</span> {t("packs or individual audio files", "Packs oder einzelne Audiodateien")}
               </p>
               <p className="text-xs text-muted-foreground/50">WAV · AIFF · MP3 · FLAC · ZIP</p>
             </div>
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               {[
-                { icon: FileAudio, title: "Detects everything", body: "Drums, bass, melody, chords, vocals, guitar, strings, horns, arps, plucks, pads, drones, FX — 38 categories detected from filename and ZIP folder structure." },
-                { icon: FolderOpen, title: "Maschine folder structure", body: "Exports a ZIP with Drums, Bass, Melody, Chords, Vocals, One Shots, Loops, FX, Textures — exactly how Maschine's User Library expects it." },
-                { icon: ImageIcon, title: "Pack artwork", body: "Upload your own artwork or generate a dark, producer-style 500×500 PNG with your pack name. Drops inside the folder so Maschine can display it." },
+                {
+                  icon: FileAudio,
+                  title: t("Detects everything", "Erkennt alles"),
+                  body: t("Drums, bass, melody, chords, vocals, guitar, strings, horns, arps, plucks, pads, drones, FX — 38 categories detected from filename and ZIP folder structure.", "Drums, Bass, Melodie, Akkorde, Gesang, Gitarre, Streicher, Hörner, Arps, Plucks, Pads, Drones, FX — 38 Kategorien aus Dateinamen und ZIP-Ordnerstruktur erkannt."),
+                },
+                {
+                  icon: FolderOpen,
+                  title: t("Maschine folder structure", "Maschine-Ordnerstruktur"),
+                  body: t("Exports a ZIP with Drums, Bass, Melody, Chords, Vocals, One Shots, Loops, FX, Textures — exactly how Maschine's User Library expects it.", "Exportiert ein ZIP mit Drums, Bass, Melodie, Akkorde, Vocals, One Shots, Loops, FX, Texturen — genau wie Maschines User Library es erwartet."),
+                },
+                {
+                  icon: ImageIcon,
+                  title: t("Pack artwork", "Pack-Artwork"),
+                  body: t("Upload your own artwork or generate a dark, producer-style 500×500 PNG with your pack name. Drops inside the folder so Maschine can display it.", "Lade dein eigenes Artwork hoch oder generiere ein dunkles, Produzenten-Stil 500×500-PNG mit deinem Pack-Namen. Landet im Ordner, damit Maschine es anzeigen kann."),
+                },
               ].map(({ icon: Icon, title, body }, i) => (
                 <div key={i} className="border border-border rounded-xl p-5 bg-card">
                   <Icon className="w-5 h-5 text-muted-foreground/40 mb-3" />
@@ -616,7 +642,7 @@ export default function PackLab() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-16 text-center space-y-6">
             <div className="w-16 h-16 rounded-full border-4 border-t-amber-400 border-border animate-spin mx-auto" />
             <div>
-              <p className="text-lg font-semibold text-foreground mb-1">Analyzing samples…</p>
+              <p className="text-lg font-semibold text-foreground mb-1">{t("Analyzing samples…", "Samples werden analysiert…")}</p>
               <p className="text-sm font-mono text-muted-foreground truncate max-w-xs mx-auto">{progressLabel}</p>
             </div>
             <div className="max-w-sm mx-auto bg-border rounded-full h-1.5 overflow-hidden">
@@ -636,10 +662,10 @@ export default function PackLab() {
             {/* Stats row */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { label: "Total", value: samples.length },
-                { label: "One-shots", value: stats["one-shot"] },
-                { label: "Loops", value: stats["loop"] },
-                { label: "Kits", value: stats["kit"] + stats["unknown"] },
+                { label: t("Total", "Gesamt"), value: samples.length },
+                { label: t("One-shots", "One-Shots"), value: stats["one-shot"] },
+                { label: t("Loops", "Loops"), value: stats["loop"] },
+                { label: t("Kits", "Kits"), value: stats["kit"] + stats["unknown"] },
               ].map(({ label, value }) => (
                 <div key={label} className="border border-border rounded-xl p-4 bg-card text-center">
                   <p className="text-2xl font-bold text-foreground">{value}</p>
@@ -652,10 +678,10 @@ export default function PackLab() {
             <div className="grid sm:grid-cols-2 gap-6">
               {/* Pack info */}
               <div className="border border-border rounded-xl p-5 bg-card space-y-4">
-                <h2 className="font-semibold text-sm text-foreground">Pack Info</h2>
+                <h2 className="font-semibold text-sm text-foreground">{t("Pack Info", "Pack-Info")}</h2>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">Pack Name <span className="text-red-400">*</span></label>
+                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{t("Pack Name", "Pack-Name")} <span className="text-red-400">*</span></label>
                     <input
                       value={packName}
                       onChange={e => setPackName(e.target.value)}
@@ -664,7 +690,7 @@ export default function PackLab() {
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">Author / Label</label>
+                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{t("Author / Label", "Autor / Label")}</label>
                     <input
                       value={author}
                       onChange={e => setAuthor(e.target.value)}
@@ -673,7 +699,7 @@ export default function PackLab() {
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">Artwork Accent Color</label>
+                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{t("Artwork Accent Color", "Artwork-Akzentfarbe")}</label>
                     <div className="flex gap-2 flex-wrap">
                       {ACCENT_COLORS.map(c => (
                         <button
@@ -695,7 +721,7 @@ export default function PackLab() {
 
               {/* Artwork */}
               <div className="border border-border rounded-xl p-5 bg-card space-y-3">
-                <h2 className="font-semibold text-sm text-foreground">Pack Artwork</h2>
+                <h2 className="font-semibold text-sm text-foreground">{t("Pack Artwork", "Pack-Artwork")}</h2>
                 {artwork ? (
                   <div className="space-y-3">
                     <img src={artwork} alt="Pack artwork" className="w-full aspect-square object-cover rounded-lg border border-border" />
@@ -704,13 +730,13 @@ export default function PackLab() {
                         onClick={generateArtwork}
                         className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border rounded-md text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        <RefreshCw className="w-3 h-3" /> Regenerate
+                        <RefreshCw className="w-3 h-3" /> {t("Regenerate", "Neu generieren")}
                       </button>
                       <button
                         onClick={() => artworkInputRef.current?.click()}
                         className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border rounded-md text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        <Upload className="w-3 h-3" /> Upload
+                        <Upload className="w-3 h-3" /> {t("Upload", "Hochladen")}
                       </button>
                     </div>
                   </div>
@@ -721,13 +747,13 @@ export default function PackLab() {
                       onClick={() => artworkInputRef.current?.click()}
                     >
                       <ImageIcon className="w-8 h-8 text-muted-foreground/20" />
-                      <span className="text-xs text-muted-foreground/40">Upload image</span>
+                      <span className="text-xs text-muted-foreground/40">{t("Upload image", "Bild hochladen")}</span>
                     </div>
                     <button
                       onClick={generateArtwork}
                       className="w-full flex items-center justify-center gap-2 py-2.5 text-xs rounded-md border border-border text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <Sparkles className="w-3.5 h-3.5" /> Generate artwork from pack name
+                      <Sparkles className="w-3.5 h-3.5" /> {t("Generate artwork from pack name", "Artwork aus Pack-Name generieren")}
                     </button>
                   </div>
                 )}
@@ -745,9 +771,9 @@ export default function PackLab() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="font-semibold text-foreground">Sample Review</h2>
+                  <h2 className="font-semibold text-foreground">{t("Sample Review", "Sample-Überblick")}</h2>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    Adjust categories as needed. Low-confidence detections show a warning icon.
+                    {t("Adjust categories as needed. Low-confidence detections show a warning icon.", "Kategorien bei Bedarf anpassen. Unsichere Erkennungen zeigen ein Warnsymbol.")}
                   </p>
                 </div>
               </div>
@@ -774,10 +800,10 @@ export default function PackLab() {
             <div className="border border-border rounded-xl p-6 bg-card">
               <div className="flex items-start justify-between gap-6">
                 <div>
-                  <h2 className="font-semibold text-foreground mb-1">Export Maschine Pack</h2>
+                  <h2 className="font-semibold text-foreground mb-1">{t("Export Maschine Pack", "Maschine-Pack exportieren")}</h2>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Downloads a ZIP with the full Maschine folder structure, your artwork, a JSON manifest, and step-by-step import instructions.
-                    Extract and add to <span className="font-mono text-foreground/70">Maschine &gt; Library &gt; User &gt; Add Folder</span>.
+                    {t("Downloads a ZIP with the full Maschine folder structure, your artwork, a JSON manifest, and step-by-step import instructions.", "Lädt ein ZIP mit der vollständigen Maschine-Ordnerstruktur, deinem Artwork, einem JSON-Manifest und Schritt-für-Schritt-Importanweisungen herunter.")}
+                    {" "}{t("Extract and add to", "Entpacken und hinzufügen unter")} <span className="font-mono text-foreground/70">Maschine &gt; Library &gt; User &gt; Add Folder</span>.
                   </p>
                 </div>
                 <button
@@ -795,12 +821,12 @@ export default function PackLab() {
                   ) : (
                     <Download className="w-4 h-4" />
                   )}
-                  {exporting ? "Building…" : "Export ZIP"}
+                  {exporting ? t("Building…", "Wird erstellt…") : "Export ZIP"}
                 </button>
               </div>
               {!packName.trim() && (
                 <p className="text-xs text-amber-400 mt-3 flex items-center gap-1.5">
-                  <AlertTriangle className="w-3 h-3" /> Enter a pack name above to enable export
+                  <AlertTriangle className="w-3 h-3" /> {t("Enter a pack name above to enable export", "Pack-Namen oben eingeben, um den Export zu aktivieren")}
                 </p>
               )}
             </div>
