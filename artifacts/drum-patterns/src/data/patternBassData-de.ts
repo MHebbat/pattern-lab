@@ -4,6 +4,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "bb-1": [
     {
+      name: "Am Walking-Linie",
+      key: "a-Moll",
       description:
         "Eine A-Moll-Walking-Basslinie, abgestimmt auf Classic 90s bei 90 BPM, Swing 54. Die Note auf Step 3 landet auf dem geschwungenen 'e' von Beat 1 — bei 54 % Swing fällt sie leicht spät, sitzt dadurch natürlich in der Hi-Hat-Tasche. Steps 7 und 15 sind leise Antizipations-Noten, die die starken Beats vorbereiten, ohne den Sample zu stören.",
       pluginSuggestion:
@@ -14,6 +16,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "D2 (Step 13) durch F2 (die kleine Sexte) ersetzen. Diese kleine Änderung verschiebt den Turnaround von einer dur-gefärbten Auflösung zu einer dunkleren, soul-beeinflussten — derselbe Zug, der späte 90er-New-York-Bässe von früheren Walking-Pattern unterscheidet.",
     },
     {
+      name: "Am Root-Lock",
+      key: "a-Moll",
       description:
         "Minimaler Zwei-Noten-pro-Halbbalken-Ansatz bei 90 BPM. Verriegelt direkt mit dem Kick auf Steps 0 und 8, die Quinte (E2) landet auf den geschwungenen Off-Beats. Vier Noten, vollständige Harmonie-Definition, null Überfüllung. Entwickelt für dichte Samples, bei denen der Bass Tonart definieren und verschwinden soll.",
       pluginSuggestion:
@@ -24,6 +28,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "G1 (die kleine Septime) auf Step 11 hinzufügen für eine Drei-Noten-Version: A1 / E2 / G1 / E2. Das G1 ist die Am7-Farbnote — es hebt den letzten Beat des Takts an, ohne Komplexität hinzuzufügen. Diese Version funktioniert besser unter Samples mit modaler, offener Harmonie.",
     },
     {
+      name: "Dm Pocket",
+      key: "d-Moll",
       description:
         "D-Moll-Variation für Classic-90s-Pattern, die auf Samples in der Tonart D aufbauen. Root auf 0, Quinte (A1) auf dem geschwungenen Step 5, F2 (kleine Terz) als emotionaler Anker auf Step 7, Turnaround durch E2 zurück zu D2. Die 54 % Swing bei 90 BPM lassen die Off-Beat-Steps spät wirken, auf eine Weise, die mit dem natürlichen Decay des Kicks verriegelt.",
       pluginSuggestion:
@@ -37,6 +43,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "bb-2": [
     {
+      name: "Cm Swing-Bounce",
+      key: "c-Moll",
       description:
         "Speziell für Pete Rock Bounce bei 88 BPM, Swing 58, entwickelt. Der höhere Swing (58 %) schiebt Off-Beat-Steps merklich später als Classic 90s. Noten auf Steps 5 und 13 (das geschwungene 'e' von Beats 2 und 4) fallen mit Petes charakteristischem Snap. Ghost-Bb1-Noten auf Steps 7 und 15 sind die späten Sechzehntel-Flicks, die seinen rhythmischen Fingerabdruck definieren.",
       pluginSuggestion:
@@ -47,6 +55,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Die Bb1-Ghost-Noten (Steps 7 und 15) durch Ab1 (die kleine Sexte) ersetzen. Das nimmt das Pattern von einer Moll-Septime-Bounce zu einem Moll-Sexte-Flavor — dunkler, mehr Boom Bap, weniger Neo-Soul. Das Pete-Rock-Feeling bleibt, aber das emotionale Register sinkt eine Stufe tiefer in den Schatten.",
     },
     {
+      name: "Fm Swing-Pocket",
+      key: "f-Moll",
       description:
         "F-Moll für Pete Rock Bounce. Bei 58 % Swing und 88 BPM sind die geraden Steps (0, 4, 8, 12) rastergebunden und die ungeraden Steps fallen progressiv später. Das Eb2 auf Step 14 (das 'a' von Beat 4 bei 58 % Swing) antizipiert den Loop-Neustart — der Bass denkt bereits an Takt zwei, bevor Takt eins endet.",
       pluginSuggestion:
@@ -60,6 +70,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "bb-3": [
     {
+      name: "Gm Dunkler Stomp",
+      key: "g-Moll",
       description:
         "Grimy Bap läuft bei 93 BPM, Swing 52 — schneller und mit minimalem Swing verglichen mit den tieferen Boom-Bap-Pattern. Weniger Noten als bei langsameren BPMs: bei 93 BPM ist Raum gleichbedeutend mit Wirkung. Das Eb2 (kleine Sexte) auf Step 11 ist die düstere Farbnote, die durch das dunkle Intervall aufsteigt, bevor D2 die Phrase erdet.",
       pluginSuggestion:
@@ -70,6 +82,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "D2 auf Step 3 durch F2 (die kleine Septime) ersetzen. Das Pattern gewinnt einen Moll-7-Flavor — weniger aggressiv, soul-beeinflusster. Dann Eb2 auf Step 11 durch E2 (natürlich) ersetzen für ein Dorisch-Feeling. Diese zwei Änderungen zusammen verschieben das Pattern von Mobb Deep zu J Dilla, ohne eine einzige Timing-Position zu verändern.",
     },
     {
+      name: "Cm Bedrohlich",
+      key: "c-Moll",
       description:
         "C-Moll für das düstere 93-BPM-Setting. Die chromatische Anflug-Note B1 (ein Halbton unter C2) auf Step 14 ist ein Menace-Move — bei 93 BPM ist Step 14 ein 160-ms-Blitz vor dem Taktneustart. Schnell genug, um unterbewusst zu wirken, langsam genug, um echte Dissonanz zu erzeugen. Der Halbsekunden-Blitz einer falschen Note vor der Auflösung ist das klangliche Äquivalent einer Drohung.",
       pluginSuggestion:
@@ -83,6 +97,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "bb-4": [
     {
+      name: "Dm Lange Töne",
+      key: "d-Moll",
       description:
         "Vier Noten bei 82 BPM, Swing 50. Laid Back Boom ist das langsamste und geradlinigste Boom-Bap-Pattern in der Library — kein Swing, maximaler Raum. Jede Note dauert hier zwischen 2 und 6 Steps (ca. 440 ms bis 1,3 Sekunden). Dies ist der Bass für Momente, in denen der Sample alles ist und der Bass nur existiert, um die Tonart zu benennen. Langsam spielen. Jede Note meinen.",
       pluginSuggestion:
@@ -93,6 +109,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "C2 (Step 12) und D2 (Step 14) vollständig entfernen — nur D2 und A1, eine Note pro Halbbalken. Zwei Noten, 82 BPM, gerader Takt. Dies ist die minimalste Basslinie der Library. Über einem Piano-Sample mit reicher Harmonie ist sie in ihrer Schlichtheit verheerend. Der Sample trägt alles; der Bass hält nur die Erde.",
     },
     {
+      name: "Am Offener Abstieg",
+      key: "a-Moll",
       description:
         "Absteigende A-Moll-Linie für das 82-BPM-Straight-Time-Feeling von Laid Back Boom. Vier Noten, kein Swing, jede steppt durch das A-Moll-Arpeggio hinunter. Das abschließende G1 (die kleine Septime von A) löst nicht zurück zu A auf — es lässt den Takt offen hängen, wartend. Über einem Piano-Sample mit gehaltenen Akkorden klingt dieser Abstieg wie ein langsames Ausatmen des Basses.",
       pluginSuggestion:
@@ -106,6 +124,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "hh-1": [
     {
+      name: "Gm G-Funk-Groove",
+      key: "g-Moll",
       description:
         "West-Coast-G-Funk läuft bei 100 BPM ohne Swing — jede Note landet exakt im Sechzehntel-Raster. Diese Linie spiegelt das enge, gleichmäßige Feeling der Warren G / Dr. Dre Ära wider: sanfte, kreisförmige Pentatonik-Bewegung, die sich nie setzt. 8 Noten pro Takt, alle auf geradzahligen Steps, erzeugt eine durchgehend rollende Basslinie, die sich unter das Pattern legt ohne Unterbrechung.",
       pluginSuggestion:
@@ -116,6 +136,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "F2 (Step 4) durch Eb2 (die kleine Sexte von G) ersetzen. Der Pentatonik-Aufstieg ändert den Flavor — statt G→D→F→G (Gm-Pentatonik) wird es G→D→Eb→G (Gm-Naturmoll mit Sexte). Subtile Änderung, erhebliche emotionale Verschiebung: Eb in einem G-Moll-Kontext ist eine der herzzerreißenden Noten des West-Coast-R&B.",
     },
     {
+      name: "Cm Weiche Linie",
+      key: "c-Moll",
       description:
         "C-Moll bei 100 BPM gerader Takt — sauberer und weniger chromatisch als die G-Moll-Version. 6 Noten pro Takt erzeugen ein leicht offeneres Feeling als der volle 8-Noten-Groove. Steps 3, 6, 11, 14 sind synkopierte Positionen, die unerwartete Bewegung im geraden Raster erzeugen. Ohne Swing kommt der Groove ausschließlich aus Notenauswahl und Velocity-Kontrast.",
       pluginSuggestion:
@@ -129,6 +151,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "hh-2": [
     {
+      name: "Gm 808 Half-Time",
+      key: "g-Moll",
       description:
         "Trap Soul Bridge läuft bei 130 BPM — dem schnellsten Pattern im Hip-Hop-Set. Bei diesem Tempo ist eine Sechzehntel nur 115 ms. Vier Noten pro Takt ist die richtige Dichte: jede Note hat Raum zum Sustain und Decay, bevor die nächste eintrifft. Das Half-Time-Drum-Feeling bedeutet, dass Step 8 der gefühlte Halbpunkt ist. Steps 12 und 14 sind 808-Schwanz-Noten — der charakteristische gleitende Decay einer 808-Kick, die auf Tonhöhe gespielt wird.",
       pluginSuggestion:
@@ -139,6 +163,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Auf 5 Noten erweitern: F1 (die kleine Septime) auf Step 10 zwischen D2 und Bb1 hinzufügen. Das Pattern liest jetzt G / D / F / Bb / G — eine fallende 5-Noten-Phrase, die sich durch den Gm7-Akkord bewegt. Melodischer, leicht weniger 808-artig. Verwenden, wenn die Trap-Soul-Produktion eine musikalischere, weniger rhythmische Bass-Rolle hat.",
     },
     {
+      name: "Cm Trap-Slide",
+      key: "c-Moll",
       description:
         "C-Moll-808-Linie für Trap Soul Bridge. Der chromatische Schwanz auf Steps 12–14 (G1 / Ab1 / G1) erzeugt den 808-Waver-Effekt bei 130 BPM: eine Halbton-Oszillation von insgesamt 345 ms Dauer, die bei diesem Tempo wie ein pitch-gebogener Schwanz klingt statt wie separate Noten. Das ist die Trap-Soul-Bass-Signatur: Root und Quinte mit chromatischem Waver am Ende.",
       pluginSuggestion:
@@ -152,6 +178,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "hh-3": [
     {
+      name: "Am Premier-Pocket",
+      key: "a-Moll",
       description:
         "DJ-Premier-Style bei 95 BPM, Swing 62 — der höchste Swing-Wert im Hip-Hop-Set. Bei 62 % Swing werden die 'e'-Unterteilungen (Steps 1, 5, 9, 13) fast auf Triolen-Achtelnoten-Position geschoben. Noten auf Steps 3, 7, 11 und 15 sind die geschwungenen 16tel-Positionen und landen noch später. Diese Linie ist gebaut, um den extremen Swing auszunutzen: jede Off-Beat-Note fällt mit Premiers charakteristischem Late-Snap.",
       pluginSuggestion:
@@ -162,6 +190,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "G1 (Step 8) durch Am-Akkordtöne ersetzen: D2 (die Quarte, eine Suspension) ausprobieren. Das Pattern ändert sich von einer fallenden Basslinie zu einer, die sich an der Hälfte öffnet — ein Premier-Move, der auf frühen Gang-Starr-Platten zu hören ist, wo der Bass harmonische Spannung bei Beat 3 erzeugt, bevor er sich auflöst.",
     },
     {
+      name: "Dm Hard Bop",
+      key: "d-Moll",
       description:
         "D-Moll-jazzinfluenzierte Linie für das Premier-Swing-Template. Das Bb1 auf Step 15 (der allerletzte 'a'-Subdivision bei 62 % Swing) ist eine chromatische Annäherungsnote, die zurück zum Taktbeginn verbindet — bei dieser extremen Swing-Position überschneidet sich Step 15 fast mit Step 0 des nächsten Takts. Der Bass denkt bereits an den nächsten Takt, bevor der aktuelle endet. Das ist Jazz-Phrasierung, angewendet auf Boom Bap.",
       pluginSuggestion:
@@ -175,6 +205,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "hh-5": [
     {
+      name: "Am Dilla Betrunken",
+      key: "a-Moll",
       description:
         "Dilla Limp bei 84 BPM, Swing 56. Die Ghost-Noten auf Steps 1 und 9 (Velocity 50) sind das definierende Merkmal: eine Sechzehntel nach dem Downbeat platziert, verwischen sie Beat 1 und Beat 3 — die starken Beats wirken, als kämen sie 'spät', als würde der Bass noch aufwachen. Kombiniert mit 56 % Swing werden die Off-Beat-Noten (Steps 5, 9, 13) etwas weiter als Standard geschoben. Das Ergebnis ist Dillas Betrunkene-Uhr-Feeling: der Bass weiß, wohin er geht, scheint es aber nicht eilig zu haben.",
       pluginSuggestion:
@@ -185,6 +217,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Die Ghost-Noten von Steps 1 und 9 auf Steps 2 und 10 (die 'e'-Subdivision statt des '+') verschieben. Bei 56 % Swing ist Step 2 später als Step 1 — das Betrunkene-Uhr-Feeling wird extremer. Das ist die fortgeschrittene Dilla-Technik: absichtliche mikro-rhythmische Inkonsistenz über den Takt.",
     },
     {
+      name: "Dm Lockerer Groove",
+      key: "d-Moll",
       description:
         "D-Moll-Dilla-Ansatz: Ghost-Noten bei Velocity 55–60 auf Steps 3, 11 und 15 erzeugen die lockere, durch-den-Groove-denkende Qualität. Noten auf ungeraden Steps (3, 7, 11, 15) bei 56 % Swing landen alle leicht spät — und das Pattern platziert einen Ghost auf drei dieser späten Positionen. Der Bass klingt, als hätte er seinen Part gerade noch rechtzeitig erinnert, was die treffendste Beschreibung von Dillas Groove-Ansatz ist.",
       pluginSuggestion:
@@ -198,6 +232,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "rnb-1": [
     {
+      name: "Cm Neo-Soul-Tiefe",
+      key: "c-Moll",
       description:
         "Neo-Soul-Pocket bei 75 BPM, Swing 63 — das am stärksten geschwungene R&B-Pattern in der Library. Bei 63 % Swing fallen 'e'-Subdivisions (Steps 1, 5, 9, 13) fast auf die Triolen-Achtelnoten-Position. Das verwandelt Standard-Sechzehntel-Bass-Bewegung in etwas, das wie ein Live-Spieler atmet — schwer-langsam, tief in der Tasche. Das Ab1 auf Step 11 (kleine Sexte von C) ist die herzzerreißende Note, platziert, wo der extreme Swing maximalen Raum gibt.",
       pluginSuggestion:
@@ -208,6 +244,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Auf D-Moll transponieren: D / A / C / D / Bb / A / D. Gleicher Swing, gleiche BPM, gleiche Positionen — aber D-Molls modaler Charakter sitzt leicht anders unter R&B-Samples. D-Moll hat eine jazz-nährere Qualität (die ii-Stufe von C-Dur); C-Moll sitzt dunkler und in sich geschlossener. Beide ausprobieren und hören, welches den Sample öffnet.",
     },
     {
+      name: "Fm Soul-Groove",
+      key: "f-Moll",
       description:
         "F-Moll-Neo-Soul-Linie — ein D'Angelo / Erykah-Badu-Ansatz. Das Db2 auf Step 11 (die große Sexte von F-Moll, enharmonisch zu C#) ist die Jazz-Soul-Note: ungewöhnlich, unerwartet in einem Moll-Kontext, und bei der Extrem-Swing-Position platziert, wo sie später als erwartet ankommt. Späte Platzierung + unerwartete Notenauswahl = die Neo-Soul-Formel. Bei 75 BPM und 63 % Swing atmet dieses Pattern so langsam wie ein Herzschlag.",
       pluginSuggestion:
@@ -218,6 +256,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Db2 (Step 11) durch D2 (natürliche große Sexte) ersetzen. Das verschiebt das Pattern von F-Dorisch (mit natürlicher Sexte) zu F-Naturmoll und zurück — die D2-Version hat eine hellere, zeitgemäßere R&B-Qualität. Die Db2-Version hat den Jazz-Soul-Charakter. Beide aufnehmen und je nach harmonischem Flavor des Samples wählen.",
     },
     {
+      name: "AsDur Soul-Pad",
+      key: "As-Dur",
       description:
         "Ab-Dur — ein Stevie-Wonder-Ansatz im Neo-Soul-Kontext. Dur-Tonalität über einem langsamen, geschwungenen Pattern bringt Wärme und Optimismus, ohne die Tiefe des Grooves zu verlieren. Gb2 (die große Septime von Ab) auf Step 7 ist die Neo-Soul-Signatur: das Maj7-Intervall über einer Dur-Root erzeugt den charakteristischen bittersüßen Schimmer. Bei 63 % Swing fällt Step 7 fast auf die Triolen-Subdivision — natürlich, fließend, wie ein Atemzug.",
       pluginSuggestion:
@@ -231,6 +271,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "rnb-2": [
     {
+      name: "Cm Contemporary Clean",
+      key: "c-Moll",
       description:
         "Zeitgenössisches R&B bei 90 BPM, Swing 50 — gerade Sechzehntel, kein Swing. Das ist der SZA / Bryson-Tiller / H.E.R.-Ära-Bass: mechanisch präzise, harmonisch reich, dafür entwickelt, die schwebende atmosphärische Produktion zu verankern, ohne Aufmerksamkeit zu erregen. 7 Noten pro Takt — genug Bewegung, um Harmonie über das gesamte Maß zu definieren, nicht so viele, dass der Bass zum eigenständigen Element wird.",
       pluginSuggestion:
@@ -241,6 +283,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Auf 5 Noten reduzieren, indem Steps 12 (D2) und 14 (C2) entfernt werden und der Takt nach dem Eb2 auf Step 10 endet. Das Pattern wird zu einem 5-Noten-Bogen — von C zu Eb und zurück zu C — mit 6 Steps Stille vor dem Taktneustart. Diese Version ist minimaler und funktioniert besser unter vokalbetonten Produktionen.",
     },
     {
+      name: "EsDur Modern",
+      key: "Es-Dur",
       description:
         "Eb-Dur bei 90 BPM gerader Takt — ein heller, Dur-toniger zeitgenössischer Bass für eine optimistischere Contemporary-R&B-Produktion. Der neutrale Swing (50 %) und moderates Tempo machen dies zum neutralsten Bass der Library: kein Swing-Charakter, kein extremes Tempo, nur saubere harmonische Bewegung. 6 Noten, regelmäßiger Abstand, Dur-Klarheit.",
       pluginSuggestion:
@@ -254,6 +298,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "rnb-3": [
     {
+      name: "Bbm Balladenabstieg",
+      key: "b-Moll",
       description:
         "Slow Jam Sway bei 68 BPM — dem langsamsten Pattern im R&B-Set. Jeder Sechzehntel-Step bei 68 BPM ist 220 ms; ein 6-Step-Abstand zwischen Noten ist mehr als 1,3 Sekunden Stille. Das ist der Bass für einen Track im Tempo eines langsamen Herzschlags. Das Ab2 (kleine Septime von Bb) auf Step 9 ist die seelenvolle Note jedes Slow Jams. Das Gb2 (erniedrigte Sexte) auf Step 14 lässt den Takt unaufgelöst — ein Schmerz, der ewig schleift.",
       pluginSuggestion:
@@ -264,6 +310,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Das Gb2 (Step 14) durch F2 (die Quinte von Bb, eine Oktave höher) ersetzen. Das unaufgelöste Ende wird aufgelöst: der Takt endet, wo er begann (Bb), durch das Medium F, die Quinte. Diese Version erzeugt eine hoffnungsvollere, zyklische Schleife statt einer offenen Frage voller Sehnsucht. Verwenden, wenn der Track Vorwärtsbewegung braucht statt gehaltener Sehnsucht.",
     },
     {
+      name: "Fm Langsamer Fall",
+      key: "f-Moll",
       description:
         "F-Moll-Abstieg über den gesamten Takt bei 68 BPM. Fünf Noten, jede landet ca. 3–4 Steps auseinander, bewegt sich von F durch C, Db, C und hinunter zu Bb. Das Db2 (die kleine Sexte von F) ist die weinende Note von F-Moll — bei 68 BPM hat es fast eine volle Sekunde Zeit zum Sustain und Ausdruck. Das abschließende Bb1 löst nicht zu F auf: der Abstieg endet eine Stufe über der kleinen Terz, lässt Raum.",
       pluginSuggestion:
@@ -274,6 +322,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Den Abstieg erweitern: Eb1 auf Step 15 (die kleine Septime unter F, tiefste Note im Pattern) hinzufügen. Die Linie liest F / C / Db / C / Bb / Eb. Das tiefe Eb1 fällt in ein Register unterhalb der anderen Noten — eine unterirdische Abschlussnote, die tiefer als alles andere im Mix sitzt. Diese Version für den Höhepunkt eines Slow Jams verwenden.",
     },
     {
+      name: "EsDur Wogen",
+      key: "Es-Dur",
       description:
         "Eb-Dur, 4 Noten pro Takt, 68 BPM. Die geduldigste Basslinie im R&B-Set. Steps 0 bis 8 sind fast 2 Sekunden Stille — der Raum zwischen Noten bei diesem Tempo ist ein kompositorisches Element, keine Lücke. Das Ab1 auf Step 12 (4. Stufe, erzeugt ein Sus4-Feeling) lehnt sich zu Bb1 auf Step 14, das die Suspension auflöst. Der gesamte Takt ist nur zwei Bewegungen: Root zur Quinte, dann Sus4 zur Quinte.",
       pluginSuggestion:
@@ -287,6 +337,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
 
   "rnb-4": [
     {
+      name: "Gm Funk-Bounce",
+      key: "g-Moll",
       description:
         "R&B-Bounce bei 85 BPM, Swing 57. Die Ghost-G1-Note auf Step 4 (Velocity 65) ist der Bounce: zwischen D2 (Step 3) und Bb1 (Step 5) platziert, erzeugt sie ein schnell aufeinanderfolgendes Triolen-Cluster an der 57-%-Swing-Position. Dieses Cluster — D2 / G1 / Bb1 in schneller Folge über Steps 3, 4, 5 — ist, wie moderner R&B-Bass Groove ohne einen menschlichen Spieler erzeugt. Der Bounce passiert innerhalb von 3 aufeinanderfolgenden Steps.",
       pluginSuggestion:
@@ -297,6 +349,8 @@ export const patternBassDataDe: Record<string, DeBassPattern[]> = {
         "Den Ghost-G1 (Step 4) entfernen und Bb1 von Step 5 auf Step 4 verschieben. Das Cluster wird zu zwei Noten (D2 / Bb1) statt drei, der Bounce ist leicht weniger komplex. Das ist die Version, die unter minimaleren Arrangements besser funktioniert — gleiche Idee, eine Note weniger, etwas mehr Raum um den zweiten Beat.",
     },
     {
+      name: "Dm Groove-Bounce",
+      key: "d-Moll",
       description:
         "D-Moll-Bounce bei 85 BPM, Swing 57. Eine leicht glattere Alternative zur G-Moll-Version — D-Moll hat bei diesem Tempo und Swing-Setting mehr jazz-nahen Charakter. Noten auf Steps 3, 5, 11, 13 sind alle geschwungene Positionen; bei 57 % Swing fallen sie merklich später als gerader Takt, erzeugen einen natürlichen laid-back Bounce. Das G1 auf Step 14 (die Quarte von D-Moll) ist eine chromatische Annäherung, die zurück zum Taktbeginn führt.",
       pluginSuggestion:

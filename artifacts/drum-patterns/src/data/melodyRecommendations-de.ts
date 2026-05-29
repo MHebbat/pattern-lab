@@ -1,4 +1,6 @@
 export type DeBassPattern = {
+  name?: string;
+  key?: string;
   description: string;
   pluginSuggestion: string;
   microKeyTip: string;
@@ -62,6 +64,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
     ],
     bassPatterns: [
       {
+        name: "Klassischer Moll-Walk",
+        key: "a-Moll",
         description:
           "Die fundamentale Boom-Bap-Bassbewegung. Root auf Beat 1, Quinte auf dem synkopierten Schlag, Sexte als Turnaround. Verriegelt mit einem Standard-Kick auf Steps 0 und 8.",
         pluginSuggestion:
@@ -72,6 +76,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Die Note auf Step 3 von E2 zu C2 (der kleinen Terz) verschieben für ein souliges, weniger 'walking' Feeling. Oder Step 11 ganz weglassen — das Pattern bekommt mehr Raum.",
       },
       {
+        name: "Tiefer Pocket-Drone",
+        key: "d-Moll",
         description:
           "Einzel-Root-Bass, der nur mit dem Kick einrastet. Minimale Bewegung — der Sample erledigt die gesamte harmonische Arbeit. Von DJ Premier und Alchemist ständig eingesetzt.",
         pluginSuggestion:
@@ -82,6 +88,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "A2 auf Step 4 hinzufügen (die Quinte von D-Moll) — jetzt gibt es Root-Quinte-Bewegung, ohne das minimalistische Feeling zu verlieren. Oder die C2-Geister auf Steps 5 und 13 verschieben für einen leicht anderen Push.",
       },
       {
+        name: "Synkopierter Bounce",
+        key: "g-Moll",
         description:
           "Das klassische 'Bounce'-Bass-Pattern. Kick und Bass landen nicht immer zusammen — der Bass schiebt sich auf Step 7 vor Beat 3, um den Boom-Bap-Lean zu erzeugen.",
         pluginSuggestion:
@@ -92,6 +100,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Eb2 auf Step 7 durch F2 (die kleine Septime) ersetzen für eine jazzige, weniger angespannte Bewegung. Oder den Step-13-Schwanz ganz entfernen — lässt den Bass spärlicher und kraftvoller wirken.",
       },
       {
+        name: "Chromatische Klage",
+        key: "d-Moll",
         description:
           "Eine fallende chromatische Basslinie — jede Note sinkt um einen Halbton. Das ist der Klang des Schmerzes: nirgendwohin zu gehen außer nach unten, an nichts festzuhalten. Kein rhythmischer Überraschungsmoment, keine Synkope. Er fällt einfach. Das verheerendste Bass-Pattern unter einem spärlichen Hi-Hat-Pattern.",
         pluginSuggestion:
@@ -102,6 +112,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Bei C2 auf Step 8 stoppen — nicht zu B1 hinunter auflösen. Den Takt auf C2 hängen lassen. Der unaufgelöste Halbton über D ist einer der herzzerreißendsten Klänge in der Musik — die Note, die irgendwo hinwill, aber nicht geht.",
       },
       {
+        name: "Suspended-Schmerz",
+        key: "a-Moll",
         description:
           "Basiert auf der suspendierten Quarte (D über A). Der sus4-Akkord hat keine Terz — ein Klang des reinen Wartens, etwas das sich auflösen muss, aber nie vollständig tut. Dieser Bass erzeugt Sehnsucht durch Verweigerung der Befriedigung. Der geduldigste Herzschmerz im Boom Bap.",
         pluginSuggestion:
@@ -112,6 +124,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Nie vollständig auflösen: den Takt auf D2 bei Step 14 beenden. Das Pattern schleift zurück zu A2 auf Step 0, aber das Ohr hört noch das D nachklingen. Über 2 Takte entsteht ein ewig unaufgelöster Kreislauf — das Bassäquivalent einer Frage, die immer wieder gestellt wird.",
       },
       {
+        name: "Phrygische Seele",
+        key: "E Phrygisch",
         description:
           "Verwendet das flache Sekund-Intervall (F über E) — die definierende Farbe des Phrygischen Modus. Dieser Halbton über der Root ist das emotional komprimierteste Intervall in der westlichen Musik: uralt, zeremoniell, trauernd. Im Flamenco, Qawwali und den dunkelsten Winkeln des Boom Bap zu finden.",
         pluginSuggestion:
@@ -211,6 +225,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
     ],
     bassPatterns: [
       {
+        name: "808 Sub-Slide",
+        key: "g-Moll",
         description:
           "Die moderne Hip-Hop-Bassbewegung. Zwei Haupt-Root-Schläge mit einem chromatischen Slide dazwischen. Das Portamento (Glide) in Massive X übernimmt den Slide automatisch — man muss nur die zwei Notenpositionen setzen.",
         pluginSuggestion:
@@ -221,6 +237,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "D2 auf Step 8 durch Eb2 (die kleine Sexte) ersetzen — leicht dunkler, bedrohlicher. Oder einen zusätzlichen G2-Geist auf Step 6 (Velocity 50) hinzufügen, um ein kurzes Stutter vor Step 8 zu erzeugen.",
       },
       {
+        name: "Synkopierter Modern-Bass",
+        key: "e-Moll",
         description:
           "Der vorwärts-geneigte Hip-Hop-Bass. Die Note auf Step 6 antizipiert Beat 3 — das erzeugt das 'schiebende' Feeling in modernen Hip-Hop-Basslinien.",
         pluginSuggestion:
@@ -231,6 +249,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Step 3 (B1) ganz entfernen — das Pattern wird einfacher und lässt mehr Raum. Oder B1 durch C2 (eine kleine Sext-Substitution) ersetzen für eine jazzigere, unerwartetere Bassfarbe.",
       },
       {
+        name: "Half-Time Minimal-Bass",
+        key: "c-Moll",
         description:
           "Zwei Noten pro Takt. Die extreme Version des Raum-Lassens. In Half-Time-Hip-Hop-Patterns verwendet, bei denen das Kick-Pattern den Großteil des rhythmischen Interesses trägt.",
         pluginSuggestion:
@@ -241,6 +261,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Bb1 auf Step 14 hinzufügen (kurz bevor das Pattern zu Step 0 zurückschleift) — eine einzelne antizipatorische Note, die den Loop sich wie 'gleich startbereit' anfühlen lässt. Oder ein leises C3 (eine Oktave höher) auf Step 4 für einen Mid-Register-Ping.",
       },
       {
+        name: "Tritonus-Trauer",
+        key: "c-Moll",
         description:
           "Verwendet den Tritonus (Gb/F#) — das Intervall, das historisch als 'diabolus in musica', der Teufel in der Musik, bezeichnet wurde. Über einer C-Moll-Root erzeugt der Tritonus maximale harmonische Spannung ohne jede Auflösung. Das ist Dissonanz als Waffe der Emotion. In den dunkelsten Trap- und Drill-Produktionen zu finden.",
         pluginSuggestion:
@@ -251,6 +273,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Gb1 durch G1 ersetzen (natürliche Quinte — ein Halbton über Gb). Das Pattern wird zu Standard-C-Moll-Root/Quinte: völlig anderer emotionaler Charakter. Beide Versionen nacheinander abspielen und hören, wie viel Gb verändert. Dann zu Gb zurückkehren — seine Falschheit wird sich richtig anfühlen.",
       },
       {
+        name: "Kleine-None-Sehnsucht",
+        key: "g-Moll",
         description:
           "Die kleine None (A über G-Moll) erzeugt Sehnsucht und Distanz — nach etwas greifen, das nur knapp außer Reichweite ist. Die None sitzt eine volle Oktave plus einen Ganzton über der Root und gibt dem Bass das Gefühl, über seinen natürlichen Bereich hinauszugreifen. Eine traurige, sich wiederholende Greifbewegung.",
         pluginSuggestion:
@@ -261,6 +285,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Ab2 statt A2 auf Step 4 verwenden (die flat-9 — ein Halbton über der kleinen Septime). Die flat-9 über G-Moll ist noch gequälter als die natürliche None — das dissonanteste Spannungsintervall in der Jazzharmonik, eingesetzt, um maximalen harmonischen Druck vor der Auflösung zu erzeugen.",
       },
       {
+        name: "808 Chromatischer Fall",
+        key: "e-Moll",
         description:
           "Ein 808-Pattern, das in einem Takt chromatisch durch 4 Halbtöne absteigt. Das Portamento (Glide) zwischen jedem Halbton erzeugt die weinende Qualität einer Saite, die in die nächste Note gebogen wird. Das moderne Hip-Hop-Äquivalent eines Blues-Gitarren-Schreis — jede Note ein Slide nach unten.",
         pluginSuggestion:
@@ -360,6 +386,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
     ],
     bassPatterns: [
       {
+        name: "Neo-Soul-Pocket",
+        key: "c-Moll",
         description:
           "Das häufigste R&B-Bass-Pattern. Root-Schlag mit einer verschobenen Mid-Bar-Groove-Note und einem chromatischen Approach zur Root. Die Note auf Step 5 (G2) fällt auf das 'und' von Beat 2 — das ist der R&B-Pocket.",
         pluginSuggestion:
@@ -370,6 +398,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Steps 11 und 13 (den chromatischen Schwanz) entfernen — der Bass wird zu einem einfachen Root/Quinte-Pattern, das immer noch groovt, aber mehr Raum lässt. Oder Bb1 durch A1 (natürlich) ersetzen für einen Cm/große-Sexte-Klang, der der Linie ein optimistischeres, Motown-ähnliches Feeling gibt.",
       },
       {
+        name: "Half-Time Soul-Bass",
+        key: "Es-Dur",
         description:
           "Nur 4 Noten pro Takt — entwickelt für das Half-Time-R&B-Snare-Feeling, bei dem die Snare nur auf Beat 3 landet. Maximaler Raum zwischen den Noten. Der Bass muss den gesamten Groove tragen.",
         pluginSuggestion:
@@ -380,6 +410,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Db2 durch C2 (die Sexte von Eb-Dur) für eine hellere, Stevie-Wonder-artige Bass-Inflexion ersetzen. Oder F2 auf Step 5 (die 2. Stufe) hinzufügen — das verwandelt das Pattern von 4 auf 5 Noten und fügt mehr harmonische Farbe hinzu.",
       },
       {
+        name: "Funky R&B-Pocket",
+        key: "f-Moll",
         description:
           "Lebhafter als die anderen beiden — mehr Noten, mehr rhythmisch. In R&B-Tracks mit höherer Energie eingesetzt (90–95 BPM, tanzbar). Das schnelle C3 auf Step 4 ist die 'Pop'-Note — es betont Beat 2 vor der Snare.",
         pluginSuggestion:
@@ -390,6 +422,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "F2 auf Step 2 entfernen und C3 von Step 4 auf Step 3 verschieben — das erzeugt ein synkopierteres, weniger geradliniges Feeling. Oder Eb3 auf Step 10 auf Db3 (die kleine Sexte von F-Moll) senken für eine dunklere, soul-beeinflusstere Bewegung.",
       },
       {
+        name: "Soul-Schrei",
+        key: "b-Moll",
         description:
           "Fällt durch alle dunklen Intervalle von Bb-Moll — Root, kleine Septime (Ab), kleine Sexte (Gb), Quinte (F). Das Gb (kleine Sexte) ist der emotionale Kern: in Bb-Moll klingt es wie Weinen. Jede Note ist ein Schritt tiefer in den Schmerz. Diese Basslinie ist das harmonische Äquivalent des Ausatmens von Trauer.",
         pluginSuggestion:
@@ -400,6 +434,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Db2 auf Step 3 hinzufügen (kleine Terz von Bb) zwischen Bb1 und Ab2. Der Abstieg wird zu Bb → Db → Ab → Gb → Bb → F → Gb — sieben Noten, ausgearbeiteter, mehr wie eine trauernde Stimme, die immer neue Worte für dasselbe Gefühl findet.",
       },
       {
+        name: "Halbton-Sehnsucht",
+        key: "Es-Moll",
         description:
           "Verwendet E natürlich (das phrygische Flat-2 von Eb-Moll — ein Halbton über der Root) für die antike, geneigte Qualität des Phrygischen Modus im R&B-Slow-Jam. Der Halbton erzeugt einen Klang, als würde sich der Körper nach etwas lehnen, das er nicht erreichen kann.",
         pluginSuggestion:
@@ -410,6 +446,8 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "B1 auf Step 15 durch Bb1 (die natürliche Quinte von Eb, ein Halbton unter B) ersetzen. Das phrygische Flat-2 (E natürlich) bleibt die einzige chromatische Spannung; das Ende löst sich glatter auf. Das ist die R&B-Balladenversion — dieselbe Sehnsucht in der Mitte, eine sanftere Landung am Ende.",
       },
       {
+        name: "Balladenabstieg",
+        key: "f-Moll",
         description:
           "Vier Noten, maximaler Raum. F → Eb → Db → C — absteigende durch die kleine Septime, kleine Sexte und Quinte von F-Moll. Das ist die Basslinie für eine langsame R&B-Ballade: 72 BPM, eine Note alle 4 Steps, jede leicht tiefer. Das Pattern, das nur funktioniert, wenn alles andere still ist.",
         pluginSuggestion:

@@ -471,11 +471,13 @@ function swingOffsetMs(bpm: number, swingPct: number): number {
 
 function BassTimingReference({
   midiRecs,
+  deMidiRecs,
   color,
   bpm,
   swing,
 }: {
   midiRecs: GenreMelodyRecs;
+  deMidiRecs?: DeMelodyRecs;
   color: string;
   bpm: number;
   swing?: number;
@@ -484,6 +486,7 @@ function BassTimingReference({
   const t = useT();
   const { lang } = useLang();
   const bp = midiRecs.bassPatterns[selectedIdx];
+  const deBp = deMidiRecs?.bassPatterns?.[selectedIdx];
   const ms16 = calc16thMs(bpm);
   const swingMs = swing ? swingOffsetMs(bpm, swing) : 0;
 
@@ -527,12 +530,12 @@ function BassTimingReference({
       {bp && (
         <div className="mb-3">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-medium text-foreground/80">{bp.name}</span>
+            <span className="text-xs font-medium text-foreground/80">{deBp?.name ?? bp.name}</span>
             <span
               className="text-[9px] font-mono px-1.5 py-0.5 rounded border"
               style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
             >
-              {bp.key}
+              {deBp?.key ?? bp.key}
             </span>
             <button
               onClick={() => downloadMidi(generateBassPatternMidi(bp, bpm), midiFilename(bp.name, bpm))}
@@ -582,7 +585,7 @@ function BassTimingReference({
                   : { color: "var(--muted-foreground)", borderColor: "var(--border)" }
               }
             >
-              {b.name}
+              {deMidiRecs?.bassPatterns?.[i]?.name ?? b.name}
             </button>
           ))}
         </div>
@@ -913,6 +916,7 @@ export default function PatternDetail() {
             {effectiveMidiRecs && (
               <BassTimingReference
                 midiRecs={effectiveMidiRecs}
+                deMidiRecs={effectiveDeMidiRecs}
                 color={color}
                 bpm={pattern.bpm}
                 swing={pattern.swing}
