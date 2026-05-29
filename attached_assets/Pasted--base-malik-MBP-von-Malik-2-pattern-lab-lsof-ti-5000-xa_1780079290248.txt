@@ -1,0 +1,54 @@
+(base) malik@MBP-von-Malik-2 pattern-lab % lsof -ti:5000 | xargs kill -9 2>/dev/null; ./start-local.sh
+[pattern-lab] No .env.local found.
+  Copy .env.local.example → .env.local and add your OPENROUTER_API_KEY.
+  The app will start but AI generation will not work without the key.
+
+[pattern-lab] Installing dependencies...
+Scope: all 10 workspace projects
+Already up to date
+Done in 48ms using pnpm v11.4.0
+[pattern-lab] Building shared libraries...
+$ tsc --build
+[pattern-lab] Starting API server on port 5000...
+[pattern-lab] Waiting for API server...
+$ export NODE_ENV=development && pnpm run build && pnpm run start
+$ node ./build.mjs
+
+  dist/index.mjs                       1.7mb ⚠️
+  dist/pino-worker.mjs               153.4kb
+  dist/pino-file.mjs                 142.1kb
+  dist/pino-pretty.mjs               114.6kb
+  dist/thread-stream-worker.mjs        7.3kb
+  dist/index.mjs.map                   4.2mb
+  dist/pino-worker.mjs.map           256.9kb
+  dist/pino-file.mjs.map             229.0kb
+  dist/pino-pretty.mjs.map           204.0kb
+  dist/thread-stream-worker.mjs.map   12.0kb
+
+⚡ Done in 95ms
+$ node --enable-source-maps ./dist/index.mjs
+[20:27:54.892] ERROR (73638): Error listening on port
+    err: {
+      "type": "Error",
+      "message": "listen EADDRINUSE: address already in use :::5000",
+      "stack":
+          Error: listen EADDRINUSE: address already in use :::5000
+              at Server.setupListenHandle [as _listen2] (node:net:2008:16)
+              at listenInCluster (node:net:2065:12)
+              at Server.listen (node:net:2170:7)
+              at app2.listen (/Users/malik/pattern-lab/node_modules/.pnpm/express@5.2.1/node_modules/express/lib/application.js:605:24)
+              at <anonymous> (/Users/malik/pattern-lab/artifacts/api-server/src/index.ts:11:5)
+              at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+              at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)
+              at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+      "code": "EADDRINUSE",
+      "errno": -48,
+      "syscall": "listen",
+      "address": "::",
+      "port": 5000
+    }
+[ELIFECYCLE] Command failed with exit code 1.
+/Users/malik/pattern-lab/artifacts/api-server:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @workspace/api-server@0.0.0 dev: `export NODE_ENV=development && pnpm run build && pnpm run start`
+Exit status 1
+

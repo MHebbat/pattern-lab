@@ -19,7 +19,7 @@ else
   echo ""
 fi
 
-API_PORT="${API_PORT:-5000}"
+API_PORT="${API_PORT:-5001}"
 FRONTEND_PORT="${FRONTEND_PORT:-3001}"
 
 # ── Install dependencies ───────────────────────────────────────────────────────

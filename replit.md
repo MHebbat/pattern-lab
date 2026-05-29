@@ -4,7 +4,7 @@ Dark, producer-focused drum pattern reference browser for Maschine MK3.
 
 ## Run & Operate
 
-- `./start-local.sh` — one-command local start (API on 5000, frontend on 3001)
+- `./start-local.sh` — one-command local start (API on 5001, frontend on 3001)
 - `pnpm --filter @workspace/api-server run dev` — API server (port from `PORT` env)
 - `pnpm --filter @workspace/drum-patterns run dev` — frontend (port from `PORT` env)
 - `pnpm run typecheck` — full typecheck across all packages

@@ -70,7 +70,7 @@ This script:
 - Loads `.env.local` if it exists
 - Runs `pnpm install` if needed
 - Builds shared libraries
-- Starts the API server (default port `5000`)
+- Starts the API server (default port `5001`)
 - Starts the frontend (default port `3001`)
 
 Open [http://localhost:3001](http://localhost:3001) in your browser.
@@ -80,13 +80,13 @@ Open [http://localhost:3001](http://localhost:3001) in your browser.
 **Terminal 1 — API server:**
 
 ```bash
-PORT=5000 NODE_ENV=development pnpm --filter @workspace/api-server run dev
+PORT=5001 NODE_ENV=development pnpm --filter @workspace/api-server run dev
 ```
 
 **Terminal 2 — Frontend:**
 
 ```bash
-PORT=3001 BASE_PATH="/" API_URL="http://localhost:5000" NODE_ENV=development \
+PORT=3001 BASE_PATH="/" API_URL="http://localhost:5001" NODE_ENV=development \
   pnpm --filter @workspace/drum-patterns run dev
 ```
 
