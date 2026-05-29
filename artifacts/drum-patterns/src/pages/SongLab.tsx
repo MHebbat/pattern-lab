@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { useLang, useT } from "@/lib/i18n";
-import {
-  SONGLAB_BLUEPRINTS_DE, SONGLAB_VARIATIONS_DE, SONGLAB_LAYERS_DE,
-  SONGLAB_ARRANGER_DE, SONGLAB_ARRANGER_INTRO_DE,
-} from "@/locales/songlab-de";
 import { Link } from "wouter";
 import { ArrowLeft, FlaskConical, Map, GitBranch, Layers, MonitorSpeaker, ChevronRight } from "lucide-react";
 import { getGenreColorVar } from "@/components/PatternCard";
 import { motion } from "framer-motion";
 import type { Genre } from "@/data/patterns";
+import { useLang, useT } from "@/lib/i18n";
+import { SONGLAB_DE_BLUEPRINTS, SONGLAB_DE_VARIATIONS, SONGLAB_DE_LAYERS, SONGLAB_DE_ARRANGER } from "@/locales/songlab-de";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -485,8 +482,8 @@ function presenceStyle(presence: Presence, color: string): React.CSSProperties {
 }
 
 function SongTimeline({ sections, color }: { sections: SongSection[]; color: string }) {
-  const { lang } = useLang();
   const [activeSection, setActiveSection] = useState<number | null>(null);
+  const t = useT();
 
   return (
     <div className="space-y-4">
@@ -517,7 +514,7 @@ function SongTimeline({ sections, color }: { sections: SongSection[]; color: str
           {LAYER_KEYS.map(layer => (
             <div key={layer} className="flex gap-1 mb-0.5">
               <div className="w-28 shrink-0 flex items-center">
-                <span className="text-[10px] font-mono text-muted-foreground/60 truncate">{lang === "de" ? ({ drums: "Kick / Snare", hats: "Hi-Hats", sample: "Sample", bass: "Bass", keys: "Keys / Melodie", pads: "Pad / Atmos", fx: "FX / Trans" } as Record<string, string>)[layer] ?? LAYER_LABELS[layer] : LAYER_LABELS[layer]}</span>
+                <span className="text-[10px] font-mono text-muted-foreground/60 truncate">{LAYER_LABELS[layer]}</span>
               </div>
               {sections.map((s, i) => (
                 <div
@@ -536,12 +533,20 @@ function SongTimeline({ sections, color }: { sections: SongSection[]; color: str
 
           {/* Legend */}
           <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border/30">
-            {(["full", "sparse", "accent", "off"] as Presence[]).map(p => (
+            {(["full", "sparse", "accent", "off"] as Presence[]).map(p => {
+              const presenceLabel: Record<Presence, [string, string]> = {
+                full: ["full", "voll"],
+                sparse: ["sparse", "spärlich"],
+                accent: ["accent", "Akzent"],
+                off: ["off", "aus"],
+              };
+              return (
               <div key={p} className="flex items-center gap-1.5">
                 <div className="w-4 h-3 rounded-sm" style={presenceStyle(p, color)} />
-                <span className="text-[9px] font-mono text-muted-foreground/50 uppercase tracking-widest">{p}</span>
+                <span className="text-[9px] font-mono text-muted-foreground/50 uppercase tracking-widest">{t(...presenceLabel[p])}</span>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -556,13 +561,13 @@ function SongTimeline({ sections, color }: { sections: SongSection[]; color: str
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="font-semibold text-sm" style={{ color }}>{sections[activeSection].name}</span>
-            <span className="text-[10px] font-mono text-muted-foreground/50">{sections[activeSection].bars} {lang === "de" ? "Takte" : "bars"}</span>
+            <span className="text-[10px] font-mono text-muted-foreground/50">{sections[activeSection].bars} {t("bars", "Takte")}</span>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">{sections[activeSection].note}</p>
         </motion.div>
       )}
       {activeSection === null && (
-        <p className="text-[11px] text-muted-foreground/40 font-mono text-center">{lang === "de" ? "Klicke einen Abschnitt für Arrangement-Hinweise" : "Click any section to see arrangement notes"}</p>
+        <p className="text-[11px] text-muted-foreground/40 font-mono text-center">{t("Click any section to see arrangement notes", "Abschnitt anklicken für Arrangement-Notizen")}</p>
       )}
     </div>
   );
@@ -607,8 +612,8 @@ function MiniStepGrid({ rows, color }: { rows: VariationRow[]; color: string }) 
 }
 
 function VariationCard({ variation, color }: { variation: BeatVariation; color: string }) {
-  const { lang } = useLang();
   const [open, setOpen] = useState(false);
+  const t = useT();
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
       <button
@@ -635,11 +640,11 @@ function VariationCard({ variation, color }: { variation: BeatVariation; color: 
       {open && (
         <div className="border-t border-border/60 p-4 space-y-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{lang === "de" ? "Step-Grid" : "Step grid"}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Step grid", "Step-Raster")}</span>
             <MiniStepGrid rows={variation.rows} color={color} />
           </div>
           <div className="pt-3 border-t border-border/40">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{lang === "de" ? "Maschine MK3 — wie man es erstellt" : "Maschine MK3 — how to create it"}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Maschine MK3 — how to create it", "Maschine MK3 — so erstellen")}</span>
             <ol className="space-y-2">
               {variation.maschineSteps.map((step, i) => (
                 <li key={i} className="flex gap-2.5 text-xs text-muted-foreground leading-relaxed">
@@ -656,8 +661,8 @@ function VariationCard({ variation, color }: { variation: BeatVariation; color: 
 }
 
 function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string }) {
-  const { lang } = useLang();
   const [open, setOpen] = useState(false);
+  const t = useT();
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
       <button
@@ -693,15 +698,15 @@ function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string 
       {open && (
         <div className="border-t border-border/60 p-4 grid sm:grid-cols-3 gap-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Wann einführen" : "When to introduce"}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("When to introduce", "Wann einführen")}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.whenToIntroduce}</p>
           </div>
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Bearbeitung" : "Processing"}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Processing", "Verarbeitung")}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.processing}</p>
           </div>
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{lang === "de" ? "Atemraum-Tipp" : "Breathing room tip"}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Breathing room tip", "Atemraum-Tipp")}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{layer.breathingTip}</p>
           </div>
         </div>
@@ -712,8 +717,7 @@ function LayerCardComponent({ layer, color }: { layer: LayerCard; color: string 
 
 function ArrangerWorkflow({ color }: { color: string }) {
   const { lang } = useLang();
-  const stepsEN = [
-    { step: "1", title: "Set up Groups correctly", detail: "Group A = Drums (kick, snare, hats, perc — all on separate pads within the group). Group B = Bass (one Massive X or Kontakt instrument). Group C = Sample. Group D = Keys/Chords. Group E = Pads. Each group handles its own internal mixing." },
+  const enSteps = [    { step: "1", title: "Set up Groups correctly", detail: "Group A = Drums (kick, snare, hats, perc — all on separate pads within the group). Group B = Bass (one Massive X or Kontakt instrument). Group C = Sample. Group D = Keys/Chords. Group E = Pads. Each group handles its own internal mixing." },
     { step: "2", title: "Create Pattern A and Pattern B per Group", detail: "In each Group, create 2 Patterns: Pattern 1 is the Main version, Pattern 2 is the Variation. For drums: Pattern 1 = full groove, Pattern 2 = stripped or open hats. For bass: Pattern 1 = full bass line, Pattern 2 = root notes only. For sample: Pattern 1 = full loop, Pattern 2 = quiet/filtered version." },
     { step: "3", title: "Create Scenes for each song section", detail: "Scene 1: Intro. Scene 2: Verse A. Scene 3: Verse B. Scene 4: Pre-Hook. Scene 5: Hook. Scene 6: Bridge. Scene 7: Outro. Name each scene using SHIFT + the scene pad, then select 'Rename'. Short, clear names (V1-A, HOOK, BRDG)." },
     { step: "4", title: "Assign Patterns to Scenes", detail: "For each Scene: press the scene pad to activate it. Then for each Group, hold the Group button and select which Pattern plays in that Scene. In Verse A Scene: Drum Pattern 1, Bass Pattern 2 (roots only), Sample Pattern 1, Keys off. In Hook Scene: all Pattern 1s, everything active." },
@@ -726,18 +730,15 @@ function ArrangerWorkflow({ color }: { color: string }) {
     { step: "11", title: "The 'listen back' rule", detail: "After building the full arrangement, close Maschine and open the exported audio in any player. Listen without touching anything for the full duration. Note the moments that feel too long, too empty, or too busy. Go back and fix only those moments. One session of listening = more improvement than 2 hours of tweaking in real time." },
     { step: "12", title: "Breathing room checklist", detail: "Before calling it done, verify: (1) At least one 4-bar section with no drums. (2) At least two points where hats are completely removed. (3) The bass does NOT play in the intro. (4) The sample filters open on at least one pre-hook. (5) The last section ENDS — no long fadeout unless it's R&B. These five rules will make any arrangement feel professional." },
   ];
-  const steps = lang === "de"
-    ? SONGLAB_ARRANGER_DE.map((s, i) => ({ step: String(i + 1), title: s.title, detail: s.detail }))
-    : stepsEN;
-
+  const steps = lang === "de" ? SONGLAB_DE_ARRANGER : enSteps;
   return (
     <div className="space-y-3">
       <div className="p-4 rounded-lg border border-border/50 bg-card/40 mb-6">
         <p className="text-xs text-muted-foreground leading-relaxed">
           {lang === "de"
-            ? SONGLAB_ARRANGER_INTRO_DE
-            : "The Maschine MK3 workflow below assumes you have your drum Group, bass Group, sample Group, and keys Group already set up from the Chop Lab and Pattern pages. This is the arrangement layer that sits on top of all of that — turning a single-bar loop into a full song structure."}
-        </p>
+            ? "Der folgende Maschine-MK3-Workflow setzt voraus, dass Drum-, Bass-, Sample- und Keys-Gruppe bereits aus dem Chop Lab und den Pattern-Seiten eingerichtet sind. Dies ist die Arrangement-Schicht darüber — ein einzelner Bar-Loop wird zu einer vollständigen Songstruktur."
+            : "The Maschine MK3 workflow below assumes you have your drum Group, bass Group, sample Group, and keys Group already set up from the Chop Lab and Pattern pages. This is the arrangement layer that sits on top of all of that — turning a single-bar loop into a full song structure."
+          }        </p>
       </div>
       {steps.map((s, i) => (
         <motion.div
@@ -765,24 +766,48 @@ function ArrangerWorkflow({ color }: { color: string }) {
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
-const TABS = [
-  { id: "blueprint", label: "Song Blueprint", labelDe: "Song-Blaupause", icon: Map },
+const TABS_EN = [
+  { id: "blueprint", label: "Song Blueprint", labelDe: "Song-Blueprint", icon: Map },
   { id: "variations", label: "Beat Variations", labelDe: "Beat-Variationen", icon: GitBranch },
-  { id: "layers", label: "Instrument Layers", labelDe: "Instrument-Ebenen", icon: Layers },
-  { id: "arranger", label: "Maschine Arranger", labelDe: "Maschine-Arranger", icon: MonitorSpeaker },
+  { id: "layers", label: "Instrument Layers", labelDe: "Instrument-Schichten", icon: Layers },
+  { id: "arranger", label: "Maschine Arranger", labelDe: "Maschine Arranger", icon: MonitorSpeaker },
 ] as const;
 
-type TabId = typeof TABS[number]["id"];
+type TabId = typeof TABS_EN[number]["id"];
 
 export default function SongLab() {
-  const { lang, setLang } = useLang();
-  const t = useT();
   const [activeGenre, setActiveGenre] = useState<Genre>("boom-bap");
   const [activeTab, setActiveTab] = useState<TabId>("blueprint");
   const color = getGenreColorVar(activeGenre);
+  const { lang } = useLang();
+  const t = useT();
 
-  const blueprint = songBlueprints[activeGenre];
-  const variations = beatVariations[activeGenre];
+  const enBp = songBlueprints[activeGenre];
+  const deBp = SONGLAB_DE_BLUEPRINTS[activeGenre];
+  const blueprint = {
+    ...enBp,
+    title: lang === "de" ? deBp.title : enBp.title,
+    tempo: lang === "de" ? deBp.tempo : enBp.tempo,
+    sections: enBp.sections.map((s, i) => ({
+      ...s,
+      name: lang === "de" ? (deBp.sections[i]?.name ?? s.name) : s.name,
+      note: lang === "de" ? (deBp.sections[i]?.note ?? s.note) : s.note,
+    })),
+  };
+
+  const enVars = beatVariations[activeGenre];
+  const deVars = SONGLAB_DE_VARIATIONS[activeGenre];
+  const variations = enVars.map((v, i) => {
+    const deV = deVars[i];
+    if (lang !== "de" || !deV) return v;
+    return { ...v, name: deV.name, whenToUse: deV.whenToUse, feel: deV.feel, maschineSteps: deV.maschineSteps };
+  });
+
+  const layers = layerGuide.map((l, i) => {
+    const deL = SONGLAB_DE_LAYERS[i];
+    if (lang !== "de" || !deL) return l;
+    return { ...l, instrument: deL.instrument, whenToIntroduce: deL.whenToIntroduce, processing: deL.processing, breathingTip: deL.breathingTip };
+  });
 
   const deBlueprint = lang === "de" ? SONGLAB_BLUEPRINTS_DE[activeGenre] : undefined;
   const displaySections = blueprint.sections.map((s, i) => ({
@@ -801,17 +826,6 @@ export default function SongLab() {
             {t("Back", "Zurück")}
           </Link>
           <div className="flex-1" />
-          <div className="flex items-center border border-border rounded-md overflow-hidden mr-2">
-            <button
-              onClick={() => setLang("en")}
-              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >EN</button>
-            <div className="w-px h-4 bg-border" />
-            <button
-              onClick={() => setLang("de")}
-              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >DE</button>
-          </div>
           <div className="flex items-center border border-border rounded-md overflow-hidden">
             {(["boom-bap", "hip-hop", "rnb"] as Genre[]).map(g => (
               <button
@@ -837,16 +851,13 @@ export default function SongLab() {
             {displayTitle} · {blueprint.tempo}
           </p>
           <p className="text-sm text-muted-foreground/60 mt-1">
-            {t(
-              "Beat variations, instrument layering order, breathing room techniques, and a step-by-step Maschine MK3 arrangement workflow.",
-              "Beat-Variationen, Instrument-Reihenfolge, Atemraum-Techniken und ein Schritt-für-Schritt-Maschine-MK3-Arrangement-Workflow."
-            )}
+            {t("Beat variations, instrument layering order, breathing room techniques, and a step-by-step Maschine MK3 arrangement workflow.", "Beat-Variationen, Instrument-Schichtungsreihenfolge, Atemraum-Techniken und ein schrittweiser Maschine-MK3-Arrangement-Workflow.")}
           </p>
         </motion.div>
 
         {/* Tab navigation */}
         <div className="flex border border-border rounded-lg overflow-hidden mb-8">
-          {TABS.map(tab => {
+          {TABS_EN.map(tab => {
             const Icon = tab.icon;
             return (
               <button
@@ -866,8 +877,8 @@ export default function SongLab() {
         {activeTab === "blueprint" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-4">
-              <h2 className="text-lg font-semibold mb-1">{t("Song Structure Overview", "Song-Strukturübersicht")}</h2>
-              <p className="text-sm text-muted-foreground">{t("Visual map of each section — how many bars and which layers are active. Click a section to read the arrangement notes.", "Visuelle Übersicht jedes Abschnitts — wie viele Takte und welche Ebenen aktiv sind. Klicke einen Abschnitt für die Arrangement-Hinweise.")}</p>
+              <h2 className="text-lg font-semibold mb-1">{t("Song Structure Overview", "Songstruktur-Übersicht")}</h2>
+              <p className="text-sm text-muted-foreground">{t("Visual map of each section — how many bars and which layers are active. Click a section to read the arrangement notes.", "Visuelle Karte jedes Abschnitts — wie viele Takte und welche Schichten aktiv sind. Abschnitt anklicken für Arrangement-Notizen.")}</p>
             </div>
             <div className="border border-border rounded-lg p-6 bg-card mb-8">
               <SongTimeline sections={displaySections} color={color} />
@@ -892,7 +903,7 @@ export default function SongLab() {
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-1">{t("Beat Variations", "Beat-Variationen")}</h2>
               <p className="text-sm text-muted-foreground">
-                {t("Five scene-based variations from your single base pattern. Each is a different Scene in Maschine — same Group, different Pattern and pad mutes. Click any variation to see the step grid and Maschine instructions.", "Fünf szenenbasierte Variationen aus deinem einzelnen Basis-Pattern. Jede ist eine andere Scene in Maschine — gleiche Group, anderes Pattern und Pad-Mutes. Klicke eine Variation, um das Step-Grid und die Maschine-Anweisungen zu sehen.")}
+                {t("Five scene-based variations from your single base pattern. Each is a different Scene in Maschine — same Group, different Pattern and pad mutes. Click any variation to see the step grid and Maschine instructions.", "Fünf szenenbasierte Variationen aus deinem einzelnen Basis-Pattern. Jede ist eine andere Scene in Maschine — gleiche Gruppe, anderes Pattern und Pad-Mutes. Variation anklicken für Step-Raster und Maschine-Anweisungen.")}
               </p>
             </div>
             <div className="space-y-3">
@@ -909,18 +920,15 @@ export default function SongLab() {
         {activeTab === "layers" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-1">{t("Instrument Layers", "Instrument-Ebenen")}</h2>
+              <h2 className="text-lg font-semibold mb-1">{t("Instrument Layers", "Instrument-Schichten")}</h2>
               <p className="text-sm text-muted-foreground">
-                {t("The order to add instruments to your beat — from foundation to texture. Each layer includes pack references, processing settings, and a breathing room tip for when to pull it back.", "Die Reihenfolge, in der Instrumente zum Beat hinzugefügt werden — vom Fundament bis zur Textur. Jede Ebene enthält Pack-Referenzen, Bearbeitungseinstellungen und einen Tipp zum Zurückziehen.")}
+                {t("The order to add instruments to your beat — from foundation to texture. Each layer includes pack references, processing settings, and a breathing room tip for when to pull it back.", "Die Reihenfolge, in der Instrumente zum Beat hinzugefügt werden — von der Grundlage zur Textur. Jede Schicht enthält Pack-Referenzen, Verarbeitungseinstellungen und einen Atemraum-Tipp für den richtigen Moment zum Zurücknehmen.")}
               </p>
             </div>
             <div className="space-y-3">
-              {layerGuide.map((layer, i) => {
-                const deL = lang === "de" ? SONGLAB_LAYERS_DE[i] : undefined;
-                const merged = deL ? { ...layer, ...deL } : layer;
-                return <LayerCardComponent key={i} layer={merged} color={color} />;
-              })}
-            </div>
+              {layers.map((layer, i) => (
+                <LayerCardComponent key={i} layer={layer} color={color} />
+              ))}            </div>
           </motion.div>
         )}
 
@@ -930,7 +938,7 @@ export default function SongLab() {
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-1">{t("Maschine MK3 Arranger — Full Workflow", "Maschine MK3 Arranger — Vollständiger Workflow")}</h2>
               <p className="text-sm text-muted-foreground">
-                {t("12 steps from single loop to complete exported song. Specific to Maschine MK3 hardware and software with Korg microKEY as live MIDI input.", "12 Schritte vom einzelnen Loop bis zum komplett exportierten Song. Speziell für Maschine-MK3-Hardware und -Software mit Korg microKEY als Live-MIDI-Eingabe.")}
+                {t("12 steps from single loop to complete exported song. Specific to Maschine MK3 hardware and software with Korg microKEY as live MIDI input.", "12 Schritte vom einzelnen Loop zum vollständig exportierten Song. Spezifisch für Maschine MK3 Hardware und Software mit Korg microKEY als Live-MIDI-Eingang.")}
               </p>
             </div>
             <ArrangerWorkflow color={color} />

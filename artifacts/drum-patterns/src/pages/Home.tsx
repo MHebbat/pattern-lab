@@ -129,8 +129,9 @@ export default function Home() {
           <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground font-mono uppercase tracking-widest">
             <Sparkles className="w-3 h-3" />
             {lang === "de"
-              ? `${generatedPatterns.length} KI-generierte${generatedPatterns.length === 1 ? "s" : ""} Muster oben`
-              : `${generatedPatterns.length} AI-generated pattern${generatedPatterns.length > 1 ? "s" : ""} at the top`}
+              ? `${generatedPatterns.length} KI-generierte${generatedPatterns.length > 1 ? "" : "s"} Pattern oben`
+              : `${generatedPatterns.length} AI-generated pattern${generatedPatterns.length > 1 ? "s" : ""} at the top`
+            }
           </div>
         )}
 

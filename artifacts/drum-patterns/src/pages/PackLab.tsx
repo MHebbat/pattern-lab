@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback, useMemo } from "react";
-import { useLang, useT } from "@/lib/i18n";
 import { Link } from "wouter";
 import { ArrowLeft, Upload, Package, Sparkles, Download, Play, Square, ChevronDown, ChevronRight, AlertTriangle, Image as ImageIcon, RefreshCw, FolderOpen, FileAudio } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import JSZip from "jszip";
+import { useT, useLang } from "@/lib/i18n";
 import {
   analyzeFile, isAudioFile, detectBPM,
   ALL_CATEGORIES, type AnalyzedSample, type SampleCategory,
@@ -85,6 +85,46 @@ const CATEGORY_LABEL: Record<SampleCategory, string> = {
   "Textures/Drone":       "Drone",
   "Textures/Vinyl":       "Vinyl / Noise",
   "Uncategorized":        "Uncategorized",
+};
+
+const CATEGORY_LABEL_DE: Record<SampleCategory, string> = {
+  "Drums/Kick":           "Kick Drum",
+  "Drums/Snare":          "Snare",
+  "Drums/Hi-Hat":         "Hi-Hat",
+  "Drums/Clap":           "Clap",
+  "Drums/Rimshot":        "Rimshot",
+  "Drums/Percussion":     "Percussion",
+  "Drums/Tom":            "Tom",
+  "Drums/Cymbal":         "Becken",
+  "Drums/Full Kit":       "Full Kit",
+  "Bass":                 "Bass",
+  "Melody/Lead":          "Melodie-Lead",
+  "Melody/Pluck":         "Pluck",
+  "Melody/Arp":           "Arpeggio",
+  "Chords/Stab":          "Akkord-Stab",
+  "Vocals/Chop":          "Vokal-Chop",
+  "Vocals/Phrase":        "Vokal-Phrase",
+  "One Shots/Keys":       "Keys / Piano",
+  "One Shots/Guitar":     "Gitarre",
+  "One Shots/Strings":    "Streicher",
+  "One Shots/Horns":      "Bläser / Brass",
+  "One Shots/Synth":      "Synth / Bell",
+  "One Shots/Instrument": "Live-Instrument",
+  "Loops/Drum Loop":      "Drum-Loop",
+  "Loops/Bass Loop":      "Bass-Loop",
+  "Loops/Melody Loop":    "Melodie-Loop",
+  "Loops/Chord Loop":     "Akkord-Loop",
+  "Loops/Guitar Loop":    "Gitarren-Loop",
+  "Loops/Vocal Loop":     "Vokal-Loop",
+  "Loops/Full Loop":      "Full Loop",
+  "FX/Riser":             "Riser",
+  "FX/Downlifter":        "Downlifter",
+  "FX/Hit":               "Hit / Impact",
+  "FX/Sweep":             "Sweep / FX",
+  "Textures/Pad":         "Pad / Atmosphäre",
+  "Textures/Drone":       "Drone",
+  "Textures/Vinyl":       "Vinyl / Rauschen",
+  "Uncategorized":        "Unkategorisiert",
 };
 
 const AUDIO_ACCEPT = ".wav,.aiff,.aif,.mp3,.flac,.ogg,.zip";
@@ -251,6 +291,8 @@ function SampleRow({
   onPlay: () => void;
   onCategoryChange: (cat: SampleCategory) => void;
 }) {
+  const { lang } = useLang();
+  const catLabels = lang === "de" ? CATEGORY_LABEL_DE : CATEGORY_LABEL;
   return (
     <div className="flex items-center gap-2 py-1.5 px-3 hover:bg-white/5 rounded transition-colors group">
       <button
@@ -285,7 +327,7 @@ function SampleRow({
           style={{ colorScheme: "dark" }}
         >
           {ALL_CATEGORIES.map(cat => (
-            <option key={cat} value={cat}>{CATEGORY_LABEL[cat]}</option>
+            <option key={cat} value={cat}>{catLabels[cat]}</option>
           ))}
         </select>
       </div>
@@ -310,6 +352,9 @@ function CategoryGroup({
 }) {
   const [open, setOpen] = useState(samples.length <= 20);
   const lowConf = samples.filter(s => s.confidence < 0.6).length;
+  const t = useT();
+  const { lang } = useLang();
+  const catLabels = lang === "de" ? CATEGORY_LABEL_DE : CATEGORY_LABEL;
 
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
@@ -318,11 +363,11 @@ function CategoryGroup({
         className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-white/5 transition-colors"
       >
         {open ? <ChevronDown className="w-4 h-4 text-muted-foreground/50 shrink-0" /> : <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />}
-        <span className="text-sm font-mono font-semibold text-foreground flex-1">{category}</span>
+        <span className="text-sm font-mono font-semibold text-foreground flex-1">{catLabels[category]}</span>
         <div className="flex items-center gap-2">
           {lowConf > 0 && (
             <span className="text-[10px] font-mono text-amber-400 flex items-center gap-1">
-              <AlertTriangle className="w-2.5 h-2.5" />{lowConf} uncertain
+              <AlertTriangle className="w-2.5 h-2.5" />{lowConf} {t("uncertain", "unsicher")}
             </span>
           )}
           <span
@@ -356,7 +401,6 @@ function CategoryGroup({
 type Step = "upload" | "analyzing" | "review";
 
 export default function PackLab() {
-  const { lang, setLang } = useLang();
   const t = useT();
   const [step, setStep] = useState<Step>("upload");
   const [samples, setSamples] = useState<AnalyzedSample[]>([]);
@@ -546,17 +590,6 @@ export default function PackLab() {
             <ArrowLeft className="w-4 h-4" /> {t("Back", "Zurück")}
           </Link>
           <div className="flex-1" />
-          <div className="flex items-center border border-border rounded-md overflow-hidden mr-3">
-            <button
-              onClick={() => setLang("en")}
-              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "en" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >EN</button>
-            <div className="w-px h-4 bg-border" />
-            <button
-              onClick={() => setLang("de")}
-              className={`px-2 py-1.5 text-xs font-mono transition-colors ${lang === "de" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-            >DE</button>
-          </div>
           {step === "review" && (
             <button
               onClick={resetAll}
@@ -575,7 +608,7 @@ export default function PackLab() {
             <h1 className="text-3xl font-bold tracking-tight">Pack Lab</h1>
           </div>
           <p className="text-muted-foreground">
-            Drop a sample pack — ZIP or individual files. Detects and classifies everything: drums, bass, melody, chords, vocals, guitars, strings, horns, arps, pads, FX, and more. Exports a Maschine-ready folder structure with artwork and import instructions.
+            {t("Drop a sample pack — ZIP or individual files. Detects and classifies everything: drums, bass, melody, chords, vocals, guitars, strings, horns, arps, pads, FX, and more. Exports a Maschine-ready folder structure with artwork and import instructions.", "Sample-Pack hineinziehen — ZIP oder einzelne Dateien. Erkennt und klassifiziert alles: Drums, Bass, Melodie, Akkorde, Vocals, Gitarren, Streicher, Bläser, Arps, Pads, FX und mehr. Exportiert eine Maschine-fertige Ordnerstruktur mit Artwork und Import-Anweisungen.")}
           </p>
         </motion.div>
 
@@ -604,28 +637,16 @@ export default function PackLab() {
               <Upload className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
               <p className="text-lg font-semibold text-foreground mb-2">{t("Drop your sample pack here", "Sample-Pack hier ablegen")}</p>
               <p className="text-sm text-muted-foreground mb-1">
-                {t("Accepts", "Akzeptiert")} <span className="font-mono">.zip</span> {t("packs or individual audio files", "Packs oder einzelne Audiodateien")}
+                {t("Accepts", "Akzeptiert")} <span className="font-mono">.zip</span> {t("packs or individual audio files", "Packs oder einzelne Audio-Dateien")}
               </p>
               <p className="text-xs text-muted-foreground/50">WAV · AIFF · MP3 · FLAC · ZIP</p>
             </div>
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               {[
-                {
-                  icon: FileAudio,
-                  title: t("Detects everything", "Erkennt alles"),
-                  body: t("Drums, bass, melody, chords, vocals, guitar, strings, horns, arps, plucks, pads, drones, FX — 38 categories detected from filename and ZIP folder structure.", "Drums, Bass, Melodie, Akkorde, Gesang, Gitarre, Streicher, Hörner, Arps, Plucks, Pads, Drones, FX — 38 Kategorien aus Dateinamen und ZIP-Ordnerstruktur erkannt."),
-                },
-                {
-                  icon: FolderOpen,
-                  title: t("Maschine folder structure", "Maschine-Ordnerstruktur"),
-                  body: t("Exports a ZIP with Drums, Bass, Melody, Chords, Vocals, One Shots, Loops, FX, Textures — exactly how Maschine's User Library expects it.", "Exportiert ein ZIP mit Drums, Bass, Melodie, Akkorde, Vocals, One Shots, Loops, FX, Texturen — genau wie Maschines User Library es erwartet."),
-                },
-                {
-                  icon: ImageIcon,
-                  title: t("Pack artwork", "Pack-Artwork"),
-                  body: t("Upload your own artwork or generate a dark, producer-style 500×500 PNG with your pack name. Drops inside the folder so Maschine can display it.", "Lade dein eigenes Artwork hoch oder generiere ein dunkles, Produzenten-Stil 500×500-PNG mit deinem Pack-Namen. Landet im Ordner, damit Maschine es anzeigen kann."),
-                },
+                { icon: FileAudio, title: t("Detects everything", "Erkennt alles"), body: t("Drums, bass, melody, chords, vocals, guitar, strings, horns, arps, plucks, pads, drones, FX — 38 categories detected from filename and ZIP folder structure.", "Drums, Bass, Melodie, Akkorde, Vocals, Gitarre, Streicher, Bläser, Arps, Plucks, Pads, Drones, FX — 38 Kategorien aus Dateinamen und ZIP-Ordnerstruktur erkannt.") },
+                { icon: FolderOpen, title: t("Maschine folder structure", "Maschine-Ordnerstruktur"), body: t("Exports a ZIP with Drums, Bass, Melody, Chords, Vocals, One Shots, Loops, FX, Textures — exactly how Maschine's User Library expects it.", "Exportiert ein ZIP mit Drums, Bass, Melodie, Akkorde, Vocals, One Shots, Loops, FX, Texturen — genau so, wie Maschines Benutzer-Bibliothek es erwartet.") },
+                { icon: ImageIcon, title: t("Pack artwork", "Pack-Artwork"), body: t("Upload your own artwork or generate a dark, producer-style 500×500 PNG with your pack name. Drops inside the folder so Maschine can display it.", "Eigenes Artwork hochladen oder ein dunkles, produzenten-artiges 500×500 PNG mit deinem Pack-Namen generieren. Landet im Ordner, damit Maschine es anzeigen kann.") },
               ].map(({ icon: Icon, title, body }, i) => (
                 <div key={i} className="border border-border rounded-xl p-5 bg-card">
                   <Icon className="w-5 h-5 text-muted-foreground/40 mb-3" />
@@ -771,9 +792,9 @@ export default function PackLab() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="font-semibold text-foreground">{t("Sample Review", "Sample-Überblick")}</h2>
+                  <h2 className="font-semibold text-foreground">{t("Sample Review", "Sample-Überprüfung")}</h2>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    {t("Adjust categories as needed. Low-confidence detections show a warning icon.", "Kategorien bei Bedarf anpassen. Unsichere Erkennungen zeigen ein Warnsymbol.")}
+                    {t("Adjust categories as needed. Low-confidence detections show a warning icon.", "Kategorien nach Bedarf anpassen. Unsichere Erkennungen werden mit einem Warnsymbol markiert.")}
                   </p>
                 </div>
               </div>
@@ -802,8 +823,8 @@ export default function PackLab() {
                 <div>
                   <h2 className="font-semibold text-foreground mb-1">{t("Export Maschine Pack", "Maschine-Pack exportieren")}</h2>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    {t("Downloads a ZIP with the full Maschine folder structure, your artwork, a JSON manifest, and step-by-step import instructions.", "Lädt ein ZIP mit der vollständigen Maschine-Ordnerstruktur, deinem Artwork, einem JSON-Manifest und Schritt-für-Schritt-Importanweisungen herunter.")}
-                    {" "}{t("Extract and add to", "Entpacken und hinzufügen unter")} <span className="font-mono text-foreground/70">Maschine &gt; Library &gt; User &gt; Add Folder</span>.
+                    {t("Downloads a ZIP with the full Maschine folder structure, your artwork, a JSON manifest, and step-by-step import instructions.", "Lädt ein ZIP mit der vollständigen Maschine-Ordnerstruktur, deinem Artwork, einem JSON-Manifest und schrittweisen Import-Anweisungen herunter.")}
+                    {" "}{t("Extract and add to", "Entpacken und hinzufügen zu")} <span className="font-mono text-foreground/70">Maschine &gt; Library &gt; User &gt; Add Folder</span>.
                   </p>
                 </div>
                 <button
@@ -821,12 +842,12 @@ export default function PackLab() {
                   ) : (
                     <Download className="w-4 h-4" />
                   )}
-                  {exporting ? t("Building…", "Wird erstellt…") : "Export ZIP"}
+                  {exporting ? t("Building…", "Wird erstellt…") : t("Export ZIP", "ZIP exportieren")}
                 </button>
               </div>
               {!packName.trim() && (
                 <p className="text-xs text-amber-400 mt-3 flex items-center gap-1.5">
-                  <AlertTriangle className="w-3 h-3" /> {t("Enter a pack name above to enable export", "Pack-Namen oben eingeben, um den Export zu aktivieren")}
+                  <AlertTriangle className="w-3 h-3" /> {t("Enter a pack name above to enable export", "Pack-Namen eingeben um Export zu aktivieren")}
                 </p>
               )}
             </div>

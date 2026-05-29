@@ -1,8 +1,10 @@
 import { DrumPattern } from "@/data/patterns";
+import { patternsDe } from "@/data/patterns-de";
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useLang } from "@/lib/i18n";
 
 export function getGenreColorVar(genre: string) {
   switch (genre) {
@@ -18,6 +20,8 @@ export function PatternCard({ pattern }: { pattern: DrumPattern }) {
   const snareRow = pattern.steps.find(s => s.instrument.toLowerCase().includes("snare") || s.instrument.toLowerCase().includes("clap") || s.instrument.toLowerCase().includes("rim"));
 
   const color = getGenreColorVar(pattern.genre);
+  const { lang } = useLang();
+  const deLocale = patternsDe[pattern.id];
 
   return (
     <Link href={`/pattern/${pattern.id}`}>
@@ -40,11 +44,11 @@ export function PatternCard({ pattern }: { pattern: DrumPattern }) {
           </div>
           
           <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-grow">
-            {pattern.description}
+            {lang === "de" && deLocale?.description ? deLocale.description : pattern.description}
           </p>
 
           <div className="flex flex-wrap gap-1.5 mb-4">
-            {pattern.feel.map(f => (
+            {(lang === "de" && deLocale?.feel ? deLocale.feel : pattern.feel).map(f => (
               <span key={f} className="text-[10px] bg-background text-muted-foreground px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
                 {f}
               </span>

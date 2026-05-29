@@ -4,6 +4,7 @@ import { Link, useParams } from "wouter";
 import { ArrowLeft, Dna, Drum, Cpu, Lightbulb, Package, ChevronDown, ChevronRight, Play, Square, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { producers, type KitPad } from "@/data/masterclasses";
+import { masterclassesDe } from "@/data/masterclasses-de";
 import { PatternAudioPlayer } from "@/lib/audio";
 
 // ─── Step grid ────────────────────────────────────────────────────────────────
@@ -76,6 +77,7 @@ const PAD_POSITIONS = [
 function MaschinePadGrid({ kitPads, color }: { kitPads: KitPad[]; color: string }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const padMap = new Map(kitPads.map(p => [p.position, p]));
+  const t = useT();
   const hoveredPad = hovered ? padMap.get(hovered) : null;
 
   return (
@@ -120,21 +122,21 @@ function MaschinePadGrid({ kitPads, color }: { kitPads: KitPad[]; color: string 
             </div>
             <div className="grid sm:grid-cols-3 gap-3 text-xs">
               <div>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">Sound</span>
+                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">{t("Sound", "Sound")}</span>
                 <span className="text-muted-foreground">{hoveredPad.sound}</span>
               </div>
               <div>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">Pack</span>
+                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">{t("Pack", "Pack")}</span>
                 <span style={{ color }}>{hoveredPad.pack}</span>
               </div>
               <div>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">Processing</span>
+                <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/40 block mb-0.5">{t("Processing", "Verarbeitung")}</span>
                 <span className="text-muted-foreground leading-relaxed">{hoveredPad.processing}</span>
               </div>
             </div>
           </motion.div>
         ) : (
-          <p className="text-xs text-muted-foreground/30 font-mono">Hover a pad to see sound and processing details</p>
+          <p className="text-xs text-muted-foreground/30 font-mono">{t("Hover a pad to see sound and processing details", "Pad überfahren für Sound und Verarbeitungs-Details")}</p>
         )}
       </div>
 
@@ -183,6 +185,7 @@ function PatternCard({
   onToggle: () => void;
 }) {
   const [showNote, setShowNote] = useState(false);
+  const t = useT();
 
   return (
     <div className="border border-border rounded-xl bg-card p-5 space-y-4">
@@ -223,7 +226,7 @@ function PatternCard({
         className="w-full flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors pt-2 border-t border-border/40"
       >
         <Cpu className="w-3 h-3 shrink-0" style={{ color }} />
-        <span>Maschine MK3 instructions</span>
+        <span>{t("Maschine MK3 instructions", "Maschine MK3 Anweisungen")}</span>
         {showNote ? <ChevronDown className="w-3 h-3 ml-auto" /> : <ChevronRight className="w-3 h-3 ml-auto" />}
       </button>
       {showNote && (
@@ -283,11 +286,11 @@ function cheatSheetTabLabel(tags: string[]): string {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 const TABS = [
-  { id: "dna",        label: "Style DNA",      icon: Dna },
-  { id: "patterns",   label: "Drum Patterns",  icon: Drum },
-  { id: "kit",        label: "Kit Setup",      icon: Cpu },
-  { id: "techniques", label: "Techniques",     icon: Lightbulb },
-  { id: "packs",      label: "Pack & Tools",   icon: Package },
+  { id: "dna",        label: "Style DNA",     labelDe: "Style DNA",         icon: Dna },
+  { id: "patterns",   label: "Drum Patterns", labelDe: "Drum Patterns",     icon: Drum },
+  { id: "kit",        label: "Kit Setup",     labelDe: "Kit-Einrichtung",   icon: Cpu },
+  { id: "techniques", label: "Techniques",    labelDe: "Techniken",         icon: Lightbulb },
+  { id: "packs",      label: "Pack & Tools",  labelDe: "Pack & Tools",      icon: Package },
 ] as const;
 
 const TAB_LABELS_DE: Record<string, string> = {
@@ -347,6 +350,7 @@ export default function MasterClassDetail() {
     );
   }
 
+  const deLocale = masterclassesDe[producer.id];
   const color = producer.color;
 
   return (
@@ -354,7 +358,7 @@ export default function MasterClassDetail() {
       <header className="border-b border-border bg-background/95 sticky top-0 z-40">
         <div className="container mx-auto px-6 h-16 flex items-center gap-4">
           <Link href="/masterclass" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-sm font-medium">
-            <ArrowLeft className="w-4 h-4" /> Masterclasses
+            <ArrowLeft className="w-4 h-4" /> {t("Masterclasses", "Masterclasses")}
           </Link>
           <div className="flex-1" />
           <div className="flex items-center border border-border rounded-md overflow-hidden">
@@ -387,7 +391,7 @@ export default function MasterClassDetail() {
                 <p className="text-xs font-mono text-muted-foreground/40">{producer.realName}</p>
               )}
               <p className="text-sm text-muted-foreground mt-1">{producer.era} · {producer.origin}</p>
-              <p className="text-sm italic text-muted-foreground/60 mt-1">"{producer.tagline}"</p>
+              <p className="text-sm italic text-muted-foreground/60 mt-1">"{lang === "de" && deLocale?.tagline ? deLocale.tagline : producer.tagline}"</p>
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {producer.tags.map(tag => (
                   <span key={tag} className="text-[9px] font-mono px-2 py-0.5 rounded uppercase tracking-widest"
@@ -418,8 +422,7 @@ export default function MasterClassDetail() {
                 style={activeTab === tab.id ? { backgroundColor: `${color}20`, color } : { color: "var(--muted-foreground)" }}
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
-                <span className="hidden sm:inline">{lang === "de" ? TAB_LABELS_DE[tab.id] : tab.label}</span>
-              </button>
+                <span className="hidden sm:inline">{lang === "de" ? tab.labelDe : tab.label}</span>              </button>
             );
           })}
         </div>
@@ -429,7 +432,7 @@ export default function MasterClassDetail() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div className="border border-border rounded-xl p-6 bg-card">
               <h2 className="font-semibold text-sm text-muted-foreground/60 uppercase tracking-widest mb-3 font-mono">{t("Biography", "Biografie")}</h2>
-              <p className="text-sm text-foreground leading-relaxed">{producer.bio}</p>
+              <p className="text-sm text-foreground leading-relaxed">{lang === "de" && deLocale?.bio ? deLocale.bio : producer.bio}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -437,13 +440,13 @@ export default function MasterClassDetail() {
                 <h2 className="font-semibold text-sm uppercase tracking-widest mb-3 font-mono" style={{ color }}>
                   {t("Drum Philosophy", "Drum-Philosophie")}
                 </h2>
-                <p className="text-xs text-muted-foreground leading-relaxed italic">"{producer.drumPhilosophy}"</p>
+                <p className="text-xs text-muted-foreground leading-relaxed italic">"{lang === "de" && deLocale?.drumPhilosophy ? deLocale.drumPhilosophy : producer.drumPhilosophy}"</p>
               </div>
               <div className="border border-border rounded-xl p-5 bg-card">
                 <h2 className="font-semibold text-sm uppercase tracking-widest mb-3 font-mono" style={{ color }}>
                   {t("Sample Philosophy", "Sample-Philosophie")}
                 </h2>
-                <p className="text-xs text-muted-foreground leading-relaxed italic">"{producer.samplePhilosophy}"</p>
+                <p className="text-xs text-muted-foreground leading-relaxed italic">"{lang === "de" && deLocale?.samplePhilosophy ? deLocale.samplePhilosophy : producer.samplePhilosophy}"</p>
               </div>
             </div>
 
@@ -452,7 +455,7 @@ export default function MasterClassDetail() {
                 {t("Style Markers", "Stil-Merkmale")}
               </h2>
               <div className="space-y-2">
-                {producer.styleMarkers.map((marker, i) => (
+                {(lang === "de" && deLocale?.styleMarkers ? deLocale.styleMarkers : producer.styleMarkers).map((marker, i) => (
                   <div key={i} className="flex gap-3 text-xs">
                     <span className="font-mono shrink-0 mt-0.5" style={{ color }}>→</span>
                     <span className="text-muted-foreground leading-relaxed">{marker}</span>
@@ -463,7 +466,7 @@ export default function MasterClassDetail() {
 
             <div className="border border-border rounded-xl p-5 bg-card">
               <h2 className="font-semibold text-sm uppercase tracking-widest mb-3 font-mono text-muted-foreground/50">
-                Known For Producing
+                {t("Known For Producing", "Bekannt für Produktionen mit")}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {producer.signatureArtists.map(artist => (
@@ -480,20 +483,26 @@ export default function MasterClassDetail() {
         {activeTab === "patterns" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-5">
             <div className="mb-2">
-              <h2 className="font-semibold text-foreground">Signature Drum Patterns</h2>
+              <h2 className="font-semibold text-foreground">{t("Signature Drum Patterns", "Signatur-Drum-Patterns")}</h2>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Each pattern captures a distinct moment in {producer.name.split(" ")[producer.name.split(" ").length - 1]}'s catalog. Click the Maschine button under each grid for specific programming instructions.
+                {lang === "de"
+                  ? `Jedes Pattern erfasst einen bestimmten Moment in ${producer.name.split(" ")[producer.name.split(" ").length - 1]}s Katalog. Maschine-Button unter jedem Raster für spezifische Programmieranweisungen klicken.`
+                  : `Each pattern captures a distinct moment in ${producer.name.split(" ")[producer.name.split(" ").length - 1]}'s catalog. Click the Maschine button under each grid for specific programming instructions.`
+                }
               </p>
             </div>
-            {producer.patterns.map((pattern, i) => (
-              <PatternCard
-                key={i}
-                pattern={pattern}
-                color={color}
-                isPlaying={playingIndex === i}
-                onToggle={() => handleToggle(i, pattern)}
-              />
-            ))}
+            {producer.patterns.map((pattern, i) => {
+              const dePattern = lang === "de" && deLocale?.patterns[i];
+              return (
+                <PatternCard
+                  key={i}
+                  pattern={dePattern ? { ...pattern, description: dePattern.description, maschineNote: dePattern.maschineNote } : pattern}
+                  color={color}
+                  isPlaying={playingIndex === i}
+                  onToggle={() => handleToggle(i, pattern)}
+                />
+              );
+            })}
           </motion.div>
         )}
 
@@ -501,9 +510,9 @@ export default function MasterClassDetail() {
         {activeTab === "kit" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div>
-              <h2 className="font-semibold text-foreground mb-1">Maschine MK3 Group Layout</h2>
+              <h2 className="font-semibold text-foreground mb-1">{t("Maschine MK3 Group Layout", "Maschine MK3 Gruppen-Layout")}</h2>
               <p className="text-xs text-muted-foreground">
-                Visual pad map for Group A (drums) and additional groups. Hover each pad to see sound source, pack, and processing details.
+                {t("Visual pad map for Group A (drums) and additional groups. Hover each pad to see sound source, pack, and processing details.", "Visuelle Pad-Karte für Gruppe A (Drums) und weitere Gruppen. Pad überfahren für Sound-Quelle, Pack und Verarbeitungs-Details.")}
               </p>
             </div>
             <MaschinePadGrid kitPads={producer.kitPads} color={color} />
@@ -511,7 +520,7 @@ export default function MasterClassDetail() {
             {/* Full pad list as table */}
             <div className="border border-border rounded-xl overflow-hidden">
               <div className="p-4 border-b border-border/50 bg-card">
-                <h3 className="font-semibold text-sm text-foreground">Complete Pad Reference</h3>
+                <h3 className="font-semibold text-sm text-foreground">{t("Complete Pad Reference", "Komplette Pad-Referenz")}</h3>
               </div>
               <div className="divide-y divide-border/40">
                 {producer.kitPads.map(pad => (
@@ -532,8 +541,7 @@ export default function MasterClassDetail() {
                         <p className="text-xs" style={{ color }}>{pad.pack}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">{t("Processing", "Bearbeitung")}</p>
-                        <p className="text-[10px] text-muted-foreground leading-relaxed">{pad.processing}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/40 mb-0.5">{t("Processing", "Verarbeitung")}</p>                        <p className="text-[10px] text-muted-foreground leading-relaxed">{pad.processing}</p>
                       </div>
                     </div>
                   </div>
@@ -547,14 +555,13 @@ export default function MasterClassDetail() {
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold text-foreground mb-0.5">{t("New to Maschine MK3?", "Neu bei Maschine MK3?")}</p>
                 <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  {t("The Cheat Sheet has step-by-step hardware instructions for loading sounds, setting choke groups, and every control shown in this kit layout.", "Das Cheat Sheet enthält Schritt-für-Schritt-Hardware-Anweisungen zum Laden von Sounds, Einrichten von Choke-Gruppen und allen in diesem Kit-Layout gezeigten Bedienelementen.")}
-                </p>
+                  {t("The Cheat Sheet has step-by-step hardware instructions for loading sounds, setting choke groups, and every control shown in this kit layout.", "Die Kurzübersicht enthält schrittweise Hardware-Anweisungen zum Laden von Sounds, Einrichten von Choke-Gruppen und allen in diesem Kit-Layout gezeigten Reglern.")}                </p>
                 <Link
                   href="/cheatsheet?tab=core-controls"
                   className="text-[11px] font-medium mt-2 inline-flex items-center gap-1 hover:underline transition-opacity hover:opacity-80"
                   style={{ color }}
                 >
-                  Open Core Controls Cheat Sheet →
+                  {t("Open Core Controls Cheat Sheet →", "Kurzübersicht Core Controls öffnen →")}
                 </Link>
               </div>
             </div>
@@ -565,18 +572,20 @@ export default function MasterClassDetail() {
         {activeTab === "techniques" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-5">
             <div>
-              <h2 className="font-semibold text-foreground mb-1">{t("Key Techniques", "Schlüssel-Techniken")}</h2>
+              <h2 className="font-semibold text-foreground mb-1">{t("Key Techniques", "Wichtige Techniken")}</h2>
               <p className="text-xs text-muted-foreground">
-                {t(
-                  `${producer.name.split(" ")[0]}'s specific methods translated into Maschine MK3 workflow steps. Click each technique to expand the full instructions.`,
-                  `${producer.name.split(" ")[0]}s spezifische Methoden als Maschine-MK3-Workflow-Schritte. Klicke eine Technik zum Erweitern.`
-                )}
-              </p>
+                {lang === "de"
+                  ? `${producer.name.split(" ")[0]}s spezifische Methoden in Maschine-MK3-Workflow-Schritte übersetzt. Jede Technik anklicken für die vollständigen Anweisungen.`
+                  : `${producer.name.split(" ")[0]}'s specific methods translated into Maschine MK3 workflow steps. Click each technique to expand the full instructions.`
+                }              </p>
             </div>
             <div className="space-y-2">
-              {producer.techniques.map((tech, i) => (
-                <TechniqueCard key={i} technique={tech} color={color} index={i} />
-              ))}
+              {producer.techniques.map((tech, i) => {
+                const deTech = lang === "de" && deLocale?.techniques[i];
+                return (
+                  <TechniqueCard key={i} technique={deTech ? { title: deTech.title, detail: deTech.detail } : tech} color={color} index={i} />
+                );
+              })}
             </div>
 
             {/* Cheat Sheet reference */}
@@ -585,14 +594,17 @@ export default function MasterClassDetail() {
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold text-foreground mb-0.5">{t("Apply these in Maschine", "In Maschine anwenden")}</p>
                 <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  The {cheatSheetTabLabel(producer.tags)} Cheat Sheet has exact button presses and parameter values for the techniques {producer.name.split(" ")[0]} is known for.
+                  {lang === "de"
+                    ? `Die ${cheatSheetTabLabel(producer.tags)} Kurzübersicht enthält genaue Tastendrücke und Parameterwerte für die Techniken, für die ${producer.name.split(" ")[0]} bekannt ist.`
+                    : `The ${cheatSheetTabLabel(producer.tags)} Cheat Sheet has exact button presses and parameter values for the techniques ${producer.name.split(" ")[0]} is known for.`
+                  }
                 </p>
                 <Link
                   href={`/cheatsheet?tab=${cheatSheetTab(producer.tags)}`}
                   className="text-[11px] font-medium mt-2 inline-flex items-center gap-1 hover:underline transition-opacity hover:opacity-80"
                   style={{ color }}
                 >
-                  Open {cheatSheetTabLabel(producer.tags)} Cheat Sheet →
+                  {lang === "de" ? `Kurzübersicht ${cheatSheetTabLabel(producer.tags)} öffnen →` : `Open ${cheatSheetTabLabel(producer.tags)} Cheat Sheet →`}
                 </Link>
               </div>
             </div>
@@ -604,8 +616,7 @@ export default function MasterClassDetail() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
             <div>
               <h2 className="font-semibold text-foreground mb-1">{t("Pack Recommendations", "Pack-Empfehlungen")}</h2>
-              <p className="text-xs text-muted-foreground">{t("From your existing pack collection — which to reach for and exactly why.", "Aus deiner bestehenden Pack-Sammlung — welche du nimmst und genau warum.")}</p>
-            </div>
+              <p className="text-xs text-muted-foreground">{t("From your existing pack collection — which to reach for and exactly why.", "Aus deiner bestehenden Pack-Sammlung — welchen du greifen solltest und genau warum.")}</p>            </div>
 
             <div className="space-y-3">
               {producer.packRecs.map((rec, i) => (
@@ -616,7 +627,9 @@ export default function MasterClassDetail() {
                       <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-emerald-500/40 text-emerald-400 bg-emerald-500/10">FREE</span>
                     )}
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{rec.why}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {lang === "de" && deLocale?.packRecs[i]?.why ? deLocale.packRecs[i].why : rec.why}
+                  </p>
                 </div>
               ))}
             </div>
@@ -625,11 +638,10 @@ export default function MasterClassDetail() {
               <div className="p-5 border-b" style={{ borderColor: `${color}20`, backgroundColor: `${color}08` }}>
                 <h2 className="font-semibold text-sm text-foreground">{t("Korg microKEY Tips", "Korg microKEY Tipps")}</h2>
                 <p className="text-xs text-muted-foreground/60 mt-1">
-                  {t(
-                    `How ${producer.name.split(" ")[0]} would use your MIDI keyboard in the Maschine workflow.`,
-                    `Wie ${producer.name.split(" ")[0]} deine MIDI-Tastatur im Maschine-Workflow nutzen würde.`
-                  )}
-                </p>
+                  {lang === "de"
+                    ? `Wie ${producer.name.split(" ")[0]} deine MIDI-Tastatur im Maschine-Workflow einsetzen würde.`
+                    : `How ${producer.name.split(" ")[0]} would use your MIDI keyboard in the Maschine workflow.`
+                  }                </p>
               </div>
               <div className="divide-y" style={{ borderColor: `${color}15` }}>
                 {producer.microKeyTips.map((tip, i) => (
@@ -640,7 +652,9 @@ export default function MasterClassDetail() {
                     >
                       {i + 1}
                     </span>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{tip}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {lang === "de" && deLocale?.microKeyTips[i] ? deLocale.microKeyTips[i] : tip}
+                    </p>
                   </div>
                 ))}
               </div>

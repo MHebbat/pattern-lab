@@ -1,6 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useLang, useT } from "@/lib/i18n";
 import { patterns } from "@/data/patterns";
+import { patternsDe } from "@/data/patterns-de";
 import { soundRecommendations } from "@/data/soundRecommendations";
 import { melodyRecommendations } from "@/data/melodyRecommendations";
 import type { GenreMelodyRecs, BassPattern, MelodyIdea, SampleIdea } from "@/data/melodyRecommendations";
@@ -43,10 +44,9 @@ const SAMPLE_TYPE_LABELS: Record<SampleIdea["sampleType"], string> = {
 };
 
 function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; color: string }) {
-  const { lang } = useLang();
-  return (
+  const t = useT();  return (
     <div className="mt-2 pt-2 border-t border-border/50 space-y-1.5">
-      <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">Alternatives</span>
+      <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">{t("Alternatives", "Alternativen")}</span>
       {alts.map((alt, i) => (
         <div key={i} className="flex items-start gap-2">
           <ChevronRight className="w-3 h-3 mt-0.5 shrink-0 text-muted-foreground/40" />
@@ -63,8 +63,7 @@ function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; 
                 className="flex items-center gap-1 text-[11px] hover:opacity-80 transition-opacity"
                 style={{ color }}>
                 <ExternalLink className="w-2.5 h-2.5" />
-                {alt.free ? (lang === "de" ? "Kostenlos laden" : "Download free") : (lang === "de" ? "Ansehen" : "View")}
-              </a>
+                {alt.free ? t("Download free", "Kostenlos herunterladen") : t("View", "Ansehen")}              </a>
             )}
           </div>
         </div>
@@ -74,8 +73,7 @@ function AltList({ alts, color }: { alts: NonNullable<PackRec["alternatives"]>; 
 }
 
 function PackCard({ pack, color }: { pack: PackRec; color: string }) {
-  const { lang } = useLang();
-  return (
+  const { lang } = useLang();  return (
     <div className="border border-border rounded-lg p-4 flex flex-col gap-2 bg-card hover:border-opacity-60 transition-colors">
       <div className="flex items-start justify-between gap-2">
         <div className="flex flex-col gap-1 min-w-0">
@@ -106,8 +104,7 @@ function PackCard({ pack, color }: { pack: PackRec; color: string }) {
           style={{ color }}
         >
           <ExternalLink className="w-3 h-3" />
-          {pack.free ? (lang === "de" ? "Kostenlos laden" : "Download free") : (lang === "de" ? "Pack ansehen" : "View pack")}
-        </a>
+          {pack.free ? (lang === "de" ? "Kostenlos laden" : "Download free") : (lang === "de" ? "Pack ansehen" : "View pack")}        </a>
       )}
       {pack.alternatives && pack.alternatives.length > 0 && (
         <AltList alts={pack.alternatives} color={color} />
@@ -140,8 +137,7 @@ function PluginCard({ plugin, color }: { plugin: PluginRec; color: string }) {
 }
 
 function SampleCard({ sample, color }: { sample: SampleIdea; color: string }) {
-  const { lang } = useLang();
-  const typeIcon = sample.sampleType === "texture" ? (
+  const { lang } = useLang();  const typeIcon = sample.sampleType === "texture" ? (
     <Layers className="w-3 h-3" />
   ) : sample.sampleType === "chop" || sample.sampleType === "chop-or-clean" ? (
     <Scissors className="w-3 h-3" />
@@ -187,8 +183,7 @@ function SampleCard({ sample, color }: { sample: SampleIdea; color: string }) {
           <p className="text-xs text-muted-foreground leading-relaxed">{sample.lookFor}</p>
         </div>
         <div className="pt-2 border-t border-border/50">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{lang === "de" ? "Behandlung" : "Treatment"}</span>
-          <p className="text-xs text-muted-foreground leading-relaxed">{sample.treatment}</p>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1">{lang === "de" ? "Behandlung" : "Treatment"}</span>          <p className="text-xs text-muted-foreground leading-relaxed">{sample.treatment}</p>
         </div>
       </div>
     </div>
@@ -321,6 +316,7 @@ function MiniKeyboard({ rawNotes, color }: { rawNotes: string[]; color: string }
 function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
+  const t = useT();
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
       <button
@@ -345,38 +341,37 @@ function BassPatternCard({ bp, color }: { bp: BassPattern; color: string }) {
       {open && (
         <div className="border-t border-border/60 p-4 flex flex-col gap-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Notes on microKEY — highlighted keys</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Notes on microKEY — highlighted keys", "Hinweise zum microKEY — markierte Tasten")}</span>
             <MiniKeyboard rawNotes={bp.steps.map(s => s.note)} color={color} />
           </div>
 
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">Step grid (16 steps)</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("Step grid (16 steps)", "Step-Raster (16 Steps)")}</span>
             <BassStepGrid steps={bp.steps} color={color} />
             <div className="flex gap-4 mt-2">
               <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
                 <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color }} />
-                Vel &gt; 80
+                {t("Vel > 80", "Vel > 80")}
               </span>
               <span className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 font-mono">
                 <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: color, opacity: 0.55 }} />
-                {lang === "de" ? "Ghost" : "Ghost"}
-              </span>
+                {lang === "de" ? "Ghost" : "Ghost"}              </span>
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Plugin / Instrument</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Plugin / Instrument", "Plugin / Instrument")}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{bp.pluginSuggestion}</p>
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">microKEY tips</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("microKEY tips", "microKEY-Tipps")}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{bp.microKeyTip}</p>
             </div>
           </div>
 
           <div className="pt-3 border-t border-border/50">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Variation ideas</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Variation ideas", "Variationsideen")}</span>
             <p className="text-xs text-muted-foreground leading-relaxed">{bp.variation}</p>
           </div>
         </div>
@@ -408,6 +403,7 @@ function NoteSequence({ sequence, color }: { sequence: string; color: string }) 
 
 function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
   const [open, setOpen] = useState(false);
+  const t = useT();
   return (
     <div className="border border-border rounded-lg bg-card overflow-hidden">
       <button
@@ -434,28 +430,28 @@ function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
       {open && (
         <div className="border-t border-border/60 p-4 flex flex-col gap-4">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">microKEY claviature — highlighted keys to use</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-2">{t("microKEY claviature — highlighted keys to use", "microKEY-Klaviatur — markierte Tasten")}</span>
             <MiniKeyboard rawNotes={melody.scaleNotes.split(/\s+/).filter(Boolean)} color={color} />
           </div>
 
           <div className="grid sm:grid-cols-2 gap-3">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Scale notes</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Scale notes", "Skalentöne")}</span>
               <p className="text-xs text-muted-foreground font-mono leading-relaxed">{melody.scaleNotes}</p>
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">How to play it</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("How to play it", "So spielst du es")}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{melody.sequenceDescription}</p>
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-3 pt-3 border-t border-border/50">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">microKEY tips</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("microKEY tips", "microKEY-Tipps")}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{melody.microKeyTip}</p>
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">Variation ideas</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("Variation ideas", "Variationsideen")}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{melody.variation}</p>
             </div>
           </div>
@@ -467,6 +463,7 @@ function MelodyCard({ melody, color }: { melody: MelodyIdea; color: string }) {
 
 function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; color: string }) {
   const [activeView, setActiveView] = useState<"bass" | "melody">("bass");
+  const t = useT();
 
   return (
     <motion.div
@@ -479,13 +476,13 @@ function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; co
         <div>
           <h2 className="text-xl font-bold tracking-tight flex items-center gap-2">
             <Piano className="w-5 h-5 text-muted-foreground" />
-            Bass & MIDI Ideas
+            {t("Bass & MIDI Ideas", "Bass & MIDI-Ideen")}
           </h2>
           <p className="text-sm text-muted-foreground mt-1">
-            Bass line patterns with exact note sequences + melody ideas playable on the Korg microKEY
+            {t("Bass line patterns with exact note sequences + melody ideas playable on the Korg microKEY", "Basslinien-Patterns mit exakten Notensequenzen + Melodie-Ideen für das Korg microKEY")}
           </p>
           <div className="flex flex-wrap gap-1.5 mt-3">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">Suggested keys:</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">{t("Suggested keys:", "Empfohlene Tonarten:")}</span>
             {midiRecs.suggestedKeys.map(k => (
               <span
                 key={k}
@@ -505,7 +502,7 @@ function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; co
           >
             <span className="flex items-center gap-1.5">
               <Music2 className="w-3.5 h-3.5" />
-              Bass Lines
+              {t("Bass Lines", "Basslinien")}
             </span>
           </button>
           <div className="w-px h-6 bg-border" />
@@ -516,14 +513,14 @@ function BassAndMidiSection({ midiRecs, color }: { midiRecs: GenreMelodyRecs; co
           >
             <span className="flex items-center gap-1.5">
               <Piano className="w-3.5 h-3.5" />
-              Melodies
+              {t("Melodies", "Melodien")}
             </span>
           </button>
         </div>
       </div>
 
       <div className="mb-4 p-4 rounded-lg border border-border/50 bg-card/40">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">microKEY setup in Maschine</span>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 block mb-1.5">{t("microKEY setup in Maschine", "microKEY-Einrichtung in Maschine")}</span>
         <p className="text-xs text-muted-foreground leading-relaxed">{midiRecs.microKeySetup}</p>
       </div>
 
@@ -596,12 +593,12 @@ export default function PatternDetail() {
   if (!pattern) {
     return (
       <div className="min-h-[100dvh] flex items-center justify-center text-muted-foreground flex-col gap-4">
-        <p>{t("Pattern not found", "Muster nicht gefunden")}</p>
-        <Link href="/" className="text-primary hover:underline">{t("Return to Browser", "Zurück zum Browser")}</Link>
-      </div>
+        <p>{t("Pattern not found", "Pattern nicht gefunden")}</p>
+        <Link href="/" className="text-primary hover:underline">{t("Return to Browser", "Zurück zur Übersicht")}</Link>      </div>
     );
   }
 
+  const deLocale = patternsDe[pattern.id];
   const color = getGenreColorVar(pattern.genre);
   const recs = !pattern.generated ? soundRecommendations[pattern.genre] : null;
   const midiRecs = !pattern.generated ? melodyRecommendations[pattern.genre] : null;
@@ -632,10 +629,9 @@ export default function PatternDetail() {
             data-testid="button-play"
           >
             {isPlaying ? (
-              <><Square className="w-4 h-4" fill="currentColor" /> {t("Stop Pattern", "Muster stoppen")}</>
+              <><Square className="w-4 h-4" fill="currentColor" /> {t("Stop Pattern", "Pattern stoppen")}</>
             ) : (
-              <><Play className="w-4 h-4" fill="currentColor" /> {t("Play Pattern", "Muster abspielen")}</>
-            )}
+              <><Play className="w-4 h-4" fill="currentColor" /> {t("Play Pattern", "Pattern abspielen")}</>            )}
           </Button>
         </div>
       </header>
@@ -662,10 +658,10 @@ export default function PatternDetail() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{pattern.name}</h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
-            {pattern.description}
+            {lang === "de" && deLocale?.description ? deLocale.description : pattern.description}
           </p>
           <div className="flex flex-wrap gap-2 mt-6">
-            {pattern.feel.map(f => (
+            {(lang === "de" && deLocale?.feel ? deLocale.feel : pattern.feel).map(f => (
               <span key={f} className="text-xs bg-secondary text-secondary-foreground px-3 py-1 rounded-full uppercase tracking-widest font-mono">
                 {f}
               </span>
@@ -699,7 +695,7 @@ export default function PatternDetail() {
                 {t("Maschine Notes", "Maschine-Hinweise")}
               </h2>
               <ul className="space-y-4">
-                {pattern.maschineNotes.map((note, i) => (
+                {(lang === "de" && deLocale?.maschineNotes ? deLocale.maschineNotes : pattern.maschineNotes).map((note, i) => (
                   <li key={i} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
                     <span className="font-mono text-primary select-none opacity-50">{i + 1}.</span>
                     <span>{note}</span>
@@ -724,8 +720,7 @@ export default function PatternDetail() {
                   {t("Sounds & Sample Ideas", "Sounds & Sample-Ideen")}
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {t("Specific samples from your packs, plus recommended plugins and expansions", "Spezifische Samples aus deinen Packs sowie empfohlene Plugins und Erweiterungen")}
-                </p>
+                  {t("Specific samples from your packs, plus recommended plugins and expansions", "Spezifische Samples aus deinen Packs plus empfohlene Plugins und Erweiterungen")}                </p>
               </div>
               <div className="flex items-center border border-border rounded-md overflow-hidden shrink-0">
                 <button
