@@ -162,7 +162,7 @@ async function buildExportZip(
 
   if (artwork) {
     const b64 = artwork.split(",")[1];
-    root.file("_artwork.png", b64, { base64: true });
+    root.file("artwork.png", b64, { base64: true });
   }
 
   const now = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -182,51 +182,38 @@ and must be converted to WAV first (use free tools like Audacity or fre:ac).
 
 STEP 1 — EXTRACT
 -----------------
-Extract this ZIP to a PERMANENT location you will NOT move afterwards.
-Moving the folder later will break the Maschine library link.
+Extract this ZIP to a permanent folder you will NOT move afterwards.
+Recommended: ~/Documents/Samples/${packInfo.name}/
 
-  Extract to a PERMANENT location — do NOT move it afterwards.
+STEP 2 — RUN MASCHINE AUTOTAGGER (required for Library integration)
+---------------------------------------------------------------------
+The Maschine Autotagger is a free NI tool that tags your WAV files so
+they appear in the Maschine Library with proper categories and metadata.
+Without it, Maschine won't index the samples.
 
-  Maschine 2 auto-scanned path:
-    Mac: ~/Documents/Native Instruments/Maschine 2/Samples/${packInfo.name}/
-    Win: Documents\\Native Instruments\\Maschine 2\\Samples\\${packInfo.name}\\
+Download: Native Access → look for "Maschine Autotagger" (free)
+Or: native-instruments.com → search "Maschine Autotagger"
 
-  Maschine 3 auto-scanned path:
-    Mac: ~/Documents/Native Instruments/Maschine 3/User Data/Samples/${packInfo.name}/
-    Win: Documents\\Native Instruments\\Maschine 3\\User Data\\Samples\\${packInfo.name}\\
+How to tag this pack:
+  1. Open Maschine Autotagger
+  2. Drag the "${packInfo.name}/" folder onto the Autotagger window
+  3. The folder structure (Drums/Kick, Loops/Drum Loop, Bass, etc.)
+     is already set up to help Autotagger detect categories automatically
+  4. Set the Pack Name to: ${packInfo.name}
+  5. For artwork: click the image area in Autotagger and load artwork.png
+     (included in this ZIP at the root level)
+  6. Click "Tag Files" and wait for completion
 
-  Or extract to any folder — you can register it manually in Step 2.
+STEP 3 — ADD TO MASCHINE LIBRARY
+----------------------------------
+After Autotagger finishes:
+  Maschine software → Preferences → Library → click "Rescan"
+  Wait for the progress bar to complete fully.
 
-STEP 2 — REGISTER FOLDER IN MASCHINE
---------------------------------------
-Skip this step ONLY if you used the auto-scanned path above.
+  Samples will appear in: Browser → User → Samples → ${packInfo.name}
 
-  Maschine 2 (Mac): Maschine menu → Preferences → Library tab
-  Maschine 2 (Win): Edit menu → Preferences → Library tab
-  Maschine 3 (Mac): Maschine menu → Preferences → Library tab
-  Maschine 3 (Win): Edit menu → Preferences → Library tab
-
-  → Under "User", find "Sample Folders" and click the "+" button.
-  → Select the extracted "${packInfo.name}/" folder.
-  → Click OK / Apply.
-
-STEP 3 — FIND SAMPLES IN THE BROWSER
---------------------------------------
-  MASCHINE 2:
-    Preferences → Library tab → click "Rescan" → wait for progress bar.
-    Samples appear under: Browser → User → Samples
-
-  MASCHINE 3:
-    Maschine 3 does NOT show raw WAV samples in User Content (that section
-    is for instruments and effects like Raum). Use the Files browser instead:
-
-    a) Click the FILES tab in the browser (folder icon, left side).
-    b) Navigate to the folder where you extracted this pack.
-    c) Drag any WAV directly from the Files browser onto a pad.
-
-    To add a shortcut so you don't have to navigate every time:
-    Right-click the "${packInfo.name}/" folder in the Files browser
-    → "Add to Favorites" (star icon). It will appear at the top of Files.
+  If using the Files browser directly (no Autotagger):
+    Files tab → navigate to the folder → right-click → Add to Favorites
 
 STEP 4 — USING SAMPLES IN MASCHINE MK3
 -----------------------------------------
