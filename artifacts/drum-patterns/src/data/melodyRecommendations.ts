@@ -111,7 +111,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "Ric Beats Soul Series",
-        packUrl: "https://ricbeats.com",
+        packUrl: "https://r-loops.com/sample-pack/ric-beats/soul-series-rnb-vintage-soul-bundle/11501",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
@@ -121,7 +121,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "Ric Beats Legacy Bundle",
-        packUrl: "https://ricbeats.com",
+        packUrl: "https://r-loops.com/sample-pack/ric-beats/legacy-bundle-vintage-soul-bundle/13191",
         free: false,
         sampleType: "chop",
         lookFor:
@@ -388,7 +388,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "Mystic Samples Free Discovery Pack",
-        packUrl: "https://mysticsamples.com",
+        packUrl: "https://r-loops.com/sample-pack/mystic-samples/free-discovery-pack/9565",
         free: true,
         sampleType: "chop-or-clean",
         lookFor:
@@ -663,7 +663,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "Ric Beats Soul Series",
-        packUrl: "https://ricbeats.com",
+        packUrl: "https://r-loops.com/sample-pack/ric-beats/soul-series-rnb-vintage-soul-bundle/11501",
         free: false,
         sampleType: "clean-loop",
         lookFor:
