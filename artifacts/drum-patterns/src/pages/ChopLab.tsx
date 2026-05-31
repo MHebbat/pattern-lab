@@ -55,26 +55,25 @@ const TABS_EN: Tab[] = [
         ]
       },
       {
-        title: "Your Packs: Lo-Fi & Chill Packs (Weekday, Bunny — Cymatics)",
-        body: "Cymatics lo-fi packs are already processed and short — they're built for immediate use. Your job is matching them to a pattern feel, not extraction.",
+        title: "Your Packs: Contemporary Packs (Weekday, BUNNY Pack — Cymatics)",
+        body: "Weekday is atmospheric 80s synth inspired by The Weeknd's Dawn FM. BUNNY is Latin Trap inspired by Bad Bunny. Neither is lo-fi — both are modern and production-ready.",
         steps: [
-          "These samples are usually 4 or 8 bars at a fixed BPM — check the filename for BPM info (e.g. 'weekday_loop_85bpm')",
-          "In Maschine, turn off 'Warp' when loading (unless the BPM doesn't match your project). Lo-fi samples sound worse when pitch-warped",
-          "Listen for the 'bright spot' — usually beat 3 or beat 4 of the 4-bar loop — and isolate that as a chop",
-          "For Weekday: the piano and keys samples are the most versatile. Slice them into 2-beat pieces and you have instant stabs",
-          "For Bunny: focus on the vinyl pops and noise elements as texture layers under your main sample, not as primary melody",
-          "These packs work best layered: one lo-fi loop as the bed, one chop from Soulful Dreams or REVIVAL Soul Melodies on top"
+          "These samples are usually 4 or 8 bars at a fixed BPM — check the filename for BPM info",
+          "In Maschine, turn off 'Warp' when loading unless the BPM doesn't match your project",
+          "For Weekday: use the atmospheric synth melody loops clean over your drum pattern, or chop the hard synth chord hits as 1-beat stabs for hooks and transitions",
+          "For BUNNY Pack: use the Latin melody loops for an exotic character, or load the Latin percussion one-shots onto pads as accent hits on offbeats",
+          "These packs work best layered: a contemporary synth or Latin loop as the atmospheric bed, with a Soulful Dreams or REVIVAL Soul Melodies chop as the primary melody on top"
         ]
       },
       {
-        title: "Your Packs: Drum-Focused (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
-        body: "Drum sample packs are used differently — you're not chopping them for melody, you're using them as rhythmic texture and replacement hits.",
+        title: "Your Packs: Drums & Orchestral Soul (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
+        body: "Stickz is a hip-hop drum kit — individual one-shots and loops. CHRONICLES is pure soul melody — lush 70s orchestral arrangements. Use them completely differently.",
         steps: [
-          "Stickz Hip-Hop Toolkit: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not try to chop the full loops — use the one-shots",
-          "CHRONICLES Soul Melodies: if it includes loops, look for drum breaks without melodic elements. 2-bar breaks are the target",
-          "Use Detect Transients on drum breaks (more on this in the Chop tab) — drum transients are easy for Maschine to detect automatically",
-          "Layer one drum break chop with your own kick and snare on top — you get the texture of the break without losing rhythmic control",
-          "Use the drum loop as a send effect: route it to a separate channel, compress it hard (4:1, fast attack), and blend it underneath your main kit at -15 to -18dB. It adds dirt without being audible as a separate element"
+          "Stickz Hip-Hop Toolkit: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not chop the loops — use the one-shots",
+          "CHRONICLES Soul Melodies: this is ALL melody — lush 70s orchestral soul. Look for string, brass, and chord arrangements designed for chopping and resampling. No drum breaks here",
+          "CHRONICLES loops slice cleanly with Auto Slice — the orchestral chord changes create clear transient points Maschine detects automatically",
+          "Load a CHRONICLES chord stab on one pad and the full loop on another — play the stab on key moments and let the loop breathe between them",
+          "Stickz drum fills: load as One-Shot triggers. Fire manually at the end of every 8 or 16 bars for instant variation without reprogramming your pattern"
         ]
       },
       {
@@ -111,7 +110,7 @@ const TABS_EN: Tab[] = [
           "On the hardware: press pads 1–8 to audition each slice. The pads light up in sequence",
           "If a slice is too long or too short: go back to the software, adjust sensitivity, re-apply"
         ],
-        tip: "Best for: drum breaks from CHRONICLES Soul Melodies, Stickz Hip-Hop Toolkit, and any rhythmic elements in REVIVAL Soul Melodies."
+        tip: "Best for: Stickz Hip-Hop Toolkit drum loops, CHRONICLES Soul Melodies orchestral chord hits (the chord transients are clean and easy to detect), and any melodic elements in REVIVAL Soul Melodies."
       },
       {
         title: "Method 2: Manual Slice — Most Precise",
@@ -312,7 +311,7 @@ const TABS_EN: Tab[] = [
         body: "The most advanced chopping technique: layering two samples from different packs so they sound like one cohesive loop.",
         steps: [
           "Load Chop A (e.g., a melodic chord loop from Soulful Dreams) on Pad 1",
-          "Load Chop B (e.g., a vinyl-noise texture from Bunny or Weekday) on Pad 2",
+          "Load Chop B (e.g., an atmospheric synth loop from Weekday or a Latin melody element from BUNNY Pack) on Pad 2",
           "Trigger both using Pad Link: SHIFT + PAD LINK → tap Pad 1, then tap Pad 2",
           "EQ Chop A: keep the mids and highs (100Hz to 12kHz). Apply the boom bap stack or R&B treatment from above",
           "EQ Chop B: keep only the low and high extremes — apply a Band-Pass filter centered at 2kHz, very wide (2 octaves). This makes it textural, not melodic",
@@ -338,15 +337,15 @@ type PackProfile = {
 const PACK_PROFILES_EN: PackProfile[] = [
   {
     name: "REVIVAL Soul Melodies",
-    type: "Soul / Gospel / Funk",
+    type: "90s Hip Hop Soul / Roc-A-Fella Era",
     bpmRange: "85–100 BPM",
     choppability: "medium",
-    primaryTechnique: "2-bar loop with minimal slicing",
-    bestChops: "Full band breakdowns, chord stabs, organ swells",
+    primaryTechnique: "2-bar loop clean or stab chop from stems",
+    bestChops: "Vintage melody loops, lush harmonies, gritty groove stabs",
     tips: [
-      "REVIVAL Soul Melodies' full-ensemble sections are best used as single 2-bar loops — don't over-chop them. The richness is in the full arrangement.",
-      "Look for the gospel choir moments — a single held chord hit becomes an incredible stab chop.",
-      "The organ and keys elements often work well reversed — load the reversed chop as a riser before a chorus section.",
+      "REVIVAL pays homage to the Roc-A-Fella era — Jay-Z, Kanye, Beanie Sigel. Expect vintage melodies and lush harmonies with a 90s hip hop grit.",
+      "Comes with 20 melody samples plus full stems — use the stems to isolate single instruments (keys only, strings only) for cleaner, more flexible chops.",
+      "Load clean at 88–92 BPM with boom bap swing, add Saturator (Tape 25%) and the Roc-A-Fella character comes through immediately.",
     ]
   },
   {
@@ -359,7 +358,7 @@ const PACK_PROFILES_EN: PackProfile[] = [
     tips: [
       "These packs likely have a lot of long loops (8–16 bars). Focus on bars 3–4 and 7–8 where the arrangement hits its pocket.",
       "The string hits are gold — find any moment where strings land on a chord and cut it as a single 1-beat slice.",
-      "Layer the Soulful Dreams sample with a Weekday lo-fi texture underneath at -15dB for depth.",
+      "Layer the Soulful Dreams sample with a Weekday atmospheric synth loop underneath at -15dB for a contemporary contrast.",
     ]
   },
   {
@@ -377,41 +376,41 @@ const PACK_PROFILES_EN: PackProfile[] = [
   },
   {
     name: "CHRONICLES Soul Melodies",
-    type: "Hip Hop / Sample-based",
-    bpmRange: "85–105 BPM",
+    type: "Orchestral Soul / 70s Cinematic",
+    bpmRange: "70–100 BPM",
     choppability: "easy",
-    primaryTechnique: "Auto Slice (Detect Transients)",
-    bestChops: "Drum breaks, melodic loops designed for chopping",
+    primaryTechnique: "Clean 2-bar loop or Auto Slice on chord hits",
+    bestChops: "Lush string arrangements, orchestral chord stabs, cinematic soul loops",
     tips: [
-      "CHRONICLES Soul Melodies-type packs are usually designed to be chopped — the transient detection will work well on first try.",
-      "Use the drum elements to replace your factory kit sounds — run the drum break at -15dB under your main kick/snare for grit.",
-      "The melodic loops are typically shorter (1–2 bars) and already suited to immediate pattern placement without heavy processing.",
+      "CHRONICLES is pure melody — lush orchestral arrangements inspired by the 70s soul cinema era, built for producers like Metro Boomin, Alchemist, and Hit Boy. No drums in this pack.",
+      "Slice at each chord change and you get self-contained stabs. Load different stabs on separate pads and play chord variations live with the microKEY.",
+      "Many loops work perfectly clean — just high-pass at 60Hz to leave sub space. The richness of the orchestration does the rest.",
     ]
   },
   {
     name: "Weekday (Cymatics)",
-    type: "Lo-Fi / Indie / Chill",
-    bpmRange: "75–95 BPM",
+    type: "Atmospheric / 80s Synth / Contemporary Hip Hop",
+    bpmRange: "90–110 BPM",
     choppability: "easy",
-    primaryTechnique: "Load and play — minimal chopping needed",
-    bestChops: "Piano keys, lo-fi loops as texture layers, vinyl noise",
+    primaryTechnique: "Use melody loops clean or chop synth stab moments",
+    bestChops: "Atmospheric synth loops, 80s-style chord stabs, punchy modern drum hits",
     tips: [
-      "Weekday samples are pre-processed for lo-fi character — don't add more lo-fi plugins on top, or they'll sound too degraded.",
-      "The piano and electric piano samples work best when you just pick the first 2 beats and loop them — no complex slicing required.",
-      "Use the vinyl crackle elements from Weekday as a send effect on your drum bus for instant boom bap grit.",
+      "Weekday is inspired by The Weeknd's Dawn FM — expect 80s synth textures and cinematic atmospheres, not lo-fi piano. Clean, modern, cinematic.",
+      "The melody loops work best used clean at full length over your drum pattern. For chops: isolate synth chord hits (1-beat stabs) for use in hooks and transitions.",
+      "The drum hits are modern and punchy — load them as replacement or layered hits on top of your main kit for a contemporary edge.",
     ]
   },
   {
     name: "BUNNY Pack",
-    type: "Lo-Fi / Bedroom / Soft",
-    bpmRange: "65–85 BPM",
-    choppability: "easy",
-    primaryTechnique: "Texture layering, not melodic chopping",
-    bestChops: "Ambient pads, noise textures, soft key phrases",
+    type: "Latin Trap / Urban Pop",
+    bpmRange: "90–130 BPM",
+    choppability: "medium",
+    primaryTechnique: "Use melody loops clean or load Latin percussion as one-shots",
+    bestChops: "Latin melody loops, trap-influenced synth stabs, rhythmic Latin percussion hits",
     tips: [
-      "Bunny is intentionally 'soft' — it works best as the texture layer behind a harder sample, not as the primary chop.",
-      "The pad and ambient elements are long (4–8 bars) and designed to loop. Load them as-is on a Group pad and leave them running continuously.",
-      "If you chop melodic elements from Bunny: use them only in the first 2 beats of a bar — they're too soft to carry a full loop.",
+      "BUNNY is inspired by Bad Bunny's 'Nadie Sabe Lo Que Va a Pasar Mañana' — Latin vibes blended with heavy trap influence. Not lo-fi or soft.",
+      "The melody loops have a distinct Latin character. Layer them under a boom bap pattern at -6dB for something exotic that stands out from standard soul samples.",
+      "The Latin percussion one-shots map directly onto Maschine pads — add them as accent hits on offbeats for rhythmic flavor your standard kit doesn't have.",
     ]
   },
   {

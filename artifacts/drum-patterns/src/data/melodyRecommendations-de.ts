@@ -39,27 +39,27 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die Gospel-Orgel- und Blechbläser-Breakdown-Abschnitte. Im REVIVAL Soul Melodies-Browser in Maschine zu 'Loops > Rhythmic' navigieren — Loops mit spärlichem Arrangement (nur Orgel oder Piano, kein Vollband) suchen. Ein einzelner 2-Beat-Akkordschlag aus dem Breakdown-Abschnitt wird zum mächtigsten Stab, den man einsetzen kann.",
+          "Vintage-Melodie-Loops der Roc-A-Fella-Ära (Jay-Z, Kanye, Beanie Sigel). 20 Melodie-Samples plus vollständige Stems — im Stems-Ordner nach isolierten Keys- oder Streicherstimmen suchen. Ein einzelner spärlicher Melodie-Stem (nur Piano oder Rhodes) wird ein mächtiger Stab, wenn man nur 2 Beats davon schneidet.",
         treatment:
-          "Den Akkordschlag als 1-Beat- oder 2-Beat-Slice schneiden. Als Stutter-Chop (Steps 12–14) im Pattern platzieren. Den Boom-Bap-Lo-Fi-Stack anwenden: Saturator (Tape 25 %) → Lo-Fi (12-Bit) → EQ (Hi-Shelf -4 dB bei 10 kHz).",
+          "Den 2-Beat-Akkordschlag schneiden. Als Stutter-Chop (Steps 12–14) im Pattern platzieren. Den Boom-Bap-Lo-Fi-Stack anwenden: Saturator (Tape 25 %) → Lo-Fi (12-Bit) → EQ (Hi-Shelf -4 dB bei 10 kHz).",
       },
       {
         lookFor:
-          "Zeitgenössische Neo-Soul-Piano- oder Rhodes-Loops — die sauberen melodischen Abschnitte ohne Drums. Loops, bei denen die Akkordqualität klar erkennbar ist (Moll-7, Moll-9). Diese sind zum direkten Einsatz gedacht. BPM vor dem Laden auf das Pattern abstimmen.",
+          "Vintage Soul inspiriert von Vokalgruppen wie The Sweet Inspirations und Clydie King — schwebende Akkordfolgen und kernige Soul-Instrumentation. Loops mit Vokalharmonie-Elementen oder reichen Akkordmovements suchen. 20 Melodie-Samples plus 156 Stems — der Stems-Ordner isoliert Vokal-Pads oder Akkord-Layer für präzise Chops.",
         treatment:
           "Vollständig clean verwenden — keine Lo-Fi-Bearbeitung. Nur den Tiefenbereich unter 80 Hz per EQ kappen, um Platz für den Sub-Kick zu schaffen. Raum im Grounded-Modus hinzufügen (0,4 s, 15 % Wet), um den Sound in einem Raum zu platzieren. Dieser Sample IST die Melodie — die Drums sollen ihm dienen.",
       },
       {
         lookFor:
-          "Hip-Hop-Melodie-Loops bei 88–95 BPM. Alles suchen, das ein Piano- oder Gitarrenelement neben dem Drum-Groove enthält. Die Akkord-Loops in CHRONICLES Soul Melodies sind speziell für den Sample-Flip-Workflow entwickelt — sie haben bereits den schmutzigen, komprimierten Charakter eines Producer-Beats.",
+          "Üppige orchestrale Soul-Arrangements im Stil der 70er Kino-Ära — der Sound, den Metro Boomin, Alchemist und Hit Boy nutzen. Streicher-Arrangements und Akkordfolgen mit natürlicher Bewegung suchen. 20 Melodie-Samples plus 160 Stems — der Stems-Ordner erlaubt es, einzelne orchestrale Elemente zu isolieren.",
         treatment:
-          "Den 2-Takt-Melodie-Loop clean verwenden ODER den Turnaround (letzte 2 Beats von Takt 2) als separaten Stab-Trigger schneiden. Keine starke Bearbeitung nötig — CHRONICLES Soul Melodies-Samples sind vorverarbeitet. Nur den Sub per EQ kappen (Hochpass bei 60 Hz), um Platz für den Kick zu schaffen.",
+          "Den 2-Takt-Loop clean verwenden ODER an jedem Akkordwechsel für Stabs slicen. Hochpass bei 60 Hz, keine starke Bearbeitung nötig — die orchestrale Reichhaltigkeit trägt sich selbst. Einen Stab-Chop auf Step 0 und den vollen Loop als Hintergrund-Pad bei -8 dB für Tiefe layern.",
       },
       {
         lookFor:
-          "Die Lo-Fi-Piano- und E-Piano-Elemente. Den vollen Loop NICHT als Hauptsound verwenden — sie sind bereits stark bearbeitet. Stattdessen eine einzelne 4-Beat-Piano-Phrase als sekundären Bett-Layer unter den Haupt-Sample (Soulful Dreams oder Odyssey) legen.",
+          "Atmosphärische Synth- und 80er-beeinflusste Melodie-Loops bei 90–110 BPM, inspiriert von The Weeknds Dawn FM. Cineastische Synth-Akkord-Loops suchen — sie bieten zeitgenössischen Kontrast als Layer unter einem Vintage-Soul-Chop. Auch die Drum-Hits auf punchy moderne One-Shots prüfen.",
         treatment:
-          "Auf ein separates Pad laden, Lautstärke auf -15 dB unter dem Haupt-Sample setzen. Das Vinyl-Rauschen von Weekday ist ebenfalls nützlich — auf ein Pad laden und auf Step 0 triggern, als textürelles Zischen durchgehend laufen lassen. Keine weitere Bearbeitung nötig.",
+          "Clean in voller Länge verwenden — nur EQ (Hochpass bei 80 Hz) und leichte Sidechain-Kompression vom Kick. Bei -10 dB unter dem primären Soul-Sample layern. Die 80er Synth-Textur gegen einen Vintage-Loop erzeugt ein zeitverschobenes Feeling, das sich abhebt.",
       },
     ],
     bassPatterns: [
@@ -200,15 +200,15 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die Lo-Fi-E-Piano- und Gitarren-Elemente im Bereich 90–105 BPM. Weekdays zeitgenössisch-lo-fi Textur funktioniert perfekt für moderne Hip-Hop-Produktion. Alle Phrasen mit einem leichten Drift oder Waver suchen — das ist die Bandsättigungs-Charakteristik, die über einem engen Hi-Hat-Pattern perfekt klingt.",
+          "Atmosphärische Synth- und 80er-beeinflusste Melodie-Loops bei 90–110 BPM, inspiriert von The Weeknds Dawn FM. Cineastische Synth-Akkord-Loops suchen, die zeitgenössischen Kontrast als Layer unter einem Vintage-Soul-Chop bieten. Auch die Drum-Hits auf punchy moderne One-Shots prüfen.",
         treatment:
-          "Clean verwenden. Keine zusätzlichen Lo-Fi-Plugins draufschichten. Nur EQ (Hochpass bei 50 Hz, Hi-Shelf -2 dB bei 12 kHz) und leichte Sidechain-Kompression vom Kick anwenden. Die vorverarbeitete Textur ist der Punkt.",
+          "Clean in voller Länge verwenden — nur EQ (Hochpass bei 80 Hz) und leichte Sidechain-Kompression vom Kick. Bei -10 dB unter dem primären Soul-Sample layern. Die 80er Synth-Textur gegen einen Vintage-Loop erzeugt ein zeitverschobenes Feeling.",
       },
       {
         lookFor:
-          "Die atmosphärischen Pad- und Akkord-Elemente. Bunnys weicher, luftiger Charakter füllt den Raum, den ein härteres Hip-Hop-Pattern offen lässt. Alle Pad- oder Keyboard-Loops mit einem langsamen Akkordwechsel suchen — idealerweise ein 4-Takt-Loop mit nur 2 Akkordpositionen.",
+          "Latin-Trap-Melodie-Loops und rhythmische Percussion-Elemente inspiriert von Bad Bunny. Melodie-Loops mit Latin-Charakter suchen — unverwechselbar gegenüber Standard-Soul-Chops. Auch die Drum- und Percussion-One-Shots auf Latin-Flavor-Hits (Congas, Latin Perc) prüfen, die auf Akzent-Pads geladen werden können.",
         treatment:
-          "Als Textur-Layer bei -18 dB laden. Raum im Bloom-Modus hinzufügen (1,2 s Decay, 30 % Wet), um ihn weiter zu spreizen. Diese Schicht sollte als Atmosphäre gefühlt, nicht als Melodie gehört werden. Stummschalten und der Beat fühlt sich leer an — so weiß man, dass es richtig eingestellt ist.",
+          "Den Latin-Melodie-Loop unter dem primären Soul-Sample bei -8 dB layern für eine exotische Textur. Oder als alleinige primäre Melodie für ein Latin-beeinflusste Boom-Bap-Feel verwenden. Die Latin-Percussion-One-Shots: direkt auf offene Maschine-Pads laden als Akzent-Hits auf Steps 5 und 13 für eine polyrhythmische Schicht.",
       },
       {
         lookFor:
@@ -361,27 +361,27 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die 'slow' und 'smooth' Abschnitte von REVIVAL Soul Melodies — die Neo-Soul-Piano-Loops und die langsamen Gospel-Progressionen. Im REVIVAL Soul Melodies-Browser in Maschine zu 'Loops > Melodic > Slow' navigieren. Die Organ-Pads, die durch Akkordwechsel ausgehalten werden, sind besonders wirkungsvoll für R&B-Balladenfeeling.",
+          "Die langsameren, harmonisch reichen Loops aus REVIVALs 20 Melodie-Samples — Roc-A-Fella-Ära Soul mit Vintage-Melodien und reichen Harmonien. Loops mit langsamer Akkord-Bewegung und luftigen Arrangements suchen. Den Stems-Ordner auf isolierte Piano- oder Rhodes-Teile prüfen, die wunderschön unter einem R&B-Vocal sitzen.",
         treatment:
-          "Clean verwenden. Die Tonhöhe des Samples im Tune-Bereich von Maschine anpassen, um zur Bassnote zu passen. Raum (Bloom-Modus) bei 30 % Wet hinzufügen. Für Velvet-Lounge-Stil-R&B: einen kurzen Scarbee-Mark-I-Akkord (Kontakt) parallel zum REVIVAL Soul Melodies-Loop schichten — sie verschmelzen zu einem kohärenten Klang.",
+          "Clean verwenden. Die Tonhöhe des Samples im Tune-Bereich von Maschine anpassen, um zur Bassnote zu passen. Raum (Bloom-Modus) bei 30 % Wet hinzufügen. Für Velvet-Lounge-Stil-R&B: einen kurzen Scarbee-Mark-I-Akkord (Kontakt) parallel zum REVIVAL Loop schichten — sie verschmelzen zu einem kohärenten Klang.",
       },
       {
         lookFor:
-          "Die zeitgenössischen R&B-Akkordprogressionen. ODYSSEY Soul Melodies' Stärke liegt in harmonischer Reichhaltigkeit — alles mit erweiterten Akkorden suchen (9., 11., 13. Akkorde). Diese passen perfekt unter R&B-Vokal-Raum. Ziel-Tonarten: alle Loops in Cm, Fm oder Ebmaj.",
+          "ODYSSEYs Stärke liegt im Vintage Vocal Soul — inspiriert von Backing-Vokal-Gruppen wie The Sweet Inspirations. Loops mit schwebenden Akkordfolgen und Vokalharmonie-Elementen suchen. Der Stems-Ordner isoliert Vokal-Pads für eigenständige harmonische Schichten. Ziel-Tonarten: Loops in Cm, Fm oder Ebmaj.",
         treatment:
           "Vollständig clean verwenden. Kein Chopping, keine Bearbeitung außer EQ. Diese Loops sind dazu gedacht, der primäre harmonische Inhalt zu sein. Auf Step 0 triggern, One-Shot-Modus, 2 Takte klingen lassen. Das ist der Sample, dem alles andere dient.",
       },
       {
         lookFor:
-          "Die Ambient-Pad- und weichen Akkord-Elemente. Bunnys verträumter, weicher Charakter ist perfekt für R&B-Hintergrundtextur. Alles suchen, das einen langsamen Akkordwechsel oder ein Pad hat, das ohne rhythmische Bewegung ausgehalten wird.",
+          "Latin-Trap-Melodie-Loops mit langsamerer, melodischerer Bewegung — BUNNY umfasst Trap-Energie bis hin zu melodischem Territorium. Für R&B-Kontexte nach Melodie-Loops mit weniger rhythmischer Aggressivität suchen. Die Synth- und Keys-Elemente funktionieren als R&B-Stabs, wenn man nur einen 1-Beat-Akkordschlag vom Loop schneidet.",
         treatment:
-          "Unter dem primären Odyssey- oder Soulful-Dreams-Sample bei -20 dB schichten. Raum im Shimmer-Modus hinzufügen (2,5 s Decay, 50 % Wet) — das erzeugt die Luft rund um die gesamte Produktion. Der Bunny-Layer soll auf Laptop-Lautsprechern unhörbar, auf Kopfhörern und Studio-Monitoren aber präsent sein.",
+          "Die melodischeren BUNNY Loops unter dem primären ODYSSEY- oder Soulful-Dreams-Sample bei -12 dB schichten für zeitgenössischen, urbanen Charakter. Oder einen 1-Beat-Synth-Stab schneiden und auf Steps 4 und 12 neben der Snare platzieren — fügt einen Trap-beeinflussten Akzent zu einem R&B-Groove hinzu.",
       },
       {
         lookFor:
-          "Die kurzen Piano- und E-Piano-Schläge. Weekday hat einige Einzelakkord-Schläge (1–2 Beats), die als R&B-Stabs wunderschön funktionieren. Alle 'Keys'-Elemente suchen, die einen weichen Attack und natürlichen Decay haben — nicht die Lo-Fi-Loops, sondern die einzelnen Schläge.",
+          "Kurze Synth-Akkord-Stabs und 80er-Stil R&B-atmosphärische Hits. Weekdays Dawn-FM-Ästhetik hat starke R&B-Wurzeln — alle 1–2-Beat-Synth-Hits mit weichem Attack und natürlichem Decay suchen. Diese 80er-beeinflussten Stabs passen perfekt in zeitgenössische Neo-Soul- und R&B-Kontexte.",
         treatment:
-          "Den 1-Beat-Akkordschlag schneiden. Auf Step 4 und Step 12 zusammen mit dem Rimshot oder Clap platzieren — er feuert mit der Snare. Raum-Platte hinzufügen (0,8 s, 25 % Wet) und einen sanften Kompressor (2:1, langsamer Attack), um ihn in den Mix einzupassen.",
+          "Den 1-Beat-Synth-Akkordschlag schneiden. Auf Step 4 und Step 12 zusammen mit dem Rimshot platzieren — er feuert mit der Snare für einen druckvollen Akzent. Raum-Platte hinzufügen (0,8 s, 25 % Wet) und einen sanften Kompressor (2:1, langsamer Attack), um ihn in den Mix einzupassen.",
       },
     ],
     bassPatterns: [

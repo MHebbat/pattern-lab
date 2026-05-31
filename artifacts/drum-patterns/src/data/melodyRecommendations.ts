@@ -51,7 +51,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
     samples: [
       {
         pack: "Soulful Dreams Vol 1 & Vol 2",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://retroloops.com",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
@@ -61,13 +61,13 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "REVIVAL Soul Melodies",
-        packUrl: "https://www.native-instruments.com/en/products/maschine/expansions/revival/",
+        packUrl: "https://producergrind.com/products/revival-soul-melodies",
         free: false,
         sampleType: "chop",
         lookFor:
-          "The gospel organ and brass breakdown sections. In the REVIVAL Soul Melodies browser inside Maschine, navigate to 'Loops > Rhythmic' — find any loop with a sparse arrangement (organ or piano only, no full band). A single 2-beat chord hit from the breakdown section becomes the most powerful stab you can use.",
+          "Vintage melody loops inspired by the Roc-A-Fella era (Jay-Z, Kanye, Beanie Sigel). 20 melody samples plus full stems — look in the stems folder for isolated keys or string parts. A single sparse melody stem (piano or Rhodes only) becomes a powerful stab when you chop just 2 beats of it.",
         treatment:
-          "Chop the chord hit as a 1-beat or 2-beat slice. Place as a stutter chop (Steps 12–14) in your pattern. Apply the boom bap lo-fi stack: Saturator (Tape 25%) → Lo-Fi (12-bit) → EQ (hi-shelf -4dB at 10kHz).",
+          "Chop the 2-beat chord hit. Place as a stutter chop (Steps 12–14) in your pattern. Apply the boom bap lo-fi stack: Saturator (Tape 25%) → Lo-Fi (12-bit) → EQ (hi-shelf -4dB at 10kHz).",
       },
       {
         pack: "ODYSSEY Soul Melodies",
@@ -81,23 +81,23 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "CHRONICLES Soul Melodies",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://producergrind.com/products/soul-era-sample-bundle",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
-          "Hip hop melodic loops at 88–95 BPM. Look for anything with a piano or guitar element alongside the drum groove. The chord loops in CHRONICLES Soul Melodies are designed specifically for the sample-flip workflow — they already have the dirty, compressed character of a producer's beat.",
+          "Lush orchestral soul arrangements inspired by 70s soul cinema — the sound Metro Boomin, Alchemist, and Hit Boy pull from. Look for string arrangements and chord progressions with natural movement. 20 melody samples plus 160 stems — the stems folder lets you isolate single orchestral elements.",
         treatment:
-          "Use the 2-bar melodic loop clean OR chop the turnaround (last 2 beats of bar 2) as a separate stab trigger. No heavy processing needed — CHRONICLES Soul Melodies samples are pre-processed. Just EQ the sub (high-pass at 60Hz) to make space for your kick.",
+          "Use the 2-bar loop clean OR slice at each chord change for stabs. High-pass at 60Hz, no heavy processing needed — the orchestral richness carries itself. Layer a stab chop on Step 0 and the full loop as a background pad at -8dB for depth.",
       },
       {
         pack: "Weekday (Cymatics)",
-        packUrl: "https://cymatics.fm/products/weekday-free-sample-pack",
+        packUrl: "https://cymatics.fm/products/weekday-hip-hop-sample-pack",
         free: true,
         sampleType: "texture",
         lookFor:
-          "The lo-fi piano and electric piano elements. Do NOT use the full loops as primary — they're already processed heavily. Instead use a single 4-beat piano phrase as a secondary 'bed' layer underneath your main Soulful Dreams or Odyssey sample.",
+          "Atmospheric synth and 80s-influenced melody loops inspired by The Weeknd's Dawn FM. Look for cinematic synth loops that have a slow chord movement — these work as a contemporary atmospheric layer under a boom bap pattern. Also check the drum hits for modern punchy one-shots.",
         treatment:
-          "Load onto a separate pad, set volume to -15dB below the main sample. The vinyl noise from Weekday is also useful — load it onto a pad and trigger on Step 0, let it run continuously as a textural hiss under the beat. No additional processing needed.",
+          "Load the synth loop onto a separate pad at -12dB below the primary soul sample. The contrast between a vintage Soulful Dreams loop and a modern Weekday synth texture creates an interesting time-warp effect. No heavy processing — just high-pass at 80Hz.",
       },
     ],
     bassPatterns: [
@@ -298,7 +298,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
     samples: [
       {
         pack: "Soulful Dreams Vol 2",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://retroloops.com",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
@@ -308,43 +308,43 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "Weekday (Cymatics)",
-        packUrl: "https://cymatics.fm/products/weekday-free-sample-pack",
+        packUrl: "https://cymatics.fm/products/weekday-hip-hop-sample-pack",
         free: true,
         sampleType: "clean-loop",
         lookFor:
-          "The lo-fi electric piano and guitar elements in the 90–105 BPM range. Weekday's contemporary lo-fi texture works perfectly for modern hip hop production. Look for any phrase with a slight 'drift' or 'waver' to it — that's the tape saturation, and it sounds perfect over a tight hi-hat pattern.",
+          "Atmospheric synth and 80s-influenced melody loops in the 90–110 BPM range, inspired by The Weeknd's Dawn FM. Look for cinematic synth chord loops — they add a contemporary contrast when layered under a vintage soul chop. Also check the drum hits for punchy modern one-shots.",
         treatment:
-          "Use clean. Do not add more lo-fi plugins on top. Just EQ (high-pass at 50Hz, high-shelf -2dB at 12kHz) and apply light sidechain compression from the kick. The pre-processed texture is the point.",
+          "Use clean at full length — just EQ (high-pass at 80Hz) and apply light sidechain compression from the kick. Layer at -10dB under your primary soul sample. The 80s synth texture against a vintage loop creates a time-warp feel that's distinctive.",
       },
       {
         pack: "BUNNY Pack",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://cymatics.fm/products/bunny-hip-hop-sample-pack",
         free: false,
         sampleType: "texture",
         lookFor:
-          "The atmospheric pad and chord elements. Bunny's soft, airy character fills the space that a harder hip hop pattern leaves open. Find any pad or keyboard loop that has a slow chord change — ideally a 4-bar loop with just 2 chord positions.",
+          "Latin Trap melody loops and rhythmic percussion elements inspired by Bad Bunny. Look for melody loops with a Latin character — distinctive against standard soul chops. Also check the drum and percussion one-shots for Latin flavor hits (congas, Latin perc) you can load as accent pads.",
         treatment:
-          "Load as a texture layer at -18dB. Add Raum in Bloom mode (1.2s decay, 30% wet) to spread it further. This layer should be felt as 'atmosphere' — not heard as a melody. Mute it and the beat will feel empty; that's how you know it's set correctly.",
+          "Layer the Latin melody loop under your primary soul sample at -8dB for an exotic texture. Or use it as the sole primary melody for a Latin-influenced boom bap feel. The Latin percussion one-shots: load directly onto open Maschine pads as accent hits on Steps 5 and 13 for a polyrhythmic layer.",
       },
       {
         pack: "ODYSSEY Soul Melodies",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://producergrind.com/products/soul-era-sample-bundle",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
-          "Neo soul chord progressions that move between two or three chords. Find anything with a ii-V-i or i-VII-VI movement — these progressions have natural harmonic tension that complements hip hop patterns. Look for loops where the chord hits on beats 2 and 4 (alongside the snare).",
+          "Vintage soul inspired by vocal groups like The Sweet Inspirations and Clydie King — floating chord sequences and gritty soul instrumentation. Look for loops with vocal harmony elements or rich chord movements. 20 melody samples plus 156 stems — the stems isolate the vocal pads or chord layers for precise chops.",
         treatment:
           "Chop approach: slice at each chord change. Place the first chord (Steps 0–7) and second chord (Steps 8–15) on different pads — now you can play them independently. Clean approach: use the full 2-bar loop and let it breathe over the entire drum pattern.",
       },
       {
         pack: "CHRONICLES Soul Melodies",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://producergrind.com/products/soul-era-sample-bundle",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The melodic hip hop loops at 95–105 BPM. CHRONICLES Soul Melodies loops are purpose-built for this genre — just find one that matches your key and BPM. The guitar loops in CHRONICLES Soul Melodies have a rough, slightly distorted character that sits perfectly in modern hip hop.",
+          "Lush orchestral soul arrangements from the 70s soul cinema era — the sound Metro Boomin, Alchemist, and Hit Boy draw from. Look for string or chord loops that have a cinematic scope. 20 melody samples plus 160 stems. Find a loop in a key close to your project and let the orchestral richness do the heavy lifting.",
         treatment:
-          "Use clean. Apply Guitar Rig 7's 'Tube Compressor' on the sample channel for extra warmth. Sidechain to kick at 4:1, 80ms release for the pumping feel. No further processing needed.",
+          "Use clean. High-pass at 60Hz, add Raum in Grounded mode (0.4s, 15% wet) to place it in a room. Sidechain to kick at 2:1, 80ms release — gentle pumping keeps the orchestral feel while locking to the beat. No distortion or heavy saturation — the arrangement already has character.",
       },
     ],
     bassPatterns: [
@@ -543,7 +543,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
     samples: [
       {
         pack: "Soulful Dreams Vol 1",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://retroloops.com",
         free: false,
         sampleType: "clean-loop",
         lookFor:
@@ -553,43 +553,43 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       },
       {
         pack: "REVIVAL Soul Melodies",
-        packUrl: "https://www.native-instruments.com/en/products/maschine/expansions/revival/",
+        packUrl: "https://producergrind.com/products/revival-soul-melodies",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The 'slow' and 'smooth' sections of REVIVAL Soul Melodies — the neo soul piano loops and the slow gospel progressions. Navigate in Maschine's REVIVAL Soul Melodies browser to 'Loops > Melodic > Slow'. The organ pads that sustain through chord changes are particularly powerful for R&B ballad feels.",
+          "The slower, lush harmonic loops from REVIVAL's 20 melody samples — Roc-A-Fella era soul with vintage melodies and rich harmonies. Look for loops with slow chord movement and spacious arrangements. Check the stems folder for isolated piano or Rhodes parts that sit beautifully under an R&B vocal.",
         treatment:
-          "Use clean. Adjust the sample's pitch in Maschine's Tune section to match your bass note. Add Raum (Bloom mode) at 30% wet. For Velvet Lounge-style R&B: layer a short Scarbee Mark I chord (Kontakt) alongside the REVIVAL Soul Melodies loop — they'll blend into one cohesive sound.",
+          "Use clean. Adjust pitch in Maschine's Tune section to match your bass note. Add Raum (Bloom mode) at 30% wet. For Velvet Lounge-style R&B: layer a short Scarbee Mark I chord (Kontakt) alongside the REVIVAL loop — they'll blend into one cohesive sound.",
       },
       {
         pack: "ODYSSEY Soul Melodies",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://producergrind.com/products/soul-era-sample-bundle",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The contemporary R&B chord progressions. ODYSSEY Soul Melodies' strength is harmonic richness — look for anything with extended chords (9th, 11th, 13th chords). These sit under an R&B vocal space perfectly. Key target: any loop in Cm, Fm, or Ebmaj.",
+          "ODYSSEY's strength is vintage vocal soul — inspired by backing vocal groups like The Sweet Inspirations. Look for loops with floating chord sequences and vocal harmony elements. The stems folder isolates vocal pads for use as standalone harmonic layers. Key target: loops in Cm, Fm, or Ebmaj.",
         treatment:
           "Use completely clean. No chopping, no processing beyond EQ. These loops are designed to be your primary harmonic content. Trigger on Step 0, One-Shot mode, let ring through 2 bars. This is the sample that everything else serves.",
       },
       {
         pack: "BUNNY Pack",
-        packUrl: "https://cymatics.fm",
+        packUrl: "https://cymatics.fm/products/bunny-hip-hop-sample-pack",
         free: false,
         sampleType: "texture",
         lookFor:
-          "The ambient pad and soft chord elements. Bunny's dreamy, soft character is perfect for R&B background texture. Look for anything that has a slow chord change or a pad that sustains without rhythmic movement.",
+          "Latin Trap melody loops that have slower, more melodic movement — BUNNY spans trap energy to melodic territory. For R&B contexts, look for melody loops with less rhythmic aggression. The synth and keys elements work as R&B stabs when you chop just a 1-beat chord hit from the loop.",
         treatment:
-          "Layer under the primary Odyssey or Soulful Dreams sample at -20dB. Add Raum in Shimmer mode (2.5s decay, 50% wet) — this creates the 'air' around the whole production. The Bunny layer should be completely inaudible on laptop speakers but present on headphones and studio monitors.",
+          "Layer the more melodic BUNNY loops under the primary ODYSSEY or Soulful Dreams sample at -12dB for an urban, contemporary edge. Or chop a 1-beat synth stab and place it on Steps 4 and 12 alongside the snare — adds a trap-influenced accent to an R&B groove.",
       },
       {
         pack: "Weekday (Cymatics)",
-        packUrl: "https://cymatics.fm/products/weekday-free-sample-pack",
+        packUrl: "https://cymatics.fm/products/weekday-hip-hop-sample-pack",
         free: true,
         sampleType: "chop",
         lookFor:
-          "The short piano and electric piano hits. Weekday has some single-chord hits (1–2 beats) that work beautifully as R&B stabs. Look for any 'keys' element that has a soft attack and natural decay — not the lo-fi loops, the individual hits.",
+          "Short synth chord stabs and 80s-style R&B atmospheric hits. Weekday's Dawn FM aesthetic has strong R&B roots — look for any 1–2 beat synth hit with a smooth attack and natural decay. These 80s-influenced stabs sit perfectly in contemporary neo-soul and R&B contexts.",
         treatment:
-          "Chop the 1-beat chord hit. Place on Step 4 and Step 12 alongside your rimshot or clap — it fires with the snare. Apply Raum plate (0.8s, 25% wet) and a gentle Compressor (2:1, slow attack) to match it to the rest of the mix.",
+          "Chop the 1-beat synth chord hit. Place on Step 4 and Step 12 alongside your rimshot — it fires with the snare for a punchy accent. Apply Raum plate (0.8s, 25% wet) and a gentle Compressor (2:1, slow attack) to blend it into the mix.",
       },
     ],
     bassPatterns: [

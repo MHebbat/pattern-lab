@@ -55,26 +55,25 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
         ]
       },
       {
-        title: "Deine Packs: Lo-Fi & Chill (Weekday, Bunny — Cymatics)",
-        body: "Cymatics Lo-Fi-Packs sind bereits verarbeitet und kurz — sie sind für den Soforteinsatz gebaut. Deine Aufgabe ist, sie auf ein Pattern-Feel abzustimmen, nicht die Extraktion.",
+        title: "Deine Packs: Contemporary Packs (Weekday, BUNNY Pack — Cymatics)",
+        body: "Weekday ist atmosphärischer 80er Synth inspiriert von The Weeknds Dawn FM. BUNNY Pack ist Latin Trap inspiriert von Bad Bunny. Kein Lo-Fi — beide sind modern und produktionsbereit.",
         steps: [
-          "Diese Samples haben meist 4 oder 8 Takte bei festem BPM — Dateinamen auf BPM-Infos prüfen (z.B. 'weekday_loop_85bpm')",
-          "In Maschine 'Warp' beim Laden ausschalten (außer das BPM passt nicht zum Projekt). Lo-Fi-Samples klingen bei Pitch-Warping schlechter",
-          "Den 'Bright Spot' suchen — meist Beat 3 oder 4 des 4-Takt-Loops — und als Chop isolieren",
-          "Für Weekday: die Klavier- und Keys-Samples sind am vielseitigsten. In 2-Beat-Stücke schneiden und du hast sofortige Stabs",
-          "Für Bunny: auf Vinyl-Knistern und Rausch-Elemente als Texturschichten unter dem Haupt-Sample konzentrieren, nicht als primäre Melodie",
-          "Diese Packs funktionieren am besten gelayert: ein Lo-Fi-Loop als Bett, ein Chop aus Soulful Dreams oder REVIVAL Soul Melodies obendrauf"
+          "Diese Samples haben meist 4 oder 8 Takte bei festem BPM — Dateinamen auf BPM-Infos prüfen",
+          "In Maschine 'Warp' beim Laden ausschalten, außer das BPM passt nicht zum Projekt",
+          "Für Weekday: atmosphärische Synth-Melodie-Loops clean über dem Drum-Pattern nutzen oder harte Synth-Akkord-Hits als 1-Beat-Stabs für Hooks und Übergänge choppen",
+          "Für BUNNY Pack: die Latin-Melodie-Loops für exotischen Charakter nutzen, oder die Latin-Percussion-One-Shots auf Pads als Akzent-Hits auf Offbeats laden",
+          "Diese Packs funktionieren am besten gelayert: ein zeitgenössischer Synth- oder Latin-Loop als atmosphärisches Bett, mit einem Chop aus Soulful Dreams oder REVIVAL Soul Melodies als primäre Melodie obendrauf"
         ]
       },
       {
-        title: "Deine Packs: Drum-fokussiert (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
-        body: "Drum-Sample-Packs werden anders verwendet — du choppst sie nicht für Melodie, du nutzt sie als rhythmische Textur und Ersatz-Hits.",
+        title: "Deine Packs: Drums & Orchestral Soul (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
+        body: "Stickz ist ein Hip-Hop-Drum-Kit — einzelne One-Shots und Loops für Maschine-Pads. CHRONICLES ist reines Soul-Melodie-Material — üppige 70er Orchesterarrangements zum Choppen. Völlig unterschiedliche Verwendung.",
         steps: [
-          "Stickz Hip-Hop Toolkit: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Versuche nicht, die kompletten Loops zu choppen — nutze die One-Shots",
-          "CHRONICLES Soul Melodies: bei enthaltenen Loops nach Drum-Breaks ohne melodische Elemente suchen. 2-Takt-Breaks sind das Ziel",
-          "Detect Transients auf Drum-Breaks anwenden (mehr dazu im Chop-Tab) — Drum-Transients sind für Maschine leicht automatisch erkennbar",
-          "Einen Drum-Break-Chop mit eigenem Kick und Snare obendrauf layern — du bekommst die Textur des Breaks ohne rhythmische Kontrolle zu verlieren",
-          "Den Drum-Loop als Send-Effekt nutzen: auf einen separaten Kanal routen, hart komprimieren (4:1, schneller Attack), und bei -15 bis -18dB unter dem Hauptkit einblenden. Fügt Dreck hinzu ohne als separates Element hörbar zu sein"
+          "Stickz Hip-Hop Toolkit: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Die Loops nicht choppen — die One-Shots nutzen",
+          "CHRONICLES Soul Melodies: das ist ALLES Melodie — üppige 70er Orchestral-Soul-Arrangements. Streicher-, Blechbläser- und Akkord-Arrangements zum Choppen und Resampling suchen. Keine Drum-Breaks hier",
+          "CHRONICLES Loops slicen sauber mit Auto Slice — die orchestralen Akkordwechsel erzeugen klare Transient-Punkte, die Maschine automatisch erkennt",
+          "Einen CHRONICLES Akkord-Stab auf einem Pad und den vollen Loop auf einem anderen laden — den Stab auf Schlüsselmomente triggern und den Loop dazwischen atmen lassen",
+          "Stickz Drum-Fills: als One-Shot-Trigger laden. Am Ende jede 8 oder 16 Takte manuell auslösen für sofortige Variation ohne Pattern-Umprogrammierung"
         ]
       },
       {
@@ -322,15 +321,15 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
 export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
   {
     name: "REVIVAL Soul Melodies",
-    type: "Soul / Gospel / Funk",
+    type: "90er Hip-Hop Soul / Roc-A-Fella-Ära",
     bpmRange: "85–100 BPM",
     choppabilityLabel: "mittel",
-    primaryTechnique: "2-Takt-Loop mit minimalem Slicen",
-    bestChops: "Vollband-Breakdowns, Akkord-Stabs, Orgel-Swells",
+    primaryTechnique: "2-Takt-Loop clean oder Stab-Chop aus Stems",
+    bestChops: "Vintage-Melodie-Loops, üppige Harmonien, dreckige Groove-Stabs",
     tips: [
-      "REVIVAL Soul Melodies' Vollensemble-Abschnitte eignen sich am besten als einzelne 2-Takt-Loops — nicht über-choppen. Der Reichtum liegt in der vollständigen Arrangierung.",
-      "Nach Gospel-Chor-Momenten suchen — ein einzelner gehaltener Akkord-Hit wird ein unglaublicher Stab-Chop.",
-      "Die Orgel- und Keys-Elemente funktionieren oft gut umgekehrt — den umgekehrten Chop als Riser vor einem Chorus-Abschnitt laden.",
+      "REVIVAL huldigt der Roc-A-Fella-Ära — Jay-Z, Kanye, Beanie Sigel. Vintage-Melodien und reiche Harmonien mit 90er Hip-Hop-Grit, kein Gospel.",
+      "Enthält 20 Melodie-Samples plus vollständige Stems — die Stems nutzen, um einzelne Instrumente zu isolieren (nur Keys, nur Streicher) für sauberere, flexiblere Chops.",
+      "Bei 88–92 BPM mit Boom-Bap-Swing clean laden, Saturator (Tape 25 %) hinzufügen und der Roc-A-Fella-Charakter kommt sofort durch.",
     ]
   },
   {
@@ -343,7 +342,7 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
     tips: [
       "Diese Packs haben wahrscheinlich viele lange Loops (8–16 Takte). Fokus auf Takte 3–4 und 7–8 legen, wo die Arrangierung in die Pocket kommt.",
       "Die Streicher-Hits sind Gold — jeden Moment suchen, wo Streicher auf einem Akkord landen, und als einzelnen 1-Beat-Slice schneiden.",
-      "Das Soulful-Dreams-Sample mit einer Weekday-Lo-Fi-Textur bei -15dB darunter layern für Tiefe.",
+      "Das Soulful-Dreams-Sample mit einem atmosphärischen Weekday-Synth-Loop bei -15 dB darunter layern für zeitgenössischen Kontrast.",
     ]
   },
   {
@@ -361,41 +360,41 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
   },
   {
     name: "CHRONICLES Soul Melodies",
-    type: "Hip Hop / Sample-basiert",
-    bpmRange: "85–105 BPM",
+    type: "Orchestral Soul / 70er Kino-Ästhetik",
+    bpmRange: "70–100 BPM",
     choppabilityLabel: "einfach",
-    primaryTechnique: "Auto Slice (Detect Transients)",
-    bestChops: "Drum-Breaks, melodische Loops zum Choppen",
+    primaryTechnique: "Sauberer 2-Takt-Loop oder Auto Slice auf Akkord-Hits",
+    bestChops: "Üppige Streicher-Arrangements, orchestrale Akkord-Stabs, cineastische Soul-Loops",
     tips: [
-      "CHRONICLES Soul Melodies-artige Packs sind meist zum Choppen konzipiert — die Transient-Erkennung funktioniert beim ersten Versuch gut.",
-      "Drum-Elemente als Ersatz für Werkskit-Sounds nutzen — Drum-Break bei -15dB unter dem Haupt-Kick/Snare laufen lassen für Grit.",
-      "Die melodischen Loops sind typischerweise kürzer (1–2 Takte) und bereits für sofortige Pattern-Platzierung ohne starke Verarbeitung geeignet.",
+      "CHRONICLES ist reines Melodie-Material — üppige Orchesterarrangements im Stil der 70er Soul-Kino-Ära, entwickelt für Produzenten wie Metro Boomin, Alchemist und Hit Boy. Keine Drums in diesem Pack.",
+      "An jedem Akkordwechsel slicen und man erhält eigenständige Stabs. Verschiedene Stabs auf separate Pads laden und Akkordvariationen live mit dem microKEY spielen.",
+      "Viele Loops funktionieren clean ohne Verarbeitung — nur Hochpass bei 60 Hz für den Sub-Bereich. Die Orchesterreichhaltigkeit übernimmt den Rest.",
     ]
   },
   {
     name: "Weekday (Cymatics)",
-    type: "Lo-Fi / Indie / Chill",
-    bpmRange: "75–95 BPM",
+    type: "Atmosphärisch / 80er Synth / Contemporary Hip Hop",
+    bpmRange: "90–110 BPM",
     choppabilityLabel: "einfach",
-    primaryTechnique: "Laden und spielen — minimales Choppen nötig",
-    bestChops: "Klaviertasten, Lo-Fi-Loops als Texturschichten, Vinyl-Rauschen",
+    primaryTechnique: "Melodie-Loops clean verwenden oder Synth-Stab-Momente choppen",
+    bestChops: "Atmosphärische Synth-Loops, 80er-Stil Akkord-Stabs, punchy moderne Drum-Hits",
     tips: [
-      "Weekday-Samples sind für Lo-Fi-Charakter vorverarbeitet — keine weiteren Lo-Fi-Plugins oben drauf, sonst klingen sie zu degradiert.",
-      "Die Klavier- und E-Piano-Samples funktionieren am besten, wenn man einfach die ersten 2 Beats nimmt und loopt — kein komplexes Slicen nötig.",
-      "Die Vinyl-Knister-Elemente aus Weekday als Send-Effekt auf dem Drum-Bus nutzen für sofortigen Boom-Bap-Grit.",
+      "Weekday ist inspiriert von The Weeknds Dawn FM — 80er Synth-Texturen und cineastische Atmosphären, kein Lo-Fi-Piano. Sauber, modern, cinematisch.",
+      "Die Melodie-Loops am besten clean in voller Länge über das Drum-Pattern nutzen. Für Chops: harte Synth-Akkord-Hits (1-Beat-Stabs) isolieren für Hooks und Übergänge.",
+      "Die Drum-Hits sind modern und punchy — als Ersatz- oder Layer-Hits über das Hauptkit laden für eine zeitgenössische Schärfe.",
     ]
   },
   {
     name: "BUNNY Pack",
-    type: "Lo-Fi / Bedroom / Soft",
-    bpmRange: "65–85 BPM",
-    choppabilityLabel: "einfach",
-    primaryTechnique: "Textur-Layering, kein melodisches Choppen",
-    bestChops: "Ambiente Pads, Rausch-Texturen, sanfte Keys-Phrasen",
+    type: "Latin Trap / Urban Pop",
+    bpmRange: "90–130 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "Melodie-Loops clean verwenden oder lateinische Percussion als One-Shots laden",
+    bestChops: "Lateinische Melodie-Loops, Trap-beeinflusste Synth-Stabs, rhythmische Latin-Percussion",
     tips: [
-      "Bunny ist bewusst 'soft' — funktioniert am besten als Texturschicht hinter einem härteren Sample, nicht als primärer Chop.",
-      "Die Pad- und Ambient-Elemente sind lang (4–8 Takte) und zum Loopen konzipiert. Als-is auf ein Gruppen-Pad laden und kontinuierlich laufen lassen.",
-      "Wenn man melodische Elemente aus Bunny choppt: nur in den ersten 2 Beats eines Takts verwenden — sie sind zu sanft für einen kompletten Loop.",
+      "BUNNY ist inspiriert von Bad Bunnys Album 'Nadie Sabe Lo Que Va a Pasar Mañana' — Latin-Vibes gemischt mit schwerem Trap-Einfluss. Kein Lo-Fi, kein Bedroom-Sound.",
+      "Die Melodie-Loops haben einen charakteristischen Latin-Klang, der im Hip Hop auffällt, wenn man etwas Exotisches möchte. Unter ein Boom-Bap-Pattern bei -6 dB layern.",
+      "Die Latin-Percussion-One-Shots direkt auf Maschine-Pads mappen — als Akzent-Hits auf Offbeats für rhythmisches Flair, das das Standard-Kit nicht bietet.",
     ]
   },
   {
