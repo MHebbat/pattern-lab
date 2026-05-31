@@ -10,6 +10,40 @@ import {
 } from "@/lib/sampleAnalyzer";
 import { generatePackArtwork } from "@/lib/artworkGenerator";
 
+// ─── Folder traversal ────────────────────────────────────────────────────────
+
+async function readAllEntries(reader: FileSystemDirectoryReader): Promise<FileSystemEntry[]> {
+  const all: FileSystemEntry[] = [];
+  while (true) {
+    const batch = await new Promise<FileSystemEntry[]>((res, rej) => reader.readEntries(res, rej));
+    if (batch.length === 0) break;
+    all.push(...batch);
+  }
+  return all;
+}
+
+async function traverseEntry(entry: FileSystemEntry, path: string): Promise<{ file: File; zipPath: string }[]> {
+  if (entry.isFile) {
+    return new Promise((resolve) => {
+      (entry as FileSystemFileEntry).file((f) => {
+        const zipPath = path ? `${path}/${entry.name}` : entry.name;
+        resolve(isAudioFile(f.name) ? [{ file: f, zipPath }] : []);
+      }, () => resolve([]));
+    });
+  }
+  if (entry.isDirectory) {
+    const dirPath = path ? `${path}/${entry.name}` : entry.name;
+    const reader = (entry as FileSystemDirectoryEntry).createReader();
+    const children = await readAllEntries(reader);
+    const results: { file: File; zipPath: string }[] = [];
+    for (const child of children) {
+      results.push(...await traverseEntry(child, dirPath));
+    }
+    return results;
+  }
+  return [];
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const ACCENT_COLORS = [
@@ -441,6 +475,7 @@ export default function PackLab() {
   const [dragOver, setDragOver] = useState(false);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const folderInputRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<{ source: AudioBufferSourceNode; ctx: AudioContext } | null>(null);
   const artworkInputRef = useRef<HTMLInputElement>(null);
 
@@ -514,18 +549,78 @@ export default function PackLab() {
     setStep("review");
   }, [packName]);
 
-  const onFileDrop = useCallback((e: React.DragEvent) => {
+  const onFileDrop = useCallback(async (e: React.DragEvent) => {
     e.preventDefault();
     setDragOver(false);
+
+    // Check if any dropped item is a folder via webkitGetAsEntry
+    const items = Array.from(e.dataTransfer.items ?? []);
+    const hasEntry = items.some(i => i.webkitGetAsEntry?.()?.isDirectory);
+
+    if (hasEntry) {
+      setStep("analyzing");
+      setProgress(0);
+      const entries: { file: File; zipPath: string }[] = [];
+      let folderName = "";
+      for (const item of items) {
+        const entry = item.webkitGetAsEntry?.();
+        if (!entry) continue;
+        if (!folderName && entry.isDirectory) folderName = entry.name;
+        setProgressLabel(`Reading ${entry.name}…`);
+        entries.push(...await traverseEntry(entry, ""));
+      }
+      if (entries.length === 0) { setStep("upload"); return; }
+      if (!packName && folderName) {
+        setPackName(folderName.replace(/[_\-]/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim());
+      }
+      const results: AnalyzedSample[] = [];
+      for (let i = 0; i < entries.length; i++) {
+        const { file, zipPath } = entries[i];
+        setProgress(Math.round((i / entries.length) * 100));
+        setProgressLabel(file.name);
+        results.push(await analyzeFile(file, zipPath));
+      }
+      setProgress(100);
+      setSamples(results);
+      setStep("review");
+      return;
+    }
+
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) processFiles(files);
-  }, [processFiles]);
+  }, [processFiles, packName]);
 
   const onFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     if (files.length > 0) processFiles(files);
     e.target.value = "";
   }, [processFiles]);
+
+  const onFolderInput = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ?? []);
+    e.target.value = "";
+    if (files.length === 0) return;
+
+    // webkitRelativePath = "FolderName/sub/file.wav"
+    const folderName = files[0].webkitRelativePath.split("/")[0] ?? "";
+    if (!packName && folderName) {
+      setPackName(folderName.replace(/[_\-]/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim());
+    }
+
+    setStep("analyzing");
+    setProgress(0);
+    const results: AnalyzedSample[] = [];
+    const audio = files.filter(f => isAudioFile(f.name));
+    for (let i = 0; i < audio.length; i++) {
+      const f = audio[i];
+      setProgress(Math.round((i / audio.length) * 100));
+      setProgressLabel(f.name);
+      results.push(await analyzeFile(f, f.webkitRelativePath));
+    }
+    setProgress(100);
+    setSamples(results);
+    setStep("review");
+  }, [packName]);
 
   // ─── Audio preview ───────────────────────────────────────────────────────
 
@@ -661,12 +756,34 @@ export default function PackLab() {
                 className="hidden"
                 onChange={onFileInput}
               />
+              <input
+                ref={folderInputRef}
+                type="file"
+                className="hidden"
+                onChange={onFolderInput}
+                // @ts-expect-error webkitdirectory is not in TS types but works in all browsers
+                webkitdirectory=""
+              />
               <Upload className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
               <p className="text-lg font-semibold text-foreground mb-2">{t("Drop your sample pack here", "Sample-Pack hier ablegen")}</p>
               <p className="text-sm text-muted-foreground mb-1">
-                {t("Accepts", "Akzeptiert")} <span className="font-mono">.zip</span> {t("packs or individual audio files", "Packs oder einzelne Audio-Dateien")}
+                {t("Drop a folder, ZIP, or individual files — subfolders are read automatically", "Ordner, ZIP oder einzelne Dateien ablegen — Unterordner werden automatisch eingelesen")}
               </p>
-              <p className="text-xs text-muted-foreground/50">WAV · AIFF · MP3 · FLAC · ZIP</p>
+              <p className="text-xs text-muted-foreground/50 mb-5">WAV · AIFF · MP3 · FLAC · ZIP</p>
+              <div className="flex items-center justify-center gap-3" onClick={e => e.stopPropagation()}>
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="px-4 py-2 text-xs font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
+                >
+                  {t("Select files", "Dateien wählen")}
+                </button>
+                <button
+                  onClick={() => folderInputRef.current?.click()}
+                  className="px-4 py-2 text-xs font-medium rounded-lg border border-amber-500/40 bg-amber-500/5 text-amber-400 hover:bg-amber-500/10 transition-colors"
+                >
+                  {t("Select folder", "Ordner wählen")}
+                </button>
+              </div>
             </div>
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
