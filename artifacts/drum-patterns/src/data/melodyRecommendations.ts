@@ -50,7 +50,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
       "In Maschine software: go to File > Preferences > MIDI. Enable your Korg microKEY as MIDI input device. In your bass/melody Group: hold the REC button while playing the microKEY to record directly into the step sequencer. For live recording with swing feel: enable the metronome (SHIFT + PLAY) and record 2 bars in a loop until it feels right.",
     samples: [
       {
-        pack: "Soulful Dreams Vol 1 & 2",
+        pack: "Soulful Dreams Vol 1 & Vol 2",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "chop-or-clean",
@@ -60,17 +60,17 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Option A (clean): load the 2-bar pocket section onto a pad, set to One-Shot, trigger on Step 0. Option B (chop): slice on the chord change and the turnaround hit — gives you a stab and a long section to alternate between.",
       },
       {
-        pack: "Revival (NI Expansion)",
+        pack: "REVIVAL Soul Melodies",
         packUrl: "https://www.native-instruments.com/en/products/maschine/expansions/revival/",
         free: false,
         sampleType: "chop",
         lookFor:
-          "The gospel organ and brass breakdown sections. In the Revival browser inside Maschine, navigate to 'Loops > Rhythmic' — find any loop with a sparse arrangement (organ or piano only, no full band). A single 2-beat chord hit from the breakdown section becomes the most powerful stab you can use.",
+          "The gospel organ and brass breakdown sections. In the REVIVAL Soul Melodies browser inside Maschine, navigate to 'Loops > Rhythmic' — find any loop with a sparse arrangement (organ or piano only, no full band). A single 2-beat chord hit from the breakdown section becomes the most powerful stab you can use.",
         treatment:
           "Chop the chord hit as a 1-beat or 2-beat slice. Place as a stutter chop (Steps 12–14) in your pattern. Apply the boom bap lo-fi stack: Saturator (Tape 25%) → Lo-Fi (12-bit) → EQ (hi-shelf -4dB at 10kHz).",
       },
       {
-        pack: "Odyssey Soul Sample Pack",
+        pack: "ODYSSEY Soul Melodies",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "clean-loop",
@@ -80,14 +80,14 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Use completely clean — no lo-fi processing. Just EQ the low end below 80Hz to leave space for your sub kick. Add Raum in Grounded mode (0.4s, 15% wet) to place it in a room. This sample IS the melody — let the drums serve it.",
       },
       {
-        pack: "Chronicles",
+        pack: "CHRONICLES Soul Melodies",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "chop-or-clean",
         lookFor:
-          "Hip hop melodic loops at 88–95 BPM. Look for anything with a piano or guitar element alongside the drum groove. The chord loops in Chronicles are designed specifically for the sample-flip workflow — they already have the dirty, compressed character of a producer's beat.",
+          "Hip hop melodic loops at 88–95 BPM. Look for anything with a piano or guitar element alongside the drum groove. The chord loops in CHRONICLES Soul Melodies are designed specifically for the sample-flip workflow — they already have the dirty, compressed character of a producer's beat.",
         treatment:
-          "Use the 2-bar melodic loop clean OR chop the turnaround (last 2 beats of bar 2) as a separate stab trigger. No heavy processing needed — Chronicles samples are pre-processed. Just EQ the sub (high-pass at 60Hz) to make space for your kick.",
+          "Use the 2-bar melodic loop clean OR chop the turnaround (last 2 beats of bar 2) as a separate stab trigger. No heavy processing needed — CHRONICLES Soul Melodies samples are pre-processed. Just EQ the sub (high-pass at 60Hz) to make space for your kick.",
       },
       {
         pack: "Weekday (Cymatics)",
@@ -317,7 +317,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Use clean. Do not add more lo-fi plugins on top. Just EQ (high-pass at 50Hz, high-shelf -2dB at 12kHz) and apply light sidechain compression from the kick. The pre-processed texture is the point.",
       },
       {
-        pack: "Bunny (Cymatics)",
+        pack: "BUNNY Pack",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "texture",
@@ -327,7 +327,7 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Load as a texture layer at -18dB. Add Raum in Bloom mode (1.2s decay, 30% wet) to spread it further. This layer should be felt as 'atmosphere' — not heard as a melody. Mute it and the beat will feel empty; that's how you know it's set correctly.",
       },
       {
-        pack: "Odyssey Soul Sample Pack",
+        pack: "ODYSSEY Soul Melodies",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "chop-or-clean",
@@ -337,12 +337,12 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Chop approach: slice at each chord change. Place the first chord (Steps 0–7) and second chord (Steps 8–15) on different pads — now you can play them independently. Clean approach: use the full 2-bar loop and let it breathe over the entire drum pattern.",
       },
       {
-        pack: "Chronicles",
+        pack: "CHRONICLES Soul Melodies",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The melodic hip hop loops at 95–105 BPM. Chronicles loops are purpose-built for this genre — just find one that matches your key and BPM. The guitar loops in Chronicles have a rough, slightly distorted character that sits perfectly in modern hip hop.",
+          "The melodic hip hop loops at 95–105 BPM. CHRONICLES Soul Melodies loops are purpose-built for this genre — just find one that matches your key and BPM. The guitar loops in CHRONICLES Soul Melodies have a rough, slightly distorted character that sits perfectly in modern hip hop.",
         treatment:
           "Use clean. Apply Guitar Rig 7's 'Tube Compressor' on the sample channel for extra warmth. Sidechain to kick at 4:1, 80ms release for the pumping feel. No further processing needed.",
       },
@@ -552,27 +552,27 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Use completely clean — no lo-fi, no vinyl distortion, no saturation. Apply Raum in Bloom mode (1.5s decay, 40% wet) to float the sample in space. EQ: gentle low-mid dip at 350Hz (-2dB) to remove boxiness. This sample should feel like it's hovering above the drums.",
       },
       {
-        pack: "Revival (NI Expansion)",
+        pack: "REVIVAL Soul Melodies",
         packUrl: "https://www.native-instruments.com/en/products/maschine/expansions/revival/",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The 'slow' and 'smooth' sections of Revival — the neo soul piano loops and the slow gospel progressions. Navigate in Maschine's Revival browser to 'Loops > Melodic > Slow'. The organ pads that sustain through chord changes are particularly powerful for R&B ballad feels.",
+          "The 'slow' and 'smooth' sections of REVIVAL Soul Melodies — the neo soul piano loops and the slow gospel progressions. Navigate in Maschine's REVIVAL Soul Melodies browser to 'Loops > Melodic > Slow'. The organ pads that sustain through chord changes are particularly powerful for R&B ballad feels.",
         treatment:
-          "Use clean. Adjust the sample's pitch in Maschine's Tune section to match your bass note. Add Raum (Bloom mode) at 30% wet. For Velvet Lounge-style R&B: layer a short Scarbee Mark I chord (Kontakt) alongside the Revival loop — they'll blend into one cohesive sound.",
+          "Use clean. Adjust the sample's pitch in Maschine's Tune section to match your bass note. Add Raum (Bloom mode) at 30% wet. For Velvet Lounge-style R&B: layer a short Scarbee Mark I chord (Kontakt) alongside the REVIVAL Soul Melodies loop — they'll blend into one cohesive sound.",
       },
       {
-        pack: "Odyssey Soul Sample Pack",
+        pack: "ODYSSEY Soul Melodies",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "clean-loop",
         lookFor:
-          "The contemporary R&B chord progressions. Odyssey Soul's strength is harmonic richness — look for anything with extended chords (9th, 11th, 13th chords). These sit under an R&B vocal space perfectly. Key target: any loop in Cm, Fm, or Ebmaj.",
+          "The contemporary R&B chord progressions. ODYSSEY Soul Melodies' strength is harmonic richness — look for anything with extended chords (9th, 11th, 13th chords). These sit under an R&B vocal space perfectly. Key target: any loop in Cm, Fm, or Ebmaj.",
         treatment:
           "Use completely clean. No chopping, no processing beyond EQ. These loops are designed to be your primary harmonic content. Trigger on Step 0, One-Shot mode, let ring through 2 bars. This is the sample that everything else serves.",
       },
       {
-        pack: "Bunny (Cymatics)",
+        pack: "BUNNY Pack",
         packUrl: "https://cymatics.fm",
         free: false,
         sampleType: "texture",

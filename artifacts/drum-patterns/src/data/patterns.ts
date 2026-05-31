@@ -870,7 +870,7 @@ export const patterns: DrumPattern[] = [
     description: "The double-hit kick intro (steps 0+1) is a modern hip hop signature — the 808 seems to stutter then lock into the groove. Aggressive, direct, built for hard samples.",
     maschineNotes: [
       "Steps 0 and 1 kick hits: step 0 at velocity 115, step 1 at velocity 70. The louder hit anchors beat 1, the softer hit is the 'stutter'.",
-      "Perc on steps 3, 7, 11, 15 — use a high metallic percussion or synth perc from Chronicles. Velocity 50, no variation.",
+      "Perc on steps 3, 7, 11, 15 — use a high metallic percussion or synth perc from CHRONICLES Soul Melodies. Velocity 50, no variation.",
       "All 8th-note hats: alternate velocity 90 (downbeats) and 60 (upbeats). Don't use swing — keep it machine-straight at 50%.",
       "Run the whole Group through a bus compressor: 4:1 ratio, 10ms attack, 80ms release, -4dB gain reduction."
     ],
@@ -912,7 +912,7 @@ export const patterns: DrumPattern[] = [
     genre: "rnb",
     bpm: 82,
     feel: ["airy", "contemporary", "dreamy"],
-    description: "Contemporary neo R&B with a displaced snare (step 13 instead of 12) that gives the groove a 'late' feel — like the track is exhaling. Built for layered Odyssey Soul or Soulful Dreams loops.",
+    description: "Contemporary neo R&B with a displaced snare (step 13 instead of 12) that gives the groove a 'late' feel — like the track is exhaling. Built for layered ODYSSEY Soul Melodies or Soulful Dreams Vol 1 & Vol 2 loops.",
     maschineNotes: [
       "Snare on step 13 instead of 12: that one-step late placement is the emotional signature of this pattern. Don't move it to 12.",
       "Open hats on steps 3 and 11 — put them in Choke Group 1 with closed hats. They should float and cut the hat underneath.",
@@ -937,7 +937,7 @@ export const patterns: DrumPattern[] = [
     description: "Anderson .Paak-inspired live-feel groove. Dense 16th-note hats with a conga accent make this feel like a drummer playing, not a machine. The kick on step 13 sets up the loop perfectly.",
     maschineNotes: [
       "All 16 hi-hat steps: manually set velocity for each step — no two consecutive steps should be the same. This is the live feel.",
-      "Conga on steps 5 and 11: use a real-sounding conga from Revival or Sticks Toolkit. Velocity 65 and 55 respectively.",
+      "Conga on steps 5 and 11: use a real-sounding conga from REVIVAL Soul Melodies or Stickz Hip-Hop Toolkit. Velocity 65 and 55 respectively.",
       "Ghost snare on steps 2, 7, 14 — these should sit at velocity 30-40. They're the 'breathing' of the snare.",
       "Add a very subtle Compressor on the entire Group: 2:1, 30ms attack, 120ms release. Gentle glue — don't over-compress the live feel out."
     ],

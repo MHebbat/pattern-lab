@@ -91,14 +91,14 @@ const songBlueprints: Record<Genre, { title: string; tempo: string; sections: So
     title: "Neo Soul / R&B Song Structure",
     tempo: "74–92 BPM · Swing 55–65%",
     sections: [
-      { name: "Intro", bars: 8, drums: "off", hats: "off", sample: "off", bass: "off", keys: "full", pads: "full", fx: "sparse", note: "Keys and pads ONLY — no drums, no sample, no bass. Use The Gentleman or Scarbee Mark I (Kontakt) to establish the chord. Bunny or Odyssey Soul pad underneath. 8 full bars of pure harmony. R&B demands patience at the start." },
+      { name: "Intro", bars: 8, drums: "off", hats: "off", sample: "off", bass: "off", keys: "full", pads: "full", fx: "sparse", note: "Keys and pads ONLY — no drums, no sample, no bass. Use The Gentleman or Scarbee Mark I (Kontakt) to establish the chord. Bunny or ODYSSEY Soul Melodies pad underneath. 8 full bars of pure harmony. R&B demands patience at the start." },
       { name: "Verse 1-A", bars: 8, drums: "sparse", hats: "off", sample: "full", bass: "off", keys: "sparse", pads: "full", fx: "off", note: "Drums enter but sparse — kick and rimshot only, no hats. Sample enters on bar 1. The contrast from the drums-free intro makes even a quiet kick feel powerful. Keep the keys from the intro — they transition smoothly." },
       { name: "Verse 1-B", bars: 8, drums: "full", hats: "full", sample: "full", bass: "full", keys: "sparse", pads: "sparse", fx: "off", note: "Full groove NOW — hats enter, bass enters, full drum pattern. This is the emotional commitment of the song. Everything should feel like it belongs together, not like it was layered. Use the neo soul bass (Scarbee Rickenbacker) at moderate volume." },
       { name: "Pre-Hook", bars: 4, drums: "full", hats: "sparse", sample: "sparse", bass: "full", keys: "full", pads: "accent", fx: "accent", note: "Drums stay full but hats reduce to 8ths. Sample becomes a background element. Keys push forward as the main melodic statement. The bass can do a small run here — let it breathe a bit more rhythmically. Build is emotional, not just dynamic." },
       { name: "Hook", bars: 8, drums: "full", hats: "full", sample: "full", bass: "full", keys: "full", pads: "sparse", fx: "off", note: "Complete arrangement. The keys here should be the most melodic they've been — play a full chord voicing (Cm9, Fm7, etc.) instead of single notes. Use the microKEY to record a live-feeling melody or chord on top of the sample." },
       { name: "Verse 2", bars: 12, drums: "full", hats: "full", sample: "full", bass: "full", keys: "sparse", pads: "off", fx: "off", note: "Full groove but 12 bars instead of 16 — shorter verses later in the song feel tighter and more intentional. Consider switching from closed to open hats for this verse (or alternating). The sample can be a different section." },
       { name: "Pre-Hook 2", bars: 4, drums: "full", hats: "sparse", sample: "accent", bass: "full", keys: "full", pads: "accent", fx: "off", note: "Same as before — the familiarity is comforting in R&B. Small variation: add the Bunny pad at low volume to fill the space between the sample elements." },
-      { name: "Hook 2", bars: 8, drums: "full", hats: "full", sample: "full", bass: "full", keys: "full", pads: "sparse", fx: "off", note: "Repeat the hook structure. Consider adding the microKEY melody one octave higher than hook 1 — subtle brightening. Or add a light harmonic percussion (Sticks Toolkit rim hits) on the upbeats." },
+      { name: "Hook 2", bars: 8, drums: "full", hats: "full", sample: "full", bass: "full", keys: "full", pads: "sparse", fx: "off", note: "Repeat the hook structure. Consider adding the microKEY melody one octave higher than hook 1 — subtle brightening. Or add a light harmonic percussion (Stickz Hip-Hop Toolkit rim hits) on the upbeats." },
       { name: "Bridge", bars: 8, drums: "off", hats: "off", sample: "off", bass: "sparse", keys: "full", pads: "full", fx: "full", note: "Everything off except: bass (sustain root note only), keys (full chord melody), pads (bloom wide with Raum Shimmer). 8 full bars. This is the most vulnerable, intimate moment. The key can modulate up a step here if you want an emotional lift." },
       { name: "Hook Out", bars: 8, drums: "full", hats: "full", sample: "full", bass: "full", keys: "full", pads: "full", fx: "off", note: "Drums explode back after the bridge silence. This is the peak of the emotional arc. Add everything — all layers, maximum keys melody, pads wide. The contrast with the bridge makes this feel enormous even though it's the same beat." },
       { name: "Outro", bars: 8, drums: "sparse", hats: "off", sample: "off", bass: "sparse", keys: "sparse", pads: "full", fx: "full", note: "Slow fade — don't cut abruptly. Strip elements one by one over 8 bars: drums out first (bar 2), bass out (bar 4), keys out (bar 6), just pads left (bar 7-8). The final sound is the pad decaying into reverb. R&B ends gracefully." },
@@ -251,7 +251,7 @@ const beatVariations: Record<Genre, BeatVariation[]> = {
       ],
       maschineSteps: [
         "Duplicate Scene 1 → Scene 3 for the hook. Add a Shaker pad on steps 2, 6, 10, 14.",
-        "Shaker: use Sticks Toolkit or Chronicles shaker. Velocity 40 flat.",
+        "Shaker: use Stickz Hip-Hop Toolkit or CHRONICLES Soul Melodies shaker. Velocity 40 flat.",
         "You can also push the overall Group volume +1dB in Scene 3 — the hook should feel louder.",
         "Add a Reverb send on the snare at +20% in this scene only — creates 'bigger' snare for the hook.",
       ],
@@ -344,7 +344,7 @@ const beatVariations: Record<Genre, BeatVariation[]> = {
       maschineSteps: [
         "Add a shaker on all 16 steps at velocity 30 flat — barely audible. It exists as a texture bed.",
         "The 8th note hats now float ABOVE the shaker, creating a depth of rhythm layers.",
-        "Use a real shaker sound from Sticks Toolkit or Revival. Avoid synthetic sounds.",
+        "Use a real shaker sound from Stickz Hip-Hop Toolkit or REVIVAL Soul Melodies. Avoid synthetic sounds.",
         "This scene works for Verse 2 or alongside the hook keys layer to thicken the texture.",
       ],
     },
@@ -378,7 +378,7 @@ const beatVariations: Record<Genre, BeatVariation[]> = {
         { label: "HHAT",  steps: [true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false] },
       ],
       maschineSteps: [
-        "Add Conga or Bongo (from Revival or Sticks Toolkit) on steps 5 and 11 at velocity 60.",
+        "Add Conga or Bongo (from Revival or Stickz Hip-Hop Toolkit) on steps 5 and 11 at velocity 60.",
         "These syncopated percussion hits fill the spaces between the kick and rimshot.",
         "Also: push a Shaker layer underneath at velocity 25 — just texture.",
         "This is the final hook and Hook Out only. Never use it in the verse — the contrast must be earned.",
@@ -393,7 +393,7 @@ const layerGuide: LayerCard[] = [
   {
     order: 1,
     instrument: "Kick + Snare / Rimshot",
-    pack: "Sticks Toolkit",
+    pack: "Stickz Hip-Hop Toolkit",
     packUrl: "https://cymatics.fm",
     free: false,
     whenToIntroduce: "Bar 1 of every section except the pad intro. The foundation — nothing else matters if this doesn't groove.",
@@ -403,7 +403,7 @@ const layerGuide: LayerCard[] = [
   {
     order: 2,
     instrument: "Hi-Hats + Shaker",
-    pack: "Sticks Toolkit / Weekday",
+    pack: "Stickz Hip-Hop Toolkit / Weekday Hip Hop Sample Pack",
     packUrl: "https://cymatics.fm/products/weekday-free-sample-pack",
     free: true,
     whenToIntroduce: "Wait 1 full section after kick/snare (or wait 8 bars). Hats arriving late creates a build effect even without adding new elements.",
@@ -413,7 +413,7 @@ const layerGuide: LayerCard[] = [
   {
     order: 3,
     instrument: "Sample / Loop",
-    pack: "Soulful Dreams Vol 1 & 2 / Odyssey Soul",
+    pack: "Soulful Dreams Vol 1 & Vol 2 / ODYSSEY Soul Melodies",
     packUrl: "https://cymatics.fm",
     free: false,
     whenToIntroduce: "Verse 1-A: enters with the full groove or just after kick entry. Never before drums in hip hop. Can be before drums in R&B (pads can appear alone).",
@@ -443,7 +443,7 @@ const layerGuide: LayerCard[] = [
   {
     order: 6,
     instrument: "Pad / Atmosphere",
-    pack: "Bunny (Cymatics) / Revival",
+    pack: "BUNNY Pack / REVIVAL Soul Melodies",
     packUrl: "https://cymatics.fm",
     free: false,
     whenToIntroduce: "Can enter at the very beginning (pad-only intro in R&B). For hip hop / boom bap, enter in the hook at -18dB and gradually ride up to -12dB. The pad should feel like it was always there.",

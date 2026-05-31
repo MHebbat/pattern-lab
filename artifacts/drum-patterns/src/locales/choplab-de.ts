@@ -42,7 +42,7 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
         ]
       },
       {
-        title: "Deine Packs: Lange Soul-Loops (Revival, Soulful Dreams, Odyssey Soul)",
+        title: "Deine Packs: Lange Soul-Loops (REVIVAL Soul Melodies, Soulful Dreams, ODYSSEY Soul Melodies)",
         body: "Lange Soul-Loops (8–32 Takte) wirken zunächst überwältigend. Der Trick besteht nicht darin, alles zu choppen — finde die 2-Takt-Goldader darin.",
         steps: [
           "Loop in Maschine importieren. Vor allem: einmal komplett durchhören — kein Pausieren, kein Stoppen. Notieren, welche Takte am stärksten klingen",
@@ -63,15 +63,15 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
           "Den 'Bright Spot' suchen — meist Beat 3 oder 4 des 4-Takt-Loops — und als Chop isolieren",
           "Für Weekday: die Klavier- und Keys-Samples sind am vielseitigsten. In 2-Beat-Stücke schneiden und du hast sofortige Stabs",
           "Für Bunny: auf Vinyl-Knistern und Rausch-Elemente als Texturschichten unter dem Haupt-Sample konzentrieren, nicht als primäre Melodie",
-          "Diese Packs funktionieren am besten gelayert: ein Lo-Fi-Loop als Bett, ein Chop aus Soulful Dreams oder Revival obendrauf"
+          "Diese Packs funktionieren am besten gelayert: ein Lo-Fi-Loop als Bett, ein Chop aus Soulful Dreams oder REVIVAL Soul Melodies obendrauf"
         ]
       },
       {
-        title: "Deine Packs: Drum-fokussiert (Sticks Toolkit, Chronicles)",
+        title: "Deine Packs: Drum-fokussiert (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
         body: "Drum-Sample-Packs werden anders verwendet — du choppst sie nicht für Melodie, du nutzt sie als rhythmische Textur und Ersatz-Hits.",
         steps: [
-          "Sticks Toolkit: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Versuche nicht, die kompletten Loops zu choppen — nutze die One-Shots",
-          "Chronicles: bei enthaltenen Loops nach Drum-Breaks ohne melodische Elemente suchen. 2-Takt-Breaks sind das Ziel",
+          "Stickz Hip-Hop Toolkit: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Versuche nicht, die kompletten Loops zu choppen — nutze die One-Shots",
+          "CHRONICLES Soul Melodies: bei enthaltenen Loops nach Drum-Breaks ohne melodische Elemente suchen. 2-Takt-Breaks sind das Ziel",
           "Detect Transients auf Drum-Breaks anwenden (mehr dazu im Chop-Tab) — Drum-Transients sind für Maschine leicht automatisch erkennbar",
           "Einen Drum-Break-Chop mit eigenem Kick und Snare obendrauf layern — du bekommst die Textur des Breaks ohne rhythmische Kontrolle zu verlieren",
           "Den Drum-Loop als Send-Effekt nutzen: auf einen separaten Kanal routen, hart komprimieren (4:1, schneller Attack), und bei -15 bis -18dB unter dem Hauptkit einblenden. Fügt Dreck hinzu ohne als separates Element hörbar zu sein"
@@ -109,7 +109,7 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
           "Am Gerät: Pads 1–8 drücken, um jeden Slice anzuhören. Die Pads leuchten der Reihe nach auf",
           "Wenn ein Slice zu lang oder zu kurz ist: zurück zur Software, Empfindlichkeit anpassen, erneut anwenden"
         ],
-        tip: "Am besten für: Drum-Breaks aus Chronicles, Sticks Toolkit und alle rhythmischen Elemente in Revival."
+        tip: "Am besten für: Drum-Breaks aus CHRONICLES Soul Melodies, Stickz Hip-Hop Toolkit und alle rhythmischen Elemente in REVIVAL Soul Melodies."
       },
       {
         title: "Methode 2: Manuelles Slicen — Präziseste",
@@ -126,7 +126,7 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
           "Mit dem 4D-Encoder (großer Knopf) durch die Wellenform scrubben und jeden Slice auf Korrektheit prüfen",
           "Slice-Punkt am Gerät anpassen: mit Encoder zum Slice navigieren, SHIFT halten + Encoder drehen, um den Schnitt links oder rechts zu nudgen"
         ],
-        tip: "Am besten für: Klavierläufe und Akkord-Stabs aus Soulful Dreams, Odyssey Soul. Jedes melodische Sample, bei dem Transient-Erkennung falsche Schnitte macht."
+        tip: "Am besten für: Klavierläufe und Akkord-Stabs aus Soulful Dreams Vol 1 & Vol 2, ODYSSEY Soul Melodies. Jedes melodische Sample, bei dem Transient-Erkennung falsche Schnitte macht."
       },
       {
         title: "Methode 3: Slice Mode auf dem Pad (Nur-Hardware-Workflow)",
@@ -188,7 +188,7 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
           "Der Chop sollte kurz vor Schritt 1 von Takt 3 enden (dem Loop-Neustart-Punkt). Bricht er früh ab: End-Punkt im Sample anpassen. Läuft er über: End-Punkt kürzen",
           "Variation: Chop auf Schritt 1 von Takt 1 platzieren und einen anderen Chop-Slice auf Schritt 1 von Takt 2 — ergibt ein 2-Takt-ABAB-Chop-Pattern"
         ],
-        tip: "Packs dafür: Soulful Dreams (2-Takt-Pocket-Abschnitt nutzen), Odyssey Soul (Chorus-Pocket nutzen), Revival (die Vollband-Abschnitte)."
+        tip: "Packs dafür: Soulful Dreams Vol 1 & Vol 2 (2-Takt-Pocket-Abschnitt nutzen), ODYSSEY Soul Melodies (Chorus-Pocket nutzen), REVIVAL Soul Melodies (die Vollband-Abschnitte)."
       },
       {
         title: "Der Stutter-Chop",
@@ -321,20 +321,20 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
 
 export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
   {
-    name: "Revival",
+    name: "REVIVAL Soul Melodies",
     type: "Soul / Gospel / Funk",
     bpmRange: "85–100 BPM",
     choppabilityLabel: "mittel",
     primaryTechnique: "2-Takt-Loop mit minimalem Slicen",
     bestChops: "Vollband-Breakdowns, Akkord-Stabs, Orgel-Swells",
     tips: [
-      "Revivals Vollensemble-Abschnitte eignen sich am besten als einzelne 2-Takt-Loops — nicht über-choppen. Der Reichtum liegt in der vollständigen Arrangierung.",
+      "REVIVAL Soul Melodies' Vollensemble-Abschnitte eignen sich am besten als einzelne 2-Takt-Loops — nicht über-choppen. Der Reichtum liegt in der vollständigen Arrangierung.",
       "Nach Gospel-Chor-Momenten suchen — ein einzelner gehaltener Akkord-Hit wird ein unglaublicher Stab-Chop.",
       "Die Orgel- und Keys-Elemente funktionieren oft gut umgekehrt — den umgekehrten Chop als Riser vor einem Chorus-Abschnitt laden.",
     ]
   },
   {
-    name: "Soulful Dreams Vol 1 & 2",
+    name: "Soulful Dreams Vol 1 & Vol 2",
     type: "Klassischer Soul / Vintage R&B",
     bpmRange: "70–95 BPM",
     choppabilityLabel: "mittel",
@@ -347,7 +347,7 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
     ]
   },
   {
-    name: "Odyssey Soul Sample Pack",
+    name: "ODYSSEY Soul Melodies",
     type: "Neo Soul / Contemporary Soul",
     bpmRange: "75–90 BPM",
     choppabilityLabel: "einfach",
@@ -360,14 +360,14 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
     ]
   },
   {
-    name: "Chronicles",
+    name: "CHRONICLES Soul Melodies",
     type: "Hip Hop / Sample-basiert",
     bpmRange: "85–105 BPM",
     choppabilityLabel: "einfach",
     primaryTechnique: "Auto Slice (Detect Transients)",
     bestChops: "Drum-Breaks, melodische Loops zum Choppen",
     tips: [
-      "Chronicles-artige Packs sind meist zum Choppen konzipiert — die Transient-Erkennung funktioniert beim ersten Versuch gut.",
+      "CHRONICLES Soul Melodies-artige Packs sind meist zum Choppen konzipiert — die Transient-Erkennung funktioniert beim ersten Versuch gut.",
       "Drum-Elemente als Ersatz für Werkskit-Sounds nutzen — Drum-Break bei -15dB unter dem Haupt-Kick/Snare laufen lassen für Grit.",
       "Die melodischen Loops sind typischerweise kürzer (1–2 Takte) und bereits für sofortige Pattern-Platzierung ohne starke Verarbeitung geeignet.",
     ]
@@ -386,7 +386,7 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
     ]
   },
   {
-    name: "Bunny (Cymatics)",
+    name: "BUNNY Pack",
     type: "Lo-Fi / Bedroom / Soft",
     bpmRange: "65–85 BPM",
     choppabilityLabel: "einfach",
@@ -399,7 +399,7 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
     ]
   },
   {
-    name: "Sticks Toolkit",
+    name: "Stickz Hip-Hop Toolkit",
     type: "Drum One-Shots & Fills",
     bpmRange: "N/A (One-Shots)",
     choppabilityLabel: "einfach",

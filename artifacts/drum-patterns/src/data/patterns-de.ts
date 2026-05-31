@@ -402,7 +402,7 @@ export const patternsDe: Record<string, PatternLocale> = {
     feel: ["modern", "hart", "rollend"],
     maschineNotes: [
       "Steps 0 und 1 Kick-Hits: Step 0 bei Velocity 115, Step 1 bei Velocity 70. Der lautere Hit verankert Zählzeit 1, der leisere ist das 'Stottern'.",
-      "Perc auf Steps 3, 7, 11, 15 — hohe metallische Percussion oder Synth-Perc aus Chronicles verwenden. Velocity 50, keine Variation.",
+      "Perc auf Steps 3, 7, 11, 15 — hohe metallische Percussion oder Synth-Perc aus CHRONICLES Soul Melodies verwenden. Velocity 50, keine Variation.",
       "Alle 8tel-Hats: Velocity abwechselnd 90 (Downbeats) und 60 (Upbeats). Kein Swing — bei 50 % maschinenstark lassen.",
       "Die gesamte Gruppe durch einen Bus-Kompressor laufen: 4:1 Ratio, 10ms Attack, 80ms Release, -4 dB Gainreduktion.",
     ],
@@ -432,7 +432,7 @@ export const patternsDe: Record<string, PatternLocale> = {
     feel: ["organisch", "live", "Pocket"],
     maschineNotes: [
       "Alle 16 Hi-Hat-Steps: Velocity für jeden Step manuell setzen — keine zwei aufeinanderfolgenden Steps gleich. Das ist das Live-Feeling.",
-      "Conga auf Steps 5 und 11: echtklingenden Conga aus Revival oder Sticks Toolkit verwenden. Velocity 65 bzw. 55.",
+      "Conga auf Steps 5 und 11: echtklingenden Conga aus REVIVAL Soul Melodies oder Stickz Hip-Hop Toolkit verwenden. Velocity 65 bzw. 55.",
       "Ghost-Snare auf Steps 2, 7, 14 — Velocity 30–40. Das ist das 'Atmen' der Snare.",
       "Sehr subtilen Kompressor auf die gesamte Gruppe: 2:1, 30ms Attack, 120ms Release. Sanfter Kleber — das Live-Feeling nicht wegkomprimieren.",
     ],

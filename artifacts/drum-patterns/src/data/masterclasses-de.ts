@@ -104,7 +104,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
     techniques: [
       {
         title: "Sample-Degradierungsprozess",
-        detail: "Lade ein beliebiges Sample aus Odyssey Soul. Wende an: Tiefpassfilter bei 7 kHz (remove brightness). Dann Hochpassfilter bei 100 Hz (remove sub rumble). Dann EQ-Dip: -3 dB von 300–600 Hz (remove presence). Dann Stereobreite auf 20 % reduzieren. Dann Vinyl-Crackle-Loop bei Velocity 20 unter das Sample legen. Das Sample soll klingen wie es aus einem anderen Raum kommt — kaum da, aber alles tragend.",
+        detail: "Lade ein beliebiges Sample aus ODYSSEY Soul Melodies. Wende an: Tiefpassfilter bei 7 kHz (remove brightness). Dann Hochpassfilter bei 100 Hz (remove sub rumble). Dann EQ-Dip: -3 dB von 300–600 Hz (remove presence). Dann Stereobreite auf 20 % reduzieren. Dann Vinyl-Crackle-Loop bei Velocity 20 unter das Sample legen. Das Sample soll klingen wie es aus einem anderen Raum kommt — kaum da, aber alles tragend.",
       },
       {
         title: "Maximale Stille",
@@ -280,7 +280,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
       },
       {
         title: "Die Talking-Drum-Methode",
-        detail: "Chronicles-Conga oder Djembe-Sample auf Pad A3 laden. Im Tune-Bereich: auf den Grundton des Tracks stimmen. Auf Steps 2, 6, 10, 14 programmieren mit variierenden Velocities. Das erzeugt das Timbaland-'Gespräch'-Element — eine gestimmte Percussion-Melodie, die im Rhythmus lebt.",
+        detail: "CHRONICLES Soul Melodies-Conga oder Djembe-Sample auf Pad A3 laden. Im Tune-Bereich: auf den Grundton des Tracks stimmen. Auf Steps 2, 6, 10, 14 programmieren mit variierenden Velocities. Das erzeugt das Timbaland-'Gespräch'-Element — eine gestimmte Percussion-Melodie, die im Rhythmus lebt.",
       },
       {
         title: "Geschichteter Percussion-Stack",
@@ -343,11 +343,11 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
       },
       {
         title: "Der Jazz-Loop-Treatment",
-        detail: "Beliebigen Soul- oder Jazz-Loop aus Soulful Dreams oder Odyssey Soul laden. Diese EQ-Einstellungen anwenden: Hochpass 60 Hz, Boost 400 Hz +1 dB (Papierkegel-Lautsprecher-Wärme), Cut 6 kHz -1,5 dB (den Hi-Fi-Schimmer entfernen — Plattenspieler-Feeling gewünscht). So behandelt Pete Rock sein Quellmaterial.",
+        detail: "Beliebigen Soul- oder Jazz-Loop aus Soulful Dreams oder ODYSSEY Soul Melodies laden. Diese EQ-Einstellungen anwenden: Hochpass 60 Hz, Boost 400 Hz +1 dB (Papierkegel-Lautsprecher-Wärme), Cut 6 kHz -1,5 dB (den Hi-Fi-Schimmer entfernen — Plattenspieler-Feeling gewünscht). So behandelt Pete Rock sein Quellmaterial.",
       },
       {
         title: "Horn-Kontermelodie (microKEY)",
-        detail: "Nachdem das Haupt-Sample eingerastet ist, das microKEY nutzen, um ein Ein-Ton-Horn-Element aus Revival (NI) hinzuzufügen. 2–3 kurze Horn-Hits spielen, die zwischen den Haupt-Phrasen des Samples landen. Diese sollen die Lücken füllen, nicht mit dem Sample spielen. Als Antwort-Phrase in einem Jazz-Call-and-Response denken.",
+        detail: "Nachdem das Haupt-Sample eingerastet ist, das microKEY nutzen, um ein Ein-Ton-Horn-Element aus REVIVAL Soul Melodies hinzuzufügen. 2–3 kurze Horn-Hits spielen, die zwischen den Haupt-Phrasen des Samples landen. Diese sollen die Lücken füllen, nicht mit dem Sample spielen. Als Antwort-Phrase in einem Jazz-Call-and-Response denken.",
       },
       {
         title: "62 % Swing — Kein Kompromiss",
@@ -360,7 +360,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
       { why: "Einzelton-Horn-Samples für Kontermelodien. Pete Rock verwendet Hörner sowohl als Sample-Quelle ALS AUCH als live-feeling Einzelton-Fills über dem Haupt-Sample-Loop." },
     ],
     microKeyTips: [
-      "Horn-Kontermelodien mit einem Blechbläser-Patch aus Revival (NI) aufnehmen. Kurze, staccato Noten spielen — maximale Achtelnoten-Dauer. Pete Rocks Ergänzungen zu seinen Samples sind Akzente, keine anhaltenden Linien.",
+      "Horn-Kontermelodien mit einem Blechbläser-Patch aus REVIVAL Soul Melodies aufnehmen. Kurze, staccato Noten spielen — maximale Achtelnoten-Dauer. Pete Rocks Ergänzungen zu seinen Samples sind Akzente, keine anhaltenden Linien.",
       "Das Vibraphon-Patch aus Komplete 15 auf dem microKEY spielen, um eine 4-Note-Melodiephrase zu erstellen, die zwischen den Phrasen des Samples passt. Bei 1/8-Quantisierung aufnehmen. Das Vibraphon IST Pete Rock.",
       "Mit der linken Hand einen Akkord (Cm, Fm, Abm — Moll-Akkordgruppen) halten, während die rechte Hand die Kontermelodie spielt. Das Ganze aufnehmen. Den Akkord über den vollen Takt ausklingen lassen.",
     ],
@@ -402,7 +402,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
       },
       {
         title: "Orchester-Overlay (microKEY unverzichtbar)",
-        detail: "Nachdem das Sample eingerastet ist: Revival (NI) Streicher auf einer neuen Gruppe laden. microKEY anschließen. Arm-Record. Akkord-Progression in LANGEN Sustains spielen — jeden Akkord für 4 volle Zählzeiten halten. 8 Takte aufnehmen. Dann anhören: die Streicher sollen sich anfühlen, als wären sie immer da gewesen. Wenn sie sich wie ein Zusatz anfühlen, Lautstärke um -3 dB reduzieren.",
+        detail: "Nachdem das Sample eingerastet ist: REVIVAL Soul Melodies Streicher auf einer neuen Gruppe laden. microKEY anschließen. Arm-Record. Akkord-Progression in LANGEN Sustains spielen — jeden Akkord für 4 volle Zählzeiten halten. 8 Takte aufnehmen. Dann anhören: die Streicher sollen sich anfühlen, als wären sie immer da gewesen. Wenn sie sich wie ein Zusatz anfühlen, Lautstärke um -3 dB reduzieren.",
       },
       {
         title: "Bass-Melodie, keine Basslinie",
@@ -453,11 +453,11 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
     techniques: [
       {
         title: "Die Rimshot-Substitution",
-        detail: "Das Snare-Pad durch einen Rimshot oder Sidestick ersetzen. In Sticks Toolkit einen trockenen Rimshot-Sound finden. KEIN Reverb anwenden — komplett trockene Bearbeitung. Das erzeugt The Alchemists abstrakte Qualität. Ein halliger Snare klingt nach einem Drumset. Ein trockener Rimshot klingt nach etwas anderem, etwas Filmischerem.",
+        detail: "Das Snare-Pad durch einen Rimshot oder Sidestick ersetzen. In Stickz Hip-Hop Toolkit einen trockenen Rimshot-Sound finden. KEIN Reverb anwenden — komplett trockene Bearbeitung. Das erzeugt The Alchemists abstrakte Qualität. Ein halliger Snare klingt nach einem Drumset. Ein trockener Rimshot klingt nach etwas anderem, etwas Filmischerem.",
       },
       {
         title: "Maximale Sample-Dunkelheit",
-        detail: "Sample aus Odyssey Soul laden. Anwenden: Tiefpassfilter bei 7 kHz. Hochpass bei 100 Hz. EQ-Dip: -3 dB von 300–600 Hz (entfernt den 'präsenten' Mittenbereich). Stereobreite auf 20 % reduzieren. Das Sample soll klingen, als käme es aus einem dunklen Zimmer gegenüber.",
+        detail: "Sample aus ODYSSEY Soul Melodies laden. Anwenden: Tiefpassfilter bei 7 kHz. Hochpass bei 100 Hz. EQ-Dip: -3 dB von 300–600 Hz (entfernt den 'präsenten' Mittenbereich). Stereobreite auf 20 % reduzieren. Das Sample soll klingen, als käme es aus einem dunklen Zimmer gegenüber.",
       },
       {
         title: "Das Minimalismus-Audit",
@@ -620,7 +620,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
     techniques: [
       {
         title: "Kick auf die Tonart stimmen",
-        detail: "Die Neptunes-Signatur-Click ist ein GESTIMMTER Kick. In Maschine: einen runden, melodischen Kick aus Sticks Toolkit laden. Zum Tune-Bereich gehen. Die Tonhöhe so einstellen, dass die Grundnote des Kicks dem Grundton des Tracks entspricht. Jetzt IST der Kick ein musikalisches Element, kein bloßer Zeitgeber. Das ist die wichtigste Neptunes-Technik.",
+        detail: "Die Neptunes-Signatur-Click ist ein GESTIMMTER Kick. In Maschine: einen runden, melodischen Kick aus Stickz Hip-Hop Toolkit laden. Zum Tune-Bereich gehen. Die Tonhöhe so einstellen, dass die Grundnote des Kicks dem Grundton des Tracks entspricht. Jetzt IST der Kick ein musikalisches Element, kein bloßer Zeitgeber. Das ist die wichtigste Neptunes-Technik.",
       },
       {
         title: "Der Clap vorne im Mix",
@@ -747,7 +747,7 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
       },
       {
         title: "Horn-Schicht als Kontermelodie",
-        detail: "Nachdem das Sample läuft, ein Horn- oder Blechbläser-Einzelton aus Odyssey Soul auf Pad B4 laden. An einer Off-Beat-Position platzieren — Step 9 oder 13 — als Antwort auf den melodischen Inhalt des Samples. Mehdi liebte Call-and-Response zwischen der geloopten Quelle und einem einzelnen Horn-Hit. Velocity 72, kein Reverb.",
+        detail: "Nachdem das Sample läuft, ein Horn- oder Blechbläser-Einzelton aus ODYSSEY Soul Melodies auf Pad B4 laden. An einer Off-Beat-Position platzieren — Step 9 oder 13 — als Antwort auf den melodischen Inhalt des Samples. Mehdi liebte Call-and-Response zwischen der geloopten Quelle und einem einzelnen Horn-Hit. Velocity 72, kein Reverb.",
       },
       {
         title: "Versetzter Kick (Das Pete-Rock-Erbe)",
@@ -979,11 +979,11 @@ export const masterclassesDe: Record<string, MasterclassLocale> = {
     techniques: [
       {
         title: "Harmonischer Kick (Figubs Kerntechnik)",
-        detail: "Kick auf Pad A1 laden. Im Tune-Bereich der Pad-Einstellungen den Grundton des Samples identifizieren. Den Tune-Parameter des Kicks so einstellen, dass seine Grundfrequenz diesem Grundton entspricht — einen runden, resonanten Kick aus Sticks Toolkit verwenden, der eine klare Tonhöhe hat. Dieser harmonische Kick wird eine Bassdrum, die die Tonart des Tracks singt, und erzeugt eine unbewusste musikalische Kohärenz.",
+        detail: "Kick auf Pad A1 laden. Im Tune-Bereich der Pad-Einstellungen den Grundton des Samples identifizieren. Den Tune-Parameter des Kicks so einstellen, dass seine Grundfrequenz diesem Grundton entspricht — einen runden, resonanten Kick aus Stickz Hip-Hop Toolkit verwenden, der eine klare Tonhöhe hat. Dieser harmonische Kick wird eine Bassdrum, die die Tonart des Tracks singt, und erzeugt eine unbewusste musikalische Kohärenz.",
       },
       {
         title: "Die Bürsten-Snare-Schicht",
-        detail: "Einen Jazz-Bürsten-Snare-Sound in Chronicles finden. Auf Pad A3 laden. Pad Link auf simultanes Auslösen mit der Haupt-Snare (A2) einstellen. A3-Velocity auf 35 setzen (deutlich leiser). Die Bürsten-Snare fügt ein texturelles Zischen um den Crack der Haupt-Snare hinzu. Zusammen erzeugen sie eine komplexe Snare, die klingt wie ein von einem sehr erfahrenen Schlagzeuger gespieltes einzelnes Instrument.",
+        detail: "Einen Jazz-Bürsten-Snare-Sound in CHRONICLES Soul Melodies finden. Auf Pad A3 laden. Pad Link auf simultanes Auslösen mit der Haupt-Snare (A2) einstellen. A3-Velocity auf 35 setzen (deutlich leiser). Die Bürsten-Snare fügt ein texturelles Zischen um den Crack der Haupt-Snare hinzu. Zusammen erzeugen sie eine komplexe Snare, die klingt wie ein von einem sehr erfahrenen Schlagzeuger gespieltes einzelnes Instrument.",
       },
       {
         title: "Kino-Sample in 4-Takt-Loops",

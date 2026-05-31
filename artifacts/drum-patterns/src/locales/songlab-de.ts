@@ -74,14 +74,14 @@ export const SONGLAB_DE_BLUEPRINTS: Record<Genre, { title: string; tempo: string
     title: "Neo Soul / R&B-Songstruktur",
     tempo: "74–92 BPM · Swing 55–65%",
     sections: [
-      { name: "Intro", bars: 8, drums: "aus", hats: "aus", sample: "aus", bass: "aus", keys: "voll", pads: "voll", fx: "spärlich", note: "Nur Keys und Pads — keine Drums, kein Sample, kein Bass. The Gentleman oder Scarbee Mark I (Kontakt) zum Etablieren des Akkords nutzen. Bunny oder Odyssey Soul Pad darunter. 8 volle Takte reiner Harmonie. R&B verlangt Geduld am Anfang." },
+      { name: "Intro", bars: 8, drums: "aus", hats: "aus", sample: "aus", bass: "aus", keys: "voll", pads: "voll", fx: "spärlich", note: "Nur Keys und Pads — keine Drums, kein Sample, kein Bass. The Gentleman oder Scarbee Mark I (Kontakt) zum Etablieren des Akkords nutzen. Bunny oder ODYSSEY Soul Melodies Pad darunter. 8 volle Takte reiner Harmonie. R&B verlangt Geduld am Anfang." },
       { name: "Verse 1-A", bars: 8, drums: "spärlich", hats: "aus", sample: "voll", bass: "aus", keys: "spärlich", pads: "voll", fx: "aus", note: "Drums setzen ein, aber spärlich — nur Kick und Rimshot, keine Hats. Sample setzt auf Takt 1 ein. Der Kontrast zum drums-freien Intro lässt selbst eine leise Kick kraftvoll wirken. Keys vom Intro behalten — sie gehen sanft über." },
       { name: "Verse 1-B", bars: 8, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "spärlich", pads: "spärlich", fx: "aus", note: "Voller Groove JETZT — Hats setzen ein, Bass setzt ein, volles Drum-Pattern. Das ist das emotionale Commitment des Songs. Alles sollte zusammengehören. Den Neo-Soul-Bass (Scarbee Rickenbacker) bei moderater Lautstärke verwenden." },
       { name: "Pre-Hook", bars: 4, drums: "voll", hats: "spärlich", sample: "spärlich", bass: "voll", keys: "voll", pads: "Akzent", fx: "Akzent", note: "Drums bleiben voll, Hats reduzieren auf 8tel. Sample wird Hintergrund-Element. Keys treten als melodische Hauptaussage in den Vordergrund. Der Bass kann hier einen kleinen Lauf machen — etwas mehr rhythmisches Atmen." },
       { name: "Hook", bars: 8, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "voll", pads: "spärlich", fx: "aus", note: "Komplette Arrangierung. Die Keys hier sollten am melodischsten sein — eine volle Akkordvoicing (Cm9, Fm7 usw.) statt einzelner Noten spielen. Das microKEY für eine live-wirkende Melodie oder einen Akkord über dem Sample aufnehmen." },
       { name: "Verse 2", bars: 12, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "spärlich", pads: "aus", fx: "aus", note: "Voller Groove, aber 12 Takte statt 16 — kürzere Verses später im Song fühlen sich enger und intentionaler an. Von geschlossenen zu offenen Hats wechseln erwägen. Das Sample kann ein anderer Abschnitt sein." },
       { name: "Pre-Hook 2", bars: 4, drums: "voll", hats: "spärlich", sample: "Akzent", bass: "voll", keys: "voll", pads: "Akzent", fx: "aus", note: "Gleich wie zuvor — die Vertrautheit ist in R&B tröstlich. Kleine Variation: Bunny Pad bei niedriger Lautstärke hinzufügen um den Raum zwischen den Sample-Elementen zu füllen." },
-      { name: "Hook 2", bars: 8, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "voll", pads: "spärlich", fx: "aus", note: "Hook-Struktur wiederholen. microKEY-Melodie eine Oktave höher als Hook 1 erwägen — subtile Aufhellung. Oder leichte harmonische Percussion (Sticks Toolkit Rim-Hits) auf den Upbeats hinzufügen." },
+      { name: "Hook 2", bars: 8, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "voll", pads: "spärlich", fx: "aus", note: "Hook-Struktur wiederholen. microKEY-Melodie eine Oktave höher als Hook 1 erwägen — subtile Aufhellung. Oder leichte harmonische Percussion (Stickz Hip-Hop Toolkit Rim-Hits) auf den Upbeats hinzufügen." },
       { name: "Bridge", bars: 8, drums: "aus", hats: "aus", sample: "aus", bass: "spärlich", keys: "voll", pads: "voll", fx: "voll", note: "Alles aus außer: Bass (Root Note halten), Keys (volle Akkord-Melodie), Pads (breit mit Raum Shimmer). 8 volle Takte. Das ist der verwundbarste, intimste Moment. Die Tonart kann hier um einen Schritt modulieren für einen emotionalen Lift." },
       { name: "Hook Out", bars: 8, drums: "voll", hats: "voll", sample: "voll", bass: "voll", keys: "voll", pads: "voll", fx: "aus", note: "Drums explodieren nach der Bridge-Stille zurück. Das ist der Höhepunkt des emotionalen Bogens. Alles hinzufügen — alle Schichten, maximale Keys-Melodie, breite Pads. Der Kontrast zur Bridge lässt das enorm klingen." },
       { name: "Outro", bars: 8, drums: "spärlich", hats: "aus", sample: "aus", bass: "spärlich", keys: "spärlich", pads: "voll", fx: "voll", note: "Langsames Fade — nicht abrupt schneiden. Elemente nacheinander über 8 Takte entfernen: Drums zuerst (Takt 2), Bass raus (Takt 4), Keys raus (Takt 6), nur Pads übrig (Takt 7-8). Der letzte Sound ist das Pad, das in Reverb verklingt. R&B endet elegant." },
@@ -184,7 +184,7 @@ export const SONGLAB_DE_VARIATIONS: Record<Genre, DeBeatVariation[]> = {
       feel: "Voller, breiter — Shaker-Schicht hinzufügen",
       maschineSteps: [
         "Scene 1 duplizieren → Scene 3 für den Hook. Shaker-Pad auf Schritten 2, 6, 10, 14 hinzufügen.",
-        "Shaker: Sticks Toolkit oder Chronicles Shaker verwenden. Velocity 40 flach.",
+        "Shaker: Stickz Hip-Hop Toolkit oder CHRONICLES Soul Melodies Shaker verwenden. Velocity 40 flach.",
         "Gesamte Gruppen-Lautstärke in Scene 3 um +1dB erhöhen — der Hook soll lauter wirken.",
         "Reverb-Send auf der Snare bei +20% nur in dieser Scene hinzufügen — erzeugt 'größere' Snare für den Hook.",
       ],
@@ -247,7 +247,7 @@ export const SONGLAB_DE_VARIATIONS: Record<Genre, DeBeatVariation[]> = {
       maschineSteps: [
         "Einen Shaker auf allen 16 Schritten bei Velocity 30 flach hinzufügen — kaum hörbar. Er existiert als Textur-Bett.",
         "Die 8tel-Noten-Hats schweben jetzt ÜBER dem Shaker und erzeugen rhythmische Tiefe.",
-        "Einen echten Shaker-Sound aus Sticks Toolkit oder Revival verwenden. Synthetische Sounds vermeiden.",
+        "Einen echten Shaker-Sound aus Stickz Hip-Hop Toolkit oder REVIVAL Soul Melodies verwenden. Synthetische Sounds vermeiden.",
         "Diese Scene funktioniert für Verse 2 oder neben der Hook-Keys-Schicht zum Verdichten der Textur.",
       ],
     },
@@ -269,7 +269,7 @@ export const SONGLAB_DE_VARIATIONS: Record<Genre, DeBeatVariation[]> = {
       whenToUse: "Hook Out — der vollste Moment",
       feel: "Alles spielt — Peak-Energie mit hinzugefügter Conga/Perc",
       maschineSteps: [
-        "Conga oder Bongo (aus Revival oder Sticks Toolkit) auf Schritten 5 und 11 bei Velocity 60 hinzufügen.",
+        "Conga oder Bongo (aus REVIVAL Soul Melodies oder Stickz Hip-Hop Toolkit) auf Schritten 5 und 11 bei Velocity 60 hinzufügen.",
         "Diese synkopierten Percussion-Hits füllen die Räume zwischen Kick und Rimshot.",
         "Auch: eine Shaker-Schicht darunter bei Velocity 25 — nur Textur.",
         "Nur für den letzten Hook und Hook Out. Im Verse nie verwenden — der Kontrast muss verdient sein.",

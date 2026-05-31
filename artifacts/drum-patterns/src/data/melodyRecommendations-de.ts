@@ -39,7 +39,7 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die Gospel-Orgel- und Blechbläser-Breakdown-Abschnitte. Im Revival-Browser in Maschine zu 'Loops > Rhythmic' navigieren — Loops mit spärlichem Arrangement (nur Orgel oder Piano, kein Vollband) suchen. Ein einzelner 2-Beat-Akkordschlag aus dem Breakdown-Abschnitt wird zum mächtigsten Stab, den man einsetzen kann.",
+          "Die Gospel-Orgel- und Blechbläser-Breakdown-Abschnitte. Im REVIVAL Soul Melodies-Browser in Maschine zu 'Loops > Rhythmic' navigieren — Loops mit spärlichem Arrangement (nur Orgel oder Piano, kein Vollband) suchen. Ein einzelner 2-Beat-Akkordschlag aus dem Breakdown-Abschnitt wird zum mächtigsten Stab, den man einsetzen kann.",
         treatment:
           "Den Akkordschlag als 1-Beat- oder 2-Beat-Slice schneiden. Als Stutter-Chop (Steps 12–14) im Pattern platzieren. Den Boom-Bap-Lo-Fi-Stack anwenden: Saturator (Tape 25 %) → Lo-Fi (12-Bit) → EQ (Hi-Shelf -4 dB bei 10 kHz).",
       },
@@ -51,9 +51,9 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Hip-Hop-Melodie-Loops bei 88–95 BPM. Alles suchen, das ein Piano- oder Gitarrenelement neben dem Drum-Groove enthält. Die Akkord-Loops in Chronicles sind speziell für den Sample-Flip-Workflow entwickelt — sie haben bereits den schmutzigen, komprimierten Charakter eines Producer-Beats.",
+          "Hip-Hop-Melodie-Loops bei 88–95 BPM. Alles suchen, das ein Piano- oder Gitarrenelement neben dem Drum-Groove enthält. Die Akkord-Loops in CHRONICLES Soul Melodies sind speziell für den Sample-Flip-Workflow entwickelt — sie haben bereits den schmutzigen, komprimierten Charakter eines Producer-Beats.",
         treatment:
-          "Den 2-Takt-Melodie-Loop clean verwenden ODER den Turnaround (letzte 2 Beats von Takt 2) als separaten Stab-Trigger schneiden. Keine starke Bearbeitung nötig — Chronicles-Samples sind vorverarbeitet. Nur den Sub per EQ kappen (Hochpass bei 60 Hz), um Platz für den Kick zu schaffen.",
+          "Den 2-Takt-Melodie-Loop clean verwenden ODER den Turnaround (letzte 2 Beats von Takt 2) als separaten Stab-Trigger schneiden. Keine starke Bearbeitung nötig — CHRONICLES Soul Melodies-Samples sind vorverarbeitet. Nur den Sub per EQ kappen (Hochpass bei 60 Hz), um Platz für den Kick zu schaffen.",
       },
       {
         lookFor:
@@ -218,7 +218,7 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die melodischen Hip-Hop-Loops bei 95–105 BPM. Chronicles-Loops sind für dieses Genre entwickelt — einfach einen finden, der zur Tonart und BPM passt. Die Gitarren-Loops in Chronicles haben einen rauen, leicht verzerrten Charakter, der in modernem Hip-Hop perfekt sitzt.",
+          "Die melodischen Hip-Hop-Loops bei 95–105 BPM. CHRONICLES Soul Melodies-Loops sind für dieses Genre entwickelt — einfach einen finden, der zur Tonart und BPM passt. Die Gitarren-Loops in CHRONICLES Soul Melodies haben einen rauen, leicht verzerrten Charakter, der in modernem Hip-Hop perfekt sitzt.",
         treatment:
           "Clean verwenden. Guitar Rig 7s 'Tube Compressor' auf dem Sample-Kanal für extra Wärme anwenden. Sidechain zum Kick bei 4:1, 80 ms Release für den pumpenden Effekt. Keine weitere Bearbeitung nötig.",
       },
@@ -361,13 +361,13 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
       },
       {
         lookFor:
-          "Die 'slow' und 'smooth' Abschnitte von Revival — die Neo-Soul-Piano-Loops und die langsamen Gospel-Progressionen. Im Revival-Browser in Maschine zu 'Loops > Melodic > Slow' navigieren. Die Organ-Pads, die durch Akkordwechsel ausgehalten werden, sind besonders wirkungsvoll für R&B-Balladenfeeling.",
+          "Die 'slow' und 'smooth' Abschnitte von REVIVAL Soul Melodies — die Neo-Soul-Piano-Loops und die langsamen Gospel-Progressionen. Im REVIVAL Soul Melodies-Browser in Maschine zu 'Loops > Melodic > Slow' navigieren. Die Organ-Pads, die durch Akkordwechsel ausgehalten werden, sind besonders wirkungsvoll für R&B-Balladenfeeling.",
         treatment:
-          "Clean verwenden. Die Tonhöhe des Samples im Tune-Bereich von Maschine anpassen, um zur Bassnote zu passen. Raum (Bloom-Modus) bei 30 % Wet hinzufügen. Für Velvet-Lounge-Stil-R&B: einen kurzen Scarbee-Mark-I-Akkord (Kontakt) parallel zum Revival-Loop schichten — sie verschmelzen zu einem kohärenten Klang.",
+          "Clean verwenden. Die Tonhöhe des Samples im Tune-Bereich von Maschine anpassen, um zur Bassnote zu passen. Raum (Bloom-Modus) bei 30 % Wet hinzufügen. Für Velvet-Lounge-Stil-R&B: einen kurzen Scarbee-Mark-I-Akkord (Kontakt) parallel zum REVIVAL Soul Melodies-Loop schichten — sie verschmelzen zu einem kohärenten Klang.",
       },
       {
         lookFor:
-          "Die zeitgenössischen R&B-Akkordprogressionen. Odyssey Souls Stärke liegt in harmonischer Reichhaltigkeit — alles mit erweiterten Akkorden suchen (9., 11., 13. Akkorde). Diese passen perfekt unter R&B-Vokal-Raum. Ziel-Tonarten: alle Loops in Cm, Fm oder Ebmaj.",
+          "Die zeitgenössischen R&B-Akkordprogressionen. ODYSSEY Soul Melodies' Stärke liegt in harmonischer Reichhaltigkeit — alles mit erweiterten Akkorden suchen (9., 11., 13. Akkorde). Diese passen perfekt unter R&B-Vokal-Raum. Ziel-Tonarten: alle Loops in Cm, Fm oder Ebmaj.",
         treatment:
           "Vollständig clean verwenden. Kein Chopping, keine Bearbeitung außer EQ. Diese Loops sind dazu gedacht, der primäre harmonische Inhalt zu sein. Auf Step 0 triggern, One-Shot-Modus, 2 Takte klingen lassen. Das ist der Sample, dem alles andere dient.",
       },

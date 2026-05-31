@@ -42,7 +42,7 @@ const TABS_EN: Tab[] = [
         ]
       },
       {
-        title: "Your Packs: Long-Form Soul Loops (Revival, Soulful Dreams, Odyssey Soul)",
+        title: "Your Packs: Long-Form Soul Loops (REVIVAL Soul Melodies, Soulful Dreams, ODYSSEY Soul Melodies)",
         body: "Long soul loops (8–32 bars) feel overwhelming at first. The trick is not chopping the whole thing — find the 2-bar gold inside it.",
         steps: [
           "Import the loop into Maschine. Before anything, just listen through completely — no pausing, no stopping. Note which bars feel the strongest",
@@ -63,15 +63,15 @@ const TABS_EN: Tab[] = [
           "Listen for the 'bright spot' — usually beat 3 or beat 4 of the 4-bar loop — and isolate that as a chop",
           "For Weekday: the piano and keys samples are the most versatile. Slice them into 2-beat pieces and you have instant stabs",
           "For Bunny: focus on the vinyl pops and noise elements as texture layers under your main sample, not as primary melody",
-          "These packs work best layered: one lo-fi loop as the bed, one chop from Soulful Dreams or Revival on top"
+          "These packs work best layered: one lo-fi loop as the bed, one chop from Soulful Dreams or REVIVAL Soul Melodies on top"
         ]
       },
       {
-        title: "Your Packs: Drum-Focused (Sticks Toolkit, Chronicles)",
+        title: "Your Packs: Drum-Focused (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
         body: "Drum sample packs are used differently — you're not chopping them for melody, you're using them as rhythmic texture and replacement hits.",
         steps: [
-          "Sticks Toolkit: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not try to chop the full loops — use the one-shots",
-          "Chronicles: if it includes loops, look for drum breaks without melodic elements. 2-bar breaks are the target",
+          "Stickz Hip-Hop Toolkit: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not try to chop the full loops — use the one-shots",
+          "CHRONICLES Soul Melodies: if it includes loops, look for drum breaks without melodic elements. 2-bar breaks are the target",
           "Use Detect Transients on drum breaks (more on this in the Chop tab) — drum transients are easy for Maschine to detect automatically",
           "Layer one drum break chop with your own kick and snare on top — you get the texture of the break without losing rhythmic control",
           "Use the drum loop as a send effect: route it to a separate channel, compress it hard (4:1, fast attack), and blend it underneath your main kit at -15 to -18dB. It adds dirt without being audible as a separate element"
@@ -111,7 +111,7 @@ const TABS_EN: Tab[] = [
           "On the hardware: press pads 1–8 to audition each slice. The pads light up in sequence",
           "If a slice is too long or too short: go back to the software, adjust sensitivity, re-apply"
         ],
-        tip: "Best for: drum breaks from Chronicles, Sticks Toolkit, and any rhythmic elements in Revival."
+        tip: "Best for: drum breaks from CHRONICLES Soul Melodies, Stickz Hip-Hop Toolkit, and any rhythmic elements in REVIVAL Soul Melodies."
       },
       {
         title: "Method 2: Manual Slice — Most Precise",
@@ -128,7 +128,7 @@ const TABS_EN: Tab[] = [
           "Use the 4D encoder (large knob) to scrub through the waveform and verify each slice sounds correct",
           "To adjust a slice point on hardware: navigate to the slice using the encoder, hold SHIFT + rotate the encoder to nudge the cut left or right"
         ],
-        tip: "Best for: piano runs and chord stabs from Soulful Dreams, Odyssey Soul. Any melodic sample where transient detection makes wrong cuts."
+        tip: "Best for: piano runs and chord stabs from Soulful Dreams Vol 1 & Vol 2, ODYSSEY Soul Melodies. Any melodic sample where transient detection makes wrong cuts."
       },
       {
         title: "Method 3: Slice Mode on the Pad (Hardware-Only Workflow)",
@@ -192,7 +192,7 @@ const TABS_EN: Tab[] = [
           "The chop should end just before Step 1 of bar 3 (the loop restart point). If it cuts off early: extend it by adjusting the sample End point. If it runs over: trim the End point",
           "Variation: place the chop on Step 1 of bar 1, and a different chop slice on Step 1 of bar 2 — gives a 2-bar ABAB chop pattern"
         ],
-        tip: "Packs to use this with: Soulful Dreams (use a 2-bar pocket section), Odyssey Soul (use the chorus pocket), Revival (the full-band sections)."
+        tip: "Packs to use this with: Soulful Dreams Vol 1 & Vol 2 (use a 2-bar pocket section), ODYSSEY Soul Melodies (use the chorus pocket), REVIVAL Soul Melodies (the full-band sections)."
       },
       {
         title: "The Stutter Chop",
@@ -337,20 +337,20 @@ type PackProfile = {
 
 const PACK_PROFILES_EN: PackProfile[] = [
   {
-    name: "Revival",
+    name: "REVIVAL Soul Melodies",
     type: "Soul / Gospel / Funk",
     bpmRange: "85–100 BPM",
     choppability: "medium",
     primaryTechnique: "2-bar loop with minimal slicing",
     bestChops: "Full band breakdowns, chord stabs, organ swells",
     tips: [
-      "Revival's full-ensemble sections are best used as single 2-bar loops — don't over-chop them. The richness is in the full arrangement.",
+      "REVIVAL Soul Melodies' full-ensemble sections are best used as single 2-bar loops — don't over-chop them. The richness is in the full arrangement.",
       "Look for the gospel choir moments — a single held chord hit becomes an incredible stab chop.",
       "The organ and keys elements often work well reversed — load the reversed chop as a riser before a chorus section.",
     ]
   },
   {
-    name: "Soulful Dreams Vol 1 & 2",
+    name: "Soulful Dreams Vol 1 & Vol 2",
     type: "Classic Soul / Vintage R&B",
     bpmRange: "70–95 BPM",
     choppability: "medium",
@@ -363,7 +363,7 @@ const PACK_PROFILES_EN: PackProfile[] = [
     ]
   },
   {
-    name: "Odyssey Soul Sample Pack",
+    name: "ODYSSEY Soul Melodies",
     type: "Neo Soul / Contemporary Soul",
     bpmRange: "75–90 BPM",
     choppability: "easy",
@@ -376,14 +376,14 @@ const PACK_PROFILES_EN: PackProfile[] = [
     ]
   },
   {
-    name: "Chronicles",
+    name: "CHRONICLES Soul Melodies",
     type: "Hip Hop / Sample-based",
     bpmRange: "85–105 BPM",
     choppability: "easy",
     primaryTechnique: "Auto Slice (Detect Transients)",
     bestChops: "Drum breaks, melodic loops designed for chopping",
     tips: [
-      "Chronicles-type packs are usually designed to be chopped — the transient detection will work well on first try.",
+      "CHRONICLES Soul Melodies-type packs are usually designed to be chopped — the transient detection will work well on first try.",
       "Use the drum elements to replace your factory kit sounds — run the drum break at -15dB under your main kick/snare for grit.",
       "The melodic loops are typically shorter (1–2 bars) and already suited to immediate pattern placement without heavy processing.",
     ]
@@ -402,7 +402,7 @@ const PACK_PROFILES_EN: PackProfile[] = [
     ]
   },
   {
-    name: "Bunny (Cymatics)",
+    name: "BUNNY Pack",
     type: "Lo-Fi / Bedroom / Soft",
     bpmRange: "65–85 BPM",
     choppability: "easy",
@@ -415,7 +415,7 @@ const PACK_PROFILES_EN: PackProfile[] = [
     ]
   },
   {
-    name: "Sticks Toolkit",
+    name: "Stickz Hip-Hop Toolkit",
     type: "Drum One-Shots & Fills",
     bpmRange: "N/A (one-shots)",
     choppability: "easy",
