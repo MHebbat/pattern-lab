@@ -473,6 +473,7 @@ export default function PackLab() {
   const [artwork, setArtwork] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [dropError, setDropError] = useState<string | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const folderInputRef = useRef<HTMLInputElement>(null);
@@ -551,52 +552,67 @@ export default function PackLab() {
 
   const onFileDrop = useCallback(async (e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setDragOver(false);
+    setDropError(null);
 
-    // Collect all FileSystemEntry objects in ONE pass — calling webkitGetAsEntry()
-    // twice on the same item returns null, so we must not call it twice.
-    const fsEntries: FileSystemEntry[] = [];
-    const items = Array.from(e.dataTransfer.items ?? []);
-    for (const item of items) {
-      const entry = item.webkitGetAsEntry?.();
-      if (entry) fsEntries.push(entry);
+    try {
+      // Collect all FileSystemEntry objects in ONE pass.
+      // webkitGetAsEntry() is invalidated after the event, and calling it
+      // a second time on the same item returns null — collect once only.
+      const fsEntries: FileSystemEntry[] = [];
+      const items = Array.from(e.dataTransfer.items ?? []);
+      for (const item of items) {
+        const entry = item.webkitGetAsEntry?.();
+        if (entry) fsEntries.push(entry);
+      }
+
+      if (fsEntries.length > 0) {
+        setStep("analyzing");
+        setProgress(0);
+        const allEntries: { file: File; zipPath: string }[] = [];
+        let folderName = "";
+        for (const entry of fsEntries) {
+          if (!folderName && entry.isDirectory) folderName = entry.name;
+          setProgressLabel(`Reading ${entry.name}…`);
+          const found = await traverseEntry(entry, "");
+          allEntries.push(...found);
+        }
+
+        if (allEntries.length === 0) {
+          setStep("upload");
+          setDropError("No audio files found in the dropped folder. Make sure it contains WAV, AIFF, or MP3 files.");
+          return;
+        }
+
+        if (!packName && folderName) {
+          setPackName(folderName.replace(/[_\-]/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim());
+        }
+
+        const results: AnalyzedSample[] = [];
+        for (let i = 0; i < allEntries.length; i++) {
+          const { file, zipPath } = allEntries[i];
+          setProgress(Math.round((i / allEntries.length) * 100));
+          setProgressLabel(file.name);
+          results.push(await analyzeFile(file, zipPath));
+        }
+        setProgress(100);
+        setSamples(results);
+        setStep("review");
+        return;
+      }
+
+      // Fallback: FileSystem API not available — use plain File list
+      const files = Array.from(e.dataTransfer.files);
+      if (files.length > 0) {
+        processFiles(files);
+      } else {
+        setDropError("Nothing detected. Try the 'Select folder' button instead.");
+      }
+    } catch (err) {
+      setStep("upload");
+      setDropError(`Error reading files: ${err instanceof Error ? err.message : String(err)}`);
     }
-
-    const hasDirectory = fsEntries.some(e => e.isDirectory);
-
-    if (hasDirectory || fsEntries.length > 0) {
-      setStep("analyzing");
-      setProgress(0);
-      const allEntries: { file: File; zipPath: string }[] = [];
-      let folderName = "";
-      for (const entry of fsEntries) {
-        if (!folderName && entry.isDirectory) folderName = entry.name;
-        setProgressLabel(`Reading ${entry.name}…`);
-        allEntries.push(...await traverseEntry(entry, ""));
-      }
-
-      if (allEntries.length === 0) { setStep("upload"); return; }
-
-      if (!packName && folderName) {
-        setPackName(folderName.replace(/[_\-]/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim());
-      }
-
-      const results: AnalyzedSample[] = [];
-      for (let i = 0; i < allEntries.length; i++) {
-        const { file, zipPath } = allEntries[i];
-        setProgress(Math.round((i / allEntries.length) * 100));
-        setProgressLabel(file.name);
-        results.push(await analyzeFile(file, zipPath));
-      }
-      setProgress(100);
-      setSamples(results);
-      setStep("review");
-      return;
-    }
-
-    // Fallback: no FileSystemEntry API — use plain files
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) processFiles(files);
   }, [processFiles, packName]);
 
   const onFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -748,10 +764,10 @@ export default function PackLab() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div
               onDrop={onFileDrop}
-              onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+              onDragOver={e => { e.preventDefault(); e.stopPropagation(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
-              onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed rounded-2xl p-16 text-center cursor-pointer transition-all"
+              onDragEnter={e => { e.preventDefault(); e.stopPropagation(); }}
+              className="border-2 border-dashed rounded-2xl p-16 text-center transition-all select-none"
               style={{
                 borderColor: dragOver ? "#f59e0b" : "var(--border)",
                 backgroundColor: dragOver ? "rgba(245,158,11,0.05)" : undefined,
@@ -779,21 +795,27 @@ export default function PackLab() {
                 {t("Drop a folder, ZIP, or individual files — subfolders are read automatically", "Ordner, ZIP oder einzelne Dateien ablegen — Unterordner werden automatisch eingelesen")}
               </p>
               <p className="text-xs text-muted-foreground/50 mb-5">WAV · AIFF · MP3 · FLAC · ZIP</p>
-              <div className="flex items-center justify-center gap-3" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-center gap-3">
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="px-4 py-2 text-xs font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
+                  className="px-4 py-2 text-xs font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors cursor-pointer"
                 >
                   {t("Select files", "Dateien wählen")}
                 </button>
                 <button
                   onClick={() => folderInputRef.current?.click()}
-                  className="px-4 py-2 text-xs font-medium rounded-lg border border-amber-500/40 bg-amber-500/5 text-amber-400 hover:bg-amber-500/10 transition-colors"
+                  className="px-4 py-2 text-xs font-medium rounded-lg border border-amber-500/40 bg-amber-500/5 text-amber-400 hover:bg-amber-500/10 transition-colors cursor-pointer"
                 >
                   {t("Select folder", "Ordner wählen")}
                 </button>
               </div>
             </div>
+            {dropError && (
+              <div className="mt-3 flex items-center gap-2 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
+                <AlertTriangle className="w-4 h-4 shrink-0" />
+                <span>{dropError}</span>
+              </div>
+            )}
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               {[
