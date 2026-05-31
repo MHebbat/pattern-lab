@@ -99,6 +99,36 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
         treatment:
           "Load the synth loop onto a separate pad at -12dB below the primary soul sample. The contrast between a vintage Soulful Dreams loop and a modern Weekday synth texture creates an interesting time-warp effect. No heavy processing — just high-pass at 80Hz.",
       },
+      {
+        pack: "LayerCake Emotions",
+        packUrl: "https://layercakesamples.com/album/3685518/emotions",
+        free: false,
+        sampleType: "chop-or-clean",
+        lookFor:
+          "10 original 70s vintage soul compositions with full stems — lush chord progressions, deep baselines, and ear-candy melodic phrases. Look for the 2-bar pocket inside each composition (usually bar 3–4 or 7–8). The stems folder lets you isolate individual instruments for precise chops.",
+        treatment:
+          "Option A (clean): identify the pocket bar and load the 2-bar section as a One-Shot on Step 0. Let the analog warmth breathe with just a high-pass at 60Hz and Raum Grounded (0.4s, 15% wet). Option B (chop): slice on the chord changes for self-contained stabs — place the main stab on Step 0 and a turnaround stab on Step 14.",
+      },
+      {
+        pack: "Ric Beats Soul Series",
+        packUrl: "https://ricbeats.com",
+        free: false,
+        sampleType: "chop-or-clean",
+        lookFor:
+          "RnB and vintage soul loops with warm harmonic content. Look for chord progressions with slow movement (one chord per bar or two) — these are the most versatile for boom bap production. The RnB character adds softness that contrasts well against a hard kick.",
+        treatment:
+          "Use clean for boom bap: high-pass at 80Hz, add Saturator (Tape mode, 20%) for analog warmth, then the boom bap lo-fi stack (Lo-Fi 12-bit, EQ hi-shelf -3dB at 10kHz). Keep the warmth, reduce the cleanness.",
+      },
+      {
+        pack: "Ric Beats Legacy Bundle",
+        packUrl: "https://ricbeats.com",
+        free: false,
+        sampleType: "chop",
+        lookFor:
+          "Vintage soul compositions across eras — classic, dusty, with authentic grit. Look for loops where the bass and drums have a natural pocket feel. The 'legacy' character means these already sound like they've been on a shelf for 40 years — less processing needed.",
+        treatment:
+          "Chop the pocket bar (2 beats of the chord hit + 2 beats of the tail). Place chop A on Step 0 and chop B on Step 8. The boom bap lo-fi stack (Saturator Tape 25% → Lo-Fi 12-bit) deepens the vintage character further.",
+      },
     ],
     bassPatterns: [
       {
@@ -346,6 +376,26 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
         treatment:
           "Use clean. High-pass at 60Hz, add Raum in Grounded mode (0.4s, 15% wet) to place it in a room. Sidechain to kick at 2:1, 80ms release — gentle pumping keeps the orchestral feel while locking to the beat. No distortion or heavy saturation — the arrangement already has character.",
       },
+      {
+        pack: "LayerCake Soul Cinema Legends",
+        packUrl: "https://layercakesamples.com/album/3622086/soul-cinema-legends",
+        free: false,
+        sampleType: "chop-or-clean",
+        lookFor:
+          "Cinematic soul loops from LayerCake's Soul Cinema series — lush orchestral and soul arrangements built for sample-based production. Look for chord loops with clear, defined transitions between sections. These are designed to be chopped.",
+        treatment:
+          "Auto Slice works well here — the orchestral chord changes create clean transient points. Load the stab chop on one pad and the full loop on another. Use the stab on key moments (Steps 0 and 8) and let the full loop breathe as a background pad at -8dB.",
+      },
+      {
+        pack: "Mystic Samples Free Discovery Pack",
+        packUrl: "https://mysticsamples.com",
+        free: true,
+        sampleType: "chop-or-clean",
+        lookFor:
+          "Audition every loop and rate each one honestly — discovery packs reward patience. Look for any loop with a chord movement you find emotionally compelling. Hip hop contexts: find anything with a minor key and a natural pocket around bar 3–4. The goal is to find 1 great loop, not use everything.",
+        treatment:
+          "Once you find your keeper: apply the standard hip hop stack — high-pass at 80Hz, Saturator (Tape 20%), Lo-Fi (12-bit), sidechain to kick. The pack is free — spend time finding the loop, then spend your production time on that single loop.",
+      },
     ],
     bassPatterns: [
       {
@@ -590,6 +640,36 @@ export const melodyRecommendations: Record<Genre, GenreMelodyRecs> = {
           "Short synth chord stabs and 80s-style R&B atmospheric hits. Weekday's Dawn FM aesthetic has strong R&B roots — look for any 1–2 beat synth hit with a smooth attack and natural decay. These 80s-influenced stabs sit perfectly in contemporary neo-soul and R&B contexts.",
         treatment:
           "Chop the 1-beat synth chord hit. Place on Step 4 and Step 12 alongside your rimshot — it fires with the snare for a punchy accent. Apply Raum plate (0.8s, 25% wet) and a gentle Compressor (2:1, slow attack) to blend it into the mix.",
+      },
+      {
+        pack: "LayerCake Emotions",
+        packUrl: "https://layercakesamples.com/album/3685518/emotions",
+        free: false,
+        sampleType: "clean-loop",
+        lookFor:
+          "10 original 70s vintage soul compositions with full stems — lush, analog-warm harmonic content that sits perfectly in R&B contexts. Look for the smoothest chord progressions with the most space: slow-moving harmony (1 chord per 2 bars) gives the R&B vocal maximum room. Check the stems for isolated piano or keys parts.",
+        treatment:
+          "Use completely clean — no lo-fi, no saturation. These have authentic analog warmth already. Apply Raum in Bloom mode (1.5s decay, 40% wet) to let the compositions breathe in the mix. EQ: gentle low-mid dip at 350Hz (-2dB) to remove boxiness. This is your primary harmonic bed — everything else serves it.",
+      },
+      {
+        pack: "LayerCake Soul is Soul",
+        packUrl: "https://layercakesamples.com/sample-packs",
+        free: false,
+        sampleType: "clean-loop",
+        lookFor:
+          "Original vintage soul compositions in the LayerCake aesthetic — authentic soul character with clean, modern production quality. For R&B, look for the loop sections with the slowest harmonic movement and the richest chord voicings. The 'Soul is Soul' character tends toward pure classic soul warmth.",
+        treatment:
+          "Use clean. Match your bass key to the loop key before adding anything else. Layer a Scarbee Mark I chord (Kontakt) alongside the loop at -8dB — they blend into a single cohesive harmonic sound. Add Raum Bloom (1.2s, 30% wet) for R&B space.",
+      },
+      {
+        pack: "Ric Beats Soul Series",
+        packUrl: "https://ricbeats.com",
+        free: false,
+        sampleType: "clean-loop",
+        lookFor:
+          "RnB and vintage soul loops built for R&B vocal production — warm, smooth, with slow harmonic movement. For R&B contexts, these are ideal primary samples. Look for loops in major keys or minor keys with major 6th or major 7th extensions — they feel hopeful and spacious rather than dark.",
+        treatment:
+          "Use completely clean. No processing beyond EQ (high-pass at 60Hz, low-mid dip -2dB at 350Hz) and Raum Bloom (1.5s, 35% wet). These are designed for vocals to sit on top — avoid anything that adds grit or texture that would compete with a singer.",
       },
     ],
     bassPatterns: [

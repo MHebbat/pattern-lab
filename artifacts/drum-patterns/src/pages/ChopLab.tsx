@@ -42,7 +42,7 @@ const TABS_EN: Tab[] = [
         ]
       },
       {
-        title: "Your Packs: Long-Form Soul Loops (REVIVAL Soul Melodies, Soulful Dreams, ODYSSEY Soul Melodies)",
+        title: "Your Packs: Long-Form Soul Loops (REVIVAL, Soulful Dreams, ODYSSEY, LayerCake, Ric Beats)",
         body: "Long soul loops (8–32 bars) feel overwhelming at first. The trick is not chopping the whole thing — find the 2-bar gold inside it.",
         steps: [
           "Import the loop into Maschine. Before anything, just listen through completely — no pausing, no stopping. Note which bars feel the strongest",
@@ -66,10 +66,10 @@ const TABS_EN: Tab[] = [
         ]
       },
       {
-        title: "Your Packs: Drums & Orchestral Soul (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
-        body: "Stickz is a hip-hop drum kit — individual one-shots and loops. CHRONICLES is pure soul melody — lush 70s orchestral arrangements. Use them completely differently.",
+        title: "Your Packs: Drums (Stickz, Diginoiz Boom Bap Drums) & Orchestral Soul (CHRONICLES)",
+        body: "Drum packs and soul melody packs work completely differently. Don't chop drum loops — load hits. Don't load CHRONICLES as a rhythm track — it's pure melody.",
         steps: [
-          "Stickz Hip-Hop Toolkit: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not chop the loops — use the one-shots",
+          "Stickz Hip-Hop Toolkit and Diginoiz Boom Bap Drums: load individual hits (kick, snare, hat one-shots) directly into Maschine pads. Do not chop the loops — use the one-shots",
           "CHRONICLES Soul Melodies: this is ALL melody — lush 70s orchestral soul. Look for string, brass, and chord arrangements designed for chopping and resampling. No drum breaks here",
           "CHRONICLES loops slice cleanly with Auto Slice — the orchestral chord changes create clear transient points Maschine detects automatically",
           "Load a CHRONICLES chord stab on one pad and the full loop on another — play the stab on key moments and let the loop breathe between them",
@@ -356,7 +356,7 @@ const PACK_PROFILES_EN: PackProfile[] = [
     primaryTechnique: "Manual slice for melodic fragments",
     bestChops: "Piano runs, string chord hits, bass & drum pocket bars",
     tips: [
-      "These packs likely have a lot of long loops (8–16 bars). Focus on bars 3–4 and 7–8 where the arrangement hits its pocket.",
+      "These packs have long soul compositions (8–16 bar loops). Focus on bars 3–4 and 7–8 where the arrangement hits its pocket.",
       "The string hits are gold — find any moment where strings land on a chord and cut it as a single 1-beat slice.",
       "Layer the Soulful Dreams sample with a Weekday atmospheric synth loop underneath at -15dB for a contemporary contrast.",
     ]
@@ -385,6 +385,110 @@ const PACK_PROFILES_EN: PackProfile[] = [
       "CHRONICLES is pure melody — lush orchestral arrangements inspired by the 70s soul cinema era, built for producers like Metro Boomin, Alchemist, and Hit Boy. No drums in this pack.",
       "Slice at each chord change and you get self-contained stabs. Load different stabs on separate pads and play chord variations live with the microKEY.",
       "Many loops work perfectly clean — just high-pass at 60Hz to leave sub space. The richness of the orchestration does the rest.",
+    ]
+  },
+  {
+    name: "LayerCake Emotions",
+    type: "70s Vintage Soul / Analog Warmth",
+    bpmRange: "70–95 BPM",
+    choppability: "medium",
+    primaryTechnique: "Manual slice on chord changes or clean 2-bar loop",
+    bestChops: "Lush chord progressions, deep baselines, ear-candy melodic phrases",
+    tips: [
+      "Emotions captures the golden era of 70s soul — 10 original compositions with full stems, analog-inspired textures straight from the vinyl era. Cinematic feel throughout.",
+      "Full stems included — isolate the bass, keys, or strings independently for flexible chopping without committing to the full arrangement.",
+      "Chop, flip, or use loops clean. These are fully arranged compositions, not just loops — find the 2-bar gold inside the longer arrangement using the pocket-bar method.",
+    ]
+  },
+  {
+    name: "LayerCake Soul Cinema Legends",
+    type: "Cinematic Soul / Soul Cinema Series",
+    bpmRange: "70–100 BPM",
+    choppability: "easy",
+    primaryTechnique: "Clean loop or Auto Slice on orchestral hits",
+    bestChops: "Cinematic soul chord loops, orchestral stabs, soulful melodic phrases",
+    tips: [
+      "Part of LayerCake's Soul Cinema series — cinematic, lush soul arrangements designed specifically for sample-based production and chopping.",
+      "The orchestral chord changes create clean transient points — Auto Slice works very well. Each chord hit becomes a self-contained stab pad.",
+      "Use the full loop clean over your drum pattern first, then add chop stabs on top of it for variation. The two-layer approach (loop + stabs) is the signature Soul Cinema technique.",
+    ]
+  },
+  {
+    name: "LayerCake Soul is Soul",
+    type: "Vintage Soul / Original Compositions",
+    bpmRange: "70–100 BPM",
+    choppability: "medium",
+    primaryTechnique: "Find the 2-bar pocket inside the composition",
+    bestChops: "Soul chord progressions, melodic phrases, vintage drum pocket bars",
+    tips: [
+      "Original compositions in the LayerCake style — authentic vintage soul character with modern production quality. Built for producers who chop and flip.",
+      "Listen through the full composition once before chopping. The gold is usually at bars 3–4 and 7–8 where the arrangement hits its pocket.",
+      "Layer a Soul is Soul chop with a contemporary element (Weekday synth texture or BUNNY Latin melody) for a contrast that makes your beat stand out.",
+    ]
+  },
+  {
+    name: "LayerCake Family Packs",
+    type: "Vintage Soul / Thematic Series",
+    bpmRange: "70–100 BPM",
+    choppability: "medium",
+    primaryTechnique: "Manual slice for melodic fragments",
+    bestChops: "Soul loop pocket bars, melodic chord hits, bass & drum locked sections",
+    tips: [
+      "LayerCake Family packs are thematic collections in the same vintage soul aesthetic — each pack has a distinct character but shares the same high-quality, original-composition approach.",
+      "Treat each pack as a separate instrument palette — one for lush strings, one for keys-heavy loops. Don't mix everything into one beat.",
+      "The pocket bar technique works especially well: find bar 3 or 7 of any composition and you'll have the most cohesive 2-bar chop.",
+    ]
+  },
+  {
+    name: "Ric Beats Soul Series",
+    type: "RnB & Vintage Soul Bundle",
+    bpmRange: "70–95 BPM",
+    choppability: "medium",
+    primaryTechnique: "Clean loop or manual slice for R&B and soul contexts",
+    bestChops: "R&B chord loops, vintage soul melodic phrases, smooth groove sections",
+    tips: [
+      "Ric Beats Soul Series focuses on RnB and vintage soul — warm, smooth harmonic content built for R&B production and soulful hip hop.",
+      "These loops are designed to sit comfortably under a vocal. Use clean at full length for R&B contexts — no heavy chopping needed, just EQ and light compression.",
+      "Find the loop section where the chord movement is slowest (1 chord per bar) — that's your most usable section for laying vocals over.",
+    ]
+  },
+  {
+    name: "Ric Beats Legacy Bundle",
+    type: "Vintage Soul Bundle",
+    bpmRange: "70–100 BPM",
+    choppability: "medium",
+    primaryTechnique: "Pocket-bar chop or clean 2-bar loop",
+    bestChops: "Classic vintage soul loops, deep groove sections, chord stabs",
+    tips: [
+      "Legacy Bundle covers vintage soul across eras — a comprehensive collection of warm, dusty soul compositions for sample-based production.",
+      "The 'legacy' character means these loops have authentic vintage grit. Add the boom bap lo-fi stack (Saturator Tape 25% → Lo-Fi 12-bit → EQ hi-shelf -4dB) for instant classic feel.",
+      "Compare the Legacy Bundle loops against the Soul Series — they're often in different keys. Find a Legacy loop and a Soul Series loop in complementary keys and layer them.",
+    ]
+  },
+  {
+    name: "Mystic Samples Free Discovery Pack",
+    type: "Free Sampler / Various Soul",
+    bpmRange: "Various",
+    choppability: "easy",
+    primaryTechnique: "Audition each loop — find your 1 keeper",
+    bestChops: "Whatever resonates — discovery packs are for finding your sound",
+    tips: [
+      "Discovery packs are sampler collections — not every loop will fit your style. The goal is to find 1–2 loops you love and master those.",
+      "It's free — go through every loop and rate each one 1–5. Only work with your 5-rated loops. Delete or archive the rest immediately.",
+      "Any loop you find compelling here: note the pack/style and search for the full paid Mystic Samples pack that matches it.",
+    ]
+  },
+  {
+    name: "Diginoiz Boom Bap Drums",
+    type: "Boom Bap Drum One-Shots & Loops",
+    bpmRange: "80–100 BPM",
+    choppability: "easy",
+    primaryTechnique: "Load individual hits to pads, use loops as drum break foundations",
+    bestChops: "Punchy kicks, cracking snares, boom bap hi-hat patterns",
+    tips: [
+      "Diginoiz Boom Bap Drums is a dedicated boom bap drum resource — authentic kick, snare, and hat sounds with the right weight and character for the genre.",
+      "Load individual one-shots directly onto Maschine pads. Replace your factory sounds pad by pad — don't try to use everything at once.",
+      "The drum loops work as a starting pattern foundation: load a Diginoiz loop, slice it with Auto Slice, then replace individual slices with your own programmed hits for a hybrid approach.",
     ]
   },
   {

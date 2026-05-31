@@ -61,6 +61,24 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
         treatment:
           "Clean in voller Länge verwenden — nur EQ (Hochpass bei 80 Hz) und leichte Sidechain-Kompression vom Kick. Bei -10 dB unter dem primären Soul-Sample layern. Die 80er Synth-Textur gegen einen Vintage-Loop erzeugt ein zeitverschobenes Feeling, das sich abhebt.",
       },
+      {
+        lookFor:
+          "10 originale 70er Vintage-Soul-Kompositionen mit vollständigen Stems — üppige Akkordfolgen, tiefe Basslinien und eingängige melodische Phrasen. Die 2-Takt-Goldader in der Komposition finden (meistens Takt 3–4 oder 7–8). Der Stems-Ordner erlaubt es, einzelne Instrumente für präzise Chops zu isolieren.",
+        treatment:
+          "Option A (clean): den Pocket-Takt identifizieren und den 2-Takt-Abschnitt als One-Shot auf Step 0 laden. Die analoge Wärme nur mit Hochpass bei 60 Hz und Raum Grounded (0,4 s, 15 % Wet) atmen lassen. Option B (Chop): auf den Akkordwechseln slicen — Haupt-Stab auf Step 0, Turnaround-Stab auf Step 14.",
+      },
+      {
+        lookFor:
+          "RnB- und Vintage-Soul-Loops mit warmem harmonischem Charakter. Akkordfolgen mit langsamer Bewegung suchen (ein Akkord pro Takt oder zwei) — diese sind für Boom-Bap-Produktion am vielseitigsten. Der RnB-Charakter fügt eine Sanftheit hinzu, die gegen einen harten Kick gut kontrastiert.",
+        treatment:
+          "Clean für Boom Bap verwenden: Hochpass bei 80 Hz, Saturator (Tape-Modus, 20 %) für analoge Wärme, dann der Boom-Bap-Lo-Fi-Stack (Lo-Fi 12-Bit, EQ Hi-Shelf -3 dB bei 10 kHz). Die Wärme behalten, die Sauberkeit reduzieren.",
+      },
+      {
+        lookFor:
+          "Vintage-Soul-Kompositionen über verschiedene Eras — klassisch, staubig, mit authentischem Grit. Loops suchen, wo Bass und Drums ein natürliches Pocket-Feeling haben. Der 'Legacy'-Charakter bedeutet, dass diese Loops schon klingen, als hätten sie 40 Jahre auf einem Regal gelegen.",
+        treatment:
+          "Den Pocket-Takt choppen (2 Beats des Akkord-Hits + 2 Beats des Tails). Chop A auf Step 0 und Chop B auf Step 8 platzieren. Der Boom-Bap-Lo-Fi-Stack (Saturator Tape 25 % → Lo-Fi 12-Bit) vertieft den Vintage-Charakter weiter.",
+      },
     ],
     bassPatterns: [
       {
@@ -215,6 +233,18 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Neo-Soul-Akkordprogressionen, die zwischen zwei oder drei Akkorden wechseln. Alles mit einer ii-V-i oder i-VII-VI-Bewegung suchen — diese Progressionen haben natürliche harmonische Spannung, die Hip-Hop-Pattern ergänzt. Loops suchen, bei denen die Akkordschläge auf Beats 2 und 4 landen (zusammen mit der Snare).",
         treatment:
           "Chop-Ansatz: bei jedem Akkordwechsel schneiden. Den ersten Akkord (Steps 0–7) und zweiten Akkord (Steps 8–15) auf verschiedene Pads legen — jetzt können sie unabhängig gespielt werden. Clean-Ansatz: den gesamten 2-Takt-Loop verwenden und über das gesamte Drum-Pattern atmen lassen.",
+      },
+      {
+        lookFor:
+          "Cineastische Soul-Loops aus LayerCakes Soul-Cinema-Serie — üppige Orchesterarrangements für Sample-basierte Produktion. Nach Akkord-Loops mit klar definierten Übergängen zwischen Abschnitten suchen. Diese Loops sind für das Choppen gemacht.",
+        treatment:
+          "Auto Slice funktioniert hier sehr gut — die orchestralen Akkordwechsel erzeugen saubere Transient-Punkte. Den Stab-Chop auf einem Pad und den vollen Loop auf einem anderen laden. Den Stab auf Schlüsselmomente legen (Steps 0 und 8), den vollen Loop als Hintergrund-Pad bei -8 dB atmen lassen.",
+      },
+      {
+        lookFor:
+          "Jeden Loop anhören und ehrlich bewerten — Discovery-Packs belohnen Geduld. Jeden Loop mit einer emotional überzeugenden Akkordentwicklung suchen. Hip-Hop-Kontext: alles mit Moll-Tonart und natürlichem Pocket um Takt 3–4. Das Ziel: 1 großartigen Loop finden, nicht alles verwenden.",
+        treatment:
+          "Sobald der Keeper gefunden ist: Standard Hip-Hop-Stack anwenden — Hochpass bei 80 Hz, Saturator (Tape 20 %), Lo-Fi (12-Bit), Sidechain zum Kick. Das Pack ist kostenlos — Zeit zum Finden investieren, dann die Produktionszeit auf diesen einen Loop konzentrieren.",
       },
       {
         lookFor:
@@ -382,6 +412,24 @@ export const melodyRecommendationsDe: Record<string, DeMelodyRecs> = {
           "Kurze Synth-Akkord-Stabs und 80er-Stil R&B-atmosphärische Hits. Weekdays Dawn-FM-Ästhetik hat starke R&B-Wurzeln — alle 1–2-Beat-Synth-Hits mit weichem Attack und natürlichem Decay suchen. Diese 80er-beeinflussten Stabs passen perfekt in zeitgenössische Neo-Soul- und R&B-Kontexte.",
         treatment:
           "Den 1-Beat-Synth-Akkordschlag schneiden. Auf Step 4 und Step 12 zusammen mit dem Rimshot platzieren — er feuert mit der Snare für einen druckvollen Akzent. Raum-Platte hinzufügen (0,8 s, 25 % Wet) und einen sanften Kompressor (2:1, langsamer Attack), um ihn in den Mix einzupassen.",
+      },
+      {
+        lookFor:
+          "10 originale 70er Vintage-Soul-Kompositionen mit vollständigen Stems — analogwarme, üppige harmonische Inhalte, die perfekt in R&B-Kontexte passen. Die Loops mit der langsamsten harmonischen Bewegung und den reichsten Akkordvoicings suchen. Der Stems-Ordner für isolierte Piano- oder Keys-Stimmen prüfen.",
+        treatment:
+          "Vollständig clean verwenden — kein Lo-Fi, keine Sättigung. Diese haben bereits authentische analoge Wärme. Raum im Bloom-Modus hinzufügen (1,5 s Decay, 40 % Wet), um die Kompositionen im Mix atmen zu lassen. EQ: sanfter Low-Mid-Dip bei 350 Hz (-2 dB) für Klarheit. Das ist der primäre harmonische Untergrund — alles andere dient ihm.",
+      },
+      {
+        lookFor:
+          "Originale Vintage-Soul-Kompositionen in der LayerCake-Ästhetik — authentischer Soul-Charakter mit sauberer, moderner Produktionsqualität. Für R&B nach Loop-Abschnitten mit der langsamsten harmonischen Bewegung und den reichsten Akkordvoicings suchen.",
+        treatment:
+          "Clean verwenden. Den Bass-Schlüssel auf den Loop-Schlüssel abstimmen, bevor alles andere hinzugefügt wird. Einen Scarbee-Mark-I-Akkord (Kontakt) neben dem Loop bei -8 dB layern — sie verschmelzen zu einem kohärenten harmonischen Klang. Raum Bloom (1,2 s, 30 % Wet) für R&B-Raum hinzufügen.",
+      },
+      {
+        lookFor:
+          "RnB- und Vintage-Soul-Loops für R&B-Vokal-Produktion — warm, smooth, mit langsamer harmonischer Bewegung. Loops in Dur-Tonarten oder Moll-Tonarten mit großer Sexte oder großer Septime suchen — sie klingen hoffnungsvoll und geräumig statt dunkel.",
+        treatment:
+          "Vollständig clean verwenden. Keine Verarbeitung außer EQ (Hochpass bei 60 Hz, Low-Mid-Dip -2 dB bei 350 Hz) und Raum Bloom (1,5 s, 35 % Wet). Für Vocals ausgelegt — nichts hinzufügen, das mit einer Sängerstimme konkurriert.",
       },
     ],
     bassPatterns: [

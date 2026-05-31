@@ -42,7 +42,7 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
         ]
       },
       {
-        title: "Deine Packs: Lange Soul-Loops (REVIVAL Soul Melodies, Soulful Dreams, ODYSSEY Soul Melodies)",
+        title: "Deine Packs: Lange Soul-Loops (REVIVAL, Soulful Dreams, ODYSSEY, LayerCake, Ric Beats)",
         body: "Lange Soul-Loops (8–32 Takte) wirken zunächst überwältigend. Der Trick besteht nicht darin, alles zu choppen — finde die 2-Takt-Goldader darin.",
         steps: [
           "Loop in Maschine importieren. Vor allem: einmal komplett durchhören — kein Pausieren, kein Stoppen. Notieren, welche Takte am stärksten klingen",
@@ -66,10 +66,10 @@ export const CHOPLAB_DE_TABS: ChopLabDeTab[] = [
         ]
       },
       {
-        title: "Deine Packs: Drums & Orchestral Soul (Stickz Hip-Hop Toolkit, CHRONICLES Soul Melodies)",
-        body: "Stickz ist ein Hip-Hop-Drum-Kit — einzelne One-Shots und Loops für Maschine-Pads. CHRONICLES ist reines Soul-Melodie-Material — üppige 70er Orchesterarrangements zum Choppen. Völlig unterschiedliche Verwendung.",
+        title: "Deine Packs: Drums (Stickz, Diginoiz Boom Bap Drums) & Orchestral Soul (CHRONICLES)",
+        body: "Drum-Packs und Soul-Melodie-Packs funktionieren völlig verschieden. Drum-Loops nicht choppen — Hits laden. CHRONICLES nicht als Rhythmus-Track laden — es ist reines Melodie-Material.",
         steps: [
-          "Stickz Hip-Hop Toolkit: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Die Loops nicht choppen — die One-Shots nutzen",
+          "Stickz Hip-Hop Toolkit und Diginoiz Boom Bap Drums: einzelne Hits (Kick, Snare, Hat One-Shots) direkt in Maschine-Pads laden. Die Loops nicht choppen — die One-Shots nutzen",
           "CHRONICLES Soul Melodies: das ist ALLES Melodie — üppige 70er Orchestral-Soul-Arrangements. Streicher-, Blechbläser- und Akkord-Arrangements zum Choppen und Resampling suchen. Keine Drum-Breaks hier",
           "CHRONICLES Loops slicen sauber mit Auto Slice — die orchestralen Akkordwechsel erzeugen klare Transient-Punkte, die Maschine automatisch erkennt",
           "Einen CHRONICLES Akkord-Stab auf einem Pad und den vollen Loop auf einem anderen laden — den Stab auf Schlüsselmomente triggern und den Loop dazwischen atmen lassen",
@@ -369,6 +369,110 @@ export const CHOPLAB_DE_PACKS: ChopLabDePackProfile[] = [
       "CHRONICLES ist reines Melodie-Material — üppige Orchesterarrangements im Stil der 70er Soul-Kino-Ära, entwickelt für Produzenten wie Metro Boomin, Alchemist und Hit Boy. Keine Drums in diesem Pack.",
       "An jedem Akkordwechsel slicen und man erhält eigenständige Stabs. Verschiedene Stabs auf separate Pads laden und Akkordvariationen live mit dem microKEY spielen.",
       "Viele Loops funktionieren clean ohne Verarbeitung — nur Hochpass bei 60 Hz für den Sub-Bereich. Die Orchesterreichhaltigkeit übernimmt den Rest.",
+    ]
+  },
+  {
+    name: "LayerCake Emotions",
+    type: "70er Vintage Soul / Analoge Wärme",
+    bpmRange: "70–95 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "Manuelles Slicen auf Akkordwechseln oder sauberer 2-Takt-Loop",
+    bestChops: "Üppige Akkordfolgen, tiefe Basslinien, eingängige melodische Phrasen",
+    tips: [
+      "Emotions fängt das goldene Zeitalter des 70er Souls ein — 10 originale Kompositionen mit vollständigen Stems, analog-inspirierte Texturen direkt aus der Vinyl-Ära. Durchgehend cinematisches Feeling.",
+      "Vollständige Stems inklusive — Bass, Keys oder Streicher unabhängig isolieren für flexibles Chopping, ohne sich auf das gesamte Arrangement festzulegen.",
+      "Choppen, flippen oder Loops clean verwenden. Das sind vollständig arrangierte Kompositionen, keine reinen Loops — die 2-Takt-Gold-Ader mit der Pocket-Bar-Methode darin finden.",
+    ]
+  },
+  {
+    name: "LayerCake Soul Cinema Legends",
+    type: "Cineastischer Soul / Soul-Cinema-Serie",
+    bpmRange: "70–100 BPM",
+    choppabilityLabel: "einfach",
+    primaryTechnique: "Sauberer Loop oder Auto Slice auf orchestralen Hits",
+    bestChops: "Cineastische Soul-Akkord-Loops, orchestrale Stabs, soulige melodische Phrasen",
+    tips: [
+      "Teil von LayerCakes Soul-Cinema-Serie — cineastische, üppige Soul-Arrangements speziell für Sample-basierte Produktion und Chopping entwickelt.",
+      "Die orchestralen Akkordwechsel erzeugen saubere Transient-Punkte — Auto Slice funktioniert sehr gut. Jeder Akkordschlag wird zu einem eigenständigen Stab-Pad.",
+      "Den vollen Loop zuerst clean über das Drum-Pattern legen, dann Chop-Stabs darüber hinzufügen. Der zwei-Layer-Ansatz (Loop + Stabs) ist die klassische Soul-Cinema-Technik.",
+    ]
+  },
+  {
+    name: "LayerCake Soul is Soul",
+    type: "Vintage Soul / Originale Kompositionen",
+    bpmRange: "70–100 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "2-Takt-Pocket in der Komposition finden",
+    bestChops: "Soul-Akkordfolgen, melodische Phrasen, Vintage-Drum-Pocket-Takte",
+    tips: [
+      "Originale Kompositionen im LayerCake-Stil — authentischer Vintage-Soul-Charakter mit moderner Produktionsqualität. Für Produzenten gemacht, die choppen und flippen.",
+      "Die gesamte Komposition einmal vollständig anhören, bevor man choppt. Das Gold liegt meistens bei Takt 3–4 und 7–8, wo das Arrangement in den Pocket kommt.",
+      "Einen Soul-is-Soul-Chop mit einem zeitgenössischen Element (Weekday Synth-Textur oder BUNNY Latin-Melodie) layern für einen Kontrast, der den Beat hervorstechen lässt.",
+    ]
+  },
+  {
+    name: "LayerCake Family Packs",
+    type: "Vintage Soul / Thematische Serie",
+    bpmRange: "70–100 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "Manuelles Slicen für melodische Fragmente",
+    bestChops: "Soul-Loop-Pocket-Takte, melodische Akkordschläge, Bass- & Drum-gesperrte Abschnitte",
+    tips: [
+      "LayerCake Family Packs sind thematische Sammlungen in derselben Vintage-Soul-Ästhetik — jedes Pack hat einen eigenen Charakter, teilt aber denselben hochwertigen Originalkompositions-Ansatz.",
+      "Jedes Pack als separate Instrumenten-Palette behandeln — eines für üppige Streicher, eines für Keys-lastige Loops. Nicht alles in einem Beat vermischen.",
+      "Die Pocket-Bar-Technik funktioniert hier besonders gut: Takt 3 oder 7 einer Komposition finden und man hat den kohärentesten 2-Takt-Chop.",
+    ]
+  },
+  {
+    name: "Ric Beats Soul Series",
+    type: "RnB & Vintage Soul Bundle",
+    bpmRange: "70–95 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "Sauberer Loop oder manuelles Slicen für R&B- und Soul-Kontexte",
+    bestChops: "R&B-Akkord-Loops, Vintage-Soul-Melodiephrasen, smooth Groove-Abschnitte",
+    tips: [
+      "Ric Beats Soul Series konzentriert sich auf RnB und Vintage Soul — warmer, smooth harmonischer Inhalt für R&B-Produktion und souligen Hip Hop.",
+      "Diese Loops sind darauf ausgelegt, unter einem Vocal zu sitzen. Clean in voller Länge für R&B verwenden — kein schweres Chopping nötig, nur EQ und leichte Kompression.",
+      "Den Loop-Abschnitt finden, wo die Akkordentwicklung am langsamsten ist (1 Akkord pro Takt) — das ist der nutzbarste Abschnitt für Vocal-Produktion.",
+    ]
+  },
+  {
+    name: "Ric Beats Legacy Bundle",
+    type: "Vintage Soul Bundle",
+    bpmRange: "70–100 BPM",
+    choppabilityLabel: "mittel",
+    primaryTechnique: "Pocket-Bar-Chop oder sauberer 2-Takt-Loop",
+    bestChops: "Klassische Vintage-Soul-Loops, tiefe Groove-Abschnitte, Akkord-Stabs",
+    tips: [
+      "Legacy Bundle deckt Vintage Soul über verschiedene Eras ab — eine umfassende Sammlung warmer, staubiger Soul-Kompositionen für Sample-basierte Produktion.",
+      "Der 'Legacy'-Charakter bedeutet, dass diese Loops bereits authentischen Vintage-Grit haben. Den Boom-Bap-Lo-Fi-Stack hinzufügen (Saturator Tape 25 % → Lo-Fi 12-Bit → EQ Hi-Shelf -4 dB) für sofortigen Classic-Sound.",
+      "Legacy-Bundle-Loops mit Soul-Series-Loops vergleichen — sie sind oft in verschiedenen Tonarten. Einen Legacy-Loop und einen Soul-Series-Loop in komplementären Tonarten finden und layern.",
+    ]
+  },
+  {
+    name: "Mystic Samples Free Discovery Pack",
+    type: "Kostenloses Sampler-Pack / Verschiedene Soul-Stile",
+    bpmRange: "Verschieden",
+    choppabilityLabel: "einfach",
+    primaryTechnique: "Jeden Loop anhören — 1 Keeper finden",
+    bestChops: "Was auch immer resoniert — Discovery-Packs sind zum Finden des eigenen Sounds",
+    tips: [
+      "Discovery-Packs sind Sampler-Kollektionen — nicht jeder Loop passt zum eigenen Stil. Das Ziel: 1–2 Loops finden, die man liebt, und diese meistern.",
+      "Es ist kostenlos — jeden Loop durchhören und 1–5 bewerten. Nur mit 5-bewerteten Loops arbeiten. Den Rest sofort löschen oder archivieren.",
+      "Jeden überzeugenden Loop notieren: Pack und Stil notieren und dann das vollständige kostenpflichtige Mystic-Samples-Pack suchen, das dazu passt.",
+    ]
+  },
+  {
+    name: "Diginoiz Boom Bap Drums",
+    type: "Boom-Bap-Drum-One-Shots & Loops",
+    bpmRange: "80–100 BPM",
+    choppabilityLabel: "einfach",
+    primaryTechnique: "Einzelne Hits auf Pads laden, Loops als Drum-Break-Fundament nutzen",
+    bestChops: "Punchy Kicks, knackige Snares, Boom-Bap-Hi-Hat-Patterns",
+    tips: [
+      "Diginoiz Boom Bap Drums ist eine dedizierte Boom-Bap-Drum-Ressource — authentische Kick-, Snare- und Hat-Sounds mit dem richtigen Gewicht und Charakter für das Genre.",
+      "Einzelne One-Shots direkt auf Maschine-Pads laden. Factory-Sounds Pad für Pad ersetzen — nicht alles auf einmal verwenden.",
+      "Die Drum-Loops als Pattern-Fundament nutzen: einen Diginoiz-Loop laden, mit Auto Slice schneiden, dann einzelne Slices durch eigene programmierte Hits ersetzen für einen hybriden Ansatz.",
     ]
   },
   {
