@@ -210,13 +210,23 @@ Skip this step ONLY if you used the auto-scanned path above.
   → Select the extracted "${packInfo.name}/" folder.
   → Click OK / Apply.
 
-STEP 3 — RESCAN MASCHINE LIBRARY
-----------------------------------
-  Preferences → Library tab → click "Rescan" button.
-  Wait for the progress bar to finish fully before closing.
+STEP 3 — FIND SAMPLES IN THE BROWSER
+--------------------------------------
+  MASCHINE 2:
+    Preferences → Library tab → click "Rescan" → wait for progress bar.
+    Samples appear under: Browser → User → Samples
 
-  Maschine 2: samples appear under Browser → User → Samples
-  Maschine 3: samples appear under Browser → User Content → Samples
+  MASCHINE 3:
+    Maschine 3 does NOT show raw WAV samples in User Content (that section
+    is for instruments and effects like Raum). Use the Files browser instead:
+
+    a) Click the FILES tab in the browser (folder icon, left side).
+    b) Navigate to the folder where you extracted this pack.
+    c) Drag any WAV directly from the Files browser onto a pad.
+
+    To add a shortcut so you don't have to navigate every time:
+    Right-click the "${packInfo.name}/" folder in the Files browser
+    → "Add to Favorites" (star icon). It will appear at the top of Files.
 
 STEP 4 — USING SAMPLES IN MASCHINE MK3
 -----------------------------------------
