@@ -480,6 +480,15 @@ export default function PackLab() {
   const audioRef = useRef<{ source: AudioBufferSourceNode; ctx: AudioContext } | null>(null);
   const artworkInputRef = useRef<HTMLInputElement>(null);
 
+  // Set webkitdirectory via DOM ref — JSX prop is not reliable for non-standard attributes
+  const folderInputCallbackRef = useCallback((el: HTMLInputElement | null) => {
+    (folderInputRef as React.MutableRefObject<HTMLInputElement | null>).current = el;
+    if (el) {
+      el.setAttribute("webkitdirectory", "");
+      el.setAttribute("directory", "");
+    }
+  }, []);
+
   // Grouped samples by category
   const grouped = useMemo(() => {
     const map = new Map<SampleCategory, AnalyzedSample[]>();
@@ -782,12 +791,10 @@ export default function PackLab() {
                 onChange={onFileInput}
               />
               <input
-                ref={folderInputRef}
+                ref={folderInputCallbackRef}
                 type="file"
                 className="hidden"
                 onChange={onFolderInput}
-                // @ts-expect-error webkitdirectory is not in TS types but works in all browsers
-                webkitdirectory=""
               />
               <Upload className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
               <p className="text-lg font-semibold text-foreground mb-2">{t("Drop your sample pack here", "Sample-Pack hier ablegen")}</p>
