@@ -553,30 +553,38 @@ export default function PackLab() {
     e.preventDefault();
     setDragOver(false);
 
-    // Check if any dropped item is a folder via webkitGetAsEntry
+    // Collect all FileSystemEntry objects in ONE pass — calling webkitGetAsEntry()
+    // twice on the same item returns null, so we must not call it twice.
+    const fsEntries: FileSystemEntry[] = [];
     const items = Array.from(e.dataTransfer.items ?? []);
-    const hasEntry = items.some(i => i.webkitGetAsEntry?.()?.isDirectory);
+    for (const item of items) {
+      const entry = item.webkitGetAsEntry?.();
+      if (entry) fsEntries.push(entry);
+    }
 
-    if (hasEntry) {
+    const hasDirectory = fsEntries.some(e => e.isDirectory);
+
+    if (hasDirectory || fsEntries.length > 0) {
       setStep("analyzing");
       setProgress(0);
-      const entries: { file: File; zipPath: string }[] = [];
+      const allEntries: { file: File; zipPath: string }[] = [];
       let folderName = "";
-      for (const item of items) {
-        const entry = item.webkitGetAsEntry?.();
-        if (!entry) continue;
+      for (const entry of fsEntries) {
         if (!folderName && entry.isDirectory) folderName = entry.name;
         setProgressLabel(`Reading ${entry.name}…`);
-        entries.push(...await traverseEntry(entry, ""));
+        allEntries.push(...await traverseEntry(entry, ""));
       }
-      if (entries.length === 0) { setStep("upload"); return; }
+
+      if (allEntries.length === 0) { setStep("upload"); return; }
+
       if (!packName && folderName) {
         setPackName(folderName.replace(/[_\-]/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim());
       }
+
       const results: AnalyzedSample[] = [];
-      for (let i = 0; i < entries.length; i++) {
-        const { file, zipPath } = entries[i];
-        setProgress(Math.round((i / entries.length) * 100));
+      for (let i = 0; i < allEntries.length; i++) {
+        const { file, zipPath } = allEntries[i];
+        setProgress(Math.round((i / allEntries.length) * 100));
         setProgressLabel(file.name);
         results.push(await analyzeFile(file, zipPath));
       }
@@ -586,6 +594,7 @@ export default function PackLab() {
       return;
     }
 
+    // Fallback: no FileSystemEntry API — use plain files
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) processFiles(files);
   }, [processFiles, packName]);
