@@ -837,6 +837,123 @@ export default function PackLab() {
                 </div>
               ))}
             </div>
+            {/* ── Curated Pack Library ── */}
+            <div className="mt-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-4">
+                {t("Curated Pack Library — Boom Bap · Hip Hop · R&B", "Kuratierte Pack-Bibliothek — Boom Bap · Hip Hop · R&B")}
+              </p>
+              <div className="space-y-6">
+                {([
+                  {
+                    label: t("Drums & Percussion", "Drums & Percussion"),
+                    color: "#f59e0b",
+                    essential: [
+                      { name: "Free Vinyl Drums From Mars 2", note: t("boom bap bible — vinyl texture, swing, crunch", "Boom-Bap-Bibel — Vinyl-Textur, Swing, Crunch") },
+                      { name: "Tape606_Maschine", note: t("606 machine — classic boom bap & R&B feel", "606-Machine — klassisches Boom-Bap & R&B Feeling") },
+                      { name: "Cymatics — Dope Drums Vol 1", note: t("solid hip hop drum kit", "solides Hip-Hop-Drum-Kit") },
+                      { name: "Cymatics — Bang Hip Hop Drum Kit", note: t("strong hip hop one-shots", "starke Hip-Hop-One-Shots") },
+                      { name: "Stickz — Hip-Hop Toolkit", note: t("producer-grade hip hop tools", "professionelle Hip-Hop-Tools") },
+                      { name: "The Real RACK Kick Collection", note: t("focused kick collection", "fokussierte Kick-Sammlung") },
+                    ],
+                    optional: [
+                      { name: "50 Best Free Kick Samples", note: t("extra kicks", "zusätzliche Kicks") },
+                      { name: "Cymatics — Vibes II", note: t("hip hop textures & drums", "Hip-Hop-Texturen & Drums") },
+                    ],
+                  },
+                  {
+                    label: t("Soul, Chops & Melodies", "Soul, Chops & Melodien"),
+                    color: "#ec4899",
+                    essential: [
+                      { name: "Choppable Soul", note: t("made for chopping — boom bap foundation", "zum Choppen gemacht — Boom-Bap-Grundlage") },
+                      { name: "Soul For Sale", note: t("soul loops built to be flipped", "Soul-Loops zum Samplen") },
+                      { name: "Cymatics — Eupho Chops", note: t("euphoric chops, boom bap ready", "euphorische Chops, Boom-Bap-ready") },
+                      { name: "CHRONICLES Soul Melodies", note: t("soul-forward, great for sampling", "soul-betont, gut zum Samplen") },
+                      { name: "soul-dreams vol 1 + vol 2", note: t("soulful, choppable loops", "soulige, choppbare Loops") },
+                      { name: "Cymatics — HERITA Melodies", note: t("heritage / classic soul vibes", "Heritage-/Klassik-Soul-Vibes") },
+                    ],
+                    optional: [
+                      { name: "REVIVAL Soul Melodies", note: t("R&B / soul loops", "R&B / Soul-Loops") },
+                      { name: "ODYSSEY Soul Melodies", note: t("soul melodics", "Soul-Melodien") },
+                      { name: "RIPPLE Premium Melodies", note: t("premium melodics", "Premium-Melodien") },
+                      { name: "Prism Soul", note: t("soul textures", "Soul-Texturen") },
+                      { name: "2020 Melody Collection", note: t("general melodics", "allgemeine Melodien") },
+                    ],
+                  },
+                  {
+                    label: t("R&B Packs", "R&B-Packs"),
+                    color: "#8b5cf6",
+                    essential: [
+                      { name: "Cymatics — CASHMERE RnB Melodies", note: t("premium R&B melodics, very usable", "Premium-R&B-Melodien, sehr brauchbar") },
+                      { name: "Clark Audio — Free RnB Sample Pack", note: t("solid R&B melodics & loops", "solide R&B-Melodien & Loops") },
+                      { name: "Cymatics — Orchid Sample Pack", note: t("premium quality all-rounder", "Premium-Qualität, vielseitig") },
+                    ],
+                    optional: [
+                      { name: "Cymatics — SOLACE Acapellas", note: t("vocal textures & acapellas", "Vokal-Texturen & Acapellas") },
+                      { name: "Cymatics — Signature Edition", note: t("premium full-spectrum pack", "Premium-Vollspektrum-Pack") },
+                      { name: "Cymatics x S1 — Artist Sample Pack", note: t("artist collab pack", "Künstler-Collab-Pack") },
+                    ],
+                  },
+                  {
+                    label: t("Full Toolkits", "Komplette Toolkits"),
+                    color: "#10b981",
+                    essential: [
+                      { name: "Stickz — Hip-Hop Toolkit", note: t("complete hip hop toolkit", "komplettes Hip-Hop-Toolkit") },
+                    ],
+                    optional: [
+                      { name: "Stickz — Chill Toolkit", note: t("laid-back vibes", "entspannte Vibes") },
+                      { name: "Weekday — Hip Hop Sample Pack", note: t("everyday hip hop tools", "alltägliche Hip-Hop-Tools") },
+                      { name: "-Humble- Hip Hop Sample Pack", note: t("classic hip hop sounds", "klassische Hip-Hop-Sounds") },
+                      { name: "Cymatics — 9God Hip Hop Pack", note: t("hip hop essentials", "Hip-Hop-Essentials") },
+                      { name: "SOUNDLAB Starter Pack", note: t("general starter kit", "allgemeines Starter-Kit") },
+                    ],
+                  },
+                ] as const).map(({ label, color, essential, optional }) => (
+                  <div key={label} className="border border-border rounded-xl overflow-hidden">
+                    <div className="px-5 py-3 flex items-center gap-2" style={{ borderBottom: "1px solid var(--border)" }}>
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+                      <span className="text-sm font-semibold text-foreground">{label}</span>
+                    </div>
+                    <div className="p-4 space-y-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color }}>
+                          {t("Essential", "Essenziell")}
+                        </p>
+                        <div className="space-y-1">
+                          {essential.map(p => (
+                            <div key={p.name} className="flex items-start gap-2 text-xs">
+                              <span className="text-foreground font-medium shrink-0">{p.name}</span>
+                              <span className="text-muted-foreground">— {p.note}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {optional.length > 0 && (
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-2">
+                            {t("Optional", "Optional")}
+                          </p>
+                          <div className="space-y-1">
+                            {optional.map(p => (
+                              <div key={p.name} className="flex items-start gap-2 text-xs">
+                                <span className="text-muted-foreground font-medium shrink-0">{p.name}</span>
+                                <span className="text-muted-foreground/60">— {p.note}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 border border-red-500/20 rounded-xl p-4 bg-red-500/5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-red-400/70 mb-2">{t("Remove — wrong genre", "Entfernen — falsches Genre")}</p>
+                <p className="text-xs text-muted-foreground/60 leading-relaxed">
+                  Cymatics DRILL GODS · SHOOTER Trap Drum Kit · TRENCH PACK · IMMORTAL Hyper · Black Octopus · Echo Sound Works · Ron got sauce / Sauce · Bass Synthesis · 99 Drum Samples I+II · UTOPIA · ZONE 6 · PLANET X · TRE NDI · Destiny Beta · BUNNY Pack · Function Loops UFO
+                </p>
+              </div>
+            </div>
           </motion.div>
         )}
 
