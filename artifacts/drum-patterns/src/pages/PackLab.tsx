@@ -174,21 +174,44 @@ Author  : ${packInfo.author || "Unknown"}
 Samples : ${samples.length}
 Prepared: ${now}
 
+IMPORTANT — SUPPORTED FORMATS
+-------------------------------
+Maschine only reads WAV and AIFF files.
+Any MP3, FLAC, or OGG files in this pack will NOT appear in Maschine
+and must be converted to WAV first (use free tools like Audacity or fre:ac).
+
 STEP 1 — EXTRACT
 -----------------
-Extract this ZIP to a permanent location you will NOT move:
-  Recommended: ~/Documents/Native Instruments/Maschine 2/Samples/${packInfo.name}/
+Extract this ZIP to a PERMANENT location you will NOT move afterwards.
+Moving the folder later will break the Maschine library link.
 
-STEP 2 — ADD TO MASCHINE LIBRARY
+  Option A (auto-scanned — recommended):
+    Mac: ~/Documents/Native Instruments/Maschine 2/Samples/${packInfo.name}/
+    Win: C:\\Users\\<you>\\Documents\\Native Instruments\\Maschine 2\\Samples\\${packInfo.name}\\
+
+  Option B (any folder):
+    Extract anywhere, then follow Step 2 to register the path.
+
+STEP 2 — REGISTER FOLDER IN MASCHINE (skip if you used Option A)
+------------------------------------------------------------------
+Only needed if you extracted to a custom location (Option B):
+
+  Mac: Maschine menu → Preferences → Library tab
+  Win: Edit menu    → Preferences → Library tab
+
+  Under "User", click the small "+" button next to the "Sample Folders" list.
+  Select the "${packInfo.name}/" folder you extracted.
+  Click OK.
+
+STEP 3 — RESCAN MASCHINE LIBRARY
 ----------------------------------
-1. Open Maschine software
-2. Click the Library tab (book icon at top of browser)
-3. Click "User" in the left sidebar
-4. Click the "+" icon at the bottom of the sidebar to add a folder
-5. Select the "${packInfo.name}/" folder
-6. Maschine will scan and index all files — wait for the progress bar
+  Mac: Maschine menu → Preferences → Library tab → click "Rescan" button
+  Win: Edit menu    → Preferences → Library tab → click "Rescan" button
 
-STEP 3 — USING SAMPLES IN MASCHINE MK3
+  Wait for the progress bar to complete fully before closing Preferences.
+  After rescan, samples appear under: Browser → User → Samples
+
+STEP 4 — USING SAMPLES IN MASCHINE MK3
 -----------------------------------------
 DRUM ONE-SHOTS (Drums/):
   Drag from browser onto any empty pad in a drum Group.
