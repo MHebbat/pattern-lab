@@ -185,31 +185,38 @@ STEP 1 — EXTRACT
 Extract this ZIP to a PERMANENT location you will NOT move afterwards.
 Moving the folder later will break the Maschine library link.
 
-  Option A (auto-scanned — recommended):
+  Extract to a PERMANENT location — do NOT move it afterwards.
+
+  Maschine 2 auto-scanned path:
     Mac: ~/Documents/Native Instruments/Maschine 2/Samples/${packInfo.name}/
-    Win: C:\\Users\\<you>\\Documents\\Native Instruments\\Maschine 2\\Samples\\${packInfo.name}\\
+    Win: Documents\\Native Instruments\\Maschine 2\\Samples\\${packInfo.name}\\
 
-  Option B (any folder):
-    Extract anywhere, then follow Step 2 to register the path.
+  Maschine 3 auto-scanned path:
+    Mac: ~/Documents/Native Instruments/Maschine 3/User Data/Samples/${packInfo.name}/
+    Win: Documents\\Native Instruments\\Maschine 3\\User Data\\Samples\\${packInfo.name}\\
 
-STEP 2 — REGISTER FOLDER IN MASCHINE (skip if you used Option A)
-------------------------------------------------------------------
-Only needed if you extracted to a custom location (Option B):
+  Or extract to any folder — you can register it manually in Step 2.
 
-  Mac: Maschine menu → Preferences → Library tab
-  Win: Edit menu    → Preferences → Library tab
+STEP 2 — REGISTER FOLDER IN MASCHINE
+--------------------------------------
+Skip this step ONLY if you used the auto-scanned path above.
 
-  Under "User", click the small "+" button next to the "Sample Folders" list.
-  Select the "${packInfo.name}/" folder you extracted.
-  Click OK.
+  Maschine 2 (Mac): Maschine menu → Preferences → Library tab
+  Maschine 2 (Win): Edit menu → Preferences → Library tab
+  Maschine 3 (Mac): Maschine menu → Preferences → Library tab
+  Maschine 3 (Win): Edit menu → Preferences → Library tab
+
+  → Under "User", find "Sample Folders" and click the "+" button.
+  → Select the extracted "${packInfo.name}/" folder.
+  → Click OK / Apply.
 
 STEP 3 — RESCAN MASCHINE LIBRARY
 ----------------------------------
-  Mac: Maschine menu → Preferences → Library tab → click "Rescan" button
-  Win: Edit menu    → Preferences → Library tab → click "Rescan" button
+  Preferences → Library tab → click "Rescan" button.
+  Wait for the progress bar to finish fully before closing.
 
-  Wait for the progress bar to complete fully before closing Preferences.
-  After rescan, samples appear under: Browser → User → Samples
+  Maschine 2: samples appear under Browser → User → Samples
+  Maschine 3: samples appear under Browser → User Content → Samples
 
 STEP 4 — USING SAMPLES IN MASCHINE MK3
 -----------------------------------------

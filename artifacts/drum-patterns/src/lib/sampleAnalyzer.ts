@@ -204,32 +204,42 @@ const CATEGORY_KEYWORDS: [SampleCategory, string[]][] = [
 
   // ── Loops ──────────────────────────────────────────────────────────────────
   ["Loops/Vocal Loop", [
-    "vocal loop", "vox loop", "voc loop", "voice loop",
-    "vocal_lp", "sung loop", "choir loop",
+    "vocal loop", "vox loop", "voc loop", "voice loop", "acap loop",
+    "vocal_lp", "vox_lp", "sung loop", "choir loop", "rap loop",
+    "hook loop", "adlib loop", "vocal groove",
   ]],
   ["Loops/Guitar Loop", [
-    "guitar loop", "gtr loop", "guitar_lp", "guitar_loop",
-    "riff loop", "chord guitar loop",
+    "guitar loop", "gtr loop", "guitar_lp", "guitar_loop", "gtr_lp",
+    "riff loop", "chord guitar loop", "guitar groove", "gtr groove",
+    "guitar_groove", "strum loop", "acoustic loop",
   ]],
   ["Loops/Chord Loop", [
-    "chord loop", "chord_loop", "chord_lp", "chords_loop",
-    "progression loop", "prog loop", "harmony loop",
+    "chord loop", "chord_loop", "chord_lp", "chords_loop", "chd loop",
+    "progression loop", "prog loop", "harmony loop", "chord groove",
+    "chord progression", "comp loop", "stab loop", "keys loop",
+    "piano loop", "rhodes loop", "organ loop",
   ]],
   ["Loops/Melody Loop", [
-    "melody loop", "melodyloop", "melody_loop", "mel loop",
-    "melodic loop", "hook loop", "lead loop", "riff loop",
-    "phrase loop", "musical loop",
+    "melody loop", "melodyloop", "melody_loop", "mel loop", "mel_lp",
+    "melodic loop", "lead loop", "riff loop", "phrase loop", "musical loop",
+    "synth loop", "synth_lp", "arp loop", "arp_lp", "flute loop",
+    "lead groove", "mel groove", "melody groove", "top loop", "topline loop",
   ]],
   ["Loops/Bass Loop", [
-    "bass loop", "bassloop", "bass_loop", "sub loop",
-    "bass_lp", "808 loop",
+    "bass loop", "bassloop", "bass_loop", "sub loop", "bass_lp",
+    "808 loop", "808loop", "808_lp", "bassline loop", "bass groove",
+    "bass_groove", "sub_lp", "low loop", "reese loop",
   ]],
   ["Loops/Drum Loop", [
     "drum loop", "drumloop", "drum_loop", "break_", "breakbeat",
-    "drum break", " break", "_break", "beat loop",
+    "drum break", "drum_break", "beat loop", "groove_", "_groove",
+    "drum groove", "beat_", "_beat", "hat loop", "perc loop",
+    "rhythm loop", "full beat", "trap beat", "boom bap loop",
+    "brk_", "_brk", "brkbt", "percussion loop",
   ]],
   ["Loops/Full Loop", [
-    "full loop", "fullloop", "full_loop", "loop_full",
+    "full loop", "fullloop", "full_loop", "loop_full", "stem_",
+    "_stem", "instrumental", "instru_", "_instru", "full track",
     " loop", "_loop", "loop_", "lp_", "_lp_", " lp_",
   ]],
 
@@ -303,13 +313,13 @@ const PATH_HINTS: [SampleCategory, string[]][] = [
   ["One Shots/Synth",  ["synth", "synths", "leads", "bells"]],
   ["One Shots/Instrument", ["flute", "woodwind", "live instruments"]],
   // Loops
-  ["Loops/Drum Loop",  ["drum loops", "drum loop", "breaks", "breakbeats"]],
-  ["Loops/Bass Loop",  ["bass loops", "bass loop"]],
-  ["Loops/Melody Loop",["melody loops", "melodic loops", "lead loops"]],
-  ["Loops/Chord Loop", ["chord loops", "harmony loops", "progression loops"]],
-  ["Loops/Guitar Loop",["guitar loops", "riff loops"]],
-  ["Loops/Vocal Loop", ["vocal loops", "vox loops"]],
-  ["Loops/Full Loop",  ["loops", "loop", "full loops", "stems"]],
+  ["Loops/Drum Loop",  ["drum loops", "drum loop", "breaks", "breakbeats", "grooves", "groove", "beats", "beat", "rhythms", "rhythm", "percussion loops", "hat loops", "drum breaks"]],
+  ["Loops/Bass Loop",  ["bass loops", "bass loop", "sub loops", "808 loops", "basslines", "bass grooves", "low end loops"]],
+  ["Loops/Melody Loop",["melody loops", "melodic loops", "lead loops", "synth loops", "arp loops", "riff loops", "top loops", "toplines", "topline"]],
+  ["Loops/Chord Loop", ["chord loops", "harmony loops", "progression loops", "comp loops", "piano loops", "rhodes loops", "keys loops", "stab loops"]],
+  ["Loops/Guitar Loop",["guitar loops", "riff loops", "strum loops", "acoustic loops", "gtr loops"]],
+  ["Loops/Vocal Loop", ["vocal loops", "vox loops", "acapellas", "acappellas", "hook loops", "rap loops", "sung loops", "adlib loops"]],
+  ["Loops/Full Loop",  ["loops", "loop", "full loops", "stems", "stem", "instrumentals", "instrumental", "full tracks", "tracks"]],
   // FX
   ["FX/Riser",         ["risers", "riser", "uplifters", "builds", "buildups"]],
   ["FX/Downlifter",    ["downlifters", "downlifter", "falls"]],
@@ -506,8 +516,29 @@ export async function analyzeFile(file: File, zipPath = ""): Promise<AnalyzedSam
     ? await getWavDuration(file)
     : null;
 
-  const { category, confidence } = detectCategory(nameNoExt, zipPath);
-  const type = detectType(nameNoExt, zipPath, duration, bpm, category);
+  const { category: rawCategory, confidence } = detectCategory(nameNoExt, zipPath);
+  const type = detectType(nameNoExt, zipPath, duration, bpm, rawCategory);
+
+  // If detected as a loop but placed in a non-loop category, remap to the
+  // appropriate Loops/* subcategory so loops don't end up as one-shot drums etc.
+  let category = rawCategory;
+  if (type === "loop" && !rawCategory.startsWith("Loops/") && !rawCategory.startsWith("FX/") && !rawCategory.startsWith("Textures/")) {
+    if (rawCategory.startsWith("Drums/") || rawCategory === "Drums/Full Kit") {
+      category = "Loops/Drum Loop";
+    } else if (rawCategory === "Bass") {
+      category = "Loops/Bass Loop";
+    } else if (rawCategory.startsWith("Melody/")) {
+      category = "Loops/Melody Loop";
+    } else if (rawCategory.startsWith("Chords/")) {
+      category = "Loops/Chord Loop";
+    } else if (rawCategory === "One Shots/Guitar") {
+      category = "Loops/Guitar Loop";
+    } else if (rawCategory.startsWith("Vocals/")) {
+      category = "Loops/Vocal Loop";
+    } else if (rawCategory.startsWith("One Shots/") || rawCategory === "Uncategorized") {
+      category = "Loops/Full Loop";
+    }
+  }
 
   return {
     id,
